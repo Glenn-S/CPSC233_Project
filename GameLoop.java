@@ -127,6 +127,12 @@ public class GameLoop {
      */
     private boolean engageBattle() {
         // calls an instance of the BattleLoop class to engage in combat
+
+
+        // *** need to finish ***
+
+
+        
         return true;
     }
 

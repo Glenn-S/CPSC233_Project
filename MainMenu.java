@@ -11,12 +11,13 @@ public class MainMenu { // change this name to be the name of the game
     public static void main(String[] args) {
         MainMenu game = new MainMenu();
         boolean playGame = true;
-        boolean startGame = true;
+        boolean startGame = false;
 
-        while (playGame) {
-            while (startGame) {
+        while (playGame) { // loop until false is selected
+            while (!startGame) { // loop until a valid entry
                 startGame = game.mainMenu();
             }
+
             playGame = game.gameLoop(); // instantiates a new instance of the game
         }
         // maybe print out an exit splash screen?
