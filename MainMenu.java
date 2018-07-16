@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- *
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class MainMenu { // change this name to be the name of the game
 

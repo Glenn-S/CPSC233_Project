@@ -1,5 +1,5 @@
 /**
- *
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Defense extends Sprite {
     private int defenseBoost; // associated strenght of the defense item

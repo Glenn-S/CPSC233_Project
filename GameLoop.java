@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- *
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class GameLoop {
     private ArrayList<Sprite> terrain = new ArrayList<Sprite>();
@@ -132,7 +132,7 @@ public class GameLoop {
         // *** need to finish ***
 
 
-        
+
         return true;
     }
 

@@ -1,5 +1,5 @@
 /**
- *
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Weapon extends Sprite {
     private int weaponBoost; // associated strength of the weapon

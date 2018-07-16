@@ -1,5 +1,5 @@
 /**
- *
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Potion extends Sprite {
     private int healthBoost; // associated strength of the potion
