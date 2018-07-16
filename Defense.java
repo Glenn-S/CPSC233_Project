@@ -1,5 +1,8 @@
+/**
+ *
+ */
 public class Defense extends Sprite {
-    private int defenseBoost;
+    private int defenseBoost; // associated strenght of the defense item
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
 
@@ -57,6 +60,7 @@ public class Defense extends Sprite {
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
     /**
+     * Purpose: To get the value of the defence items strength
      * @return the defenseBoost
      */
     public int getDefenseBoost() {
@@ -64,6 +68,7 @@ public class Defense extends Sprite {
     }
 
     /**
+     * Purpose: To set the defense value of the item
      * @param weaponBoost the weaponBoost to set
      */
     public void setWeaponBoost(int weaponBoost) {

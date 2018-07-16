@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class GameLoop {
     private ArrayList<Sprite> terrain = new ArrayList<Sprite>();
     private ArrayList<Sprite> items = new ArrayList<Sprite>();
@@ -12,11 +15,12 @@ public class GameLoop {
     /*------------------------------- METHODS --------------------------------*/
 
     /**
-     *
+     * Purpose: To initialize all of the instance variables for the current game
+     * and set the arrays with the Sprites initialized.
      */
     private void initialize() {
         // not sure if this is the correct syntax
-        this.terrain.addAll(); // list of objects
+        this.terrain.addAll(); // list of objects eg this.terrain.addAll(Sprite(definitions for constructor, etc))
         this.items.addAll();
         this.enemy.addAll();
         this.totalKeys = 4;
@@ -26,36 +30,82 @@ public class GameLoop {
     }
 
     /**
-     *
+     * Purpose: To check and see if the players move will collide with an enemy
+     * on the map.
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with an enemy
      */
     private boolean checkEnemy(Player player, String move, ArrayList<Enemy> enemy) {
         // uses the center point of each object and checks using the xSize and ySize offset
+        // check the if exists
+
+
+        // *** need to finish ***
+
+
+
         return true;
     }
 
     /**
-     *
+     * Purpose: To check and see if the players move will collide with an item
+     * located on the map.
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with an item on the map
      */
     private boolean checkItems(Player player, String move, ArrayList<Sprite> items) {
+        // check ifexists value
+
+
+        // *** need to finish ***
+
+
+
         return true;
     }
 
     /**
-     *
+     * Purpose: To check and see if the players move will collide with a terrain
+     * tile that cannot be crossed (ie. mountains).
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with a terrain tile that is un-crossable
      */
     private boolean checkTerrain(Player player, String move, ArrayList<Sprite> terrain) {
+        // check ifexists value
+
+
+        // *** need to finish ***
+
+
+
         return true;
     }
 
     /**
-     *
+     * Purpose: To check and see if the players move will collide with an edge
+     * of the map.
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with an edge of the map
      */
     private boolean checkEdges(Player player, String move) {
+
+
+        // *** need to finish ***
+
+
+
         return true;
     }
 
     /**
-     *
+     * Purpose: To check and see if the player has obtained tall of the keys
+     * necessary to unlock the gate to the final boss.
+     * @param player an instance of the player class in the current game
+     * @return a boolean value for if the player meets the condition to unlock
      */
     private boolean checkGate(Player player) {
         return (player.getKeyCount() == totalKeys-1) ? true : false;
@@ -76,6 +126,7 @@ public class GameLoop {
      *
      */
     private boolean engageBattle() {
+        // calls an instance of the BattleLoop class to engage in combat
         return true;
     }
 
@@ -166,6 +217,7 @@ public class GameLoop {
      */
     public void drawState() {
         // this needs to print to standard out the map for the terminal version
+        // perhaps a nested for loop to print out the array of arrays of locations
         return;
     }
 
@@ -208,6 +260,11 @@ public class GameLoop {
      * @return a string representation of the users directional choice
      */
     public String playerInput() {
+
+
+        // *** need to finish ***
+
+
         // need to figure out how to interpret keyboard commands of arrow keys
         // maybe use WASD to make it consistent with modern RPG games
         Scanner scan = new Scanner(System.in);

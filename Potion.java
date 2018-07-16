@@ -1,5 +1,8 @@
+/**
+ *
+ */
 public class Potion extends Sprite {
-    private int healthBoost;
+    private int healthBoost; // associated strength of the potion
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
 
@@ -57,6 +60,7 @@ public class Potion extends Sprite {
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
     /**
+     * Purpose: To get the healing strenght of a potion
      * @return the healthBoost
      */
     public int getHealthBoost() {
@@ -64,6 +68,7 @@ public class Potion extends Sprite {
     }
 
     /**
+     * Purpose: To set the healing strenght of a potion
      * @param healthBoost the healthBoost to set
      */
     public void setHealthBoost(int healthBoost) {

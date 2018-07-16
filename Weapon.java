@@ -1,5 +1,8 @@
+/**
+ *
+ */
 public class Weapon extends Sprite {
-    private int weaponBoost;
+    private int weaponBoost; // associated strength of the weapon
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
 
@@ -57,6 +60,7 @@ public class Weapon extends Sprite {
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
     /**
+     * Purpose: To get the value associated with the weapons attack strenght
      * @return the weaponBoost
      */
     public int getWeaponBoost() {
@@ -64,6 +68,7 @@ public class Weapon extends Sprite {
     }
 
     /**
+     * Purpose: To set the value of the weapons attack strength
      * @param weaponBoost the weaponBoost to set
      */
     public void setWeaponBoost(int weaponBoost) {
