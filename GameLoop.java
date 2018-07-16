@@ -10,7 +10,7 @@ public class GameLoop {
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
-    private Player player; // initialized value
+
 
     /*------------------------------- METHODS --------------------------------*/
 
@@ -131,13 +131,6 @@ public class GameLoop {
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
-    /**
-     * Purpose: To retrieve the player instance for the current game
-     * @return the instance of the player
-     */
-    public Player getPlayer() {
-        return this.player;
-    }
 
     /**
      * Purpose: To retrieve the array list for the terrain objects
@@ -161,14 +154,6 @@ public class GameLoop {
      */
     public ArrayList<Enemy> getEnemy() {
         return this.enemy;
-    }
-
-    /**
-     * Purpose: To set an instance of the player class for the current game
-     * @param player an instance of the player class
-     */
-    public void setPlayer(Player newPlayer) {
-        this.player = newPlayer;
     }
 
     /**
@@ -213,9 +198,9 @@ public class GameLoop {
 
     /*--------------------------- PUBLIC METHODS -----------------------------*/
     /**
-     *
+     * player is needed since it is not of this class
      */
-    public void drawState() {
+    public void drawState(Player player) {
         // this needs to print to standard out the map for the terminal version
         // perhaps a nested for loop to print out the array of arrays of locations
         return;
@@ -279,15 +264,15 @@ public class GameLoop {
      * false depending.
      * @param player an instance of the player class
      * @param move a string representation of the users input
-     * @return true if a collision was detected else false
+     * @return false if a collision was detected else true
      */
     public boolean checkCollisions(Player player, String move) {
-        boolean collision = false;
+        boolean collision = true;
 
-        // check all collisions and if any are true
-        if (checkEdges(player, move) || checkTerrain(player, move, terrain) ||
-                checkEnemy(player, move, enemy) || checkItems(player, move, items)) {
-            collision = (collision == false) ? true : collision; // if its false make it true else keep it what it was
+        // check all collisions and if any are false
+        if (!checkEdges(player, move) || !checkTerrain(player, move, terrain) ||
+                !checkEnemy(player, move, enemy) || !checkItems(player, move, items)) {
+            collision = (collision == true) ? false : collision; // if its false make it true else keep it what it was
         }
         return collision;
     }
