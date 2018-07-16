@@ -16,9 +16,9 @@ public class GameLoop {
      */
     private void initialize() {
         // not sure if this is the correct syntax
-        terrain.addAll(); // list of objects
-        items.addAll();
-        enemy.addAll();
+        this.terrain.addAll(); // list of objects
+        this.items.addAll();
+        this.enemy.addAll();
         this.totalKeys = 4;
         this.winState = false;
         this.loseState = false;
