@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 public class GameLoop {
-    ArrayList<Sprite> terrain = new ArrayList<Sprite>();
-    ArrayList<Sprite> items = new ArrayList<Sprite>();
-    ArrayList<Enemy> enemy = new ArrayList<Enemy>();
-    int totalKeys; // total number of keys in the game
-    boolean winState;
-    boolean loseState;
-    Player player; // initialized value
+    private ArrayList<Sprite> terrain = new ArrayList<Sprite>();
+    private ArrayList<Sprite> items = new ArrayList<Sprite>();
+    private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
+    private int totalKeys; // total number of keys in the game
+    private boolean winState;
+    private boolean loseState;
+    private Player player; // initialized value
 
     /*------------------------------- METHODS --------------------------------*/
 
@@ -170,25 +170,30 @@ public class GameLoop {
      *
      */
     public void drawState() {
+        // this needs to print to standard out the map for the terminal version
         return;
     }
 
     /**
      *
      */
-    public void checkWinState() {
-        return;
+    public boolean checkWinState() {
+        return winState; // returns true if true else false
     }
 
     /**
-     *
+     * Purpose: To check and see if the
      */
-    public void checkLoseState() {
-        return;
+    public boolean checkLoseState() {
+        return loseState; // returns true if true else false
     }
 
     /**
-     *
+     * Purpose: To equip the player with an item when they come across one and
+     * add it to their inventory.
+     * @param player - an instance of the player class
+     * @param item - the item that the user will add to their inventory
+     * @throws ? not sure yet
      */
     public void pickUpItem(Player player, Sprite item) {
         if (((item instanceof Potion) || (item instanceof Weapon) ||
@@ -202,17 +207,25 @@ public class GameLoop {
     }
 
     /**
-     *
+     * Purpose: To obtain the users input for moving around the game board
+     * @return - a string representation of the users directional choice
      */
     public String playerInput() {
-        //Scanner scan = new Scanner(System.in);
         // need to figure out how to interpret keyboard commands of arrow keys
+        // maybe use WASD to make it consistent with modern RPG games
+        Scanner scan = new Scanner(System.in);
+        // check to make sure that the characters are the valid ones
+        char input = scan.next();
 
         return "";
     }
 
     /**
-     *
+     * Purpose: To check all possible collisions in the game and return true or
+     * false depending.
+     * @param player - an instance of the player class
+     * @param move - a string representation of the users input
+     * @return true if a collision was detected else false
      */
     public boolean checkCollisions(Player player, String move) {
         boolean collision = false;
