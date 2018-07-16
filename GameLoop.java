@@ -80,92 +80,87 @@ public class GameLoop {
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
-
     /**
-     *
+     * Purpose: To retrieve the player instance for the current game
+     * @return the instance of the player
      */
     public Player getPlayer() {
-
+        return this.player;
     }
 
     /**
-     *
+     * Purpose: To retrieve the array list for the terrain objects
+     * @return an array list containing the terrain objects
      */
     public ArrayList<Sprite> getTerrain() {
-
+        return this.terrain;
     }
 
     /**
-     *
+     * Purpose: To retrieve the array list for the item objects
+     * @return an array list containing the item objects
      */
     public ArrayList<Sprite> getItem() {
 
     }
 
     /**
-     *
+     * Purpose: To retrieve the array list for the enemy objects
+     * @return an array list containing the enemy objects
      */
     public ArrayList<Enemy> getEnemy() {
-
+        return this.enemy;
     }
 
     /**
-     *
+     * Purpose: To set an instance of the player class for the current game
+     * @param player an instance of the player class
      */
-    public boolean getWinState() {
-
+    public void setPlayer(Player newPlayer) {
+        this.player = newPlayer;
     }
 
     /**
-     *
-     */
-    public boolean getLoseState() {
-
-    }
-
-    /**
-     *
-     */
-    public void setPlayer(Player player) {
-
-    }
-
-    /**
-     *
+     * Purpose: To set a new terrain objects list for the current game
+     * @param newTerrainList an array list of terrain objects
      */
     public void setTerrain(ArrayList<Sprite> newTerrainList) {
-
+        this.terrain = newTerrainList;
     }
 
     /**
-     *
+     * Purpose: To set a new item objects list for the current game
+     * @param newItemList an array list of item objects
      */
     public void setItem(ArrayList<Sprite> newItemList) {
-
+        this.items = newItemList;
     }
 
     /**
-     *
+     * Purpose: To set a new enemy list for the current game
+     * @param newEnemyList an array list of enemy objects
      */
     public void setEnemy(ArrayList<Enemy> newEnemyList) {
-
+        this.enemy = newEnemyList;
     }
 
     /**
-     *
+     * Purpose: To change the win state boolean value
+     * @param value the new boolean value to set winState to
      */
     public void setWinState(boolean value) {
-
+        this.winState = value;
     }
 
     /**
-     *
+     * Purpose: To change the lose state boolean value
+     * @param value the new boolean value to set loseState to
      */
     public void setLoseState(boolean value) {
-
+        this.loseState = value;
     }
-    /*--------------------------- PUBLIC METHODS -----------------------------*/
 
+    /*--------------------------- PUBLIC METHODS -----------------------------*/
     /**
      *
      */
@@ -175,14 +170,16 @@ public class GameLoop {
     }
 
     /**
-     *
+     * Purpose: To check and see if the user has won the game
+     * @return the win state condition flag
      */
     public boolean checkWinState() {
         return winState; // returns true if true else false
     }
 
     /**
-     * Purpose: To check and see if the
+     * Purpose: To check and see if the the user has lost the game
+     * @return the lose state condition flag
      */
     public boolean checkLoseState() {
         return loseState; // returns true if true else false
@@ -191,8 +188,8 @@ public class GameLoop {
     /**
      * Purpose: To equip the player with an item when they come across one and
      * add it to their inventory.
-     * @param player - an instance of the player class
-     * @param item - the item that the user will add to their inventory
+     * @param player an instance of the player class
+     * @param item the item that the user will add to their inventory
      * @throws ? not sure yet
      */
     public void pickUpItem(Player player, Sprite item) {
@@ -208,7 +205,7 @@ public class GameLoop {
 
     /**
      * Purpose: To obtain the users input for moving around the game board
-     * @return - a string representation of the users directional choice
+     * @return a string representation of the users directional choice
      */
     public String playerInput() {
         // need to figure out how to interpret keyboard commands of arrow keys
@@ -223,8 +220,8 @@ public class GameLoop {
     /**
      * Purpose: To check all possible collisions in the game and return true or
      * false depending.
-     * @param player - an instance of the player class
-     * @param move - a string representation of the users input
+     * @param player an instance of the player class
+     * @param move a string representation of the users input
      * @return true if a collision was detected else false
      */
     public boolean checkCollisions(Player player, String move) {
