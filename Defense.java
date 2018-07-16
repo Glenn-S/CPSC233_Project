@@ -17,8 +17,14 @@ public class Defense extends Sprite {
     }
 
     /**
-     * Purpose: constructor
+     * Purpose: constructor for Defense
      * sprite symbol will change to image later
+     * @param coordinate the location for the sprite to exist in the game
+     * @param title the name associated with the sprite
+     * @param spriteSymbol the image to print representing the sprite
+     * @param existence a value to determine whether the object exists or not
+     * @param defenseValue the integer value associated with the items defense value
+     * @param spriteMessages the list of messages that the sprite has for interactions
      */
     @Override
     public Defense(Location coordinate,
@@ -37,6 +43,7 @@ public class Defense extends Sprite {
 
     /**
      * Purpose: copy constructor
+     * @param item an instance of the Defense class to copy
      */
     @Override
     public Defense(Defense item) {
@@ -49,4 +56,17 @@ public class Defense extends Sprite {
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
+    /**
+     * @return the defenseBoost
+     */
+    public int getDefenseBoost() {
+    	return this.defenseBoost;
+    }
+
+    /**
+     * @param weaponBoost the weaponBoost to set
+     */
+    public void setWeaponBoost(int weaponBoost) {
+    	this.weaponBoost = weaponBoost;
+    }
 }

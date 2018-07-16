@@ -3,10 +3,8 @@ public class Weapon extends Sprite {
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
 
-    /*---------------------------- CONSTRUCTORS ------------------------------*/
-
     /**
-     * Purpose: default constructor
+     * Purpose: default constructor for Weapon
      */
     @Override
     public Weapon() {
@@ -19,8 +17,14 @@ public class Weapon extends Sprite {
     }
 
     /**
-     * Purpose: constructor
+     * Purpose: constructor for Weapon
      * sprite symbol will change to image later
+     * @param coordinate the location for the sprite to exist in the game
+     * @param title the name associated with the sprite
+     * @param spriteSymbol the image to print representing the sprite
+     * @param existence a value to determine whether the object exists or not
+     * @param attackValue the integer value associated with the weapons strength
+     * @param spriteMessages the list of messages that the sprite has for interactions
      */
     @Override
     public Weapon(Location coordinate,
@@ -38,7 +42,8 @@ public class Weapon extends Sprite {
     }
 
     /**
-     * Purpose: copy constructor
+     * Purpose: copy constructor for Weapon
+     * @param item an instance of the weapon class to copy
      */
     @Override
     public Weapon(Weapon item) {
@@ -51,4 +56,17 @@ public class Weapon extends Sprite {
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
+    /**
+     * @return the weaponBoost
+     */
+    public int getWeaponBoost() {
+    	return this.weaponBoost;
+    }
+
+    /**
+     * @param weaponBoost the weaponBoost to set
+     */
+    public void setWeaponBoost(int weaponBoost) {
+    	this.weaponBoost = weaponBoost;
+    }
 }
