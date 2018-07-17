@@ -1,4 +1,5 @@
 public class BattleLoop extends GameLoop{
+
 /**
 * If a player has won a battle, the defeated enemy is removed from the game and replaced 
 * with a tombstone at the coordinates of the enemy.
@@ -31,5 +32,7 @@ public boolean checkLoseState(){return false;}
 *
 public String playerInput(){return "";}
 
+public void initialize(){}
+public void drawState(){}
 
 }
