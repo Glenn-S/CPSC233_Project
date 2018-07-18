@@ -36,34 +36,29 @@ public class GameLoop {
      * @param move the desired direction that the player would like to move
      * @return true if there is a collision with an enemy
      */
-    private boolean checkEnemy(Player player, String move, ArrayList<Enemy> enemy) {
-        // uses the center point of each object and checks using the xSize and ySize offset
-        // check the if exists
+    private boolean check(Player player, String move, ArrayList<Enemy> enemy) {
+        int playerLeft, playerRight, playerUp, playerDown;
+        int objLeft, objRight, objUp, objDown;
+        // this gets me the instance of the players location
+        playerLeft = player.getCoord().getxCoord() - player.getCoord().getxSize();
+        playerRight = player.getCoord().getxCoord() + player.getCoord().getxSize();
+        playerUp = player.getCoord().getyCoord() - player.getCoord().getySize();
+        playerDown = palyer.getCoord().getyCoord() + player.getCoord().getySize();
 
+        if (!enemy.isEmpty() && (player != null)) { // check to make sure move is valid
+            for (int i = 0; i < enemy.length(); i++) {
+                objLeft = enemy.get(i).getCoord().getxCoord() - enemy.getCoord().getxSize();
+                objRight = enemy.get(i).getCoord().getxCoord() + enemy.getCoord().getxSize();
+                objUp = enemy.get(i).getCoord().getyCoord() - enemy.getCoord().getySize();
+                objDown = enemy.get(i).getCoord().getyCoord() + enemy.getCoord().getySize();
 
-        // *** need to finish ***
-
-
-
-        return true;
-    }
-
-    /**
-     * Purpose: To check and see if the players move will collide with an item
-     * located on the map.
-     * @param player an instance of the player in the current game
-     * @param move the desired direction that the player would like to move
-     * @return true if there is a collision with an item on the map
-     */
-    private boolean checkItems(Player player, String move, ArrayList<Sprite> items) {
-        // check ifexists value
-
-
-        // *** need to finish ***
-
-
-
-        return true;
+                if ((playerRight == objLeft) || (playerLeft == objRight) ||
+                        (playerUp == objDown) || (playerDown == objUp)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -73,15 +68,51 @@ public class GameLoop {
      * @param move the desired direction that the player would like to move
      * @return true if there is a collision with a terrain tile that is un-crossable
      */
-    private boolean checkTerrain(Player player, String move, ArrayList<Sprite> terrain) {
-        // check ifexists value
+    private boolean check(Player player, String move, ArrayList<Sprite> obj) {
+        int playerLeft, playerRight, playerUp, playerDown;
+        int objLeft, objRight, objUp, objDown;
+        // this gets me the instance of the players location
+        // check if player is valid and not null
+        playerLeft = player.getCoord().getxCoord() - player.getCoord().getxSize();
+        playerRight = player.getCoord().getxCoord() + player.getCoord().getxSize();
+        playerUp = player.getCoord().getyCoord() - player.getCoord().getySize();
+        playerDown = palyer.getCoord().getyCoord() + player.getCoord().getySize();
 
+        switch (move) {
+            case "left":
+                playerLeft -= 1;
+                playerRight -= 1; // compensate for movement
+                break;
+            case "right":
+                playerRight += 1;
+                playerLeft += 1; // compensate for movement
+                break;
+            case "up":
+                playerUp -= 1;
+                playerDown -= 1; // compensate for movement
+                break;
+            case "down":
+                playerDown += 1;
+                playerUp += 1; // compensate for movement
+                break;
+            default:
+                // need an error message of some kind
+        }
 
-        // *** need to finish ***
+        if (!obj.isEmpty()) { // check to make sure move is valid
+            for (int i = 0; i < obj.length(); i++) {
+                objLeft = obj.get(i).getCoord().getxCoord() - obj.getCoord().getxSize();
+                objRight = obj.get(i).getCoord().getxCoord() + obj.getCoord().getxSize();
+                objUp = obj.get(i).getCoord().getyCoord() - obj.getCoord().getySize();
+                objDown = obj.get(i).getCoord().getyCoord() + obj.getCoord().getySize();
 
-
-
-        return true;
+                if ((playerRight == objLeft) || (playerLeft == objRight) ||
+                        (playerUp == objDown) || (playerDown == objUp)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -92,13 +123,18 @@ public class GameLoop {
      * @return true if there is a collision with an edge of the map
      */
     private boolean checkEdges(Player player, String move) {
+        int playerLeft, playerRight, playerUp, playerDown;
+        int objLeft, objRight, objUp, objDown;
+        // this gets me the instance of the players location
+        playerLeft = player.getCoord().getxCoord() - player.getCoord().getxSize();
+        playerRight = player.getCoord().getxCoord() + player.getCoord().getxSize();
+        playerUp = player.getCoord().getyCoord() - player.getCoord().getySize();
+        playerDown = palyer.getCoord().getyCoord() + player.getCoord().getySize();
 
+        if (!items.isEmpty() && (player != null) && ) { // check to make sure move is valid
 
-        // *** need to finish ***
-
-
-
-        return true;
+        }
+        return false;
     }
 
     /**
@@ -108,6 +144,7 @@ public class GameLoop {
      * @return a boolean value for if the player meets the condition to unlock
      */
     private boolean checkGate(Player player) {
+        // also update images
         return (player.getKeyCount() == totalKeys-1) ? true : false;
     }
 
