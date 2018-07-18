@@ -1,7 +1,7 @@
 public class Player extends Avatar {
 	import java.util.*
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
-	private ArrayList <Collectible> items = new ArrayList <Collectible>(); //arraylist of items playe is holding currently
+	private ArrayList <Sprite> items = new ArrayList <Sprite>(); //arraylist of items playe is holding currently
 	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
 	
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
@@ -100,7 +100,7 @@ public class Player extends Avatar {
 	 *
 	 * @param  newItem  This is a new item that is going to be added to the players item array
 	 */
-	public void addItem(item newItem)
+	public void addItem(Sprite newItem)
 	{
 		this.item.add(newItem);	
 	}
@@ -111,7 +111,7 @@ public class Player extends Avatar {
 	 * @param  itemToRemove  This parameter is of the item type, it is the item that is to be 
 	 *removed from the players item array
 	 */
-	public void removeItem(Collectible itemToRemove)
+	public void removeItem(Sprite itemToRemove)
 	{
 		int index = 0;
 		
@@ -133,7 +133,7 @@ public class Player extends Avatar {
 	 * @param  itemToEdit  This parameter is used to distinguish which item in the calling players item array 
 	 *is needing to be edited
 	 */
-	public void editItem(item itemToEdit)
+	public void editItem(Sprite itemToEdit)
 	{
 		
 		
@@ -359,7 +359,7 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles 
 	 */
-	public Collectible[] getItems();
+	public Sprite[] getItems();
 	{
 		return(this.items[]);
 	}
@@ -369,7 +369,7 @@ public class Player extends Avatar {
 	 *
 	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
 	 */
-	public void setItems(Collectible newItems)
+	public void setItems(Sprite newItems)
 	{
 		this.items = newItems;
 	}
