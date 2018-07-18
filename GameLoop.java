@@ -137,7 +137,27 @@ public class GameLoop {
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
-
+	
+	/**
+	 * Purpose: To set/load the terrain array
+	 */
+	 private void setTerrainArray() {
+		 
+		 int index1 =0;
+		 int index2 =0
+		 
+		terrain.add(Sprite(00, "border", '-', true, dialogue)); 
+		terrain.add(Sprite(01, "border", '-', true, dialogue));
+		terrain.add(Sprite(02, "border", '-', true, dialogue));
+		terrain.add(Sprite(03, "border", '-', true, dialogue));
+		terrain.add(Sprite(04, "border", '-', true, dialogue));
+		terrain.add(Sprite(05, "border", '-', true, dialogue));
+		terrain.add(Sprite(06, "border", '-', true, dialogue));
+		terrain.add(Sprite(07, "border", '-', true, dialogue));
+		terrain.add(Sprite(08, "border", '-', true, dialogue));
+		terrain.add(Sprite(09, "border", '-', true, dialogue));
+		 
+	 }
     /**
      * Purpose: To retrieve the array list for the terrain objects
      * @return an array list containing the terrain objects
