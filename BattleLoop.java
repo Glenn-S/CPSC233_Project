@@ -18,13 +18,22 @@ public boolean checkMove(){return false;}
 * Check's if the enemy's health = 0
 * @return true if the player has won, false otherwise
 *
-public boolean checkWinState(){return false;}
+public boolean checkWinState(Enemy e){
+if(e.getHealth()==0)
+return true;
+return false;
+
+}
 @override
 /**
 * Check's if the player's health = 0
 * @return true if the player has lost, false otherwise
 *
-public boolean checkLoseState(){return false;}
+public boolean checkLoseState(){
+if(player.getHealth()==0)
+return true;
+return false;
+}
 @override
 /**
 * Interprets user inputs and returns the corresponding attack name
