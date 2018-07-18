@@ -111,7 +111,7 @@ public class Player extends Avatar {
 	 * @param  itemToRemove  This parameter is of the item type, it is the item that is to be 
 	 *removed from the players item array
 	 */
-	public void removeItem(item itemToRemove)
+	public void removeItem(Collectible itemToRemove)
 	{
 		int index = 0;
 		
