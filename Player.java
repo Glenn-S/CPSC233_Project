@@ -71,26 +71,30 @@ public class Player extends Avatar {
 		
 	/*------------------------------- METHODS --------------------------------*/
 		
-	public void updatePosition( int x, int y)
+	public void updatePosition(int x, int y)
 	{
 		
 			
 			
 			
 			
-	}
-		
-		
-	/**
-	 * Purpose: To update the players sprite image, with a new one
-	 * 
-	 * @param  newSpriteImage  This is the new image, that is to be replaced within the calling object
-	 */
-	public void updateImage(Image newSpriteImage)
-	{
-		this.spriteImage = newSpriteImage;
 	}
 	
+	/*
+	/**
+	 * Purpose: This function sets the new value of currency, if the player were to lose or gain some currency.
+	 * If the player loses currency then a negative amount of loseOrGainOfCurrency must be passed in the parameter
+	 *
+	 * @param  loseOrGainOfCurrency  This is the amount of currency that the calling player, ether loses or gains.
+	 * If the calling player loses currency, then this variable must be a negative integer.
+	 */
+	 /*
+	public void updateCurrency(int loseOrGainOfCurrency)
+	{
+		this.currency =  this.currency	+ loseOrGainOfCurrency;	
+	}
+	*/
+			
 	/**
 	 * Purpose: This method adds a new item to the calling players item array
 	 *
@@ -98,11 +102,7 @@ public class Player extends Avatar {
 	 */
 	public void addItem(item newItem)
 	{
-		
-
-		
-		
-		
+		this.item.add(newItem);	
 	}
 	
 	/**
@@ -113,9 +113,15 @@ public class Player extends Avatar {
 	 */
 	public void removeItem(item itemToRemove)
 	{
+		int index = 0;
 		
-		
-		
+		while(index < this.items.size())
+		{
+			if(this.items.get(index) == itemToRemove)
+				this.items.remove(index);
+			
+			index++;
+		}
 		
 	}
 	
@@ -135,7 +141,7 @@ public class Player extends Avatar {
 		
 	}
 	
-	/*--------------------------- GETTER/SETTERS -----------------------------*/
+	/*--------------------------- GETTERS/SETTERS -----------------------------*/
 	
 	/**
 	 * Purpose: This method is used to get the calling players health, if needed
@@ -230,6 +236,8 @@ public class Player extends Avatar {
 
 	/**
 	 * Purpose: This method return the calling players coordinates
+	 *
+	 * @return  this.coordinates  This is the calling players coordinates, it is of the Location type
 	 */
 	public Location getCoordinates();
 	{
@@ -245,5 +253,149 @@ public class Player extends Avatar {
 	{
 		this.coordinates = newCoordinates;
 	}
+	
+	/**
+	 * Purpose: This method returns the calling players name
+	 *
+	 * @return  this.name  This is the calling players name, it is a string value
+	 */
+	public String getName();
+	{
+		return(this.name);
+	}
+	
+	/**
+	 * Purpose: This method is used to set the name of the calling player
+	 *
+	 * @param  newName  This paramter is the new name that will change the calling players name variable
+	 */
+	public void setName(String newName)
+	{
+		this.name = newName;
+	}
+	
+	/**
+	 * Purpose: This method returns the calling players sprite image
+	 *
+	 * @return  this.spriteImage  This is the calling players sprite image, it is of the Image class
+	 */
+	public Image getSpriteImage();
+	{
+		return(this.spriteImage);
+	}
+	
+	/**
+	 * Purpose: This method is used to set the sprite image of the calling player
+	 *
+	 * @param  newSpriteImage  This paramter is the new sprite image that will replace the calling players sprite image variable
+	 */
+	public void setSpriteImage(Image newSpriteImage)
+	{
+		this.spriteImage = newSpriteImage;
+	}
+	
+	/**
+	 * Purpose: This method returns the calling players exist variable
+	 *
+	 * @return  this.exists  This is the calling players new exist variable, it is a boolean value
+	 */
+	public boolean getExists();
+	{
+		return(this.exists);
+	}
+	
+	/**
+	 * Purpose: This method is used to set the exists variable of the calling player
+	 *
+	 * @param  newExists  This paramter is the new exists value that will replace the calling players exists variable
+	 */
+	public void setExists(boolean newExists)
+	{
+		this.exists = newExists;
+	}
 
+	/**
+	 * Purpose: This method returns the calling players dialogue array
+	 *
+	 * @return  this.dialogue  This is the calling players dialogue array, it is a string array 
+	 */
+	public String[] getDialogue();
+	{
+		return(this.dialogue);
+	}
+		
+	/**
+	 * Purpose: This method is used to set the dialogue array of the calling player
+	 *
+	 * @param  newDialogue  This paramter is the new dialogue array that will replace the calling players dialogue array
+	 */
+	public void setDialogue(String[] newDialogue)
+	{
+		this.dialogue = newDialogue;
+	}
+	
+	/**
+	 * Purpose: This method returns the calling players key count
+	 *
+	 * @return  this.keyCount  This is the calling players key count, it is a integer variable 
+	 */
+	public int getKeyCount();
+	{
+		return(this.keyCount);
+	}
+	
+	/**
+	 * Purpose: This method is used to set the key count of the calling player
+	 *
+	 * @param  newKeyCount  This paramter is the new key count that will replace the calling players key count
+	 */
+	public void setKeyCount(int newKeyCount)
+	{
+		this.keyCount = newKeyCount;
+	}
+	
+	/**
+	 * Purpose: This method returns the calling players item array
+	 *
+	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles 
+	 */
+	public Collectible[] getItems();
+	{
+		return(this.items[]);
+	}
+	
+	/**
+	 * Purpose: This method is used to set the item array of the calling player
+	 *
+	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
+	 */
+	public void setItems(int newItems)
+	{
+		this.items = newItems;
+	}
+	
+	/**
+	 * Purpose: This method returns the calling players currency value
+	 *
+	 * @return  this.currency  This is the calling players currency value, it is of the intger type
+	 */
+	/*
+	public int getCurrency();
+	{
+		return(this.currency);
+	}
+	
+	/**
+	 * Purpose: This method is used to set the currency value of the calling player
+	 *
+	 * @param  newCurrency  This paramter is the new currency amount that will replace the calling players current currency variable
+	 */
+	/*
+	public void setCurrency(int newCurrency)
+	{
+		this.currency = newCurrency;
+	}
+	*/
+	
+	
 }
