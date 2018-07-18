@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class BattleLoop extends GameLoop{
 
 /**
@@ -12,7 +13,9 @@ public void removeEnemy(Enemy enemy,ArrayList<Enemy> enemyList,ArrayList<Terrain
 * Check's the legality of the player's desired move
 * @return true if legal, false otherwise
 *
-public boolean checkMove(){return false;}
+public boolean checkMove(String attack){
+
+return false;}
 @override
 /**
 * Check's if the enemy's health = 0
@@ -39,7 +42,20 @@ return false;
 * Interprets user inputs and returns the corresponding attack name
 * @return attack name
 *
-public String playerInput(){return "";}
+public String playerInput(){
+System.out.println("Please select an attack from the following option");
+for(int i =0; i<4;i++)
+System.out.println(player.moves[i]);
+Scanner sc = new Scanner(System.in);
+String attack = sc.nextLine();
+if(attack!=moves[0].ignoreCase()&&attack!=moves[1].ignoreCase()&&attack!=moves[2].ignoreCase()&&attack!=moves[3].ignoreCase()){
+System.out.println("Error, invalid move entered. Please enter a valid move);
+attack = sc.nextLine();
+}
+return attack;
+
+
+}
 
 public void initialize(){}
 public void drawState(){}
