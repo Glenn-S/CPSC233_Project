@@ -369,7 +369,7 @@ public class Player extends Avatar {
 	 *
 	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
 	 */
-	public void setItems(int newItems)
+	public void setItems(Collectible newItems)
 	{
 		this.items = newItems;
 	}
