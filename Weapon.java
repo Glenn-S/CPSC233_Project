@@ -11,11 +11,9 @@ public class Weapon extends Sprite {
      */
     @Override
     public Weapon() {
+        super();
         this.coord = null;
-        this.name = null;
         this.spriteImage = 0;
-        this.exists = false;
-        this.dialogue = null;
         this.weaponBoost = 0;
     }
 
@@ -36,11 +34,9 @@ public class Weapon extends Sprite {
                   boolean existence,
                   int attackValue,
                   String[] spriteMessages) { // this might need to change to an ArrayList
+        super(title, existence, spriteMessages);
         this.coord = coordinate;
-        this.name = title;
         this.spriteImage = spriteSymbol;
-        this.exists = existence;
-        this.dialogue = spriteMessages;
         this.weaponBoost = attackValue;
     }
 
@@ -50,11 +46,9 @@ public class Weapon extends Sprite {
      */
     @Override
     public Weapon(Weapon item) {
+        sprite(item.getName(), item.getExists(), item.getDialogue());
         this.coord = item.getCoord();
-        this.name = item.getName();
         this.spriteImage = item.getSpriteImage();
-        this.exists = item.getExists();
-        this.dialogue = item.getDialogue();
         this.weaponBoost = item.getWeaponBoost();
     }
 

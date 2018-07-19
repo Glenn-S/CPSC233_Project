@@ -16,12 +16,12 @@ public class Sprite
 	private int xSizemax;
 	private int xSizemin;
 	private int yCoord;
-	
+
 	public Sprite() {
-		
+
 	}
-	
-	
+
+
 	public int getxCoord() {
 		return xCoord;
 	}
@@ -32,7 +32,7 @@ public class Sprite
 	public int getyCoord() {
 		return yCoord;
 	}
-	
+
 	public void setyCoord(int yCoord) {
 		this.yCoord = yCoord;
 	}
@@ -54,20 +54,20 @@ public class Sprite
 	public void setName(String setname){
 		this.name = setname;
 	}
-	
+
 	public String getName(){
 		return name;
 	}
-	
+
 	public void setSpriteImage(){
-		
+
 	}
 	public Image getSpriteImage(){
 		return SpriteImage;
 	}
-	
+
 	public void setExists(boolean exist){
-		this.exists  = exist;		
+		this.exists  = exist;
 	}
 	public boolean getExists(){
 		return exists;
@@ -76,11 +76,11 @@ public class Sprite
 	public void setDialogue(String dialog){
 		dialogue = dialog;
 	}
-	
+
 	public String getDialogue(){
 		return dialogue;
 	}
-	
+
 	public void setoverlapsWith(player player){
 		if (player.xCoord <= Enemy.xCoordmax && player.xCoord >= Enemy.xCoordmin && player.yCoord <= Enemy.yCoordmax && player.yCoord >= Enemy.yCoordmin){
 			overlapsWith = true;
@@ -95,11 +95,10 @@ public class Sprite
 			overlapsWith = true;
 		}
 		overlapsWith = false;
-		}
-		
 	}
-	
+
+
 	public boolean getoverlapsWith(){
 		return overlapsWith;
-	}		
+	}
 }
