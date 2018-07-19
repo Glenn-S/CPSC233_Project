@@ -13,16 +13,16 @@ public class Avatar extends Sprite{
 		
 	}
 	public void setMove(String input){// input word to set movement type
-		if (input == "Slash" || input == "slash" || input == "SLASH") {
+		if (input.toUpperCase() == "SLASH") {
 			move = "Slash";
 		}
-		else if (input == "Parry" || input == "parry" || input == "PARRY") {
+		else if (input.toUpperCase() == "PARRY") {
 			move = "Parry";
 		}
-		else if (input == "Sword Boomerang" || input == "word boomerange" || input == "SWORD BOOMERANGE") {
+		else if (input.toUpperCase()== "SWORD BOOMERANGE" ) {
 			move = "Sword Boomerang";
 		}
-		else if (input == "Potion" || input == "potion" || input == "POTION") {
+		else if (input.toUpperCase() == "POTION") {
 			move = "Potion";
 		}		
 	}
