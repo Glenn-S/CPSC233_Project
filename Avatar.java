@@ -1,3 +1,4 @@
+import java.awt.Image;
 
 public class Avatar extends Sprite{
 	private int health;
@@ -5,7 +6,9 @@ public class Avatar extends Sprite{
 	private int attact;
 	String move;
 	
-	
+	public Avatar(Location coord,String name,Image SpriteImage,boolean Exists,String[] Dialogue,boolean overlapsWith) {
+		super(coord,name,SpriteImage,Exists,Dialogue,overlapsWith);
+	}
 	public Avatar() {
 		
 	}

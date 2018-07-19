@@ -8,6 +8,7 @@ public class Sprite
 	private boolean exists = true;
 	private String[] dialogue;
 	private boolean overlapsWith = false;
+<<<<<<< HEAD
 	private int xCoord;
 	private int ySizemax;
 	private int ySizemin;
@@ -17,9 +18,18 @@ public class Sprite
 	private int xSizemin;
 	private int yCoord;
 
+=======
+	private Location Coord;
+	
+	
+	public Sprite(Location coord,String name,Image SpriteImage,boolean Exists,String[] Dialogue,boolean overlapsWith) {
+		
+	}
+>>>>>>> master
 	public Sprite() {
 
 	}
+<<<<<<< HEAD
 
 
 	public int getxCoord() {
@@ -49,6 +59,16 @@ public class Sprite
 	public void setySize(int ySize) {
 		this.ySizemax = this.yCoord + ySize;
 		this.ySizemin = this.yCoord - ySize;
+=======
+	
+	public void setCoord(int xcoord,int ycoord) {
+		int xCoord = xcoord;
+		int yCoord = ycoord;
+	}
+	
+	public Location getCoord() {
+		return Coord;
+>>>>>>> master
 	}
 
 	public void setName(String setname){
@@ -95,9 +115,15 @@ public class Sprite
 			overlapsWith = true;
 		}
 		overlapsWith = false;
+<<<<<<< HEAD
 	}
 
 
+=======
+		}
+		
+	
+>>>>>>> master
 	public boolean getoverlapsWith(){
 		return overlapsWith;
 	}
