@@ -16,7 +16,7 @@ public class Player extends Avatar {
 		this.items[] = null;
 		//this.currency = 0;
 	}
-	
+
 
 	/**
 	 * Purpose: This is the constructor that is called, when this exact set of values is passed
