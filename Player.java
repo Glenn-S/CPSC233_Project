@@ -1,5 +1,5 @@
+import.java.util*;
 public class Player extends Avatar {
-	import java.util.*
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
 	private ArrayList <Sprite> items = new ArrayList <Sprite>(); //arraylist of items playe is holding currently
 	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
@@ -31,7 +31,7 @@ public class Player extends Avatar {
 	 * @param  exists  This is a boolean value, stating whether or not the player exists 
 	 * @param  dialogue  This is a string array holding the different dialogue options for the player
 	 */
-	public Player(){int health, int defence, int attack, String[] moves, Location coordinates, String name, Image spriteImages, boolean exists, String[] dialogue)
+	public Player(int health, int defence, int attack, String[] moves, Location coordinates, String name, Image spriteImages, boolean exists, String[] dialogue)
 	{
 		this.health = health; 
 		this.defence = defence; 
@@ -106,7 +106,7 @@ public class Player extends Avatar {
 	 */
 	public void addItem(Sprite newItem)
 	{
-		this.item.add(newItem);	
+		this.items.add(newItem);	
 	}
 	
 	/**
@@ -137,6 +137,7 @@ public class Player extends Avatar {
 	 * @param  itemToEdit  This parameter is used to distinguish which item in the calling players item array 
 	 *is needing to be edited
 	 */
+	/*
 	public void editItem(Sprite itemToEdit)
 	{
 		
@@ -144,7 +145,7 @@ public class Player extends Avatar {
 		
 		
 	}
-	
+	*/
 	/*--------------------------- GETTERS/SETTERS -----------------------------*/
 	
 	/**
@@ -155,7 +156,7 @@ public class Player extends Avatar {
 	 */
 	public int getHealth()
 	{
-		return(this.health)
+		return this.health;
 	}
 	
 	
@@ -180,7 +181,7 @@ public class Player extends Avatar {
 	 */
 	public int getDefence()
 	{
-		return(this.defence)
+		return this.defence;
 	}
 	
 	/**
@@ -202,7 +203,7 @@ public class Player extends Avatar {
 	 */
 	public int getAttack()
 	{
-		return(this.attack)
+		return this.attack;
 	}
 		
 	/**
@@ -224,7 +225,7 @@ public class Player extends Avatar {
 	 */
 	public string[] getMoves()
 	{
-		return(this.moves[]);
+		return this.moves;
 	}
 	
 	/**
@@ -243,9 +244,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.coordinates  This is the calling players coordinates, it is of the Location type
 	 */
-	public Location getCoordinates();
+	public Location getCoordinates()
 	{
-		return(this.coordinates);
+		return this.coordinates;
 	}
 
 	/**
@@ -263,9 +264,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.name  This is the calling players name, it is a string value
 	 */
-	public String getName();
+	public String getName()
 	{
-		return(this.name);
+		return this.name;
 	}
 	
 	/**
@@ -283,9 +284,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.spriteImage  This is the calling players sprite image, it is of the Image class
 	 */
-	public Image getSpriteImage();
+	public Image getSpriteImage()
 	{
-		return(this.spriteImage);
+		return this.spriteImage;
 	}
 	
 	/**
@@ -303,9 +304,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.exists  This is the calling players new exist variable, it is a boolean value
 	 */
-	public boolean getExists();
+	public boolean getExists()
 	{
-		return(this.exists);
+		return this.exists;
 	}
 	
 	/**
@@ -323,9 +324,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.dialogue  This is the calling players dialogue array, it is a string array 
 	 */
-	public String[] getDialogue();
+	public String[] getDialogue()
 	{
-		return(this.dialogue);
+		return this.dialogue;
 	}
 		
 	/**
@@ -343,9 +344,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.keyCount  This is the calling players key count, it is a integer variable 
 	 */
-	public int getKeyCount();
+	public int getKeyCount()
 	{
-		return(this.keyCount);
+		return this.keyCount;
 	}
 	
 	/**
@@ -363,9 +364,9 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles 
 	 */
-	public Sprite[] getItems();
+	public Sprite[] getItems()
 	{
-		return(this.items[]);
+		return this.items;
 	}
 	
 	/**
@@ -384,9 +385,9 @@ public class Player extends Avatar {
 	 * @return  this.currency  This is the calling players currency value, it is of the intger type
 	 */
 	/*
-	public int getCurrency();
+	public int getCurrency()
 	{
-		return(this.currency);
+		return this.currency;
 	}
 	
 	/**
