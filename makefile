@@ -126,7 +126,7 @@ all.class: $(SRC)
 
 all: $(OBJ)
 	$(ECHO) $(RESPONSE) $@
-	$(RUN) $(OBJ) # this should probably be main
+	$(RUN) MainMenu
 
 clean:
 	$(ECHO) Destroying $(OBJ)
