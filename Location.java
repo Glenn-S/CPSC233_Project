@@ -1,40 +1,37 @@
 
+/*
+ * Instance variables
+ */
 public class Location {	
 	private int xCoord;
 	private int yCoord;
 	private int xSize;
-	private int xSizemax;
-	private int xSizemin;
 	private int ySize;
-	private int ySizemax;
-	private int ySizemin;
 	
-	public int getxCoord() {
+	public int getxCoord() { 				//getter for xCoord
 		return xCoord;
 	}
 
-	public void setxCoord(int xCoord) {
+	public void setxCoord(int xCoord) {    //setter for xCoord
 		this.xCoord = xCoord;
 	}
-	public int getyCoord() {
+	public int getyCoord() {				//getter for yCoord
 		return yCoord;
 	}
 	
-	public void setyCoord(int yCoord) {
+	public void setyCoord(int yCoord) {    //setter for yCoord
 		this.yCoord = yCoord;
 	}
-	public int getxSize() {
+	public int getxSize() {					//getter for xSize
 		return xSize;
 	}
-	public void setxSize(int xSize) {
-		this.xSizemax = this.xCoord + xSize;
-		this.xSizemin = this.xCoord - xSize;
+	public void setxSize(int xsize) {		//setter for xSize
+		this.xSize = xsize;
 	}
-	public int getySize() {
+	public int getySize() {					//getter for ySize
 		return ySize;
 	}
-	public void setySize(int ySize) {
-		this.ySizemax = this.yCoord + ySize;
-		this.ySizemin = this.yCoord - ySize;
+	public void setySize(int ysize) {		//setter for ySize
+		this.ySize = ysize;
 	}
 }
