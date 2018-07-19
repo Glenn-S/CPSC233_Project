@@ -8,10 +8,10 @@ public class Sprite
 	private boolean exists = true;
 	private String[] dialogue;
 	private boolean overlapsWith = false;
-	private Location Coord;
+	private Location coord;
 
 
-	public Sprite(Location coord,String name,Image SpriteImage,boolean Exists,String[] Dialogue,boolean overlapsWith) {
+	public Sprite(Location coord,String name,Image spriteImage,boolean exists,String[] dialogue,boolean overlapsWith) {
 
 	}
 	public Sprite() {
@@ -57,7 +57,7 @@ public class Sprite
 		return dialogue;
 	}
 
-	public void setoverlapsWith(player player){
+	public void setOverlapsWith(player player){
 		if (player.xCoord <= Enemy.xCoordmax && player.xCoord >= Enemy.xCoordmin && player.yCoord <= Enemy.yCoordmax && player.yCoord >= Enemy.yCoordmin){
 			overlapsWith = true;
 		}
@@ -74,7 +74,7 @@ public class Sprite
 		}
 
 
-	public boolean getoverlapsWith(){
+	public boolean getOverlapsWith(){
 		return overlapsWith;
 	}
 }
