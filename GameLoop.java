@@ -342,18 +342,18 @@ public class GameLoop {
      * Purpose: To change the win state boolean value
      * @param value the new boolean value to set winState to
      */
-/*    public void setWinState(boolean value) {
+    public void setWinState(boolean value) {
         this.winState = value;
     }
-*/
+
     /**
      * Purpose: To change the lose state boolean value
      * @param value the new boolean value to set loseState to
      */
-/*    public void setLoseState(boolean value) {
+    public void setLoseState(boolean value) {
         this.loseState = value;
     }
-*/
+
     /*--------------------------- PUBLIC METHODS -----------------------------*/
     /**
      * player is needed since it is not of this class
@@ -368,18 +368,18 @@ public class GameLoop {
      * Purpose: To check and see if the user has won the game
      * @return the win state condition flag
      */
-/*    public boolean checkWinState() {
+    public boolean checkWinState() {
         return winState; // returns true if true else false
     }
-*/
+
     /**
      * Purpose: To check and see if the the user has lost the game
      * @return the lose state condition flag
      */
-/*    public boolean checkLoseState() {
+    public boolean checkLoseState() {
         return loseState; // returns true if true else false
     }
-*/
+
     /**
      * Purpose: To equip the player with an item when they come across one and
      * add it to their inventory.
@@ -418,7 +418,13 @@ public class GameLoop {
             }
             else System.out.println(error);
         } while (!valid);
-
+        // convert characters into representative symbols
+        switch (input) {
+            case "w": input = "up"; break;
+            case "a": input = "left"; break;
+            case "s": input = "down"; break;
+            case "d": input = "right"; break;
+        }
         return input;
     }
 
