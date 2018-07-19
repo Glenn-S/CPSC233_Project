@@ -3,9 +3,9 @@ public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
 	private ArrayList <Sprite> items = new ArrayList <Sprite>(); //arraylist of items playe is holding currently
 	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
-	
+
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
-	
+
 	/**
 	 *Purpose: This is the default constructor, only called if no variables are passed as parameters
 	 */
@@ -17,7 +17,7 @@ public class Player extends Avatar {
 		//this.currency = 0;
 	}
 	
-	
+
 	/**
 	 * Purpose: This is the constructor that is called, when this exact set of values is passed
 	 *
@@ -28,13 +28,13 @@ public class Player extends Avatar {
 	 * @param  coordinates  This variable is of the location type, it holds the players X and Y coordinates
 	 * @param  name  This is a String variable that holds the name of the player
 	 * @param  spriteImages  This is a Image, in the console version it will just be a character, in the terminal version it will be a sprite image
-	 * @param  exists  This is a boolean value, stating whether or not the player exists 
+	 * @param  exists  This is a boolean value, stating whether or not the player exists
 	 * @param  dialogue  This is a string array holding the different dialogue options for the player
 	 */
 	public Player(){int health, int defence, int attack, String[] moves, Location coordinates, String name, Image spriteImages, boolean exists, String[] dialogue)
 	{
-		this.health = health; 
-		this.defence = defence; 
+		this.health = health;
+		this.defence = defence;
 		this.attack = attack;
 		this.moves = moves;
 		this.coordinates = coordinates;
@@ -46,8 +46,8 @@ public class Player extends Avatar {
 		this.items[] = null;
 		//this.currency = 0;
 	}
-	
-	
+
+
 	/**
 	 * Purpose: This is the copy constructor, it sets the values of the calling object to the same as the object being passed in the parameter
 	 *
@@ -67,19 +67,19 @@ public class Player extends Avatar {
 		this.keyCount = 0;
 		this.items[] = null;
 	}	//this.currency = 0;
-		
-		
+
+
 	/*------------------------------- METHODS --------------------------------*/
-		
+
 	public void updatePosition(int x, int y)
 	{
-		
-			
-			
-			
-			
+
+
+
+
+
 	}
-	
+
 	/*
 	/**
 	 * Purpose: This function sets the new value of currency, if the player were to lose or gain some currency.
@@ -91,10 +91,10 @@ public class Player extends Avatar {
 	 /*
 	public void updateCurrency(int loseOrGainOfCurrency)
 	{
-		this.currency =  this.currency	+ loseOrGainOfCurrency;	
+		this.currency =  this.currency	+ loseOrGainOfCurrency;
 	}
 	*/
-			
+
 	/**
 	 * Purpose: This method adds a new item to the calling players item array
 	 *
@@ -102,61 +102,61 @@ public class Player extends Avatar {
 	 */
 	public void addItem(Sprite newItem)
 	{
-		this.item.add(newItem);	
+		this.item.add(newItem);
 	}
-	
+
 	/**
 	 * Purpose: This method removes an item in the calling players item array
-	 *  
-	 * @param  itemToRemove  This parameter is of the item type, it is the item that is to be 
+	 *
+	 * @param  itemToRemove  This parameter is of the item type, it is the item that is to be
 	 *removed from the players item array
 	 */
 	public void removeItem(Sprite itemToRemove)
 	{
 		int index = 0;
-		
+
 		while(index < this.items.size())
 		{
 			if(this.items.get(index) == itemToRemove)
 				this.items.remove(index);
-			
+
 			index++;
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Purpose: This method is to be called when wanting to edit, or change an item in the calling
-	 * players item array 
-	 * 
-	 * @param  itemToEdit  This parameter is used to distinguish which item in the calling players item array 
+	 * players item array
+	 *
+	 * @param  itemToEdit  This parameter is used to distinguish which item in the calling players item array
 	 *is needing to be edited
 	 */
 	public void editItem(Sprite itemToEdit)
 	{
-		
-		
-		
-		
+
+
+
+
 	}
-	
+
 	/*--------------------------- GETTERS/SETTERS -----------------------------*/
-	
+
 	/**
 	 * Purpose: This method is used to get the calling players health, if needed
 	 *
-	 * @return  this.health  This is a integer value, representing the amount of health the calling player 
+	 * @return  this.health  This is a integer value, representing the amount of health the calling player
 	 * has left
 	 */
 	public int getHealth()
 	{
 		return(this.health)
 	}
-	
-	
+
+
 	/**
-	 * Purpose: This method sets the calling players health. If the calling players health is to decrease, then a negative 
+	 * Purpose: This method sets the calling players health. If the calling players health is to decrease, then a negative
 	 * amount of healthChange must be passed in the parameter
 	 *
 	 * @param  healthChange  This is the amount that the calling players health will be changed by. If the calling player
@@ -166,21 +166,21 @@ public class Player extends Avatar {
 	{
 		this.health = this.health + healthChange;
 	}
-	
-	
+
+
 
 	/**
 	 * Purpose: This method is used to get the calling players Defence stat, if needed
 	 *
-	 * @return  this.defence  This is a integer value, representing the Defense stat of the calling player 
+	 * @return  this.defence  This is a integer value, representing the Defense stat of the calling player
 	 */
 	public int getDefence()
 	{
 		return(this.defence)
 	}
-	
+
 	/**
-	 * Purpose: This method sets the calling players Defence stat. If the calling players Defense stat is to decrease, then a negative 
+	 * Purpose: This method sets the calling players Defence stat. If the calling players Defense stat is to decrease, then a negative
 	 * amount of defenceChange must be passed in the parameter
 	 *
 	 * @param  defenceChange  This is the amount that the calling players defense stat will be changed by. If the calling player
@@ -190,19 +190,19 @@ public class Player extends Avatar {
 	{
 		this.defence = this.defence + defenceChange;
 	}
-	
+
 	/**
 	 * Purpose: This method is used to get the calling players attack stat, if needed
 	 *
-	 * @return  this.attack  This is a integer value, representing the attack stat of the calling player 
+	 * @return  this.attack  This is a integer value, representing the attack stat of the calling player
 	 */
 	public int getAttack()
 	{
 		return(this.attack)
 	}
-		
+
 	/**
-	 * Purpose: This method sets the calling players attack stat. If the calling players attack stat is to decrease, then a negative 
+	 * Purpose: This method sets the calling players attack stat. If the calling players attack stat is to decrease, then a negative
 	 * amount of attackChange must be passed in the parameter
 	 *
 	 * @param  attackChange  This is the amount that the calling players attack stat will be changed by. If the calling player
@@ -222,9 +222,9 @@ public class Player extends Avatar {
 	{
 		return(this.moves[]);
 	}
-	
+
 	/**
-	 * Purpose: This method sets a players moves, if they were to change, it does this by setting the calling players moves array to be the 
+	 * Purpose: This method sets a players moves, if they were to change, it does this by setting the calling players moves array to be the
 	 * the same as the moves array passed in the parameter
 	 *
 	 * @param  newMoves  This parameter is a string array, with the players new moves
@@ -253,7 +253,7 @@ public class Player extends Avatar {
 	{
 		this.coordinates = newCoordinates;
 	}
-	
+
 	/**
 	 * Purpose: This method returns the calling players name
 	 *
@@ -263,7 +263,7 @@ public class Player extends Avatar {
 	{
 		return(this.name);
 	}
-	
+
 	/**
 	 * Purpose: This method is used to set the name of the calling player
 	 *
@@ -273,7 +273,7 @@ public class Player extends Avatar {
 	{
 		this.name = newName;
 	}
-	
+
 	/**
 	 * Purpose: This method returns the calling players sprite image
 	 *
@@ -283,7 +283,7 @@ public class Player extends Avatar {
 	{
 		return(this.spriteImage);
 	}
-	
+
 	/**
 	 * Purpose: This method is used to set the sprite image of the calling player
 	 *
@@ -293,7 +293,7 @@ public class Player extends Avatar {
 	{
 		this.spriteImage = newSpriteImage;
 	}
-	
+
 	/**
 	 * Purpose: This method returns the calling players exist variable
 	 *
@@ -303,7 +303,7 @@ public class Player extends Avatar {
 	{
 		return(this.exists);
 	}
-	
+
 	/**
 	 * Purpose: This method is used to set the exists variable of the calling player
 	 *
@@ -317,13 +317,13 @@ public class Player extends Avatar {
 	/**
 	 * Purpose: This method returns the calling players dialogue array
 	 *
-	 * @return  this.dialogue  This is the calling players dialogue array, it is a string array 
+	 * @return  this.dialogue  This is the calling players dialogue array, it is a string array
 	 */
 	public String[] getDialogue();
 	{
 		return(this.dialogue);
 	}
-		
+
 	/**
 	 * Purpose: This method is used to set the dialogue array of the calling player
 	 *
@@ -333,17 +333,17 @@ public class Player extends Avatar {
 	{
 		this.dialogue = newDialogue;
 	}
-	
+
 	/**
 	 * Purpose: This method returns the calling players key count
 	 *
-	 * @return  this.keyCount  This is the calling players key count, it is a integer variable 
+	 * @return  this.keyCount  This is the calling players key count, it is a integer variable
 	 */
 	public int getKeyCount();
 	{
 		return(this.keyCount);
 	}
-	
+
 	/**
 	 * Purpose: This method is used to set the key count of the calling player
 	 *
@@ -353,17 +353,17 @@ public class Player extends Avatar {
 	{
 		this.keyCount = newKeyCount;
 	}
-	
+
 	/**
 	 * Purpose: This method returns the calling players item array
 	 *
-	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles 
+	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles
 	 */
 	public Sprite[] getItems();
 	{
 		return(this.items[]);
 	}
-	
+
 	/**
 	 * Purpose: This method is used to set the item array of the calling player
 	 *
@@ -373,7 +373,7 @@ public class Player extends Avatar {
 	{
 		this.items = newItems;
 	}
-	
+
 	/**
 	 * Purpose: This method returns the calling players currency value
 	 *
@@ -384,7 +384,7 @@ public class Player extends Avatar {
 	{
 		return(this.currency);
 	}
-	
+
 	/**
 	 * Purpose: This method is used to set the currency value of the calling player
 	 *
@@ -396,6 +396,6 @@ public class Player extends Avatar {
 		this.currency = newCurrency;
 	}
 	*/
-	
-	
+
+
 }
