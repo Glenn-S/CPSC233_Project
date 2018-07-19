@@ -165,122 +165,131 @@ public class GameLoop {
      */
     private boolean engageBattle(Enemy e) {
         // calls an instance of the BattleLoop class to engage in combat
-	BattleLoop b = new BattleLoop();
-	b.initialize();
-	int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
-	int mmCounter = 0;  // keeps track of turns for Margarine missile attack
-	boolean usedParry = false; // keeps track if Parry was the attack
-	boolean enemyUsedParry = false; // keeps track if Parry was the attack
-	while(!true){
-	if(bbCounter ==0){
-		String attack = b.playerInput();
-		if(b.checkMove(attack)==true){
-        		switch(attack){
-			case "Slash": 
-                	if(enemyUsedParry) {
-			if(Math.random() >=0.5)
-                	e.setHealth(e.getHealth()-8);
-			enemyUsedParry = false;
-			} else {
-			e.setHealth(e.getHealth()-15);
-			enemyUsedParry = false;
-			}
-			break;
-                	case "Butter Boomerang":
-			bbCounter =1;
-			if(enemyUsedParry)
-			enemyUsedParry = false;
-			break;
-                	case "Parry":
-			usedParry = true;
-			if(enemyUsedParry)
-			enemyUsedParry = false;
-			break;
-                	case "Potion":
-			player.setHealth(player.getHealth() + 25);
-			if(enemyUsedParry)
-			enemyUsedParry = false;
-			break;
-		}
-	} else if(bbCounter ==2){
-	if(enemyUsedParry){
-	if(Math.random()>=0.5){
-	e.setHealth(e.getHealth()-20);
-	bbCounter = 0;
-	enemyUsedParry = false;
-	} else {
-	e.setHealth(e.getHealth()-40);
-	bbCounter = 0;
-	enemyUsedParry = false;
-	}
-	}
-	}
-	if(b.checkWinState()==true)
-	break;
-	if(mmCounter ==1){
-	mmCounter = 2;
-	if(usedParry)
-	usedParry = false;
-	}
-	b.drawState();
-	if(mmCounter ==0){
-		String eAttack = e.attackLogic();
-        	switch(eAttack){
-		case "Slash":
-		if(usedParry) {
-		if(Math.random() >=0.5)
-                player.setHealth(player.getHealth()-8);
-		usedParry = false;
-		} else {
-		player.setHealth(player.getHealth()-15);
-		usedParry = false;
-		}
-		break;
-                case "Margarine Missile":
-		mmCounter = 1;
-		if(usedParry)
-		usedParry = false;
-		break;
-                case "Parry":
-		enemyUsedParry = true;
-		if(usedParry)
-		usedParry = false;
-		break;
-                case "Potion":
-		e.setHealth(e.getHealth()+25);
-		if(usedParry)
-		usedParry = false;
-		break;
-		}
-	} else if(mmCounter ==2){
-	if(usedParry){
-	if(Math.random()>=0.5){
-	player.setHealth(player.getHealth()-20);
-	mmCounter = 0;
-	usedParry = false;
-	} else {
-	Player.setHealth(player.getHealth()-40);
-	mmCounter = 0;
-	usedParry = false;
-	}
-	}
-	}
-	if(b.checkLoseState()==true)
-	break;
-	if(bbCounter ==1){
-	if(enemyUsedParry)
-	enemyUsedParry = false;
-	bbCounter =2;
-	}
-	b.drawState();
-	}
+        BattleLoop b = new BattleLoop();
+        b.initialize();
+        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
+        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
+        boolean usedParry = false; // keeps track if Parry was the attack
+        boolean enemyUsedParry = false; // keeps track if Parry was the attack
+        while (!true) {
+            if (bbCounter == 0) {
+                String attack = b.playerInput();
+                if (b.checkMove(attack) == true) {
+                    switch (attack) {
+                        case "Slash":
+                            if (enemyUsedParry) {
+                                if (Math.random() >= 0.5) {
+                                    e.setHealth(e.getHealth() - 8);
+                                }
+                                enemyUsedParry = false;
+                            } else {
+                                e.setHealth(e.getHealth() - 15);
+                                enemyUsedParry = false;
+                            }
+                            break;
+                        case "Butter Boomerang":
+                            bbCounter = 1;
+                            if (enemyUsedParry) {
+                                enemyUsedParry = false;
+                            }
+                            break;
+                        case "Parry":
+                            usedParry = true;
+                            if (enemyUsedParry) {
+                                enemyUsedParry = false;
+                            }
+                            break;
+                        case "Potion":
+                            player.setHealth(player.getHealth() + 25);
+                            if (enemyUsedParry) {
+                                enemyUsedParry = false;
+                            }
+                            break;
+                    }
+                } else if (bbCounter == 2) {
+                    if (enemyUsedParry) {
+                        if (Math.random() >= 0.5) {
+                            e.setHealth(e.getHealth() - 20);
+                            bbCounter = 0;
+                            enemyUsedParry = false;
+                        } else {
+                            e.setHealth(e.getHealth() - 40);
+                            bbCounter = 0;
+                            enemyUsedParry = false;
+                        }
+                    }
+                }
+                if (b.checkWinState() == true) {
+                    break;
+                }
+                if (mmCounter == 1) {
+                    mmCounter = 2;
+                    if (usedParry) {
+                        usedParry = false;
+                    }
+                }
+                b.drawState();
+                if (mmCounter == 0) {
+                    String eAttack = e.attackLogic();
+                    switch (eAttack) {
+                        case "Slash":
+                            if (usedParry) {
+                                if (Math.random() >= 0.5) {
+                                    player.setHealth(player.getHealth() - 8);
+                                }
+                                usedParry = false;
+                            } else {
+                                player.setHealth(player.getHealth() - 15);
+                                usedParry = false;
+                            }
+                            break;
+                        case "Margarine Missile":
+                            mmCounter = 1;
+                            if (usedParry) {
+                                usedParry = false;
+                            }
+                            break;
+                        case "Parry":
+                            enemyUsedParry = true;
+                            if (usedParry) {
+                                usedParry = false;
+                            }
+                            break;
+                        case "Potion":
+                            e.setHealth(e.getHealth() + 25);
+                            if (usedParry) {
+                                usedParry = false;
+                            }
+                            break;
+                    }
+                } else if (mmCounter == 2) {
+                    if (usedParry) {
+                        if (Math.random() >= 0.5) {
+                            player.setHealth(player.getHealth() - 20);
+                            mmCounter = 0;
+                            usedParry = false;
+                        } else {
+                            Player.setHealth(player.getHealth() - 40);
+                            mmCounter = 0;
+                            usedParry = false;
+                        }
+                    }
+                }
+                if (b.checkLoseState() == true) {
+                    break;
+                }
+                if (bbCounter == 1) {
+                    if (enemyUsedParry) {
+                        enemyUsedParry = false;
+                    }
+                    bbCounter = 2;
+                }
+                b.drawState();
+            }
 
-	}
+        }
 
         // *** need to finish ***
-
-
-
         return true;
     }
 
