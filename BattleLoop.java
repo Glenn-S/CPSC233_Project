@@ -7,31 +7,37 @@ public class BattleLoop extends GameLoop{
 * @param enemy - enemy in battle
 * @param enemyList - list of all enemies in game, defeated enemy removed from here
 * @param terrainList - list of all terrain objects in game, tombstone added here
-*
+*/
 public void removeEnemy(Enemy enemy,ArrayList<Enemy> enemyList,ArrayList<Terrain> terrainList){}
 /**
 * Check's the legality of the player's desired move
 * @return true if legal, false otherwise
-*
+*/
 public boolean checkMove(String attack){
-
-return false;}
+if(attack.equals(player.moves[3])){
+if(player.getHealth() > 75 or player.hasPotion() == false){
+return false;
+}
+}
+return true;
+  }
 @override
 /**
 * Check's if the enemy's health = 0
 * @return true if the player has won, false otherwise
-*
+*/
 public boolean checkWinState(Enemy e){
 if(e.getHealth()==0)
 return true;
 return false;
 
 }
-@override
+
 /**
 * Check's if the player's health = 0
 * @return true if the player has lost, false otherwise
-*
+* @override
+*/
 public boolean checkLoseState(){
 if(player.getHealth()==0)
 return true;
@@ -41,7 +47,8 @@ return false;
 /**
 * Interprets user inputs and returns the corresponding attack name
 * @return attack name
-*
+* @override
+*/
 public String playerInput(){
 System.out.println("Please select an attack from the following option");
 for(int i =0; i<4;i++)
