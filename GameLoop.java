@@ -160,8 +160,8 @@ public class GameLoop {
     }*/
 
     /**
-     *@param e - Enemy who is battling the player. should be found by the collision 
-     * detection 
+     *@param e - Enemy who is battling the player. should be found by the collision
+     * detection
      */
     private boolean engageBattle(Enemy e) {
         // calls an instance of the BattleLoop class to engage in combat
@@ -176,7 +176,7 @@ public class GameLoop {
 		String attack = b.playerInput();
 		if(b.checkMove(attack)==true){
         		switch(attack){
-			case "Slash": 
+			case "Slash":
                 	if(enemyUsedParry) {
 			if(Math.random() >=0.5)
                 	e.setHealth(e.getHealth()-8);
