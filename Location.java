@@ -1,5 +1,5 @@
 
-public class Location {	
+public class Location {
 	private int xCoord;
 	private int yCoord;
 	private int xSize;
@@ -8,7 +8,7 @@ public class Location {
 	private int ySize;
 	private int ySizemax;
 	private int ySizemin;
-	
+
 	public int getxCoord() {
 		return xCoord;
 	}
@@ -19,7 +19,7 @@ public class Location {
 	public int getyCoord() {
 		return yCoord;
 	}
-	
+
 	public void setyCoord(int yCoord) {
 		this.yCoord = yCoord;
 	}

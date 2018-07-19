@@ -5,12 +5,12 @@ public class Avatar extends Sprite{
 	private int defence;
 	private int attact;
 	String move;
-	
+
 	public Avatar(Location coord,String name,Image SpriteImage,boolean Exists,String[] Dialogue,boolean overlapsWith) {
 		super(coord,name,SpriteImage,Exists,Dialogue,overlapsWith);
 	}
 	public Avatar() {
-		
+
 	}
 	public void setMove(String input){
 		if (input == "Slash" || input == "slash" || input == "SLASH") {
@@ -24,13 +24,13 @@ public class Avatar extends Sprite{
 		}
 		else if (input == "Potion" || input == "potion" || input == "POTION") {
 			move = "Potion";
-		}		
+		}
 	}
-	
+
 	public String getMove() {
-		return move;		
+		return move;
 	}
-		
+
 	public void setHealth(int health) {
 		this.health = health;
 	}
@@ -58,5 +58,5 @@ public class Avatar extends Sprite{
 	public int getAttact() {
 		return attact;
 	}
-	
+
 }

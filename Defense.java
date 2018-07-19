@@ -11,11 +11,7 @@ public class Defense extends Sprite {
      */
     @Override
     public Defense() {
-        this.coord = null;
-        this.name = null;
-        this.spriteImage = 0;
-        this.exists = false;
-        this.dialogue = null;
+        super();
         this.defenseBoost = 0;
     }
 
@@ -36,11 +32,7 @@ public class Defense extends Sprite {
                   boolean existence,
                   int defenseValue,
                   String[] spriteMessages) { // this might need to change to an ArrayList
-        this.coord = coordinate;
-        this.name = title;
-        this.spriteImage = spriteSymbol;
-        this.exists = existence;
-        this.dialogue = spriteMessages;
+        super(title, existence, spriteMessages, coordinate, spriteSymbol);
         this.defenseBoost = defenseValue;
     }
 
@@ -50,11 +42,7 @@ public class Defense extends Sprite {
      */
     @Override
     public Defense(Defense item) {
-        this.coord = item.getCoord();
-        this.name = item.getName();
-        this.spriteImage = item.getSpriteImage();
-        this.exists = item.getExists();
-        this.dialogue = item.getDialogue();
+        sprite(item.getName(), item.getExists(), item.getDialogue(), item.getCoord(), item.getSpriteImage());
         this.defenseBoost = item.getDefenceBoost();
     }
 
