@@ -12,8 +12,6 @@ public class Weapon extends Sprite {
     @Override
     public Weapon() {
         super();
-        this.coord = null;
-        this.spriteImage = 0;
         this.weaponBoost = 0;
     }
 
@@ -34,9 +32,7 @@ public class Weapon extends Sprite {
                   boolean existence,
                   int attackValue,
                   String[] spriteMessages) { // this might need to change to an ArrayList
-        super(title, existence, spriteMessages);
-        this.coord = coordinate;
-        this.spriteImage = spriteSymbol;
+        super(title, existence, spriteMessages, coordinate, spriteSymbol);
         this.weaponBoost = attackValue;
     }
 
@@ -46,9 +42,8 @@ public class Weapon extends Sprite {
      */
     @Override
     public Weapon(Weapon item) {
-        sprite(item.getName(), item.getExists(), item.getDialogue());
-        this.coord = item.getCoord();
-        this.spriteImage = item.getSpriteImage();
+        // call supers constructor(s)
+        sprite(item.getName(), item.getExists(), item.getDialogue(), item.getCoord(), item.getSpriteImage());
         this.weaponBoost = item.getWeaponBoost();
     }
 

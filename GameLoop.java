@@ -446,4 +446,11 @@ public class GameLoop {
         return collision;
     }
 */
+
+    /**
+     * Purpose: To allow the ability to test methods
+     */
+    public static void main(String[] args) {
+        // for testing methods
+    }
 }

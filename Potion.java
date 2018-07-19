@@ -12,8 +12,6 @@ public class Potion extends Sprite {
     @Override
     public Potion() {
         super();
-        this.coord = null;
-        this.spriteImage = 0;
         this.healthBoost = 0;
     }
 
@@ -34,9 +32,7 @@ public class Potion extends Sprite {
                   boolean existence,
                   int healthValue,
                   String[] spriteMessages) { // this might need to change to an ArrayList
-        super(title, existence, spriteMessages);
-        this.coord = coordinate;
-        this.spriteImage = spriteSymbol;
+        super(title, existence, spriteMessages, coordinate, spriteSymbol);
         this.healthBoost = healthValue;
     }
 
@@ -46,9 +42,8 @@ public class Potion extends Sprite {
      */
     @Override
     public Potion(Potion potion) {
-        super(potion.getName(), potion.getExists(), potion.getDialogue());
-        this.coord = potion.getCoord();
-        this.spriteImage = potion.getSpriteImage();
+        // call constructor of super(s)
+        super(potion.getName(), potion.getExists(), potion.getDialogue(), potion.getCoord(), potion.getSpriteImage());
         this.healthBoost = potion.getHealthBoost();
     }
 
