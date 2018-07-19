@@ -71,13 +71,19 @@ public class Player extends Avatar {
 
 	/*------------------------------- METHODS --------------------------------*/
 
+	
+	/**
+	 * Purpose: This function is used to edit update the players position, on the map. This function calls the set x coordinate, and 
+	 * set y coordinate functions from the location class. It calls these functions through the calling players coordinate variable, 
+	 * which is of type Location
+	 *
+	 * @param  x  This is the new x value for the player, the player will be moved to this x coordinate on the map
+	 * @param  y  This is the new y value for the player, the player will be moved to this y coordinate on the map
+	 */
 	public void updatePosition(int x, int y)
 	{
-
-
-
-
-
+		this.coordinates.setXCoord(x);
+		this.coordinates.setYCoord(y);
 	}
 
 	/*
