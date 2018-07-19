@@ -12,17 +12,21 @@ public class Location {
 		return xCoord;
 	}
 
-	public void setxCoord(int xCoord) {    //setter for xCoord
-		this.xCoord = xCoord;
+	public void setxCoord(int xcoord) {    //setter for xCoord
+		if (xcoord <= 200 && xcoord >= 0) {
+		this.xCoord = xcoord;
+		}
 	}
 	public int getyCoord() {				//getter for yCoord
 		return yCoord;
 	}
 	
-	public void setyCoord(int yCoord) {    //setter for yCoord
-		this.yCoord = yCoord;
+	public void setyCoord(int ycoord) {    //setter for yCoord
+		if (ycoord >= 0 && ycoord <= 40) {
+			this.yCoord = yCoord;
+		}
 	}
-	public int getxSize() {					//getter for xSize
+	public int getxSize() {	//getter for xSize
 		return xSize;
 	}
 	public void setxSize(int xsize) {		//setter for xSize
