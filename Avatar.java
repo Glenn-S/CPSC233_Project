@@ -1,62 +1,62 @@
 import java.awt.Image;
-//Avatar is a subclass of Sprite 
+
 public class Avatar extends Sprite{
-	private int health;   // instance variables
+	private int health;
 	private int defence;
 	private int attact;
 	String move;
-	
+
 	public Avatar(Location coord,String name,Image SpriteImage,boolean Exists,String[] Dialogue,boolean overlapsWith) {
 		super(coord,name,SpriteImage,Exists,Dialogue,overlapsWith);
-	} // constructors
-	public Avatar() {
-		
 	}
-	public void setMove(String input){// input word to set movement type
-		if (input.toUpperCase() == "SLASH") {
+	public Avatar() {
+
+	}
+	public void setMove(String input){
+		if (input == "Slash" || input == "slash" || input == "SLASH") {
 			move = "Slash";
 		}
-		else if (input.toUpperCase() == "PARRY") {
+		else if (input == "Parry" || input == "parry" || input == "PARRY") {
 			move = "Parry";
 		}
-		else if (input.toUpperCase()== "SWORD BOOMERANGE" ) {
+		else if (input == "Sword Boomerang" || input == "word boomerange" || input == "SWORD BOOMERANGE") {
 			move = "Sword Boomerang";
 		}
-		else if (input.toUpperCase() == "POTION") {
+		else if (input == "Potion" || input == "potion" || input == "POTION") {
 			move = "Potion";
-		}		
+		}
 	}
-	
-	public String getMove() {   		//get movement type 
-		return move;		
+
+	public String getMove() {
+		return move;
 	}
-		
-	public void setHealth(int health) {//set health for the avatar
+
+	public void setHealth(int health) {
 		this.health = health;
 	}
-	public int UpdateHealth(Potions healthBoost) {//update health when using a potion
+	public int UpdateHealth(Potions healthBoost) {
 		this.health += Potions.healthBoost;
 	}
-	public int getHealth() {			//get health
+	public int getHealth() {
 		return health;
 	}
-	public void setDefence(int defence) {//set defence for the avatar
+	public void setDefence(int defence) {
 		this.defence = defence;
 	}
-	public void UpdateDefence(Defence DefenceBoost) {//update defence when carring some defence iteams.
+	public void UpdateDefence(Defence DefenceBoost) {
 		this.defence += Defence.DefenceBoost;
 	}
-	public int getDefence() {    		//get defence
+	public int getDefence() {
 		return defence;
 	}
-	public void setAttact(int attact) {//set attack for the avator
+	public void setAttact(int attact) {
 		this.attact = attact;
 	}
-	public void setAttack(Weapon WeaponStrength) {//update attack when carring some weapons
+	public void setAttack(Weapon WeaponStrength) {
 		this.attack += Weapon.WeaponStrength;
 	}
-	public int getAttact() {			//get attack
+	public int getAttact() {
 		return attact;
 	}
-	
+
 }

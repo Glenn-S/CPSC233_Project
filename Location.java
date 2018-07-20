@@ -1,41 +1,40 @@
 
-/*
- * Instance variables
- */
-public class Location {	
+public class Location {
 	private int xCoord;
 	private int yCoord;
 	private int xSize;
+	private int xSizemax;
+	private int xSizemin;
 	private int ySize;
-	
-	public int getxCoord() { 				//getter for xCoord
+	private int ySizemax;
+	private int ySizemin;
+
+	public int getxCoord() {
 		return xCoord;
 	}
 
-	public void setxCoord(int xcoord) {    //setter for xCoord
-		if (xcoord <= 200 && xcoord >= 0) {
-		this.xCoord = xcoord;
-		}
+	public void setxCoord(int xCoord) {
+		this.xCoord = xCoord;
 	}
-	public int getyCoord() {				//getter for yCoord
+	public int getyCoord() {
 		return yCoord;
 	}
-	
-	public void setyCoord(int ycoord) {    //setter for yCoord
-		if (ycoord >= 0 && ycoord <= 40) {
-			this.yCoord = yCoord;
-		}
+
+	public void setyCoord(int yCoord) {
+		this.yCoord = yCoord;
 	}
-	public int getxSize() {	//getter for xSize
+	public int getxSize() {
 		return xSize;
 	}
-	public void setxSize(int xsize) {		//setter for xSize
-		this.xSize = xsize;
+	public void setxSize(int xSize) {
+		this.xSizemax = this.xCoord + xSize;
+		this.xSizemin = this.xCoord - xSize;
 	}
-	public int getySize() {					//getter for ySize
+	public int getySize() {
 		return ySize;
 	}
-	public void setySize(int ysize) {		//setter for ySize
-		this.ySize = ysize;
+	public void setySize(int ySize) {
+		this.ySizemax = this.yCoord + ySize;
+		this.ySizemin = this.yCoord - ySize;
 	}
 }
