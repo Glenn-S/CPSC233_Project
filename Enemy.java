@@ -1,4 +1,4 @@
-package legitgame;
+
 
 import java.awt.Image;
 
