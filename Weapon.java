@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -9,7 +11,6 @@ public class Weapon extends Sprite {
     /**
      * Purpose: default constructor for Weapon
      */
-    @Override
     public Weapon() {
         super();
         this.weaponBoost = 0;
@@ -25,14 +26,15 @@ public class Weapon extends Sprite {
      * @param attackValue the integer value associated with the weapons strength
      * @param spriteMessages the list of messages that the sprite has for interactions
      */
-    @Override
-    public Weapon(Location coordinate,
-                  String title,
+    public Weapon(String title,
+                  Location coordinate,
+                  Image spriteImage,
                   char spriteSymbol, // will become the sprite image class later
+                  String[] spriteMessages,
                   boolean existence,
-                  int attackValue,
-                  String[] spriteMessages) { // this might need to change to an ArrayList
-        super(title, existence, spriteMessages, coordinate, spriteSymbol);
+                  boolean overlapsWith,
+                  int attackValue) { // this might need to change to an ArrayList
+        super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
         this.weaponBoost = attackValue;
     }
 
@@ -40,10 +42,11 @@ public class Weapon extends Sprite {
      * Purpose: copy constructor for Weapon
      * @param item an instance of the weapon class to copy
      */
-    @Override
     public Weapon(Weapon item) {
         // call supers constructor(s)
-        sprite(item.getName(), item.getExists(), item.getDialogue(), item.getCoord(), item.getSpriteImage());
+        super(item.getName(), item.getCoord(), item.getSpriteImage(),
+            item.getSpriteChar(), item.getDialogue(), item.getExists(),
+            item.getoverlapsWith());
         this.weaponBoost = item.getWeaponBoost();
     }
 
@@ -62,5 +65,31 @@ public class Weapon extends Sprite {
      */
     public void setWeaponBoost(int weaponBoost) {
     	this.weaponBoost = weaponBoost;
+    }
+
+    /*------------------------------ METHODS ---------------------------------*/
+    /**
+     * Purpose:
+     */
+    @Override
+    public String toString() {
+        //String strRep = super.toString(); // when Sprite has its own to string method
+        //strRep = strRep + ", " +  this.healthBoost; // when Sprite has its own method
+        String strRep = this.getName() + ", " + this.getCoord() + ", " +
+            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
+            this.getDialogue() + ", " + this.getExists() + ", " +
+            this.getoverlapsWith();
+        strRep = strRep + ", " + this.getWeaponBoost(); // for extension
+        return strRep;
+    }
+
+
+    /*------------------------------- TESTER ---------------------------------*/
+    public static void main(String[] args) {
+        // test
+        Weapon w1 = new Weapon(); //default constructor test
+        Weapon w2 = new Weapon("Butter Knife", null, null, ' ', null, true, false, 200);
+        System.out.println("w1: " + w1);
+        System.out.println("w2: " + w2);
     }
 }

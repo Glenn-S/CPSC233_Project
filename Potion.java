@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -9,7 +11,6 @@ public class Potion extends Sprite {
     /**
      * Purpose: default constructor
      */
-    @Override
     public Potion() {
         super();
         this.healthBoost = 0;
@@ -25,14 +26,15 @@ public class Potion extends Sprite {
      * @param healthValue the integer value associated with the health strength
      * @param spriteMessages the list of messages that the sprite has for interactions
      */
-    @Override
-    public Potion(Location coordinate,
-                  String title,
+    public Potion(String title,
+                  Location coordinate,
+                  Image spriteImage,
                   char spriteSymbol, // will become the sprite image class later
+                  String[] spriteMessages,
                   boolean existence,
-                  int healthValue,
-                  String[] spriteMessages) { // this might need to change to an ArrayList
-        super(title, existence, spriteMessages, coordinate, spriteSymbol);
+                  boolean overlapsWith,
+                  int healthValue) { // this might need to change to an ArrayList
+        super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
         this.healthBoost = healthValue;
     }
 
@@ -40,10 +42,11 @@ public class Potion extends Sprite {
      * Purpose: copy constructor
      * @param potion an instance of the Potion class to copy
      */
-    @Override
     public Potion(Potion potion) {
         // call constructor of super(s)
-        super(potion.getName(), potion.getExists(), potion.getDialogue(), potion.getCoord(), potion.getSpriteImage());
+        super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
+            potion.getSpriteChar(), potion.getDialogue(), potion.getExists(),
+            potion.getoverlapsWith());
         this.healthBoost = potion.getHealthBoost();
     }
 
@@ -61,7 +64,30 @@ public class Potion extends Sprite {
      * @param healthBoost the healthBoost to set
      */
     public void setHealthBoost(int healthBoost) {
-    	this.healthBoost = healthBoost;
+    	this.healthBoost = healthBoost; // can be a positive or negative value
     }
 
+    /*------------------------------ METHODS ---------------------------------*/
+    /**
+     * Purpose:
+     */
+    @Override
+    public String toString() {
+        //String strRep = super.toString(); // when Sprite has its own to string method
+        String strRep = this.getName() + ", " + this.getCoord() + ", " +
+            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
+            this.getDialogue() + ", " + this.getExists() + ", " +
+            this.getoverlapsWith();
+        strRep = strRep + ", " + this.getHealthBoost(); // for extension
+        return strRep;
+    }
+
+    /*------------------------------- TESTER ---------------------------------*/
+    public static void main(String[] args) {
+        // test
+        Potion p1 = new Potion(); //default constructor test
+        Potion p2 = new Potion("Medium Potion", null, null, ' ', null, true, false, 50);
+        System.out.println("p1: " + p1);
+        System.out.println("p2: " + p2);
+    }
 }
