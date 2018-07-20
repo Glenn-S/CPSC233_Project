@@ -82,7 +82,7 @@ public class Sprite {
 	}
 
 
-	public void setSpriteImage(){				//set the image
+	public void setSpriteImage(Image newSpriteImage){				//set the image
 		this.spriteImage = newSpriteImage;
 	}
 
