@@ -83,7 +83,7 @@ public class Sprite {
 
 
 	public void setSpriteImage(){				//set the image
-
+		this.spriteImage = newSpriteImage;
 	}
 
 	/**
