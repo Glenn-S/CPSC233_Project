@@ -68,7 +68,8 @@ public class Defense extends Sprite {
 
     /*------------------------------ METHODS ---------------------------------*/
     /**
-     * Purpose:
+     * Purpose: To print out a string representation of the class attributes
+     * @return a string with all the attributes
      */
     @Override
     public String toString() {

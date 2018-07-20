@@ -21,7 +21,8 @@ public class Potion extends Sprite {
      * sprite symbol will change to image later
      * @param coordinate the location for the sprite to exist in the game
      * @param title the name associated with the sprite
-     * @param spriteSymbol the image to print representing the sprite
+     * @param spriteImage the image to print representing the sprite
+     * @param spriteSymbol the character symbol associated with the object
      * @param existence a value to determine whether the object exists or not
      * @param healthValue the integer value associated with the health strength
      * @param spriteMessages the list of messages that the sprite has for interactions
@@ -35,6 +36,26 @@ public class Potion extends Sprite {
                   boolean overlapsWith,
                   int healthValue) { // this might need to change to an ArrayList
         super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
+        this.healthBoost = healthValue;
+    }
+    /**
+     * Purpose: constructor for Potion for terminal version
+     * sprite symbol will change to image later
+     * @param coordinate the location for the sprite to exist in the game
+     * @param title the name associated with the sprite
+     * @param spriteSymbol the character symbol associated with the object
+     * @param existence a value to determine whether the object exists or not
+     * @param healthValue the integer value associated with the health strength
+     * @param spriteMessages the list of messages that the sprite has for interactions
+     */
+    public Potion(String title,
+                  Location coordinate,
+                  char spriteSymbol, // will become the sprite image class later
+                  String[] spriteMessages,
+                  boolean existence,
+                  boolean overlapsWith,
+                  int healthValue) { // this might need to change to an ArrayList
+        super(title, coordinate, null, spriteSymbol, spriteMessages, existence, overlapsWith);
         this.healthBoost = healthValue;
     }
 
@@ -52,7 +73,7 @@ public class Potion extends Sprite {
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
     /**
-     * Purpose: To get the healing strenght of a potion
+     * Purpose: To get the healing strenght of a potion.
      * @return the healthBoost
      */
     public int getHealthBoost() {
@@ -64,12 +85,13 @@ public class Potion extends Sprite {
      * @param healthBoost the healthBoost to set
      */
     public void setHealthBoost(int healthBoost) {
-    	this.healthBoost = healthBoost; // can be a positive or negative value
+    	this.healthBoost = healthBoost; // can be a positive or negative value for later expansion
     }
 
     /*------------------------------ METHODS ---------------------------------*/
     /**
-     * Purpose:
+     * Purpose: To print out a string representation of the class attributes
+     * @return a string with all the attributes
      */
     @Override
     public String toString() {

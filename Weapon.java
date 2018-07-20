@@ -21,7 +21,8 @@ public class Weapon extends Sprite {
      * sprite symbol will change to image later
      * @param coordinate the location for the sprite to exist in the game
      * @param title the name associated with the sprite
-     * @param spriteSymbol the image to print representing the sprite
+     * @param spriteImage the image to print representing the sprite
+     * @param spriteSymbol the character symbol associated with the object
      * @param existence a value to determine whether the object exists or not
      * @param attackValue the integer value associated with the weapons strength
      * @param spriteMessages the list of messages that the sprite has for interactions
@@ -35,6 +36,26 @@ public class Weapon extends Sprite {
                   boolean overlapsWith,
                   int attackValue) { // this might need to change to an ArrayList
         super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
+        this.weaponBoost = attackValue;
+    }
+    /**
+     * Purpose: constructor for Weapon for the terminal version
+     * sprite symbol will change to image later
+     * @param coordinate the location for the sprite to exist in the game
+     * @param title the name associated with the sprite
+     * @param spriteSymbol the character symbol associated with the object
+     * @param existence a value to determine whether the object exists or not
+     * @param attackValue the integer value associated with the weapons strength
+     * @param spriteMessages the list of messages that the sprite has for interactions
+     */
+    public Weapon(String title,
+                  Location coordinate,
+                  char spriteSymbol, // will become the sprite image class later
+                  String[] spriteMessages,
+                  boolean existence,
+                  boolean overlapsWith,
+                  int attackValue) { // this might need to change to an ArrayList
+        super(title, coordinate, null, spriteSymbol, spriteMessages, existence, overlapsWith);
         this.weaponBoost = attackValue;
     }
 
@@ -69,7 +90,7 @@ public class Weapon extends Sprite {
 
     /*------------------------------ METHODS ---------------------------------*/
     /**
-     * Purpose:
+     * Purpose: To print out a string representation of the class attributes
      */
     @Override
     public String toString() {
