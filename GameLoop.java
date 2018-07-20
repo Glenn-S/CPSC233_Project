@@ -30,7 +30,6 @@ public class GameLoop {
         this.totalKeys = (totalKeys > 0) ? totalKeys : 4;
         this.winState = false;
         this.loseStat = false;
-
     }
 
     /*------------------------------- METHODS --------------------------------*/
@@ -41,6 +40,7 @@ public class GameLoop {
      */
 
     private void initialize() {
+        //this might not even be necessary?
         // not sure if this is the correct syntax
         //this.terrain.addAll(); // list of objects eg this.terrain.addAll(Sprite(definitions for constructor, etc))
         //this.items.addAll();
@@ -376,7 +376,6 @@ public class GameLoop {
         if (newItemList != null) {
             this.items = newItemList;
         }
-
     }
 
     /**
@@ -415,7 +414,6 @@ public class GameLoop {
         return;
     }
 */
-
 
     /**
      * Purpose: To equip the player with an item when they come across one and
