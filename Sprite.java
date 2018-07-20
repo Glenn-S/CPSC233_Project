@@ -3,7 +3,6 @@ import java.awt.Image;
 public class Sprite
 {
 	private Image SpriteImage;
-	Sprite s = new Sprite();
 	private String name;
 	private boolean exists = true;
 	private String[] dialogue;
