@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.io.Console;
+import java.util.ArrayList;
+
 
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
@@ -19,7 +21,7 @@ public class GameLoop {
         this.enemy = new ArrayList<Enemy>();
         this.totalKeys = 4; // default value
         this.winState = false;
-        this.loseStat = false;
+        this.loseState = false;
     }
 
     public GameLoop(ArrayList<Sprite> terrain, ArrayList<Sprite> items,
@@ -29,7 +31,7 @@ public class GameLoop {
         this.enemy = (enemy != null) ? enemy : new ArrayList<Enemy>();
         this.totalKeys = (totalKeys > 0) ? totalKeys : 4;
         this.winState = false;
-        this.loseStat = false;
+        this.loseState = false;
     }
 
     /*------------------------------- METHODS --------------------------------*/
@@ -167,11 +169,11 @@ public class GameLoop {
      * @param player an instance of the player class in the current game
      * @return a boolean value for if the player meets the condition to unlock
      */
-/*    private boolean checkGate(Player player) {
+    private boolean checkGate(Player player) {
         // also update images
         return (player.getKeyCount() == totalKeys-1) ? true : false;
     }
-*/
+
     /**
      *
      */
@@ -596,7 +598,7 @@ public class GameLoop {
      * @param move a string representation of the users input
      * @return false if a collision was detected else true
      */
-/*    public boolean checkCollisions(Player player, String move) {
+    public boolean checkCollisions(Player player, String move) {
         boolean collision = true;
 
         // check all collisions and if any are false
@@ -606,7 +608,7 @@ public class GameLoop {
         }
         return collision;
     }
-*/
+
 
     /**
      * Purpose: To allow the ability to test methods
@@ -614,5 +616,8 @@ public class GameLoop {
     public static void main(String[] args) {
         // for testing methods
         GameLoop gl = new GameLoop();
+        Player p1 =  new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
+                                null, true, false, 100, 50, 50, null);
+        System.out.println(p1);
     }
 }
