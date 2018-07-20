@@ -2,16 +2,21 @@ import java.awt.Image;
 
 public class Sprite
 {
-	protected Image SpriteImage;
-	protected String name;
-	protected boolean exists = true;
-	protected String[] dialogue;
-	protected boolean overlapsWith = false;
-	protected Location coord;
+	private Image spriteImage;
+	private String name;
+	private boolean exists = true;
+	private String[] dialogue;
+	private boolean overlapsWith = false;
+	private Location coord;
 
 	//constructors
-	public Sprite(Location coord,String name,Image SpriteImage,boolean Exists,String[] Dialogue,boolean overlapsWith) {
-
+	public Sprite(Location coord,String name,Image spriteImage,boolean exists,String[] dialogue,boolean overlapsWith) {
+		this.spriteImage = spriteImage;
+		this.name = name;
+		this.exists = exists;
+		this.dialogue = dialogue;
+		this.overlapsWith = overlapsWith;
+		this.coord = coord;
 	}
 	public Sprite() {
 
