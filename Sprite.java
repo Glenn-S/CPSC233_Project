@@ -8,7 +8,11 @@ public class Sprite
 	private String[] dialogue;
 	private boolean overlapsWith = false;
 	private Location coord;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> master
 	//constructors
 	public Sprite(Location coord,String name,Image spriteImage,boolean exists,String[] dialogue,boolean overlapsWith) {
 		this.spriteImage = spriteImage;
