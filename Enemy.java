@@ -1,4 +1,4 @@
-
+package legitgame;
 
 import java.awt.Image;
 
@@ -16,9 +16,9 @@ public class Enemy extends Avatar {
 
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
-/**
- * Default Constructor
- */
+    /**
+     * Default Constructor
+     */
     public Enemy() {
         super();
         this.key = false;
@@ -47,7 +47,6 @@ public class Enemy extends Avatar {
      * @param hasPotion - true if enemy has at least one potion, false otherwise
      * @param potions
      */
-
     public Enemy(String name, Location coord, Image spriteImage, char spriteChar, String[] dialogue, boolean exists, boolean overlapsWith, int health, int defence, int attack, String[] moves, boolean key, boolean hasPotion, Potion[] potions) {
         super(name,
                 coord,
@@ -63,21 +62,41 @@ public class Enemy extends Avatar {
         this.key = key;
         this.hasPotion = hasPotion;
         this.potions = potions;
+    }
+
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**
      * Determines if the enemy has a key or not
+     *
      * @return key - true if enemy has a key, false otherwise
      */
-    public boolean getKey(){
+    public boolean getKey() {
         return this.key;
+    }
+
+    public boolean getHasPotion() {
+        return this.hasPotion;
+    }
+
+    public void setHasPotion(boolean hasPotion) {
+        this.hasPotion = hasPotion;
+    }
+
+    public Potion[] getPotions() {
+        return this.potions; //fix privacy leaks
+    }
+
+    public void setPotions(Potion[] p) {
+        this.potions = p; //fix privacy leaks
     }
 
     /**
      * Changes if the enemy has a key or not
+     *
      * @param key - new state of the enemy's key
      * @return None
      */
-    public void setKey(boolean key){
+    public void setKey(boolean key) {
         this.key = key;
     }
 
@@ -86,6 +105,7 @@ public class Enemy extends Avatar {
      * Decides what attack the enemy will use. This is accomplished by deciding
      * the most efficient way to reduce player health to 0 while keeping the
      * enemy's health as high as possible.
+     *
      * @param player - Player playing the game
      * @return moves[] - the attack the enemy decides to use
      */
@@ -94,7 +114,7 @@ public class Enemy extends Avatar {
             return this.moves[0];
         } else if (player.getHealth() <= 40 && this.getHealth() > 30) {
             return this.moves[1];
-        } else if (this.getHealth() <= 25 && this.hasPotion == true) {
+        } else if (this.getHealth() <= 50 && this.hasPotion == true) {
             return this.moves[3];
         } else if (this.getHealth() <= 40 && this.hasPotion == false) {
             return this.moves[2];
@@ -104,19 +124,28 @@ public class Enemy extends Avatar {
     }
 
     /**
-	 * Purpose: To print out a string representation of the class attributes
-	 * @return a string with all the attributes
-	 */
-	@Override
-	public String toString() {
-		return "";
-	}
+     * Purpose: To print out a string representation of the class attributes
+     *
+     * @return a string with all the attributes
+     */
+    @Override
+    public String toString() {
+        String info = super.toString() + ", " + this.hasPotion + ", " + this.key + ", " + this.potions;
+        return info;
+    }
 
     public static void main() {
         // Tests
+        Player p = new Player();
+        String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
         Enemy e1 = new Enemy();
+        e1.setMoves(moves);
+        p.setHealth(100);
+        e1.setHealth(10);
+        System.out.print(e1.getHasPotion());
+        e1.setHasPotion(false);
         Enemy e2 = new Enemy();
-        System.out.println();
-        System.out.println();
+        System.out.println(e1.attackLogic(p));
+        System.out.println(e2);
     }
 }
