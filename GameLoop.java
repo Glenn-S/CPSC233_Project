@@ -59,8 +59,9 @@ public void createEnemyArray(ArrayList<Sprite> enemy)
 }
 public void createTerrainArray(ArrayList<Sprite> terrain)
 {
-
-
+  String[] emptyString = {"",""}
+Sprite border00 = new Sprite(coord, "border", image, true, emptyString, false);
+terrain.add(border00)
 
 
 
@@ -69,7 +70,7 @@ public void createTerrainArray(ArrayList<Sprite> terrain)
 
 public void createItemArray(ArrayList<Sprite> items)
 {
-  String[] = 
+  String[] =
 items chest19624 = new items(coord, "chest", image, true, )
 
 
