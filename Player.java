@@ -1,4 +1,5 @@
 import java.util.*;
+import java.awt.Image;
 
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
@@ -47,9 +48,10 @@ public class Player extends Avatar {
 	 * @param  p  This is a player object, its values are then copied to the calling object
 	 */
 	public Player(Player p) {
-		this(p.name, p.coordinates, p.spriteImage, p.spriteChar, p.dialogue,
-			p.exists, p.overlapsWith, p.health, p.defence, p.attack, p.moves,
-			p.keyCount, p.items); // I believe this works for copying an class
+		super(p.name, p.coord, p.spriteImage, p.spriteChar, p.dialogue,
+			p.exists, p.overlapsWith, p.health, p.defence, p.attack, p.moves); // I believe this works for copying an class
+		this.keyCount = p.keyCount;
+		this.items = p.items;
 		//this.currency = 0;
 	}
 
@@ -64,9 +66,11 @@ public class Player extends Avatar {
 	 * @param  x  This variable is the new x coordinate that the calling player will be moved to.
 	 * @param  y  This variable is the new y coordinate that the calling player will be moved to.
 	 */
+
+	// *** perhaps this should move into Sprite since it could be used for all ***
 	public void updatePosition(int x, int y) {
-		this.coordinates.setxCoord(x);
-		this.coordinates.setyCoord(y);
+		this.coord.setxCoord(x);
+		this.coord.setyCoord(y);
 	}
 
 	/*
@@ -149,7 +153,7 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles
 	 */
-	public Sprite[] getItems() {
+	public ArrayList<Sprite> getItems() {
 		return this.items;
 	}
 
@@ -158,7 +162,7 @@ public class Player extends Avatar {
 	 *
 	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
 	 */
-	public void setItems(Sprite newItems) {
+	public void setItems(ArrayList<Sprite> newItems) {
 		this.items = newItems;
 	}
 
