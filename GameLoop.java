@@ -31,6 +31,52 @@ public class GameLoop {
         //this.player = new Player(); // maybe need to pass in the users choice for name or not?
     }
 
+
+    /**
+     * Purpose: This function is used to create/set up the enemy array ArrayList
+     * every enemy has to be instantiated, and set up individually, then added to
+     * the item array ArrayList
+     *
+     * @param  enemy  This is the enemy array list. It is passed, which means it is being
+     * refrenced. Any changes made to the array list in this function will change the
+     * array list outside as well
+     */
+public void createEnemyArray(ArrayList<Sprite> enemy)
+{
+  String[] moves = {"up", "down","left","right"};
+
+  Enemy grunt65 = new Enemy(100,100,100,moves,false,true);
+  enemy.add(grunt65);
+
+  Enemy grunt5437 = new Enemy(100,100,100,moves,false,true);
+  enemy.add(grunt5437);
+
+  Enemy grunt402 = new Enemy(100,100,100,moves,false,true);
+  enemy.add(grunt402);
+
+  Enemy boss1966 = new Enemy(200,200,200,moves,false,true);
+  enemy.add(boss1966);
+}
+public void createTerrainArray(ArrayList<Sprite> terrain)
+{
+
+
+
+
+
+}
+
+
+public void createItemArray(ArrayList<Sprite> items)
+{
+  String[] = 
+items chest19624 = new items(coord, "chest", image, true, )
+
+
+
+
+
+}
     /**
      * Purpose: To check and see if the players move will collide with an enemy
      * on the map.
