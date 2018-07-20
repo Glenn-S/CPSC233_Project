@@ -16,37 +16,38 @@ import java.awt.Image;
  * s				it's an object of Sprite      as a type of Sprite
  */
 public class Sprite {
-	protected String title;
-    protected Location coordinate;
+	protected String name;
+    protected Location coord;
     protected Image spriteImage;
-    protected char spriteSymbol; // will become the sprite image class later
-    protected String[] spriteMessages;
-    protected boolean existence;
+    protected char spriteChar; // will become the sprite image class later
+    protected String[] dialogue;
+    protected boolean exists;
     protected boolean overlapsWith;
 
 	//constructors
-	public Sprite(String title,
-                  Location coordinate,
+	public Sprite(String name,
+                  Location coord,
                   Image spriteImage,
-                  char spriteSymbol, // will become the sprite image class later
-                  String[] spriteMessages,
-                  boolean existence,
+                  char spriteChar, // will become the sprite image class later
+                  String[] dialogue,
+                  boolean exists,
                   boolean overlapsWith) {
 		this.name = name;
 		this.coord= coord;
-		this.spriteImage = SpriteImage;
-		this.exists = Exists;
-		this.dialogue = Dialogue;
+		this.spriteImage = spriteImage;
+		this.spriteChar = spriteChar;
+		this.exists = exists;
+		this.dialogue = dialogue;
 		this.overlapsWith = overlapsWith;
 	}
 
 	public Sprite() {
-		this.title = "";
-	    this.coordinate = null;
+		this.name = "";
+	    this.coord = null;
 	    this.spriteImage = null;
-	    this.spriteSymbol = ' '; // will become the sprite image class later
-	    this.spriteMessages = null;
-	    this.existence = true; 
+	    this.spriteChar = ' '; // will become the sprite image class later
+	    this.dialogue = null;
+	    this.exists = true;
 	    this.overlapsWith = false;
 	}
 
@@ -124,7 +125,7 @@ public class Sprite {
 	 * @param overlapsWith true if the player is overlaps with an enemy, an
 	 * item, an edge, or terrain as a type of boolean.
 	 */
-	public void setoverlapsWith(player player){//set if player is overlapswith enemy , terrain ,potions or edges
+/*	public void setoverlapsWith(player player){//set if player is overlapswith enemy , terrain ,potions or edges
 		if (player.xCoord <= Enemy.xCoor + Enemy.xSize && player.xCoord >= Enemy.xCoor - Enemy.xSize && player.yCoord <= Enemy.yCoord + Enemy.ySize && player.yCoord >= Enemy.yCoord - Enemy.ySize){
 			overlapsWith = true;//it returns true if the player is in an area of rectangle with x range [xcood - xsize, xccord + xsize] and y range [ycoord - ysize , ycoord + ysize]
 		}
@@ -139,12 +140,25 @@ public class Sprite {
 		}
 		overlapsWith = false;
 		}//it returns false if none of above is true
-
+*/
 	/**
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
 	public boolean getoverlapsWith(){	//get the overlapsWith
 		return overlapsWith;
+	}
+
+	/**
+	 * @return the spriteChar
+	 */
+	public char getSpriteChar() {
+		return this.spriteChar;
+	}
+	/**
+	 * @param spriteChar the spriteChar to set
+	 */
+	public void setSpriteChar(char spriteChar) {
+		this.spriteChar = spriteChar;
 	}
 }
