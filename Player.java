@@ -78,8 +78,7 @@ public class Player extends Avatar {
 	 * If the calling player loses currency, then this variable must be a negative integer.
 	 */
 	 /*
-	public void updateCurrency(int loseOrGainOfCurrency)
-	{
+	public void updateCurrency(int loseOrGainOfCurrency) {
 		this.currency =  this.currency	+ loseOrGainOfCurrency;
 	}
 	*/
@@ -120,23 +119,19 @@ public class Player extends Avatar {
 	 *is needing to be edited
 	 */
 	/*
-	public void editItem(Sprite itemToEdit)
-	{
-
-
-
+	public void editItem(Sprite itemToEdit) {
 
 	}
 	*/
-	/*--------------------------- GETTERS/SETTERS -----------------------------*/
+
+	/*-------------------------- GETTERS/SETTERS -----------------------------*/
 
 	/**
 	 * Purpose: This method returns the calling players key count
 	 *
 	 * @return  this.keyCount  This is the calling players key count, it is a integer variable
 	 */
-	public int getKeyCount()
-	{
+	public int getKeyCount() {
 		return this.keyCount;
 	}
 
@@ -145,8 +140,7 @@ public class Player extends Avatar {
 	 *
 	 * @param  newKeyCount  This paramter is the new key count that will replace the calling players key count
 	 */
-	public void setKeyCount(int newKeyCount)
-	{
+	public void setKeyCount(int newKeyCount) {
 		this.keyCount = newKeyCount;
 	}
 
@@ -155,8 +149,7 @@ public class Player extends Avatar {
 	 *
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles
 	 */
-	public Sprite[] getItems()
-	{
+	public Sprite[] getItems() {
 		return this.items;
 	}
 
@@ -165,8 +158,7 @@ public class Player extends Avatar {
 	 *
 	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
 	 */
-	public void setItems(Sprite newItems)
-	{
+	public void setItems(Sprite newItems) {
 		this.items = newItems;
 	}
 
@@ -176,8 +168,7 @@ public class Player extends Avatar {
 	 * @return  this.currency  This is the calling players currency value, it is of the intger type
 	 */
 	/*
-	public int getCurrency()
-	{
+	public int getCurrency() {
 		return this.currency;
 	}
 
@@ -187,8 +178,7 @@ public class Player extends Avatar {
 	 * @param  newCurrency  This paramter is the new currency amount that will replace the calling players current currency variable
 	 */
 	/*
-	public void setCurrency(int newCurrency)
-	{
+	public void setCurrency(int newCurrency) {
 		this.currency = newCurrency;
 	}
 	*/
