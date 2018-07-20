@@ -47,8 +47,8 @@ public class BattleLoop extends GameLoop {
      * @override
      */
 
-    public boolean checkWinState(Enemy e) {
-        if (e.getHealth() == 0) {
+    public boolean checkgameOver(Enemy e) {
+        if (e.getHealth() == 0 || player.getHealth() == 0) {
             return true;
         }
         return false;
