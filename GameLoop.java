@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.io.Console;
+import java.util.ArrayList;
+
 
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
@@ -16,10 +18,10 @@ public class GameLoop {
     public GameLoop() {
         this.terrain = new ArrayList<Sprite>();
         this.items = new ArrayList<Sprite>();
-        //this.enemy = new ArrayList<Enemy>();
+        this.enemy = new ArrayList<Enemy>();
         this.totalKeys = 4; // default value
         this.winState = false;
-        this.loseStat = false;
+        this.loseState = false;
     }
 
     public GameLoop(ArrayList<Sprite> terrain, ArrayList<Sprite> items,
@@ -29,7 +31,7 @@ public class GameLoop {
         this.enemy = (enemy != null) ? enemy : new ArrayList<Enemy>();
         this.totalKeys = (totalKeys > 0) ? totalKeys : 4;
         this.winState = false;
-        this.loseStat = false;
+        this.loseState = false;
     }
 
     /*------------------------------- METHODS --------------------------------*/
@@ -488,7 +490,7 @@ public class GameLoop {
     public static void main(String[] args) {
         // for testing methods
         GameLoop gl = new GameLoop();
-        Player p1 =  new Player("Montequilla", Location(0, 0, 0, 0), null, 'x',
+        Player p1 =  new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
                                 null, true, false, 100, 50, 50, null);
         System.out.println(p1);
     }

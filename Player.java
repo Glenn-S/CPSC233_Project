@@ -198,7 +198,7 @@ public class Player extends Avatar {
 
 	public static void main(String[] args) {
 		Player p1 = new Player();
-		Player p2 = new Player("Montequilla", Location(0, 0, 0, 0), null, 'x',
+		Player p2 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
                                 null, true, false, 100, 50, 50, null);
 		System.out.println();
 		System.out.println();
