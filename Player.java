@@ -1,4 +1,4 @@
-import.java.util*;
+import java.util.*;
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
 	private ArrayList <Sprite> items = new ArrayList <Sprite>(); //arraylist of items playe is holding currently
