@@ -424,7 +424,7 @@ public class GameLoop {
      */
 /*    public void pickUpItem(Player player, Sprite item) {
         if (((item instanceof Potion) || (item instanceof Weapon) ||
-                (item instanceof Defense)) && (player != null)) {
+                (item instanceof Defence)) && (player != null)) {
             player.addItem(item); // can only take a poition, weapon or defensive item
         }
         else {

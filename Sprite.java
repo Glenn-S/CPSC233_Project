@@ -64,7 +64,7 @@ public class Sprite {
 	 * @return coord 	it's the Location of the sprite as a type of integer
 	 */
 	public Location getCoord() {				//set xCoord and yCoord as a type Location
-		return coord;
+		return this.coord;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class Sprite {
 	 * @return name   the name of the sprite  as a type of String
 	 */
 	public String getName(){					//get the name
-		return name;
+		return this.name;
 	}
 
 
@@ -90,7 +90,7 @@ public class Sprite {
 	 * @return spriteImage - renew the spriteImage as a type of Image
 	 */
 	public Image getSpriteImage(){				//get the image
-		return spriteImage;
+		return this.spriteImage;
 	}
 
 	/**
@@ -106,26 +106,26 @@ public class Sprite {
 	 * as a type of boolean
 	 */
 	public boolean getExists(){					//get the exist state
-		return exists;
+		return this.exists;
 	}
 	/**
 	 * @param dialog set dialogues as a type of String array
 	 */
-	public void setDialogue(String[] dialog){	//set the dialogue
-		dialogue = dialog;
+	public void setDialogue(String[] dialogue){	//set the dialogue
+		this.dialogue = dialogue;
 	}
 	/**
 	 * @return dialogue	- renew the dialogue we need as a String array
 	 */
 	public String[] getDialogue(){				//get the dialogue
-		return dialogue;
+		return this.dialogue;
 	}
 
 	/**
 	 * @param overlapsWith true if the player is overlaps with an enemy, an
 	 * item, an edge, or terrain as a type of boolean.
 	 */
-/*	public void setoverlapsWith(player player){//set if player is overlapswith enemy , terrain ,potions or edges
+/*	public void setoverlapsWith(Player player){//set if player is overlapswith enemy , terrain ,potions or edges
 		if (player.xCoord <= Enemy.xCoor + Enemy.xSize && player.xCoord >= Enemy.xCoor - Enemy.xSize && player.yCoord <= Enemy.yCoord + Enemy.ySize && player.yCoord >= Enemy.yCoord - Enemy.ySize){
 			overlapsWith = true;//it returns true if the player is in an area of rectangle with x range [xcood - xsize, xccord + xsize] and y range [ycoord - ysize , ycoord + ysize]
 		}
@@ -146,7 +146,7 @@ public class Sprite {
 	 * not , as a type of boolean
 	 */
 	public boolean getoverlapsWith(){	//get the overlapsWith
-		return overlapsWith;
+		return this.overlapsWith;
 	}
 
 	/**
@@ -160,5 +160,9 @@ public class Sprite {
 	 */
 	public void setSpriteChar(char spriteChar) {
 		this.spriteChar = spriteChar;
+	}
+
+	public static void main(String[] args) {
+		// Tests
 	}
 }

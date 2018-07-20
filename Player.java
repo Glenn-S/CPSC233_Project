@@ -178,7 +178,7 @@ public class Player extends Avatar {
 	/**
 	 * Purpose: This method is used to get the calling players Defence stat, if needed
 	 *
-	 * @return  this.defence  This is a integer value, representing the Defense stat of the calling player
+	 * @return  this.defence  This is a integer value, representing the Defence stat of the calling player
 	 */
 	public int getDefence()
 	{
@@ -186,10 +186,10 @@ public class Player extends Avatar {
 	}
 
 	/**
-	 * Purpose: This method sets the calling players Defence stat. If the calling players Defense stat is to decrease, then a negative
+	 * Purpose: This method sets the calling players Defence stat. If the calling players Defence stat is to decrease, then a negative
 	 * amount of defenceChange must be passed in the parameter
 	 *
-	 * @param  defenceChange  This is the amount that the calling players defense stat will be changed by. If the calling player
+	 * @param  defenceChange  This is the amount that the calling players defence stat will be changed by. If the calling player
 	 * is to lose defence, then a negative amount of defenceChange must be passed in the parameter
 	 */
 	public void setDefence(int defenceChange)
