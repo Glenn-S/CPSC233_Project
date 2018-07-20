@@ -1,3 +1,5 @@
+import java.awt.Image;
+
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -9,7 +11,6 @@ public class Defense extends Sprite {
     /**
      * Purpose: default constructor
      */
-    @Override
     public Defense() {
         super();
         this.defenseBoost = 0;
@@ -25,14 +26,15 @@ public class Defense extends Sprite {
      * @param defenseValue the integer value associated with the items defense value
      * @param spriteMessages the list of messages that the sprite has for interactions
      */
-    @Override
-    public Defense(Location coordinate,
-                  String title,
-                  char spriteSymbol, // will become the sprite image class later
-                  boolean existence,
-                  int defenseValue,
-                  String[] spriteMessages) { // this might need to change to an ArrayList
-        super(title, existence, spriteMessages, coordinate, spriteSymbol);
+    public Defense(String title,
+                   Location coordinate,
+                   Image spriteImage,
+                   char spriteSymbol, // will become the sprite image class later
+                   String[] spriteMessages,
+                   boolean existence,
+                   boolean overlapsWith,
+                   int defenseValue) { // this might need to change to an ArrayList
+        super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
         this.defenseBoost = defenseValue;
     }
 
@@ -40,10 +42,11 @@ public class Defense extends Sprite {
      * Purpose: copy constructor
      * @param item an instance of the Defense class to copy
      */
-    @Override
     public Defense(Defense item) {
-        sprite(item.getName(), item.getExists(), item.getDialogue(), item.getCoord(), item.getSpriteImage());
-        this.defenseBoost = item.getDefenceBoost();
+        super(item.getName(), item.getCoord(), item.getSpriteImage(),
+            item.getSpriteChar(), item.getDialogue(), item.getExists(),
+            item.getoverlapsWith());
+        this.defenseBoost = item.getDefenseBoost();
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
@@ -59,7 +62,32 @@ public class Defense extends Sprite {
      * Purpose: To set the defense value of the item
      * @param weaponBoost the weaponBoost to set
      */
-    public void setWeaponBoost(int weaponBoost) {
-    	this.weaponBoost = weaponBoost;
+    public void setDefenseBoost(int defenceBoost) {
+    	this.defenseBoost = defenceBoost;
+    }
+
+    /*------------------------------ METHODS ---------------------------------*/
+    /**
+     * Purpose:
+     */
+    @Override
+    public String toString() {
+        //String strRep = super.toString(); // when Sprite has its own to string method
+        //strRep = strRep + ", " +  this.healthBoost; // when Sprite has its own method
+        String strRep = this.getName() + ", " + this.getCoord() + ", " +
+            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
+            this.getDialogue() + ", " + this.getExists() + ", " +
+            this.getoverlapsWith();
+        strRep = strRep + ", " + this.getDefenseBoost(); // for extension
+        return strRep;
+    }
+
+    /*------------------------------- TESTER ---------------------------------*/
+    public static void main(String[] args) {
+        // test
+        Defense d1 = new Defense(); //default constructor test
+        Defense d2 = new Defense("Dinner Plate", null, null, ' ', null, true, false, 100);
+        System.out.println("d1: " + d1);
+        System.out.println("d2: " + d2);
     }
 }
