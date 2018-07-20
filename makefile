@@ -12,7 +12,7 @@ RESPONSE = Building the dependency
 #Build rules
 
 # ------------------------------ Build Avatar
-Avatar.class: Avatar.java
+Avatar.class: Avatar.java Potion.java Defence.java Weapon.java
 	$(ECHO) $(RESPONSE) $@
 	$(JCC) $(JFLAGS) Avatar.java
 
@@ -21,7 +21,7 @@ Avatar: Avatar.class
 	$(RUN) $@
 
 # ------------------------------ Build BattleLoop
-BattleLoop.class: BattleLoop.java
+BattleLoop.class: BattleLoop.java GameLoop.java
 	$(ECHO) $(RESPONSE) $@
 	$(JCC) $(JFLAGS) BattleLoop.java
 
@@ -29,12 +29,12 @@ BattleLoop: BattleLoop.class
 	$(ECHO) $(RESPONSE) $@
 	$(RUN) $@
 
-# ------------------------------ Build Defense
-Defense.class: Defense.java
+# ------------------------------ Build Defence
+Defence.class: Defence.java
 	$(ECHO) $(RESPONSE) $@
-	$(JCC) $(JFLAGS) Defense.java
+	$(JCC) $(JFLAGS) Defence.java
 
-Defense: Defense.class
+Defence: Defence.class
 	$(ECHO) $(RESPONSE) $@
 	$(RUN) $@
 

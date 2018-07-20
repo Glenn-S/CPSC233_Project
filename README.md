@@ -30,7 +30,7 @@ rejoice with your long lost friend. Any battle loss results in a game over. This
 means the player will have to restart the whole game.
 
 
-Defense Items (from lowest defence to highest defence): Styrofoam Plate shield,
+Defence Items (from lowest defence to highest defence): Styrofoam Plate shield,
     Porcelain Plate Shield
 Weapons (from lowest damage to highest damage): bronze butter knife, silver
     butter knife, gold butter knife
