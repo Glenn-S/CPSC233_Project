@@ -16,7 +16,7 @@ public class GameLoop {
     public GameLoop() {
         this.terrain = new ArrayList<Sprite>();
         this.items = new ArrayList<Sprite>();
-        this.enemy = new ArrayList<Enemy>();
+        //this.enemy = new ArrayList<Enemy>();
         this.totalKeys = 4; // default value
         this.winState = false;
         this.loseStat = false;
@@ -167,11 +167,11 @@ public class GameLoop {
      * @param player an instance of the player class in the current game
      * @return a boolean value for if the player meets the condition to unlock
      */
-/*    private boolean checkGate(Player player) {
+    private boolean checkGate(Player player) {
         // also update images
         return (player.getKeyCount() == totalKeys-1) ? true : false;
     }
-*/
+
     /**
      *
      */
@@ -488,5 +488,8 @@ public class GameLoop {
     public static void main(String[] args) {
         // for testing methods
         GameLoop gl = new GameLoop();
+        Player p1 =  new Player("Montequilla", Location(0, 0, 0, 0), null, 'x',
+                                null, true, false, 100, 50, 50, null);
+        System.out.println(p1);
     }
 }

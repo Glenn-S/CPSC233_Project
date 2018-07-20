@@ -100,7 +100,7 @@ public class Location {
 
 	/*------------------------------- METHODS --------------------------------*/
 
-// *** maybe it would be useful to create a left, right, top, and bottom bound method to eliminate some work
+// *** maybe it would be useful to create a left, right, top, and bottom bound method to eliminate some work ***
 
 	/**
 	 * Purpose: To print out a string representation of the class attributes
