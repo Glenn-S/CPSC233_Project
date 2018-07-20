@@ -470,7 +470,7 @@ public class GameLoop {
      * @param move a string representation of the users input
      * @return false if a collision was detected else true
      */
-/*    public boolean checkCollisions(Player player, String move) {
+    public boolean checkCollisions(Player player, String move) {
         boolean collision = true;
 
         // check all collisions and if any are false
@@ -480,7 +480,7 @@ public class GameLoop {
         }
         return collision;
     }
-*/
+
 
     /**
      * Purpose: To allow the ability to test methods
