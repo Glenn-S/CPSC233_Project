@@ -1,7 +1,8 @@
 import java.util.*;
+
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
-	private ArrayList <Sprite> items = new ArrayList <Sprite>(); //arraylist of items playe is holding currently
+	private ArrayList<Sprite> items = new ArrayList<Sprite>(); //arraylist of items player is holding currently
 	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
@@ -9,11 +10,10 @@ public class Player extends Avatar {
 	/**
 	 *Purpose: This is the default constructor, only called if no variables are passed as parameters
 	 */
-	public Player()
-	{
+	public Player() {
 		super();
  		this.keyCount = 0;
-		this.items[] = null;
+		this.items = null;
 		//this.currency = 0;
 	}
 
@@ -31,8 +31,8 @@ public class Player extends Avatar {
 	 * @param  exists  This is a boolean value, stating whether or not the player exists
 	 * @param  dialogue  This is a string array holding the different dialogue options for the player
 	 */
-	public Player(int health, int defence, int attack, String[] moves, Location coordinates, String name, Image spriteImages, boolean exists, String[] dialogue)
-	{
+	public Player(int health, int defence, int attack, String[] moves, Location coordinates,
+		String name, Image spriteImages, boolean exists, String[] dialogue) {
 		this.health = health;
 		this.defence = defence;
 		this.attack = attack;
