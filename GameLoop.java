@@ -5,13 +5,33 @@ import java.io.Console;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class GameLoop {
-    //private ArrayList<Sprite> terrain = new ArrayList<Sprite>();
-    //private ArrayList<Sprite> items = new ArrayList<Sprite>();
-    //private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
+    private ArrayList<Sprite> terrain;
+    private ArrayList<Sprite> items;
+    private ArrayList<Enemy> enemy;
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
 
+    /*---------------------------- CONSTRUCTORS ------------------------------*/
+    public GameLoop() {
+        this.terrain = new ArrayList<Sprite>();
+        this.items = new ArrayList<Sprite>();
+        this.enemy = new ArrayList<Enemy>();
+        this.totalKeys = 4; // default value
+        this.winState = false;
+        this.loseStat = false;
+    }
+
+    public GameLoop(ArrayList<Sprite> terrain, ArrayList<Sprite> items,
+                    ArrayList<Enemy> enemy, int totalKeys) {
+        this.terrain = (terrain != null) ? terrain : new ArrayList<Sprite>();
+        this.items = (items != null) ? items : new ArrayList<Sprite>();
+        this.enemy = (enemy != null) ? enemy : new ArrayList<Enemy>();
+        this.totalKeys = (totalKeys > 0) ? totalKeys : 4;
+        this.winState = false;
+        this.loseStat = false;
+
+    }
 
     /*------------------------------- METHODS --------------------------------*/
 
@@ -294,50 +314,81 @@ public class GameLoop {
      * Purpose: To retrieve the array list for the terrain objects
      * @return an array list containing the terrain objects
      */
-/*    public ArrayList<Sprite> getTerrain() {
-        return this.terrain;
+    public ArrayList<Sprite> getTerrain() {
+        return new ArrayList<Sprite>(this.terrain); //create copy of the list
     }
-*/
+
     /**
      * Purpose: To retrieve the array list for the item objects
      * @return an array list containing the item objects
      */
-/*    public ArrayList<Sprite> getItem() {
-
+    public ArrayList<Sprite> getItem() {
+        return new ArrayList<Sprite>(this.items); //create copy of the list
     }
-*/
+
     /**
      * Purpose: To retrieve the array list for the enemy objects
      * @return an array list containing the enemy objects
      */
-/*    public ArrayList<Enemy> getEnemy() {
-        return this.enemy;
+    public ArrayList<Enemy> getEnemy() {
+        return new ArrayList<Enemy>(this.enemy); //create copy of the list
     }
-*/
+
+    /**
+     * Purpose: To retrieve the number of keys in the game
+     * @return the totalKeys
+     */
+    public int getTotalKeys() {
+    	return totalKeys;
+    }
+
+    /**
+     * Purpose: To get the value of the win state variable
+     * @return the win state condition flag
+     */
+    public boolean checkWinState() {
+        return winState; // returns true if true else false
+    }
+
+    /**
+     * Purpose: To get the value of the lose state variable
+     * @return the lose state condition flag
+     */
+    public boolean checkLoseState() {
+        return loseState; // returns true if true else false
+    }
+
     /**
      * Purpose: To set a new terrain objects list for the current game
      * @param newTerrainList an array list of terrain objects
      */
-/*    public void setTerrain(ArrayList<Sprite> newTerrainList) {
-        this.terrain = newTerrainList;
+    public void setTerrain(ArrayList<Sprite> newTerrainList) {
+        if (newTerrainList != null) {
+            this.terrain = newTerrainList;
+        }
     }
-*/
+
     /**
      * Purpose: To set a new item objects list for the current game
      * @param newItemList an array list of item objects
      */
-/*    public void setItem(ArrayList<Sprite> newItemList) {
-        this.items = newItemList;
+    public void setItem(ArrayList<Sprite> newItemList) {
+        if (newItemList != null) {
+            this.items = newItemList;
+        }
+
     }
-*/
+
     /**
      * Purpose: To set a new enemy list for the current game
      * @param newEnemyList an array list of enemy objects
      */
-/*    public void setEnemy(ArrayList<Enemy> newEnemyList) {
-        this.enemy = newEnemyList;
+    public void setEnemy(ArrayList<Enemy> newEnemyList) {
+        if (newEnemyList != null) {
+            this.enemy = newEnemyList;
+        }
     }
-*/
+
     /**
      * Purpose: To change the win state boolean value
      * @param value the new boolean value to set winState to
@@ -364,21 +415,7 @@ public class GameLoop {
         return;
     }
 */
-    /**
-     * Purpose: To check and see if the user has won the game
-     * @return the win state condition flag
-     */
-    public boolean checkWinState() {
-        return winState; // returns true if true else false
-    }
 
-    /**
-     * Purpose: To check and see if the the user has lost the game
-     * @return the lose state condition flag
-     */
-    public boolean checkLoseState() {
-        return loseState; // returns true if true else false
-    }
 
     /**
      * Purpose: To equip the player with an item when they come across one and
@@ -452,5 +489,6 @@ public class GameLoop {
      */
     public static void main(String[] args) {
         // for testing methods
+        GameLoop gl = new GameLoop();
     }
 }
