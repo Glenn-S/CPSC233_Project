@@ -1,5 +1,7 @@
 
 
+
+
 import java.awt.Image;
 
 /**
@@ -29,7 +31,7 @@ public class Enemy extends Avatar {
 
     /**
      * Constructor for the class, likely to be used at game loop initialization
-     * sets the initial health, defence, attack, and allowed moves for the enemy
+     * sets the initial health, defense, attack, and allowed moves for the enemy
      * also determines whether or not the enemy will have a key on them
      *
      * @param name - name of the enemy
@@ -40,7 +42,7 @@ public class Enemy extends Avatar {
      * @param exists - true if enemy exists on the map
      * @param overlapsWith - true if player overlaps with the enemy
      * @param health - enemy health as an integer
-     * @param defence - enemy defence value as an integer
+     * @param defence - enemy defense value as an integer
      * @param attack - enemy attack value as an integer
      * @param moves - list of all possible enemy attacks
      * @param key - true if enemy has a key, false otherwise
@@ -86,7 +88,7 @@ public class Enemy extends Avatar {
         return this.potions; //fix privacy leaks
     }
 
-    public void setPotions(Potion[] p) {
+    public void setPotions(Potion[] p) {        
         this.potions = p; //fix privacy leaks
     }
 
