@@ -32,33 +32,32 @@ public class BattleLoop extends GameLoop {
      * @return true if legal, false otherwise
      */
 
-    public boolean checkMove(String attack) {
+    public boolean checkMove(String attack, Player player) {
         if (attack.equals(player.moves[3])) {
-            if (player.getHealth() > 75 || player.hasPotion() == false) {
-                return false;
+            ArrayList<Sprite> items = player.getItems();
+            for (int i = 0; i < items.size(); i++) {
+                if (player.getHealth() < 75 && player.getItems().get(i) instanceof Potion == true) {
+                    return true;
+                }
+
             }
+
         }
-        return true;
+        return false;
     }
 
     /**
      * Checks if the enemy's health = 0
+     * @param e
      * @return true if the player has won, false otherwise
-     * @override
      */
-
-    public boolean checkgameOver(Enemy e) {
-        if (e.getHealth() == 0 || player.getHealth() == 0) {
-            return true;
-        }
-        return false;
-
+    public boolean checkWinState(Enemy e) {
+        return e.getHealth() ==0; // returns true if true else false
     }
 
     /**
      * Checks if the player's health = 0
      * @return true if the player has lost, false otherwise
-     * @override
      */
 
     public boolean checkLoseState() {
@@ -74,25 +73,25 @@ public class BattleLoop extends GameLoop {
      * @override
      */
 
-    public String playerInput() {
-        System.out.println("Please select an attack from the following option");
+    public String playerInput(Player player) {
+        System.out.println("Please select an attack from the following options by entering the number beside the attack.");
         for (int i = 0; i < 4; i++) {
-            System.out.println(player.moves[i]);
+            System.out.println( i + ". " +player.moves[i]);
         }
         Scanner sc = new Scanner(System.in);
-        String attack = sc.nextLine();
-        if (attack != moves[0].ignoreCase() && attack != moves[1].ignoreCase() && attack != moves[2].ignoreCase() && attack != moves[3].ignoreCase()) {
+        int attack = sc.nextInt();
+        if (attack > 3 || attack < 0) {
             System.out.println("Error, invalid move entered. Please enter a valid move");
-            attack = sc.nextLine();
+            attack = sc.nextInt();
         }
-        return attack;
+        return player.moves[attack];
 
     }
 
-    public void initialize() {
-    }
 
-    public void drawState() {
+    public void drawState(Player player, Enemy e) {
+    System.out.println("Player Health: " + player.getHealth());
+    System.out.println("Enemy Health: " + e.getHealth());    
     }
 
 }

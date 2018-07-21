@@ -29,18 +29,18 @@ public class Enemy extends Avatar {
 
     /**
      * Constructor for the class, likely to be used at game loop initialization
-     * sets the initial health, defense, attack, and allowed moves for the enemy
+     * sets the initial health, defence, attack, and allowed moves for the enemy
      * also determines whether or not the enemy will have a key on them
      *
-     * @param name
-     * @param coord
-     * @param spriteImage
-     * @param spriteChar
-     * @param dialogue
-     * @param exists
-     * @param overlapsWith
+     * @param name - name of the enemy
+     * @param coord - position of enemy on the map
+     * @param spriteImage - enemy representation in GUI
+     * @param spriteChar - enemy representation in terminal
+     * @param dialogue - all the things an enemy can say as a string array
+     * @param exists - true if enemy exists on the map
+     * @param overlapsWith - true if player overlaps with the enemy
      * @param health - enemy health as an integer
-     * @param defence - enemy defense value as an integer
+     * @param defence - enemy defence value as an integer
      * @param attack - enemy attack value as an integer
      * @param moves - list of all possible enemy attacks
      * @param key - true if enemy has a key, false otherwise
