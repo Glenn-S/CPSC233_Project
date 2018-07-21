@@ -63,7 +63,7 @@ public class GameLoop {
      * refrenced. Any changes made to the array list in this function will change the
      * array list outside as well
      */
-public void createEnemyArray(ArrayList<Sprite> enemy)
+public void createEnemyArray(ArrayList<Enemy> enemy)
 {
   String[] moves = {"up", "down","left","right"};
 
@@ -81,9 +81,9 @@ public void createEnemyArray(ArrayList<Sprite> enemy)
 }
 public void createTerrainArray(ArrayList<Sprite> terrain)
 {
-  String[] emptyString = {"",""}
-Sprite border00 = new Sprite(coord, "border", image, true, emptyString, false);
-terrain.add(border00)
+  Location b00 = new Location(0,0,0,0);
+  Sprite border00 = new Sprite("border",null,'-', null, true, false);
+  terrain.add(border00);
 
 
 
