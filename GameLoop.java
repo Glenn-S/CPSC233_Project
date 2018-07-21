@@ -881,6 +881,805 @@ public void createTerrainArray(ArrayList<Sprite> terrain)
   terrain.add(border0199);
 
 /**-----------------------ROW 1----------------------------------------------*/
+Location b10 = new Location(1,0,0,0);
+Sprite border10 = new Sprite("border",b10, null, '|', null, true, false);
+terrain.add(border10);
+
+Location g11 = new Location(1,1,0,0);
+Sprite grass11 = new Sprite("grass",g11, null, ' ', null, true, false);
+terrain.add(grass11);
+
+Location g12 = new Location(1,2,0,0);
+Sprite grass12 = new Sprite("grass",g12, null, ' ', null, true, false);
+terrain.add(grass12);
+
+Location g13 = new Location(1,3,0,0);
+Sprite grass13 = new Sprite("grass",g13, null, ' ', null, true, false);
+terrain.add(grass13);
+
+Location g14 = new Location(1,4,0,0);
+Sprite grass14 = new Sprite("grass",g14, null, ' ', null, true, false);
+terrain.add(grass14);
+
+Location g15 = new Location(1,5,0,0);
+Sprite grass15 = new Sprite("grass",g15, null, ' ', null, true, false);
+terrain.add(grass15);
+
+Location g16 = new Location(1,6,0,0);
+Sprite grass16 = new Sprite("grass",g16, null, ' ', null, true, false);
+terrain.add(grass16);
+
+Location g17 = new Location(1,7,0,0);
+Sprite grass17 = new Sprite("grass",g17, null, ' ', null, true, false);
+terrain.add(grass17);
+
+Location g18 = new Location(1,8,0,0);
+Sprite grass18 = new Sprite("grass",g18, null, ' ', null, true, false);
+terrain.add(grass18);
+
+Location g19 = new Location(1,9,0,0);
+Sprite grass19 = new Sprite("grass",g19, null, ' ', null, true, false);
+terrain.add(grass19);
+
+Location g110 = new Location(1,10,0,0);
+Sprite grass110 = new Sprite("grass",g110, null, ' ', null, true, false);
+terrain.add(grass110);
+
+Location g111 = new Location(1,11,0,0);
+Sprite grass111 = new Sprite("grass",g111, null, ' ', null, true, false);
+terrain.add(grass111);
+
+Location g112 = new Location(1,12,0,0);
+Sprite grass112 = new Sprite("grass",g112, null, ' ', null, true, false);
+terrain.add(grass112);
+
+Location g113 = new Location(1,13,0,0);
+Sprite grass113 = new Sprite("grass",g113, null, ' ', null, true, false);
+terrain.add(grass113);
+
+Location g114 = new Location(1,14,0,0);
+Sprite grass114 = new Sprite("grass",g114, null, ' ', null, true, false);
+terrain.add(grass114);
+
+Location g115 = new Location(1,15,0,0);
+Sprite grass115 = new Sprite("grass",g115, null, ' ', null, true, false);
+terrain.add(grass115);
+
+Location g116 = new Location(1,16,0,0);
+Sprite grass116 = new Sprite("grass",g116, null, ' ', null, true, false);
+terrain.add(grass116);
+
+Location g117 = new Location(1,17,0,0);
+Sprite grass117 = new Sprite("grass",g117, null, ' ', null, true, false);
+terrain.add(grass117);
+
+Location g118 = new Location(1,18,0,0);
+Sprite grass118 = new Sprite("grass",g118, null, ' ', null, true, false);
+terrain.add(grass118);
+
+Location g119 = new Location(1,19,0,0);
+Sprite grass119 = new Sprite("grass",g119, null, ' ', null, true, false);
+terrain.add(grass119);
+
+Location g120 = new Location(1,120,0,0);
+Sprite grass120 = new Sprite("grass",g120, null, ' ', null, true, false);
+terrain.add(grass120);
+
+Location g121 = new Location(1,121,0,0);
+Sprite grass121 = new Sprite("grass",g121, null, ' ', null, true, false);
+terrain.add(grass121);
+
+Location g122 = new Location(1,22,0,0);
+Sprite grass122 = new Sprite("grass",g122, null, ' ', null, true, false);
+terrain.add(grass122);
+
+Location g123 = new Location(1,23,0,0);
+Sprite grass123 = new Sprite("grass",g123, null, ' ', null, true, false);
+terrain.add(grass123);
+
+Location g124 = new Location(1,24,0,0);
+Sprite grass124 = new Sprite("grass",g124, null, ' ', null, true, false);
+terrain.add(grass124);
+
+Location g125 = new Location(1,25,0,0);
+Sprite grass125 = new Sprite("grass",g125, null, ' ', null, true, false);
+terrain.add(grass125);
+
+Location g126 = new Location(1,26,0,0);
+Sprite grass126 = new Sprite("grass",g126, null, ' ', null, true, false);
+terrain.add(grass126);
+
+Location g127 = new Location(1,27,0,0);
+Sprite grass127 = new Sprite("grass",g127, null, ' ', null, true, false);
+terrain.add(grass127);
+
+Location w128 = new Location(1,28,0,0);
+Sprite water128 = new Sprite("water",w128, null, '/', null, true, false);
+terrain.add(water128);
+
+Location w129 = new Location(1,29,0,0);
+Sprite water129 = new Sprite("water",w129, null, '~', null, true, false);
+terrain.add(water129);
+
+Location w130 = new Location(1,30,0,0);
+Sprite water130 = new Sprite("water",w130, null, '~', null, true, false);
+terrain.add(water130);
+
+Location w131 = new Location(1,31,0,0);
+Sprite water131 = new Sprite("water",w131, null, '~', null, true, false);
+terrain.add(water131);
+
+Location w132 = new Location(1,32,0,0);
+Sprite water132 = new Sprite("water",w132, null, '~', null, true, false);
+terrain.add(water132);
+
+Location w133 = new Location(1,33,0,0);
+Sprite water133 = new Sprite("water",w133, null, '~', null, true, false);
+terrain.add(water133);
+
+Location w134 = new Location(1,34,0,0);
+Sprite water134 = new Sprite("water",w134, null, '~', null, true, false);
+terrain.add(water134);
+
+Location w135 = new Location(1,35,0,0);
+Sprite water135 = new Sprite("water",w135, null, '~', null, true, false);
+terrain.add(water135);
+
+Location w136 = new Location(1,36,0,0);
+Sprite water136 = new Sprite("water",w136, null, '~', null, true, false);
+terrain.add(water136);
+
+Location w137 = new Location(1,37,0,0);
+Sprite water137 = new Sprite("water",g12, null, '~', null, true, false);
+terrain.add(water137);
+
+Location w138 = new Location(1,38,0,0);
+Sprite water138 = new Sprite("water",w138, null, '/', null, true, false);
+terrain.add(water138);
+
+Location g139 = new Location(1,39,0,0);
+Sprite grass139 = new Sprite("grass",g139, null, ' ', null, true, false);
+terrain.add(grass139);
+
+Location g140 = new Location(1,40,0,0);
+Sprite grass140 = new Sprite("grass",g140, null, ' ', null, true, false);
+terrain.add(grass140);
+
+Location g141 = new Location(1,41,0,0);
+Sprite grass141 = new Sprite("grass",g141, null, ' ', null, true, false);
+terrain.add(grass141);
+
+Location g142 = new Location(1,42,0,0);
+Sprite grass142 = new Sprite("grass",g142, null, ' ', null, true, false);
+terrain.add(grass142);
+
+Location g143 = new Location(1,43,0,0);
+Sprite grass143 = new Sprite("grass",g143, null, ' ', null, true, false);
+terrain.add(grass143);
+
+Location g144 = new Location(1,44,0,0);
+Sprite grass144 = new Sprite("grass",g144, null, ' ', null, true, false);
+terrain.add(grass144);
+
+Location g145 = new Location(1,45,0,0);
+Sprite grass145 = new Sprite("grass",g145, null, ' ', null, true, false);
+terrain.add(grass145);
+
+Location g146 = new Location(1,46,0,0);
+Sprite grass146 = new Sprite("grass",g146, null, ' ', null, true, false);
+terrain.add(grass146);
+
+Location g147 = new Location(1,47,0,0);
+Sprite grass147 = new Sprite("grass",g147, null, ' ', null, true, false);
+terrain.add(grass147);
+
+Location g148 = new Location(1,48,0,0);
+Sprite grass148 = new Sprite("grass",g148, null, ' ', null, true, false);
+terrain.add(grass148);
+
+Location g149 = new Location(1,49,0,0);
+Sprite grass149 = new Sprite("grass",g149, null, ' ', null, true, false);
+terrain.add(grass149);
+
+Location g150 = new Location(1,50,0,0);
+Sprite grass150 = new Sprite("grass",g150, null, ' ', null, true, false);
+terrain.add(grass150);
+
+Location g151 = new Location(1,51,0,0);
+Sprite grass151 = new Sprite("grass",g151, null, ' ', null, true, false);
+terrain.add(grass151);
+
+Location g152 = new Location(1,52,0,0);
+Sprite grass152 = new Sprite("grass",g152, null, ' ', null, true, false);
+terrain.add(grass152);
+
+Location g153 = new Location(1,53,0,0);
+Sprite grass153 = new Sprite("grass",g153, null, ' ', null, true, false);
+terrain.add(grass153);
+
+Location g154 = new Location(1,54,0,0);
+Sprite grass154 = new Sprite("grass",g154, null, ' ', null, true, false);
+terrain.add(grass154);
+
+Location g155 = new Location(1,55,0,0);
+Sprite grass155 = new Sprite("grass",g155, null, ' ', null, true, false);
+terrain.add(grass155);
+
+Location g156 = new Location(1,56,0,0);
+Sprite grass156 = new Sprite("grass",g156, null, ' ', null, true, false);
+terrain.add(grass156);
+
+Location g157 = new Location(1,57,0,0);
+Sprite grass157 = new Sprite("grass",g157, null, ' ', null, true, false);
+terrain.add(grass157);
+
+Location g158 = new Location(1,58,0,0);
+Sprite grass158 = new Sprite("grass",g158, null, ' ', null, true, false);
+terrain.add(grass158);
+
+Location g159 = new Location(1,59,0,0);
+Sprite grass159 = new Sprite("grass",g159, null, ' ', null, true, false);
+terrain.add(grass159);
+
+Location g160 = new Location(1,60,0,0);
+Sprite grass160 = new Sprite("grass",g160, null, ' ', null, true, false);
+terrain.add(grass160);
+
+Location g161 = new Location(1,61,0,0);
+Sprite grass161 = new Sprite("grass",g161, null, ' ', null, true, false);
+terrain.add(grass161);
+
+Location g162 = new Location(1,62,0,0);
+Sprite grass162 = new Sprite("grass",g162, null, ' ', null, true, false);
+terrain.add(grass162);
+
+Location g163 = new Location(1,63,0,0);
+Sprite grass163 = new Sprite("grass",g163, null, ' ', null, true, false);
+terrain.add(grass163);
+
+Location g164 = new Location(1,64,0,0);
+Sprite grass164 = new Sprite("grass",g164, null, ' ', null, true, false);
+terrain.add(grass164);
+
+Location g165 = new Location(1,65,0,0);
+Sprite grass165 = new Sprite("grass",g165, null, ' ', null, true, false);
+terrain.add(grass165);
+
+Location g166 = new Location(1,66,0,0);
+Sprite grass166 = new Sprite("grass",g166, null, ' ', null, true, false);
+terrain.add(grass166);
+
+Location g167 = new Location(1,67,0,0);
+Sprite grass167 = new Sprite("grass",g167, null, ' ', null, true, false);
+terrain.add(grass167);
+
+Location g168 = new Location(1,68,0,0);
+Sprite grass168 = new Sprite("grass",g168, null, ' ', null, true, false);
+terrain.add(grass168);
+
+Location g169 = new Location(1,69,0,0);
+Sprite grass169 = new Sprite("grass",g169, null, ' ', null, true, false);
+terrain.add(grass169);
+
+Location g170 = new Location(1,70,0,0);
+Sprite grass170 = new Sprite("grass",g170, null, ' ', null, true, false);
+terrain.add(grass170);
+
+Location g171 = new Location(1,71,0,0);
+Sprite grass171 = new Sprite("grass",g71, null, ' ', null, true, false);
+terrain.add(grass171);
+
+Location g172 = new Location(1,72,0,0);
+Sprite grass172 = new Sprite("grass",g172, null, ' ', null, true, false);
+terrain.add(grass172);
+
+Location g173 = new Location(1,73,0,0);
+Sprite grass173 = new Sprite("grass",g173, null, ' ', null, true, false);
+terrain.add(grass173);
+
+Location g174 = new Location(1,74,0,0);
+Sprite grass174 = new Sprite("grass",g74, null, ' ', null, true, false);
+terrain.add(grass174);
+
+Location g175 = new Location(1,75,0,0);
+Sprite grass75 = new Sprite("grass",g175, null, ' ', null, true, false);
+terrain.add(grass175);
+
+Location g176 = new Location(1,76,0,0);
+Sprite grass176 = new Sprite("grass",g176, null, ' ', null, true, false);
+terrain.add(grass176);
+
+Location g177 = new Location(1,77,0,0);
+Sprite grass177 = new Sprite("grass",g177, null, ' ', null, true, false);
+terrain.add(grass177);
+
+Location g178 = new Location(1,78,0,0);
+Sprite grass178 = new Sprite("grass",g178, null, ' ', null, true, false);
+terrain.add(grass178);
+
+Location g179 = new Location(1,79,0,0);
+Sprite grass179 = new Sprite("grass",g179, null, ' ', null, true, false);
+terrain.add(grass179);
+
+Location g180 = new Location(1,80,0,0);
+Sprite grass180 = new Sprite("grass",g180, null, ' ', null, true, false);
+terrain.add(grass180);
+
+Location g181 = new Location(1,81,0,0);
+Sprite grass181 = new Sprite("grass",g181, null, ' ', null, true, false);
+terrain.add(grass181);
+
+Location g182 = new Location(1,82,0,0);
+Sprite grass182 = new Sprite("grass",g182, null, ' ', null, true, false);
+terrain.add(grass182);
+
+Location g183 = new Location(1,83,0,0);
+Sprite grass183 = new Sprite("grass",g183, null, ' ', null, true, false);
+terrain.add(grass183);
+
+Location g184 = new Location(1,84,0,0);
+Sprite grass184 = new Sprite("grass",g184, null, ' ', null, true, false);
+terrain.add(grass184);
+
+Location g185 = new Location(1,85,0,0);
+Sprite grass185 = new Sprite("grass",g185, null, ' ', null, true, false);
+terrain.add(grass185);
+
+Location g186 = new Location(1,86,0,0);
+Sprite grass186 = new Sprite("grass",g186, null, ' ', null, true, false);
+terrain.add(grass186);
+
+Location g187 = new Location(1,87,0,0);
+Sprite grass187 = new Sprite("grass",g187, null, ' ', null, true, false);
+terrain.add(grass187);
+
+Location g188 = new Location(1,88,0,0);
+Sprite grass188 = new Sprite("grass",g188, null, ' ', null, true, false);
+terrain.add(grass188);
+
+Location g189 = new Location(1,89,0,0);
+Sprite grass189 = new Sprite("grass",g189, null, ' ', null, true, false);
+terrain.add(grass189);
+
+Location g190 = new Location(1,90,0,0);
+Sprite grass190 = new Sprite("grass",g190, null, ' ', null, true, false);
+terrain.add(grass190);
+
+Location g191 = new Location(1,91,0,0);
+Sprite grass191 = new Sprite("grass",g191, null, ' ', null, true, false);
+terrain.add(grass191);
+
+Location g192 = new Location(1,92,0,0);
+Sprite grass192 = new Sprite("grass",g192, null, ' ', null, true, false);
+terrain.add(grass192);
+
+Location g193 = new Location(1,93,0,0);
+Sprite grass193 = new Sprite("grass",g193, null, ' ', null, true, false);
+terrain.add(grass193);
+
+Location g194 = new Location(1,94,0,0);
+Sprite grass194 = new Sprite("grass",g194, null, ' ', null, true, false);
+terrain.add(grass194);
+
+Location g195 = new Location(1,95,0,0);
+Sprite grass195 = new Sprite("grass",g195, null, ' ', null, true, false);
+terrain.add(grass195);
+
+Location g196 = new Location(1,96,0,0);
+Sprite grass196 = new Sprite("grass",g196, null, ' ', null, true, false);
+terrain.add(grass196);
+
+Location g197 = new Location(1,97,0,0);
+Sprite grass197 = new Sprite("grass",g197, null, ' ', null, true, false);
+terrain.add(grass197);
+
+Location g198 = new Location(1,98,0,0);
+Sprite grass198 = new Sprite("grass",g198, null, ' ', null, true, false);
+terrain.add(grass198);
+
+Location g199 = new Location(1,99,0,0);
+Sprite grass199 = new Sprite("grass",g199, null, ' ', null, true, false);
+terrain.add(grass199);
+
+Location g1100 = new Location(1,100,0,0);
+Sprite grass1100 = new Sprite("grass",g1100, null, ' ', null, true, false);
+terrain.add(grass1100);
+
+Location g1101 = new Location(1,101,0,0);
+Sprite grass1101 = new Sprite("grass",g1101, null, ' ', null, true, false);
+terrain.add(grass1101);
+
+Location g1102 = new Location(1,1102,0,0);
+Sprite grass1102 = new Sprite("grass",g1102, null, ' ', null, true, false);
+terrain.add(grass1102);
+
+Location g1103 = new Location(1,103,0,0);
+Sprite grass1103 = new Sprite("grass",g1103, null, ' ', null, true, false);
+terrain.add(grass1103);
+
+Location g1104 = new Location(1,104,0,0);
+Sprite grass1104 = new Sprite("grass",g1104, null, ' ', null, true, false);
+terrain.add(grass1104);
+
+Location g1105 = new Location(1,105,0,0);
+Sprite grass1105 = new Sprite("grass",g1105, null, ' ', null, true, false);
+terrain.add(grass1105);
+
+Location g1106 = new Location(1,106,0,0);
+Sprite grass1106 = new Sprite("grass",g1106, null, ' ', null, true, false);
+terrain.add(grass1106);
+
+Location g1107 = new Location(1,107,0,0);
+Sprite grass1107 = new Sprite("grass",g1107, null, ' ', null, true, false);
+terrain.add(grass1107);
+
+Location g1108 = new Location(1,108,0,0);
+Sprite grass1108 = new Sprite("grass",g1108, null, ' ', null, true, false);
+terrain.add(grass1108);
+
+Location g1109 = new Location(1,109,0,0);
+Sprite grass1109 = new Sprite("grass",g1109, null, ' ', null, true, false);
+terrain.add(grass1109);
+
+Location g1110 = new Location(1,110,0,0);
+Sprite grass1110 = new Sprite("grass",g1110, null, ' ', null, true, false);
+terrain.add(grass1110);
+
+Location g1111 = new Location(1,111,0,0);
+Sprite grass1111 = new Sprite("grass",g1111, null, ' ', null, true, false);
+terrain.add(grass1111);
+
+Location g1112 = new Location(1,112,0,0);
+Sprite grass1112 = new Sprite("grass",g1112, null, ' ', null, true, false);
+terrain.add(grass1112);
+
+Location g1113 = new Location(1,113,0,0);
+Sprite grass1113 = new Sprite("grass",g1113, null, ' ', null, true, false);
+terrain.add(grass1113);
+
+Location g1114 = new Location(1,114,0,0);
+Sprite grass1114 = new Sprite("grass",g1114, null, ' ', null, true, false);
+terrain.add(grass1114);
+
+Location g1115 = new Location(1,115,0,0);
+Sprite grass1115 = new Sprite("grass",g1115, null, ' ', null, true, false);
+terrain.add(grass1115);
+
+Location g1116 = new Location(1,116,0,0);
+Sprite grass1116 = new Sprite("grass",g1116, null, ' ', null, true, false);
+terrain.add(grass1116);
+
+Location g1117 = new Location(1,117,0,0);
+Sprite grass1117 = new Sprite("grass",g1117, null, ' ', null, true, false);
+terrain.add(grass1117);
+
+Location g1118 = new Location(1,118,0,0);
+Sprite grass1118 = new Sprite("grass",g1118, null, ' ', null, true, false);
+terrain.add(grass1118);
+
+Location g1119 = new Location(1,119,0,0);
+Sprite grass1119 = new Sprite("grass",g1119, null, ' ', null, true, false);
+terrain.add(grass1119);
+
+Location g1120 = new Location(1,120,0,0);
+Sprite grass1120 = new Sprite("grass",g1120, null, ' ', null, true, false);
+terrain.add(grass1120);
+
+Location g1121 = new Location(1,121,0,0);
+Sprite grass1121 = new Sprite("grass",g1121, null, ' ', null, true, false);
+terrain.add(grass1121);
+
+Location g1123 = new Location(1,1123,0,0);
+Sprite grass1123 = new Sprite("grass",g1123, null, ' ', null, true, false);
+terrain.add(grass1123);
+
+Location g1124 = new Location(1,124,0,0);
+Sprite grass1124 = new Sprite("grass",g1124, null, ' ', null, true, false);
+terrain.add(grass1124);
+
+Location g1125 = new Location(1,125,0,0);
+Sprite grass1125 = new Sprite("grass",g1125, null, ' ', null, true, false);
+terrain.add(grass1125);
+
+Location g1126 = new Location(1,126,0,0);
+Sprite grass1126 = new Sprite("grass",g1126, null, ' ', null, true, false);
+terrain.add(grass1126);
+
+Location g1127 = new Location(1,127,0,0);
+Sprite grass1127 = new Sprite("grass",g1127, null, ' ', null, true, false);
+terrain.add(grass1127);
+
+Location g1128 = new Location(1,128,0,0);
+Sprite grass1128 = new Sprite("grass",g1128, null, ' ', null, true, false);
+terrain.add(grass1128);
+
+Location g1129 = new Location(1,129,0,0);
+Sprite grass1129 = new Sprite("grass",g1129, null, ' ', null, true, false);
+terrain.add(grass1129);
+
+Location g1130 = new Location(1,130,0,0);
+Sprite grass1130 = new Sprite("grass",g1130, null, ' ', null, true, false);
+terrain.add(grass1130);
+
+Location g1131 = new Location(1,131,0,0);
+Sprite grass1131 = new Sprite("grass",g1131, null, ' ', null, true, false);
+terrain.add(grass1131);
+
+Location g1132 = new Location(1,132,0,0);
+Sprite grass1132 = new Sprite("grass",g1132, null, ' ', null, true, false);
+terrain.add(grass1132);
+
+Location g1133 = new Location(1,133,0,0);
+Sprite grass1133 = new Sprite("grass",g1133, null, ' ', null, true, false);
+terrain.add(grass1133);
+
+Location g1134 = new Location(1,134,0,0);
+Sprite grass1134 = new Sprite("grass",g1134, null, ' ', null, true, false);
+terrain.add(grass134);
+
+Location g1135 = new Location(1,135,0,0);
+Sprite grass1135 = new Sprite("grass",g1135, null, ' ', null, true, false);
+terrain.add(grass1135);
+
+Location g1136 = new Location(1,136,0,0);
+Sprite grass1136 = new Sprite("grass",g1136, null, ' ', null, true, false);
+terrain.add(grass1136);
+
+Location g1137 = new Location(1,137,0,0);
+Sprite grass1137 = new Sprite("grass",g1137, null, ' ', null, true, false);
+terrain.add(grass1137);
+
+Location g1138 = new Location(1,138,0,0);
+Sprite grass1138 = new Sprite("grass",g1138, null, ' ', null, true, false);
+terrain.add(grass1138);
+
+Location g1139 = new Location(1,139,0,0);
+Sprite grass1139 = new Sprite("grass",g1139, null, ' ', null, true, false);
+terrain.add(grass1139);
+
+Location g1140 = new Location(1,140,0,0);
+Sprite grass1140 = new Sprite("grass",g1140, null, ' ', null, true, false);
+terrain.add(grass1140);
+
+Location g1141 = new Location(1,141,0,0);
+Sprite grass1141 = new Sprite("grass",g1141, null, ' ', null, true, false);
+terrain.add(grass1141);
+
+Location g1142 = new Location(1,142,0,0);
+Sprite grass1142 = new Sprite("grass",g1142, null, ' ', null, true, false);
+terrain.add(grass1142);
+
+Location g1143 = new Location(1,143,0,0);
+Sprite grass1143 = new Sprite("grass",g1143, null, ' ', null, true, false);
+terrain.add(grass1143);
+
+Location g1144 = new Location(1,144,0,0);
+Sprite grass1144 = new Sprite("grass",g1144, null, ' ', null, true, false);
+terrain.add(grass1144);
+
+Location g1145 = new Location(1,145,0,0);
+Sprite grass1145 = new Sprite("grass",g1145, null, ' ', null, true, false);
+terrain.add(grass1145);
+
+Location g1146 = new Location(1,146,0,0);
+Sprite grass1146 = new Sprite("grass",g1146, null, ' ', null, true, false);
+terrain.add(grass1146);
+
+Location g1147 = new Location(1,147,0,0);
+Sprite grass1147 = new Sprite("grass",g1147, null, ' ', null, true, false);
+terrain.add(grass1147);
+
+Location g1148 = new Location(1,148,0,0);
+Sprite grass1148 = new Sprite("grass",g1148, null, ' ', null, true, false);
+terrain.add(grass1148);
+
+Location g1149 = new Location(1,149,0,0);
+Sprite grass1149 = new Sprite("grass",g1149, null, ' ', null, true, false);
+terrain.add(grass1149);
+
+Location g1150 = new Location(1,150,0,0);
+Sprite grass1150 = new Sprite("grass",g1150, null, ' ', null, true, false);
+terrain.add(grass1150);
+
+Location g1151 = new Location(1,151,0,0);
+Sprite grass1151 = new Sprite("grass",g1151, null, ' ', null, true, false);
+terrain.add(grass1151);
+
+Location g1152 = new Location(1,152,0,0);
+Sprite grass1152 = new Sprite("grass",g1152, null, ' ', null, true, false);
+terrain.add(grass1152);
+
+Location g1153 = new Location(1,153,0,0);
+Sprite grass1153 = new Sprite("grass",g1153, null, ' ', null, true, false);
+terrain.add(grass1153);
+
+Location g1154 = new Location(1,154,0,0);
+Sprite grass1154 = new Sprite("grass",g1154, null, ' ', null, true, false);
+terrain.add(grass1154);
+
+Location g1155 = new Location(1,155,0,0);
+Sprite grass1155 = new Sprite("grass",g1155, null, ' ', null, true, false);
+terrain.add(grass1155);
+
+Location g1156 = new Location(1,156,0,0);
+Sprite grass1156 = new Sprite("grass",g1156, null, ' ', null, true, false);
+terrain.add(grass1156);
+
+Location g1157 = new Location(1,157,0,0);
+Sprite grass1157 = new Sprite("grass",g1157, null, ' ', null, true, false);
+terrain.add(grass1157);
+
+Location g1158 = new Location(1,158,0,0);
+Sprite grass1158 = new Sprite("grass",g1158, null, ' ', null, true, false);
+terrain.add(grass1158);
+
+Location g1159 = new Location(1,159,0,0);
+Sprite grass1159 = new Sprite("grass",g1159, null, ' ', null, true, false);
+terrain.add(grass1159);
+
+Location g1160 = new Location(1,160,0,0);
+Sprite grass1160 = new Sprite("grass",g1160, null, ' ', null, true, false);
+terrain.add(grass1160);
+
+Location g1161 = new Location(1,161,0,0);
+Sprite grass1161 = new Sprite("grass",g1161, null, ' ', null, true, false);
+terrain.add(grass1161);
+
+Location g1162 = new Location(1,162,0,0);
+Sprite grass1162 = new Sprite("grass",g1162, null, ' ', null, true, false);
+terrain.add(grass1162);
+
+Location g1163 = new Location(1,163,0,0);
+Sprite grass1163 = new Sprite("grass",g1163, null, ' ', null, true, false);
+terrain.add(grass1163);
+
+Location g1164 = new Location(1,164,0,0);
+Sprite grass1164 = new Sprite("grass",g1164, null, ' ', null, true, false);
+terrain.add(grass1164);
+
+Location g1165 = new Location(1,165,0,0);
+Sprite grass1165 = new Sprite("grass",g1165, null, ' ', null, true, false);
+terrain.add(grass1165);
+
+Location g1166 = new Location(1,166,0,0);
+Sprite grass1166 = new Sprite("grass",g1166, null, ' ', null, true, false);
+terrain.add(grass1166);
+
+Location g1167 = new Location(1,167,0,0);
+Sprite grass1167 = new Sprite("grass",g1167, null, ' ', null, true, false);
+terrain.add(grass1167);
+
+Location g1168 = new Location(1,168,0,0);
+Sprite grass1168 = new Sprite("grass",g1168, null, ' ', null, true, false);
+terrain.add(grass1168);
+
+Location g1169 = new Location(1,169,0,0);
+Sprite grass1169 = new Sprite("grass",g1169, null, ' ', null, true, false);
+terrain.add(grass1169);
+
+Location g1170 = new Location(1,170,0,0);
+Sprite grass1170 = new Sprite("grass",g1170, null, ' ', null, true, false);
+terrain.add(grass1170);
+
+Location g1171 = new Location(1,171,0,0);
+Sprite grass1171 = new Sprite("grass",g1171, null, ' ', null, true, false);
+terrain.add(grass1171);
+
+Location g1172 = new Location(1,172,0,0);
+Sprite grass1172 = new Sprite("grass",g1172, null, ' ', null, true, false);
+terrain.add(grass1172);
+
+Location g1173 = new Location(1,173,0,0);
+Sprite grass1173 = new Sprite("grass",g1173, null, ' ', null, true, false);
+terrain.add(grass1173);
+
+Location g1174 = new Location(1,174,0,0);
+Sprite grass1174 = new Sprite("grass",g1174, null, ' ', null, true, false);
+terrain.add(grass1174);
+
+Location g1175 = new Location(1,175,0,0);
+Sprite grass1175 = new Sprite("grass",g1175, null, ' ', null, true, false);
+terrain.add(grass1175);
+
+Location g1176 = new Location(1,176,0,0);
+Sprite grass1176 = new Sprite("grass",g1176, null, ' ', null, true, false);
+terrain.add(grass1176);
+
+Location g1177 = new Location(1,177,0,0);
+Sprite grass1177 = new Sprite("grass",g1177, null, ' ', null, true, false);
+terrain.add(grass1177);
+
+Location g1178 = new Location(1,178,0,0);
+Sprite grass1178 = new Sprite("grass",g1178, null, ' ', null, true, false);
+terrain.add(grass1178);
+
+Location g1179 = new Location(1,179,0,0);
+Sprite grass1179 = new Sprite("grass",g1179, null, ' ', null, true, false);
+terrain.add(grass1179);
+
+Location g1180 = new Location(1,180,0,0);
+Sprite grass1180 = new Sprite("grass",g1180, null, ' ', null, true, false);
+terrain.add(grass1180);
+
+Location g1181 = new Location(1,181,0,0);
+Sprite grass1181 = new Sprite("grass",g1181, null, ' ', null, true, false);
+terrain.add(grass1181);
+
+Location g1182 = new Location(1,182,0,0);
+Sprite grass1182 = new Sprite("grass",g1182, null, ' ', null, true, false);
+terrain.add(grass1182);
+
+Location g1183 = new Location(1,183,0,0);
+Sprite grass1183 = new Sprite("grass",g1183, null, ' ', null, true, false);
+terrain.add(grass1183);
+
+Location m1184 = new Location(1,184,0,0);
+Sprite mountain1184 = new Sprite("mountain",m1184, null, '|', null, true, false);
+terrain.add(mountain1184);
+
+Location m1185 = new Location(1,185,0,0);
+Sprite mountain1185 = new Sprite("mountain",m1185, null, '|', null, true, false);
+terrain.add(mountain1185);
+
+Location m1186 = new Location(1,186,0,0);
+Sprite mountain1186 = new Sprite("mountain",m1186, null, 'm', null, true, false);
+terrain.add(mountain1186);
+
+Location m1187 = new Location(1,187,0,0);
+Sprite mountain1187 = new Sprite("mountain",m1187, null, 'm', null, true, false);
+terrain.add(mountain1187);
+
+Location m1188 = new Location(1,188,0,0);
+Sprite mountain1188 = new Sprite("mountain",m1188, null, 'm', null, true, false);
+terrain.add(mountain1188);
+
+Location m1189 = new Location(1,189,0,0);
+Sprite mountain1189 = new Sprite("mountain",m1189, null, 'm', null, true, false);
+terrain.add(mountain1189);
+
+Location m1190 = new Location(1,190,0,0);
+Sprite mountain1190 = new Sprite("mountain",m1190, null, 'm', null, true, false);
+terrain.add(mountain1190);
+
+Location m1191 = new Location(1,191,0,0);
+Sprite mountain1191 = new Sprite("mountain",m1191, null, 'm', null, true, false);
+terrain.add(mountain1191);
+
+Location m1192 = new Location(1,192,0,0);
+Sprite mountain1192 = new Sprite("mountain",m1192, null, 'm', null, true, false);
+terrain.add(mountain1192);
+
+Location m1193 = new Location(1,193,0,0);
+Sprite mountain1193 = new Sprite("mountain",m1193, null, 'm', null, true, false);
+terrain.add(mountain1193);
+
+Location m1194 = new Location(1,194,0,0);
+Sprite mountain1194 = new Sprite("mountain",m1194, null, '|', null, true, false);
+terrain.add(mountain1194);
+
+Location m1195 = new Location(1,195,0,0);
+Sprite mountain1195 = new Sprite("mountain",m1195, null, '|', null, true, false);
+terrain.add(mountain1195);
+
+Location g1196 = new Location(1,196,0,0);
+Sprite grass1196 = new Sprite("grass",g1196, null, ' ', null, true, false);
+terrain.add(grass1196);
+
+Location g1197 = new Location(1,197,0,0);
+Sprite grass1197 = new Sprite("grass",g1197, null, ' ', null, true, false);
+terrain.add(grass1197);
+
+Location g1198 = new Location(1,198,0,0);
+Sprite grass1198 = new Sprite("grass",g1198, null, ' ', null, true, false);
+terrain.add(grass1198);
+
+Location b1199 = new Location(1,199,0,0);
+Sprite border1199 = new Sprite("border",b1199, null, '|', null, true, false);
+terrain.add(border1199);
+
+/*-------------------------ROW 2---------------------------------------------*/
+
+
 
 
 
