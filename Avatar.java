@@ -24,16 +24,16 @@ public class Avatar extends Sprite {
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     public Avatar(String name,
-            Location coord,
-            Image spriteImage,
-            char spriteChar, // will become the sprite image class later
-            String[] dialogue,
-            boolean exists,
-            boolean overlapsWith,
-            int health,
-            int defence,
-            int attack,
-            String[] moves) {
+                  Location coord,
+                  Image spriteImage,
+                  char spriteChar, // will become the sprite image class later
+                  String[] dialogue,
+                  boolean exists,
+                  boolean overlapsWith,
+                  int health,
+                  int defence,
+                  int attack,
+                  String[] moves) {
         super(name, coord, spriteImage, spriteChar, dialogue, exists, overlapsWith);
         this.health = health;
         this.defence = defence;
@@ -83,7 +83,7 @@ public class Avatar extends Sprite {
      */
     // this might need to also have an associated index value with it for the array
     public void setMoves(String[] moves) {   		//get movement type
-    this.moves = moves;
+        this.moves = moves;
     }
 
     /**
@@ -163,7 +163,9 @@ public class Avatar extends Sprite {
     public String toString() {
         //String strRep = super.toString(); // when Sprite has its own to string method
         //strRep = strRep + ", " +  this.healthBoost; // when Sprite has its own method
-        String strRep = this.getName() + ", " + this.getCoord() + ", " + this.getSpriteImage() + ", " + this.getSpriteChar() + ", " + this.getDialogue() + ", " + this.getExists() + ", " + this.getoverlapsWith();
+        String strRep = this.getName() + ", " + this.getCoord() + ", " +
+            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
+            this.getDialogue() + ", " + this.getExists() + ", " + this.getoverlapsWith();
         strRep = strRep + ", " + this.getHealth() + ", " + this.getAttack()
                 + ", " + this.getDefence() + ", " + this.getMoves(); // for extension
         return strRep;
