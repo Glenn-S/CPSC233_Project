@@ -41,7 +41,7 @@ public class GameLoop {
      * and set the arrays with the Sprites initialized.
      */
 
-    private void initialize() {
+    private void initialize() { // get rid of
         //this might not even be necessary?
         // not sure if this is the correct syntax
         //this.terrain.addAll(); // list of objects eg this.terrain.addAll(Sprite(definitions for constructor, etc))
