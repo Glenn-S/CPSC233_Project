@@ -43,7 +43,7 @@ public class Sprite {
 
 	public Sprite() {
 		this.name = "";
-	    this.coord = null;
+	    this.coord = new Location();
 	    this.spriteImage = null;
 	    this.spriteChar = ' '; // will become the sprite image class later
 	    this.dialogue = null;
@@ -52,18 +52,19 @@ public class Sprite {
 	}
 
 	/**
-	 * @param xcoord the xCoordinate of the sprite as a type of integer
-	 * @param ycoord the yCoordinate of the Sprite as a type of integer
+	 * @param xCoord the xCoordinate of the sprite as a type of integer
+	 * @param yCoord the yCoordinate of the Sprite as a type of integer
 	 */
-	public void setCoord(int xcoord,int ycoord) { //set xCoord and yCoord
-		int xCoord = xcoord;
-		int yCoord = ycoord;
+	public void setCoord(Location location) { //set xCoord and yCoord
+		if (location != null) {
+			this.coord = location;
+		}
 	}
 
 	/**
 	 * @return coord 	it's the Location of the sprite as a type of integer
 	 */
-	public Location getCoord() {				//set xCoord and yCoord as a type Location
+	public Location getCoord() {				//get xCoord and yCoord as a type Location
 		return this.coord;
 	}
 
