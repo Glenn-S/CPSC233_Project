@@ -1,6 +1,5 @@
-gpublic class GameBoard
+public class GameBoard extends GameLoop
 {
-  protected char[][] boardOfGame = new char[40][200];
         /**
        * Purpose: This function is used to create/set up the enemy array ArrayList
        * every enemy has to be instantiated, and set up individually, then added to
@@ -664,55 +663,41 @@ gpublic class GameBoard
     items.add(new Potion("medium", new Location(24,196,0,0), null,"", null, true, true, 50));
   }
 
-
-public (ArrayList<Sprite> items, ArrayList<sprite> enemy, ArrayList<sprite> terrain)
-{
-  int rowTemp;
-  int columnTemp;
-
-for(index = 0; index < 200;index++)
+/**
+ * Purpose: This function creates the 2-D array of characters, that will then be printed out onto
+ * the screen. It finds the column and row of each point in the terrain, enemy, and item array
+ * lists. Then puts the correct character into the the corresponding column, and row in the
+ * 2-D array. The 2-D array will not be filled completely because there is parts of the map that
+ * is empty.
+ *
+ * @param  items  This is the item arraylist
+ * @param  enemy  This is the enemy arrayList
+ * @param  terrain  This is the enemy ArrayList
+ */
+  public void createPrintArray (char [][] printArray,ArrayList<Sprite> items, ArrayList<sprite> enemy, ArrayList<sprite> terrain)
   {
-rowTemp = terrain.get(index) 
-    boardOfGame[0][index] = terrain.get(index).getSpriteChar();
+    int rowTemp;
+    int columnTemp;
+
+      for(int index = 0; index < terrain.size();index++)
+      {
+        rowTemp = terrain.get(index).getCoord().getxCoord();
+        columnTemp = terrain.get(index).getCoord().getyCoord();
+        printArray[rowTemp][columnTemp] = terrain.get(index).getSpriteChar();
+      }
+
+      for(index = 0; index < items.size();index++)
+      {
+        rowTemp = items.get(index).getCoord().getxCoord();
+        columnTemp = items.get(index).getCoord().getyCoord();
+        printArray[rowTemp][columnTemp] = items.get(index).getSpriteChar();
+      }
+
+      for(index = 0; index < enemy.size();index++)
+      {
+        rowTemp = enemy.get(index).getCoord().getxCoord();
+        columnTemp = enemy.get(index).getCoord().getyCoord();
+        printArray[rowTemp][columnTemp] = enemy.get(index).getSpriteChar();
+      }
+    }
   }
-
-boardOfGame[1][0] = terrain.get().getSpriteChar();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

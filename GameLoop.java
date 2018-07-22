@@ -11,6 +11,7 @@ public class GameLoop {
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
+    private char[][] printArray = new char[40][200];
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
@@ -36,6 +37,7 @@ public class GameLoop {
     }
 
     /*------------------------------- METHODS --------------------------------*/
+
 
     /**
      * Purpose: To check and see if the players move will collide with an enemy
@@ -291,7 +293,7 @@ public class GameLoop {
 //                    b.setEnemyUsedParry(false);
 //                }
             }
-            b.drawState(player, e);
+            b.drawState(player,e);
 
         }
 
@@ -405,14 +407,39 @@ public class GameLoop {
 
     /*--------------------------- PUBLIC METHODS -----------------------------*/
     /**
-     * player is needed since it is not of this class
+     * Purpose: This function prints out the border to the screen
+     *
+     * @param  player  This is the player that is playing the game.
+     * Their char image has to be added to the print array before
+     * the array can be printed
+     *
+     * @param  printArray  This is the 2-D array of chars that will
+     * be printed out to the screen
      */
-    /*    public void drawState(Player player) {
-        // this needs to print to standard out the map for the terminal version
-        // perhaps a nested for loop to print out the array of arrays of locations
-        return;
+      public void drawState(Player player, char[][] printArray) {
+        int colTemp;
+        int rowTemp;
+
+        rowTemp = player.getCoord().getxCoord();
+        colTemp = player.getCoord().getyCoord();
+        printArray[rowTemp][colTemp] = player.getSpriteChar();
+
+        for(int index1 = 0; index1 < printArray.length; index1++)
+        {
+          for(int index2 = 0; index2 < printArray[index1].length; index2++)
+            {
+              if(printArray[index1][index2] == "")
+              {
+                System.out.print(' ');
+              }
+              else
+              {
+              System.out.print(printArray[index1][index2]);
+              }
+            }
+        }
     }
-     */
+
     /**
      * Purpose: To equip the player with an item when they come across one and
      * add it to their inventory.
