@@ -45,7 +45,7 @@ public class Defence extends Sprite {
     public Defence(Defence item) {
         super(item.getName(), item.getCoord(), item.getSpriteImage(),
             item.getSpriteChar(), item.getDialogue(), item.getExists(),
-            item.getoverlapsWith());
+            item.getOverlapsWith());
         this.defenceBoost = item.getDefenceBoost();
     }
 
@@ -78,7 +78,7 @@ public class Defence extends Sprite {
         String strRep = this.getName() + ", " + this.getCoord() + ", " +
             this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
             this.getDialogue() + ", " + this.getExists() + ", " +
-            this.getoverlapsWith();
+            this.getOverlapsWith();
         strRep = strRep + ", " + this.getDefenceBoost(); // for extension
         return strRep;
     }

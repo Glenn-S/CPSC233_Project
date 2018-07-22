@@ -67,7 +67,7 @@ public class Potion extends Sprite {
         // call constructor of super(s)
         super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
             potion.getSpriteChar(), potion.getDialogue(), potion.getExists(),
-            potion.getoverlapsWith());
+            potion.getOverlapsWith());
         this.healthBoost = potion.getHealthBoost();
     }
 
@@ -99,7 +99,7 @@ public class Potion extends Sprite {
         String strRep = this.getName() + ", " + this.getCoord() + ", " +
             this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
             this.getDialogue() + ", " + this.getExists() + ", " +
-            this.getoverlapsWith();
+            this.getOverlapsWith();
         strRep = strRep + ", " + this.getHealthBoost(); // for extension
         return strRep;
     }

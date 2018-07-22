@@ -166,7 +166,7 @@ public class Sprite {
 	* @return a string with all the attributes
 	*/
 	public String toString() {
-		String strRep = "name: " + this.getName() + ", Coord: " +
+		String strRep = "Name: " + this.getName() + ", Coord: " +
 			this.getCoord() + ", Image: " + this.getSpriteImage() + ", Char: " +
 			this.getSpriteChar() + ", Text: " + this.getDialogue() + ", Exists: " +
 			this.getExists() + ", Overlaps: " + this.getOverlapsWith();
