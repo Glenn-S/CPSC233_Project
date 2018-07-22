@@ -1,5 +1,4 @@
-public class gameBoard
-{
+public class GameBoard extends GameLoop  {
         /**
        * Purpose: This function is used to create/set up the enemy array ArrayList
        * every enemy has to be instantiated, and set up individually, then added to
@@ -11,14 +10,14 @@ public class gameBoard
        */
   public void createEnemyArray(ArrayList<Enemy> enemy)
   {
+      String[] moves = {"up", "down", "left", "right"};
+      enemy.add(new Enemy("grunt",new Location(5,6,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
 
-    enemy.add(new Enemy("grunt",new Location(5,6,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
+      enemy.add(new Enemy("grunt",new Location(2,40,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
 
-    enemy.add(new Enemy("grunt",new Location(2,40,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
+      enemy.add(new Enemy("grunt",new Location(37,54,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
 
-    enemy.add(new Enemy("grunt",new Location(37,54,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
-
-    enemy.add(new Enemy("boss",new Location(6,196,0,0),null, '+', null,true,false,200,200,200, null,false,false,null));
+      enemy.add(new Enemy("boss",new Location(6,196,0,0),null, '+', null,true,false,200,200,200, null,false,false,null));
   }
 
   public void createTerrainArray(ArrayList<Sprite> terrain)
@@ -663,4 +662,41 @@ public class gameBoard
     items.add(new Potion("medium", new Location(24,196,0,0), null,"", null, true, true, 50));
   }
 
-}
+/**
+ * Purpose: This function creates the 2-D array of characters, that will then be printed out onto
+ * the screen. It finds the column and row of each point in the terrain, enemy, and item array
+ * lists. Then puts the correct character into the the corresponding column, and row in the
+ * 2-D array. The 2-D array will not be filled completely because there is parts of the map that
+ * is empty.
+ *
+ * @param  items  This is the item arraylist
+ * @param  enemy  This is the enemy arrayList
+ * @param  terrain  This is the enemy ArrayList
+ */
+  public void createPrintArray (char [][] printArray,ArrayList<Sprite> items, ArrayList<sprite> enemy, ArrayList<sprite> terrain)
+  {
+    int rowTemp;
+    int columnTemp;
+
+      for(int index = 0; index < terrain.size();index++)
+      {
+        rowTemp = terrain.get(index).getCoord().getxCoord();
+        columnTemp = terrain.get(index).getCoord().getyCoord();
+        printArray[rowTemp][columnTemp] = terrain.get(index).getSpriteChar();
+      }
+
+      for(index = 0; index < items.size();index++)
+      {
+        rowTemp = items.get(index).getCoord().getxCoord();
+        columnTemp = items.get(index).getCoord().getyCoord();
+        printArray[rowTemp][columnTemp] = items.get(index).getSpriteChar();
+      }
+
+      for(index = 0; index < enemy.size();index++)
+      {
+        rowTemp = enemy.get(index).getCoord().getxCoord();
+        columnTemp = enemy.get(index).getCoord().getyCoord();
+        printArray[rowTemp][columnTemp] = enemy.get(index).getSpriteChar();
+      }
+    }
+  }

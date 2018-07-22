@@ -146,7 +146,7 @@ public class Sprite {
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
-	public boolean getoverlapsWith(){	//get the overlapsWith
+	public boolean getOverlapsWith(){	//get the overlapsWith
 		return this.overlapsWith;
 	}
 
@@ -162,8 +162,23 @@ public class Sprite {
 	public void setSpriteChar(char spriteChar) {
 		this.spriteChar = spriteChar;
 	}
+	/** Purpose: To print out a string representation of the class attributes
+	* @return a string with all the attributes
+	*/
+	public String toString() {
+		String strRep = "Name: " + this.getName() + ", Coord: " +
+			this.getCoord() + ", Image: " + this.getSpriteImage() + ", Char: " +
+			this.getSpriteChar() + ", Text: " + this.getDialogue() + ", Exists: " +
+			this.getExists() + ", Overlaps: " + this.getOverlapsWith();
+		return strRep;
+	}
 
 	public static void main(String[] args) {
 		// Tests
+		Sprite s1 = new Sprite();
+		Sprite s2 = new Sprite("Person", new Location(0,0,0,0), null, 'x', null, true, false);
+		System.out.println("s1: " + s1);
+		System.out.println("s2: " + s2);
 	}
+
 }

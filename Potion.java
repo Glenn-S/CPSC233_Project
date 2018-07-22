@@ -67,7 +67,7 @@ public class Potion extends Sprite {
         // call constructor of super(s)
         super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
             potion.getSpriteChar(), potion.getDialogue(), potion.getExists(),
-            potion.getoverlapsWith());
+            potion.getOverlapsWith());
         this.healthBoost = potion.getHealthBoost();
     }
 
@@ -95,20 +95,14 @@ public class Potion extends Sprite {
      */
     @Override
     public String toString() {
-        //String strRep = super.toString(); // when Sprite has its own to string method
-        String strRep = this.getName() + ", " + this.getCoord() + ", " +
-            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
-            this.getDialogue() + ", " + this.getExists() + ", " +
-            this.getoverlapsWith();
-        strRep = strRep + ", " + this.getHealthBoost(); // for extension
-        return strRep;
+        return super.toString() + ", Health Boost: " + this.getHealthBoost(); // for extension
     }
 
     /*------------------------------- TESTER ---------------------------------*/
     public static void main(String[] args) {
         // test
         Potion p1 = new Potion(); //default constructor test
-        Potion p2 = new Potion("Medium Potion", null, null, ' ', null, true, false, 50);
+        Potion p2 = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
         System.out.println("p1: " + p1);
         System.out.println("p2: " + p2);
     }

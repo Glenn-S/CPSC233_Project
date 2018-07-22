@@ -161,21 +161,16 @@ public class Avatar extends Sprite {
      */
     @Override
     public String toString() {
-        //String strRep = super.toString(); // when Sprite has its own to string method
-        //strRep = strRep + ", " +  this.healthBoost; // when Sprite has its own method
-        String strRep = this.getName() + ", " + this.getCoord() + ", " +
-            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
-            this.getDialogue() + ", " + this.getExists() + ", " + this.getoverlapsWith();
-        strRep = strRep + ", " + this.getHealth() + ", " + this.getAttack()
-                + ", " + this.getDefence() + ", " + this.getMoves(); // for extension
-        return strRep;
+        return super.toString() + ", Health: " + this.getHealth() + ", Attack: " +
+            this.getAttack() + ", Defence: " + this.getDefence() + ", Moves: " +
+            this.getMoves(); // for extension
     }
 
     /*------------------------------- TESTER ---------------------------------*/
     public static void main(String[] args) {
         // Tests
         Avatar a1 = new Avatar();
-        Avatar a2 = new Avatar("Avatar", null, null, 'x', null, true, false, 100, 50, 150, null);
+        Avatar a2 = new Avatar("Avatar", new Location(0,0,0,0), null, 'x', null, true, false, 100, 50, 150, null);
         System.out.println("a1: " + a1);
         System.out.println("a2: " + a2);
     }
