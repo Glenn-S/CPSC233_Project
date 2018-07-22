@@ -146,7 +146,7 @@ public class Sprite {
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
-	public boolean getoverlapsWith(){	//get the overlapsWith
+	public boolean getOverlapsWith(){	//get the overlapsWith
 		return this.overlapsWith;
 	}
 
@@ -169,7 +169,7 @@ public class Sprite {
 		String strRep = "name: " + this.getName() + ", Coord: " +
 			this.getCoord() + ", Image: " + this.getSpriteImage() + ", Char: " +
 			this.getSpriteChar() + ", Text: " + this.getDialogue() + ", Exists: " +
-			this.getExists() + ", OVerlaps: " + this.getOverlapsWith();
+			this.getExists() + ", Overlaps: " + this.getOverlapsWith();
 		return strRep;
 	}
 
