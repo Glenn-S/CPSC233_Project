@@ -36,21 +36,6 @@ public class GameLoop {
     }
 
     /*------------------------------- METHODS --------------------------------*/
-    /**
-     * Purpose: To initialize all of the instance variables for the current game
-     * and set the arrays with the Sprites initialized.
-     */
-    private void initialize() { // get rid of
-        //this might not even be necessary?
-        // not sure if this is the correct syntax
-        //this.terrain.addAll(); // list of objects eg this.terrain.addAll(Sprite(definitions for constructor, etc))
-        //this.items.addAll();
-        //this.enemy.addAll();
-        this.totalKeys = 4;
-        this.winState = false;
-        this.loseState = false;
-        //this.player = new Player(); // maybe need to pass in the users choice for name or not?
-    }
 
     /**
      * Purpose: To check and see if the players move will collide with an enemy
@@ -60,7 +45,7 @@ public class GameLoop {
      * @param move the desired direction that the player would like to move
      * @return true if there is a collision with an enemy
      */
-    /*
+/*
     private boolean check(Player player, String move, ArrayList<Enemy> enemy) {
         int playerLeft, playerRight, playerUp, playerDown;
         int objLeft, objRight, objUp, objDown;
@@ -85,7 +70,7 @@ public class GameLoop {
         }
         return false;
     }
-     */
+*/
     /**
      * Purpose: To check and see if the players move will collide with a terrain
      * tile that cannot be crossed (ie. mountains).
@@ -95,7 +80,7 @@ public class GameLoop {
      * @return true if there is a collision with a terrain tile that is
      * un-crossable
      */
-    /*
+/*
     private boolean check(Player player, String move, ArrayList<Sprite> obj) {
         int playerLeft, playerRight, playerUp, playerDown;
         int objLeft, objRight, objUp, objDown;
@@ -142,7 +127,7 @@ public class GameLoop {
         }
         return false;
     }
-     */
+*/
     /**
      * Purpose: To check and see if the players move will collide with an edge
      * of the map.
@@ -151,7 +136,7 @@ public class GameLoop {
      * @param move the desired direction that the player would like to move
      * @return true if there is a collision with an edge of the map
      */
-    /*    private boolean checkEdges(Player player, String move) {
+/*    private boolean checkEdges(Player player, String move) {
         int playerLeft, playerRight, playerUp, playerDown;
         int objLeft, objRight, objUp, objDown;
         // this gets me the instance of the players location
@@ -165,7 +150,7 @@ public class GameLoop {
         }
         return false;
     }
-     */
+*/
     /**
      * Purpose: To check and see if the player has obtained tall of the keys
      * necessary to unlock the gate to the final boss.
@@ -181,13 +166,25 @@ public class GameLoop {
     /**
      *
      */
-    /*private void updatePosition(Player player, String move) {
+    private void updatePosition(Player player, String move) {
         // move will only be up, down, left, and right
-        int xCoord = player.
+        // assumes coordinates have been checked
+        switch (move) {
+            case "up":
+                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord()-1);
+                break;
+            case "down":
+                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord()+1);
+                break;
+            case "left":
+                player.updatePosition(player.getCoord().getxCoord()-1, player.getCoord().getyCoord());
+                break;
+            case "right":
+                player.updatePosition(player.getCoord().getxCoord()+1, player.getCoord().getyCoord());
+                break;
+        }
+    }
 
-        player.updatePosition();
-        return;
-    }*/
     /**
      * @param e - Enemy who is battling the player. should be found by the
      * collision detection
@@ -334,7 +331,7 @@ public class GameLoop {
      * @return the totalKeys
      */
     public int getTotalKeys() {
-        return totalKeys;
+        return this.totalKeys;
     }
 
     /**
@@ -343,7 +340,7 @@ public class GameLoop {
      * @return the win state condition flag
      */
     public boolean checkWinState() {
-        return winState; // returns true if true else false
+        return this.winState; // returns true if true else false
     }
 
     /**
@@ -352,7 +349,7 @@ public class GameLoop {
      * @return the lose state condition flag
      */
     public boolean checkLoseState() {
-        return loseState; // returns true if true else false
+        return this.loseState; // returns true if true else false
     }
 
     /**
@@ -435,65 +432,64 @@ public class GameLoop {
         return;
     }
      */
+     /**
+      * Purpose: To obtain the users input for moving around the game board
+      * @return a string representation of the users directional choice
+      */
+     public String playerInput() {
+         Console console = System.console();
+         String input;
+         String userPrompt = "Please make a move (wasd): ";
+         String error = "Invalid input";
+         boolean valid = false;
+
+         if (console == null) return null;
+         do {
+             input = console.readLine(userPrompt);
+             if (input.toLowerCase().equals("w") || input.toLowerCase().equals("a") ||
+                     input.toLowerCase().equals("s") || input.toLowerCase().equals("d")) {
+                 valid = true;
+             }
+             else System.out.println(error);
+         } while (!valid);
+         // convert characters into representative symbols
+         switch (input) {
+             case "w": input = "up"; break;
+             case "a": input = "left"; break;
+             case "s": input = "down"; break;
+             case "d": input = "right"; break;
+         }
+         return input;
+     }
+
+     /**
+      * Purpose: To check all possible collisions in the game and return true or
+      * false depending.
+      * @param player an instance of the player class
+      * @param move a string representation of the users input
+      * @return false if a collision was detected else true
+      */
+ /*    public boolean checkCollisions(Player player, String move) {
+         boolean collision = true;
+
+         // check all collisions and if any are false
+         if (!checkEdges(player, move) || !checkTerrain(player, move, terrain) ||
+                 !checkEnemy(player, move, enemy) || !checkItems(player, move, items)) {
+             collision = (collision == true) ? false : collision; // if its false make it true else keep it what it was
+         }
+         return collision;
+     }
+ */
+
     /**
-     * Purpose: To obtain the users input for moving around the game board
-     *
-     * @return a string representation of the users directional choice
+     * Purpose: To print out a string representation of the class attributes
+     * @return a string with all the attributes
      */
-    public String playerInput() {
-        Console console = System.console();
-        String input;
-        String userPrompt = "Please make a move (wasd): ";
-        String error = "Invalid input";
-        boolean valid = false;
-
-        if (console == null) {
-            return null;
-        }
-        do {
-            input = console.readLine(userPrompt);
-            if (input.toLowerCase().equals("w") || input.toLowerCase().equals("a")
-                    || input.toLowerCase().equals("s") || input.toLowerCase().equals("d")) {
-                valid = true;
-            } else {
-                System.out.println(error);
-            }
-        } while (!valid);
-        // convert characters into representative symbols
-        switch (input) {
-            case "w":
-                input = "up";
-                break;
-            case "a":
-                input = "left";
-                break;
-            case "s":
-                input = "down";
-                break;
-            case "d":
-                input = "right";
-                break;
-        }
-        return input;
-    }
-
-    /**
-     * Purpose: To check all possible collisions in the game and return true or
-     * false depending.
-     *
-     * @param player an instance of the player class
-     * @param move a string representation of the users input
-     * @return false if a collision was detected else true
-     */
-    public boolean checkCollisions(Player player, String move) {
-        boolean collision = true;
-
-        // check all collisions and if any are false
-//        if (!checkEdges(player, move) || !checkTerrain(player, move, terrain) ||
-//                !checkEnemy(player, move, enemy) || !checkItems(player, move, items)) {
-//            collision = (collision == true) ? false : collision; // if its false make it true else keep it what it was
-//        }
-        return collision;
+    @Override
+    public String toString() {
+        return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: " +
+            this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: " +
+            this.winState + ", Lose State: " + this.loseState;
     }
 
     /**
@@ -501,9 +497,46 @@ public class GameLoop {
      */
     public static void main(String[] args) {
         // for testing methods
+
+        // check constructor
         GameLoop gl = new GameLoop();
-        Player p1 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                null, true, false, 100, 50, 50, null);
-        System.out.println(p1);
+        GameLoop gl2 = new GameLoop(new ArrayList<Sprite>(), new ArrayList<Sprite>(),
+                                    new ArrayList<Enemy>(), 3);
+        // print the toString representation of this object
+        System.out.println("GL: " + gl);
+        System.out.println("GL2: " + gl2);
+
+        String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
+        Player p1 =  new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
+                                null, true, false, 100, 50, 50, null);
+        Player p2 =  new Player("Burro", new Location(40, 32, 0, 0), null, 'x',
+                                null, true, false, 100, 50, 50, moves);
+        System.out.println("Player 1: " + p1);
+        System.out.println("Player 2: " + p2);
+        // check gate method
+        System.out.println("Gate Check: " + gl.checkGate(p1));
+        // check update position
+        System.out.println("Player 2 coordinates before: " + p2.getCoord());
+        gl.updatePosition(p2, "up");
+        System.out.println("Player 2 coordinates after moving up: " + p2.getCoord());
+        gl.updatePosition(p2, "left");
+        System.out.println("Player 2 coordinates after moving left: " + p2.getCoord());
+        gl.updatePosition(p2, "down");
+        System.out.println("Player 2 coordinates after moving down: " + p2.getCoord());
+        gl.updatePosition(p2, "right");
+        System.out.println("Player 2 coordinates after moving right: " + p2.getCoord());
+
+        // check GETTERS
+        // check the getters for the arrays later
+        System.out.println("Total keys in game: " + gl.getTotalKeys());
+        System.out.println("Check win state: " + gl.checkWinState());
+        System.out.println("Check lose state: " + gl.checkLoseState());
+
+        // check SETTERS
+
+
+        // check playerInput
+        String input = gl.playerInput();
+        System.out.println("You inputed: " + input);
     }
 }
