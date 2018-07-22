@@ -1,4 +1,6 @@
 
+
+
 import java.util.Scanner;
 import java.io.Console;
 import java.util.ArrayList;
@@ -190,27 +192,9 @@ public class GameLoop {
      * @param e - Enemy who is battling the player. should be found by the
      * collision detection
      */
-    private void engageBattle(Enemy enemy) {
+    private void engageBattle(Player player,Enemy e) {
         BattleLoop b = new BattleLoop();
         int i = 0;
-        Player player = new Player();
-        String attacks[] = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        player.setMoves(attacks);
-        player.setHealth(100);
-        Enemy e = new Enemy();
-        String eAttacks[] = {"Slash", "Margarine Missile", "Parry", "Potion"};
-        e.setHealth(100);
-        e.setMoves(eAttacks);
-        ArrayList<Potion> arrayList = new ArrayList<>();
-        Potion p = new Potion();
-        Potion q = new Potion();
-        q.setHealthBoost(25);
-        ArrayList<Sprite> pl = new ArrayList<>();
-        pl.add(q);
-        player.setItems(pl);
-        p.setHealthBoost(25);
-        arrayList.add(p);
-        e.setPotions(arrayList);
         int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
         int mmCounter = 0;  // keeps track of turns for Margarine missile attack
         int damage;
@@ -251,7 +235,7 @@ public class GameLoop {
 //                    b.setUsedParry(false);
 //                }
             }
-            //  b.drawState(player, e);
+              b.drawState(player, e);
             if (mmCounter == 0) {
                 String eAttack = e.attackLogic(player);
                 switch (eAttack) {
@@ -427,14 +411,14 @@ public class GameLoop {
         {
           for(int index2 = 0; index2 < printArray[index1].length; index2++)
             {
-              if(printArray[index1][index2] == "")
-              {
-                System.out.print(' ');
-              }
-              else
-              {
-              System.out.print(printArray[index1][index2]);
-              }
+//              if(printArray[index1][index2] == "")
+//              {
+//                System.out.print(' ');
+//              }
+//              else
+//              {
+//              System.out.print(printArray[index1][index2]);
+//              }
             }
         }
     }
