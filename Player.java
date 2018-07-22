@@ -3,7 +3,7 @@ import java.awt.Image;
 
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
-	private ArrayList<Sprite> items = new ArrayList<Sprite>(); //arraylist of items player is holding currently
+	private ArrayList<Sprite> items; //arraylist of items player is holding currently
 	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
@@ -14,7 +14,7 @@ public class Player extends Avatar {
 	public Player() {
 		super();
  		this.keyCount = 0;
-		this.items = null;
+		this.items = new ArrayList<Sprite>();
 		//this.currency = 0;
 	}
 
@@ -37,7 +37,7 @@ public class Player extends Avatar {
 			int defence, int attack, String[] moves) {
 		super(name, coordinates, spriteImage, spriteChar, dialogue, exists, overlapsWith, health, defence, attack, moves);
 		this.keyCount = 0;
-		this.items = null;
+		this.items = new ArrayList<Sprite>();
 		//this.currency = 0; // for later expansion
 	}
 
@@ -193,19 +193,17 @@ public class Player extends Avatar {
 	 */
 	@Override
 	public String toString() {
-		String strRep = this.getName()+","+this.getCoord()+","+this.getDialogue()+
-		","+this.getSpriteImage()+","+this.getoverlapsWith()+","+this.getAttact()+
-		","+this.getDefence()+","+this.getHealth()+","+this.getKeyCount()+","+
-		this.getMove()+","+this.getExists()+","+this.getItems();
-		return strRep;
+		return super.toString() + ", Key Count: " + this.getKeyCount() +
+			", Items: " + this.getItems(); // for extension
 	}
 
 	public static void main(String[] args) {
 		Player p1 = new Player();
+		String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
 		Player p2 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                                null, true, false, 100, 50, 50, null);
-		System.out.println();
-		System.out.println();
+                                null, true, false, 100, 50, 50, moves);
+		System.out.println("p1: " + p1);
+		System.out.println("p2: " + p2);
 	}
 
 }
