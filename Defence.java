@@ -73,21 +73,14 @@ public class Defence extends Sprite {
      */
     @Override
     public String toString() {
-        //String strRep = super.toString(); // when Sprite has its own to string method
-        //strRep = strRep + ", " +  this.healthBoost; // when Sprite has its own method
-        String strRep = this.getName() + ", " + this.getCoord() + ", " +
-            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
-            this.getDialogue() + ", " + this.getExists() + ", " +
-            this.getOverlapsWith();
-        strRep = strRep + ", " + this.getDefenceBoost(); // for extension
-        return strRep;
+        return super.toString() + ", Defence Boost: " + this.getDefenceBoost(); // for extension
     }
 
     /*------------------------------- TESTER ---------------------------------*/
     public static void main(String[] args) {
         // test
         Defence d1 = new Defence(); //default constructor test
-        Defence d2 = new Defence("Dinner Plate", null, null, ' ', null, true, false, 100);
+        Defence d2 = new Defence("Dinner Plate", new Location(0,0,0,0), null, ' ', null, true, false, 100);
         System.out.println("d1: " + d1);
         System.out.println("d2: " + d2);
     }
