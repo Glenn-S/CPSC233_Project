@@ -67,7 +67,7 @@ public class Weapon extends Sprite {
         // call supers constructor(s)
         super(item.getName(), item.getCoord(), item.getSpriteImage(),
             item.getSpriteChar(), item.getDialogue(), item.getExists(),
-            item.getoverlapsWith());
+            item.getOverlapsWith());
         this.weaponBoost = item.getWeaponBoost();
     }
 
@@ -95,14 +95,7 @@ public class Weapon extends Sprite {
      */
     @Override
     public String toString() {
-        //String strRep = super.toString(); // when Sprite has its own to string method
-        //strRep = strRep + ", " +  this.healthBoost; // when Sprite has its own method
-        String strRep = this.getName() + ", " + this.getCoord() + ", " +
-            this.getSpriteImage() + ", " + this.getSpriteChar() + ", " +
-            this.getDialogue() + ", " + this.getExists() + ", " +
-            this.getoverlapsWith();
-        strRep = strRep + ", " + this.getWeaponBoost(); // for extension
-        return strRep;
+        return super.toString() + ", Weapon Boost: " + this.getWeaponBoost(); // for extension
     }
 
 
@@ -110,7 +103,7 @@ public class Weapon extends Sprite {
     public static void main(String[] args) {
         // test
         Weapon w1 = new Weapon(); //default constructor test
-        Weapon w2 = new Weapon("Butter Knife", null, null, ' ', null, true, false, 200);
+        Weapon w2 = new Weapon("Butter Knife", new Location(0,0,0,0), null, ' ', null, true, false, 200);
         System.out.println("w1: " + w1);
         System.out.println("w2: " + w2);
     }

@@ -3,6 +3,7 @@
 
 
 import java.awt.Image;
+import java.util.ArrayList;
 
 /**
  * moves[0] = weak attack = 15HP moves [1] = Strong attack = 40HP but takes 2
@@ -12,9 +13,8 @@ import java.awt.Image;
  */
 public class Enemy extends Avatar {
 
-    private boolean key; // if true, enemy has a key. false if they do not have a key 
-    private boolean hasPotion; // shows if enemy has any potions left 
-    private Potion[] potions; // list of potions the enemy has 
+    private boolean key; // if true, enemy has a key. false if they do not have a key
+    private ArrayList<Potion> potions; // list of potions the enemy has
 
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
@@ -24,8 +24,7 @@ public class Enemy extends Avatar {
     public Enemy() {
         super();
         this.key = false;
-        this.hasPotion = false;
-        this.potions = null;
+        this.potions = new ArrayList<Potion>();
 
     }
 
@@ -46,23 +45,33 @@ public class Enemy extends Avatar {
      * @param attack - enemy attack value as an integer
      * @param moves - list of all possible enemy attacks
      * @param key - true if enemy has a key, false otherwise
-     * @param hasPotion - true if enemy has at least one potion, false otherwise
      * @param potions
      */
-    public Enemy(String name, Location coord, Image spriteImage, char spriteChar, String[] dialogue, boolean exists, boolean overlapsWith, int health, int defence, int attack, String[] moves, boolean key, boolean hasPotion, Potion[] potions) {
+    public Enemy(String name,
+                 Location coord,
+                 Image spriteImage,
+                 char spriteChar,
+                 String[] dialogue,
+                 boolean exists,
+                 boolean overlapsWith,
+                 int health,
+                 int defence,
+                 int attack,
+                 String[] moves,
+                 boolean key,
+                 ArrayList<Potion> potions) {
         super(name,
-                coord,
-                spriteImage,
-                spriteChar, // will become the sprite image class later
-                dialogue,
-                exists,
-                overlapsWith,
-                health,
-                defence,
-                attack,
-                moves); // invokes Avatar constructor
+              coord,
+              spriteImage,
+              spriteChar, // will become the sprite image class later
+              dialogue,
+              exists,
+              overlapsWith,
+              health,
+              defence,
+              attack,
+              moves); // invokes Avatar constructor
         this.key = key;
-        this.hasPotion = hasPotion;
         this.potions = potions;
     }
 
@@ -76,20 +85,11 @@ public class Enemy extends Avatar {
         return this.key;
     }
 
-    public boolean getHasPotion() {
-        return this.hasPotion;
-    }
-
-    public void setHasPotion(boolean hasPotion) {
-        this.hasPotion = hasPotion;
-    }
-
-    public Potion[] getPotions() {
+    /**
+     *
+     */
+    public ArrayList<Potion> getPotions() {
         return this.potions; //fix privacy leaks
-    }
-
-    public void setPotions(Potion[] p) {        
-        this.potions = p; //fix privacy leaks
     }
 
     /**
@@ -100,6 +100,13 @@ public class Enemy extends Avatar {
      */
     public void setKey(boolean key) {
         this.key = key;
+    }
+
+    /**
+     *
+     */
+    public void setPotions(ArrayList<Potion> p) {
+        this.potions = p; //fix privacy leaks
     }
 
     /*------------------------------- METHODS --------------------------------*/
@@ -116,13 +123,22 @@ public class Enemy extends Avatar {
             return this.moves[0];
         } else if (player.getHealth() <= 40 && this.getHealth() > 30) {
             return this.moves[1];
-        } else if (this.getHealth() <= 50 && this.hasPotion == true) {
+        } else if (this.getHealth() <= 50 && this.hasPotion() == true) {
             return this.moves[3];
-        } else if (this.getHealth() <= 40 && this.hasPotion == false) {
+        } else if (this.getHealth() <= 40 && this.hasPotion() == false) {
             return this.moves[2];
         } else {
             return this.moves[0];
         }
+    }
+
+    /**
+     *
+     */
+    public boolean hasPotion() {
+        if(this.potions.isEmpty() ==true)
+            return false;
+        return true ;
     }
 
     /**
@@ -132,11 +148,12 @@ public class Enemy extends Avatar {
      */
     @Override
     public String toString() {
-        String info = super.toString() + ", " + this.hasPotion + ", " + this.key + ", " + this.potions;
+        String info = super.toString() + ", Has Potion: " + this.hasPotion() +
+            ", Has Key: " + this.key + ", Potions: " + this.potions;
         return info;
     }
 
-    public static void main() {
+    public static void main(String[] args) {
         // Tests
         Player p = new Player();
         String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
@@ -144,8 +161,7 @@ public class Enemy extends Avatar {
         e1.setMoves(moves);
         p.setHealth(100);
         e1.setHealth(10);
-        System.out.print(e1.getHasPotion());
-        e1.setHasPotion(false);
+        System.out.print(e1.hasPotion());
         Enemy e2 = new Enemy();
         System.out.println(e1.attackLogic(p));
         System.out.println(e2);

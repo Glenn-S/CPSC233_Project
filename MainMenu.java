@@ -94,4 +94,6 @@ public class MainMenu { // change this name to be the name of the game
         return true;
     }
 
+    // add method to get user input of name for their character
+
 }

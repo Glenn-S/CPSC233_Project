@@ -1,4 +1,4 @@
-public class gameBoard
+gpublic class GameBoard
 {
   protected char[][] boardOfGame = new char[40][200];
         /**
@@ -12,14 +12,14 @@ public class gameBoard
        */
   public void createEnemyArray(ArrayList<Enemy> enemy)
   {
+      String[] moves = {"up", "down", "left", "right"};
+      enemy.add(new Enemy("grunt",new Location(5,6,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
 
-    enemy.add(new Enemy("grunt",new Location(5,6,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
+      enemy.add(new Enemy("grunt",new Location(2,40,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
 
-    enemy.add(new Enemy("grunt",new Location(2,40,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
+      enemy.add(new Enemy("grunt",new Location(37,54,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
 
-    enemy.add(new Enemy("grunt",new Location(37,54,0,0),null, '+', null,true,false,100,100,100, null,false,false,null));
-
-    enemy.add(new Enemy("boss",new Location(6,196,0,0),null, '+', null,true,false,200,200,200, null,false,false,null));
+      enemy.add(new Enemy("boss",new Location(6,196,0,0),null, '+', null,true,false,200,200,200, null,false,false,null));
   }
 
   public void createTerrainArray(ArrayList<Sprite> terrain)
