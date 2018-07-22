@@ -8,12 +8,18 @@ public class PrintLegend {
  */
 
 	public void legend(){
-		System.out.print("You                   *");
-		System.out.print("Enemry                +");
-		System.out.print("Sign Post             ^");
-		System.out.print("Object(Chest)         #");
-		System.out.Print("Vertical Edge         |");
-		System.out.Print("Horizontal Edge       -");
-		System.out.Print("Diagonal Edge       \,/");
+		System.out.println("You                   *");
+		System.out.println("Enemry                +");
+		System.out.println("Sign Post             ^");
+		System.out.println("Object(Chest)         #");
+		System.out.println("Vertical Edge         |");
+		System.out.println("Horizontal Edge       -");
+		System.out.println("Diagonal Edge         /");
+	}
+
+	/*------------------------------ TESTS -----------------------------------*/
+	public static void main(String[] args) {
+		PrintLegend pl = new PrintLegend();
+		pl.legend();
 	}
 }
