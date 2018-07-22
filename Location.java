@@ -17,10 +17,6 @@ public class Location {
 	private int yCoord;
 	private int xSize;
 	private int ySize;
-	private int lowerboudary;
-	private int upperboundary;
-	private int leftboundary;
-	private int rightboundary;
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
 	public Location(int xCoord,int yCoord,int xSize,int ySize) {
@@ -101,63 +97,35 @@ public class Location {
 			this.ySize = ySize;
 		}
 	}
+
+	/*------------------------------- METHODS --------------------------------*/
 	/**
 	 * @return lowerboudary return the lowerbounday for y value as a type of integer
 	 */
-	public int getLowerboudary() {
-		return lowerboudary;
+	public int getLowerBoundary() {
+		return this.yCoord + this.ySize;
 	}
 
-	/**
-	 * @param ySize it's the y Size information of the object  as a type of integer
-	 * @param yCoord	it's the y Coordinate information of the object  as a type of integer
-	 */
-	public void setLowerboudary(int ySize, int yCoord) {
-		lowerboudary = yCoord - ySize;
-	}
 	/**
 	 * @return upperboudary return the upperbounday for y value as a type of integer
 	 */
-	public int getUpperboundary() {
-		return upperboundary;
+	public int getUpperBoundary() {
+		return this.yCoord - this.ySize;
 	}
-	/**
-	 * @param ySize it's the y Size information of the object  as a type of integer
-	 * @param yCoord	it's the y Coordinate information of the object  as a type of integer
-	 */
-	public void setUpperboundary(int ySize, int yCoord) {
-		upperboundary = yCoord + ySize;
-	}
+
 	/**
 	 * @return leftboudary return the leftbounday for x value as a type of integer
 	 */
-	public int getLeftboundary() {
-		return leftboundary;
+	public int getLeftBoundary() {
+		return this.xCoord - this.xSize;
 	}
-	/**
-	 * @param xSize it's the x Size information of the object  as a type of integer
-	 * @param xCoord	it's the x Coordinate information of the object  as a type of integer
-	 */
-	public void setLeftboundary(int xSize, int xCoord) {
-		this.leftboundary = xCoord - xSize;
-	}
+
 	/**
 	 * @return rightboudary return the rightbounday for x value as a type of integer
 	 */
-	public int getRightboundary() {
-		return rightboundary;
+	public int getRightBoundary() {
+		return this.xCoord + this.xSize;
 	}
-
-	/**
-	 * @param xSize it's the x Size information of the object  as a type of integer
-	 * @param xCoord it's the x Coordinate information of the object  as a type of integer
-	 */
-	public void setRightboundary(int xSize, int xCoord) {
-		this.rightboundary = xCoord + xSize;
-	}
-
-
-	/*------------------------------- METHODS --------------------------------*/
 
 // *** maybe it would be useful to create a left, right, top, and bottom bound method to eliminate some work ***
 
@@ -167,18 +135,15 @@ public class Location {
 	 */
 	@Override
 	public String toString() {
-		String strRep = this.getxCoord()+","+this.getyCoord+","+this.getxSize+","+
-		this.getySize;
-		return strRep;
+		return "((" + this.getxCoord() + ", " + this.getyCoord() +
+		"), (X Size: " + this.xSize + ", Y Size: " + this.ySize + "))";
 	}
 
 	public static void main(String[] args) {
 		// Tests
 		Location l1 = new Location(); // test the default constructor
 		Location l2 = new Location(199, 39, 1, 2);
-		String strl1 = "(" + l1.getxCoord() + ", " + l1.getyCoord() + ")";
-		String strl2 = "(" + l2.getxCoord() + ", " + l2.getyCoord() + ")";
-		System.out.println("l1: " + strl1);
-		System.out.println("l2: " + strl2);
+		System.out.println("l1: " + l1);
+		System.out.println("l2: " + l2);
 	}
 }

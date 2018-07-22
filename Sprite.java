@@ -162,16 +162,23 @@ public class Sprite {
 	public void setSpriteChar(char spriteChar) {
 		this.spriteChar = spriteChar;
 	}
-
-	public static void main(String[] args) {
-		// Tests
-	} 
 	/** Purpose: To print out a string representation of the class attributes
 	* @return a string with all the attributes
 	*/
 	public String toString() {
-		String strRep = this.getName()+","+this.getCoord()+","+this.getDialogue()+
-		","+this.getSpriteImage()+","+this.getExists();
+		String strRep = "name: " + this.getName() + ", Coord: " +
+			this.getCoord() + ", Image: " + this.getSpriteImage() + ", Char: " +
+			this.getSpriteChar() + ", Text: " + this.getDialogue() + ", Exists: " +
+			this.getExists() + ", OVerlaps: " + this.getOverlapsWith();
 		return strRep;
 	}
+
+	public static void main(String[] args) {
+		// Tests
+		Sprite s1 = new Sprite();
+		Sprite s2 = new Sprite("Person", new Location(0,0,0,0), null, 'x', null, true, false);
+		System.out.println("s1: " + s1);
+		System.out.println("s2: " + s2);
+	}
+
 }
