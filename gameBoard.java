@@ -1,5 +1,4 @@
-public class GameBoard
-{
+public class GameBoard {
         /**
        * Purpose: This function is used to create/set up the enemy array ArrayList
        * every enemy has to be instantiated, and set up individually, then added to
