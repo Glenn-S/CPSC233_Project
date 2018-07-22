@@ -1,6 +1,4 @@
 
-
-
 import java.util.Scanner;
 import java.io.Console;
 import java.util.ArrayList;
@@ -661,5 +659,11 @@ public class GameLoop {
         System.out.println("p2 move down: " + gl.checkCollisions(p2, "down")); // should be true
         System.out.println("p2 move right: " + gl.checkCollisions(p2, "right")); // should be false
 
+        Player p3 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
+                                null, true, false, 100, 50, 50, null);
+        gl.pickUpItem(p3, i1);
+        gl.pickUpItem(p3, i3);
+        ArrayList<Sprite> playerItems = p3.getItems();
+        System.out.println("\nPlayer Item: " + playerItems.get(0).getName());
     }
 }
