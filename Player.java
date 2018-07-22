@@ -93,7 +93,7 @@ public class Player extends Avatar {
 	 * @param  newItem  This is a new item that is going to be added to the players item array
 	 */
 	public void addItem(Sprite newItem) {
-		this.items.add(newItem);
+		this.items.add(newItem); // can add any thing of parent class type Sprite
 	}
 
 	/**
