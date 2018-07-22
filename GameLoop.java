@@ -37,25 +37,6 @@ public class GameLoop {
     }
 
     /*------------------------------- METHODS --------------------------------*/
-<<<<<<< HEAD
-    /**
-     * Purpose: To initialize all of the instance variables for the current game
-     * and set the arrays with the Sprites initialized.
-     */
-    private void initialize() { // get rid of
-        //this might not even be necessary?
-        // not sure if this is the correct syntax
-        //this.terrain.addAll(); // list of objects eg this.terrain.addAll(Sprite(definitions for constructor, etc))
-        //this.items.addAll();
-        //this.enemy.addAll();
-        this.totalKeys = 4;
-        this.winState = false;
-        this.loseState = false;
-        //this.player = new Player(); // maybe need to pass in the users choice for name or not?
-    }
-=======
-
->>>>>>> master
 
     /**
      * Purpose: To check and see if the players move will collide with an enemy
