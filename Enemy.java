@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Enemy extends Avatar {
 
-    private boolean key; // if true, enemy has a key. false if they do not have a key  
-    private ArrayList<Potion> potions; // list of potions the enemy has 
+    private boolean key; // if true, enemy has a key. false if they do not have a key
+    private ArrayList<Potion> potions; // list of potions the enemy has
 
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
@@ -24,7 +24,7 @@ public class Enemy extends Avatar {
     public Enemy() {
         super();
         this.key = false;
-        this.potions = null;
+        this.potions = new ArrayList<Potion>();
 
     }
 
@@ -47,18 +47,30 @@ public class Enemy extends Avatar {
      * @param key - true if enemy has a key, false otherwise
      * @param potions
      */
-    public Enemy(String name, Location coord, Image spriteImage, char spriteChar, String[] dialogue, boolean exists, boolean overlapsWith, int health, int defence, int attack, String[] moves, boolean key, ArrayList<Potion> potions) {
+    public Enemy(String name,
+                 Location coord,
+                 Image spriteImage,
+                 char spriteChar,
+                 String[] dialogue,
+                 boolean exists,
+                 boolean overlapsWith,
+                 int health,
+                 int defence,
+                 int attack,
+                 String[] moves,
+                 boolean key,
+                 ArrayList<Potion> potions) {
         super(name,
-                coord,
-                spriteImage,
-                spriteChar, // will become the sprite image class later
-                dialogue,
-                exists,
-                overlapsWith,
-                health,
-                defence,
-                attack,
-                moves); // invokes Avatar constructor
+              coord,
+              spriteImage,
+              spriteChar, // will become the sprite image class later
+              dialogue,
+              exists,
+              overlapsWith,
+              health,
+              defence,
+              attack,
+              moves); // invokes Avatar constructor
         this.key = key;
         this.potions = potions;
     }
@@ -73,18 +85,11 @@ public class Enemy extends Avatar {
         return this.key;
     }
 
-    public boolean hasPotion() {
-        if(this.potions.isEmpty() ==true)
-            return false;
-        return true ;
-    }
-
+    /**
+     *
+     */
     public ArrayList<Potion> getPotions() {
         return this.potions; //fix privacy leaks
-    }
-
-    public void setPotions(ArrayList<Potion> p) {        
-        this.potions = p; //fix privacy leaks
     }
 
     /**
@@ -95,6 +100,13 @@ public class Enemy extends Avatar {
      */
     public void setKey(boolean key) {
         this.key = key;
+    }
+
+    /**
+     *
+     */
+    public void setPotions(ArrayList<Potion> p) {
+        this.potions = p; //fix privacy leaks
     }
 
     /*------------------------------- METHODS --------------------------------*/
@@ -121,17 +133,27 @@ public class Enemy extends Avatar {
     }
 
     /**
+     *
+     */
+    public boolean hasPotion() {
+        if(this.potions.isEmpty() ==true)
+            return false;
+        return true ;
+    }
+
+    /**
      * Purpose: To print out a string representation of the class attributes
      *
      * @return a string with all the attributes
      */
     @Override
     public String toString() {
-        String info = super.toString() + ", " + this.hasPotion() + ", " + this.key + ", " + this.potions;
+        String info = super.toString() + ", Has Potion: " + this.hasPotion() +
+            ", Has Key: " + this.key + ", Potions: " + this.potions;
         return info;
     }
 
-    public static void main() {
+    public static void main(String[] args) {
         // Tests
         Player p = new Player();
         String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
