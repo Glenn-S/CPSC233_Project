@@ -559,19 +559,19 @@ public class GameBoard extends GameLoop  {
         int rowTemp;
         int columnTemp;
 
-        for(int index = 0; index < terrain.size();index++) {
+        for(int index = 0; index < terrain.size(); index++) {
             rowTemp = terrain.get(index).getCoord().getxCoord();
             columnTemp = terrain.get(index).getCoord().getyCoord();
             printArray[rowTemp][columnTemp] = terrain.get(index).getSpriteChar();
         }
 
-        for(index = 0; index < items.size();index++) {
+        for(index = 0; index < items.size(); index++) {
             rowTemp = items.get(index).getCoord().getxCoord();
             columnTemp = items.get(index).getCoord().getyCoord();
             printArray[rowTemp][columnTemp] = items.get(index).getSpriteChar();
         }
 
-        for(index = 0; index < enemy.size();index++) {
+        for(index = 0; index < enemy.size(); index++) {
             rowTemp = enemy.get(index).getCoord().getxCoord();
             columnTemp = enemy.get(index).getCoord().getyCoord();
             printArray[rowTemp][columnTemp] = enemy.get(index).getSpriteChar();
