@@ -1,5 +1,6 @@
 public class gameBoard
 {
+  protected char[][] boardOfGame = new char[40][200];
         /**
        * Purpose: This function is used to create/set up the enemy array ArrayList
        * every enemy has to be instantiated, and set up individually, then added to
@@ -662,5 +663,56 @@ public class gameBoard
     items.add(new Sprite("chest",new Location(24,196,0,0),null, '#',null,true,true));
     items.add(new Potion("medium", new Location(24,196,0,0), null,"", null, true, true, 50));
   }
+
+
+public (ArrayList<Sprite> items, ArrayList<sprite> enemy, ArrayList<sprite> terrain)
+{
+  int rowTemp;
+  int columnTemp;
+
+for(index = 0; index < 200;index++)
+  {
+rowTemp = terrain.get(index) 
+    boardOfGame[0][index] = terrain.get(index).getSpriteChar();
+  }
+
+boardOfGame[1][0] = terrain.get().getSpriteChar();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
