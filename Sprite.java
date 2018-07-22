@@ -165,5 +165,13 @@ public class Sprite {
 
 	public static void main(String[] args) {
 		// Tests
+	} 
+	/** Purpose: To print out a string representation of the class attributes
+	* @return a string with all the attributes
+	*/
+	public String toString() {
+		String strRep = this.getName()+","+this.getCoord()+","+this.getDialogue()+
+		","+this.getSpriteImage()+","+this.getExists();
+		return strRep;
 	}
 }

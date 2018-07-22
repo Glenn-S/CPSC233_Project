@@ -193,7 +193,11 @@ public class Player extends Avatar {
 	 */
 	@Override
 	public String toString() {
-		return "";
+		String strRep = this.getName()+","+this.getCoord()+","+this.getDialogue()+
+		","+this.getSpriteImage()+","+this.getoverlapsWith()+","+this.getAttact()+
+		","+this.getDefence()+","+this.getHealth()+","+this.getKeyCount()+","+
+		this.getMove()+","+this.getExists()+","+this.getItems();
+		return strRep;
 	}
 
 	public static void main(String[] args) {
