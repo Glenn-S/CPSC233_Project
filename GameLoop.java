@@ -538,7 +538,7 @@ public class GameLoop {
         System.out.println("Check lose state: " + gl.checkLoseState());
 
         // check SETTERS
-
+        // add some testing?
 
         // check playerInput
         String input = gl.playerInput();
