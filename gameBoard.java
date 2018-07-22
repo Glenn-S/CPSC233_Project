@@ -1,4 +1,4 @@
-gpublic class GameBoard
+public class GameBoard
 {
         /**
        * Purpose: This function is used to create/set up the enemy array ArrayList
