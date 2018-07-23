@@ -61,7 +61,7 @@ public class Defence extends Sprite {
 
     /**
      * Purpose: To set the defence value of the item
-     * @param weaponBoost the weaponBoost to set
+     * @param defenceBoost the weaponBoost to set
      */
     public void setDefenceBoost(int defenceBoost) {
     	this.defenceBoost = defenceBoost;
