@@ -11,7 +11,7 @@ public class GameLoop {
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
-    private char[][] printArray = new char[boardHeight][boardLength];
+    private char[][] printArray = new char[boardHeight][boardLength]; //[40][200]
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
@@ -436,26 +436,26 @@ public class GameLoop {
         }
 
         for (int index = 0; index < this.items.size(); index++) {
-            columnTemp = this.items.get(index).getCoord().getxCoord();
             rowTemp = this.items.get(index).getCoord().getyCoord();
+            columnTemp = this.items.get(index).getCoord().getxCoord();
             if (this.items.get(index).getSpriteChar() != ' ') {
-                this.printArray[columnTemp][rowTemp] = this.items.get(index).getSpriteChar();
+                this.printArray[rowTemp][columnTemp] = this.items.get(index).getSpriteChar();
             }
         }
 
         for (int index = 0; index < this.terrain.size(); index++) {
-            columnTemp = this.terrain.get(index).getCoord().getxCoord();
             rowTemp = this.terrain.get(index).getCoord().getyCoord();
+            columnTemp = this.terrain.get(index).getCoord().getxCoord();
             if (this.terrain.get(index).getSpriteChar() != ' ') {
-                this.printArray[columnTemp][rowTemp] = this.terrain.get(index).getSpriteChar();
+                this.printArray[rowTemp][columnTemp] = this.terrain.get(index).getSpriteChar();
             }
         }
 
         for (int index = 0; index < this.enemy.size(); index++) {
-            columnTemp = this.enemy.get(index).getCoord().getxCoord();
             rowTemp = this.enemy.get(index).getCoord().getyCoord();
+            columnTemp = this.enemy.get(index).getCoord().getxCoord();
             if (this.enemy.get(index).getSpriteChar() != ' ') {
-                this.printArray[columnTemp][rowTemp] = this.enemy.get(index).getSpriteChar();
+                this.printArray[rowTemp][columnTemp] = this.enemy.get(index).getSpriteChar();
             }
         }
     }
