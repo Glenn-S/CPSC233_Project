@@ -35,8 +35,8 @@ public class Avatar extends Sprite {
     }
 
     /**
-     * Purpose: default constructor. Calls default constructor from the Sprite  
-     * class and initializes any remaining primitive fields to 0 and objects 
+     * Purpose: default constructor. Calls default constructor from the Sprite
+     * class and initializes any remaining primitive fields to 0 and objects
      * to null.
      */
     public Avatar() {
@@ -48,7 +48,7 @@ public class Avatar extends Sprite {
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
-// *** Set and get move needs to be fixed, can't be hard coded values ***
+
     /**
      * @param input select the movement type of a avatar as a type of String
      */
@@ -104,7 +104,7 @@ public class Avatar extends Sprite {
 
     /**
      * Purpose: Returns all information about an avatar
-     * @return String of all variables of the avatar 
+     * @return String of all variables of the avatar
      */
     public String getStats() {
 		return "Name: " + this.name + "\nHealth: " + this.health +
