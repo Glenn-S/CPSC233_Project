@@ -104,7 +104,8 @@ public class Avatar extends Sprite {
      *
      */
     public String getStats() {
-		return "Name: " + this.name + "\nHealth: " + this.health;
+		return "Name: " + this.name + "\nHealth: " + this.health +
+            "\nAttack: " + this.attack + "\nDefence: " + this.defence;
 	}
 
     /**
@@ -157,7 +158,7 @@ public class Avatar extends Sprite {
      * @param DefenceBoost it's the defence value that a defence iteam will
      * added to the avatar as a type of integer
      */
-    public void UpdateDefence(Defence defenceBoost) {//update defence when carring some defence items.
+    public void updateDefence(Defence defenceBoost) {//update defence when carring some defence items.
         this.defence += defenceBoost.getDefenceBoost();
     }
 
