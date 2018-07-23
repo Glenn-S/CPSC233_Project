@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class MainMenu { // change this name to be the name of the game
 
     /**
-     * Purpose: The main game driver
+     * Purpose: The main game driver for The Adventures of Montequilla. this
+     * will continue until the user selects quit.
      */
     public static void main(String[] args) {
         MainMenu game = new MainMenu();
@@ -28,7 +29,7 @@ public class MainMenu { // change this name to be the name of the game
 
     /**
      * Purpose: To drive the main menu and allow the user to either start or
-     * exit the game.
+     * exit the game. It also prints out a brief synopsis of the game.
      */
     public boolean mainMenu() {
         Console console = System.console();
@@ -67,13 +68,14 @@ public class MainMenu { // change this name to be the name of the game
     /**
      * Purpose: To drive the main game loop of the game.
      * @return true or false depending on whether they would or would not like
-     * play again
+     * play again.
      */
     public boolean gameLoop() {
         boolean gameState = false;
         GameLoop gamePlay = new GameLoop();
-        //GameBoard gb = new GameBoard();
+        // GameBoard gb = new GameBoard();
         String userMove;
+        // set up the user
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
         Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
                                 null, true, false, 100, 25, 25, moves);
@@ -89,7 +91,6 @@ public class MainMenu { // change this name to be the name of the game
         player.addItem(smallPotion);
         System.out.println("*** " + smallPotion.getName() + " has been added to your pack ***");
         // draw the initialized state
-        // initialize
         gamePlay.initialize();
         printLegend();
         System.out.println("\n\n\n\n"); // add screen spacing
@@ -97,6 +98,7 @@ public class MainMenu { // change this name to be the name of the game
         System.out.println("\n" + player.getStats());
         System.out.println("Inventory: " + player.getInventory());
         gamePlay.drawState(player, gamePlay.getPrintArray());
+
         // run through the game
         while (!gameState) { // keep playing unless the game has been lost or won
             userMove = gamePlay.playerInput();
@@ -119,7 +121,7 @@ public class MainMenu { // change this name to be the name of the game
             System.out.println("Inventory: " + player.getInventory());
             gamePlay.drawState(player, gamePlay.getPrintArray());
         }
-        // get the user input for playing again, this will go to exit splash
+        // get the user input for playing again, this will go to the exit splash
         return returnMain();
     }
 
@@ -138,16 +140,17 @@ public class MainMenu { // change this name to be the name of the game
         return true;
     }
 
+    /**
+     * Purpose: To print out a legend for the meaning of all the symbols in the
+     * game.
+     */
     public void printLegend(){
 		System.out.println("You                   *");
-		System.out.println("Enemry                +");
-		System.out.println("Sign Post             ^");
-		System.out.println("Object(Chest)         #");
+		System.out.println("Enemy                 +");
+		System.out.println("Chest                 #");
 		System.out.println("Vertical Edge         |");
 		System.out.println("Horizontal Edge       -");
 		System.out.println("Diagonal Edge         /");
 	}
-
-    // add method to get user input of name for their character
 
 }
