@@ -3,18 +3,17 @@
 import java.awt.Image;
 
 /**
- * @version 20.41 19 July 2018
- * health it's the health of an avator as a type of integer
- * defence it's the defence of an avator as a type of integer
- * attack it's the attact of an avator as a type of integer
+ * Purpose: This class represents all living/actionable sprites in the game
+ * Each sprite has a list of attacks, and a baseline attack,defence and health
+ * value as well as all fields inherited from the Sprite class.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Avatar extends Sprite {
 
-    protected int health;   // instance variables
-    protected int defence;
-    protected int attack;
-    String[] moves;
+    protected int health;   // health of the avatar as an integer
+    protected int defence;  // defence stat of the avatar as an integer
+    protected int attack;  // attack stat of the avatar as an integer
+    String[] moves;        // list of attack the avatar has
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     public Avatar(String name,
@@ -35,6 +34,11 @@ public class Avatar extends Sprite {
         this.moves = moves;
     }
 
+    /**
+     * Purpose: default constructor. Calls default constructor from the Sprite  
+     * class and initializes any remaining primitive fields to 0 and objects 
+     * to null.
+     */
     public Avatar() {
         super();
         this.health = 0;
@@ -65,6 +69,7 @@ public class Avatar extends Sprite {
 	}
      */
     /**
+     * Purpose: Returns the array of the avatar's attacks
      * @return move get the movement type of the avatar as a type of String
      */
     // this might need to also have an associated index value with it for the array
@@ -73,6 +78,7 @@ public class Avatar extends Sprite {
     }
 
     /**
+     * Purpose: set's avatar's move set to the desired attacks
      * @param moves - new move set for the avatar
      */
     // this might need to also have an associated index value with it for the array
@@ -81,6 +87,7 @@ public class Avatar extends Sprite {
     }
 
     /**
+     * Purpose: Set's the health of the avatar to the desired health
      * @param health it's the health of an avatar as a type of integer
      */
     public void setHealth(int health) {//set health for the avatar
@@ -88,6 +95,7 @@ public class Avatar extends Sprite {
     }
 
     /**
+     * Purpose: Retrieves the current health of the avatar.
      * @return health renew the health state of the avatar as a type of integer
      */
     public int getHealth() {			//get health
@@ -95,7 +103,8 @@ public class Avatar extends Sprite {
     }
 
     /**
-     *
+     * Purpose: Returns all information about an avatar
+     * @return String of all variables of the avatar 
      */
     public String getStats() {
 		return "Name: " + this.name + "\nHealth: " + this.health +
@@ -103,6 +112,7 @@ public class Avatar extends Sprite {
 	}
 
     /**
+     * Purpose: Changes defence of the avatar to the desired defence.
      * @param defence it's the defence of an avatar as a type of integer
      */
     public void setDefence(int defence) {//set defence for the avatar
@@ -110,6 +120,7 @@ public class Avatar extends Sprite {
     }
 
     /**
+     * Purpose: Returns the current defence of the avatar
      * @return defence renew the defence value of the avatar as a type of
      * integer
      */
@@ -118,6 +129,8 @@ public class Avatar extends Sprite {
     }
 
     /**
+     * Purpose: Changes the baseline attack value of the avatar to the desired
+     * value
      * @param attack it's the attack of an avatar as a type of integer
      */
     public void setAttack(int attack) {//set attack for the avator
@@ -125,6 +138,7 @@ public class Avatar extends Sprite {
     }
 
     /**
+     * Purpose: Returns the current baseline attack value of the avatar
      * @return attack renew the attack value of the avatar as a type of integer
      */
     public int getAttack() {			//get attack
@@ -133,15 +147,17 @@ public class Avatar extends Sprite {
 
     /*------------------------------ METHODS ---------------------------------*/
     /**
-     * @param healthBoost it's the health value that potion will added to the
-     * avatar as a type of integer
+     * Purpose: Increases characters health as the result of using a potion
+     * @param healthBoost it's the  potion that will add health to the
+     * avatar.
      */
     public void updateHealth(Potion healthBoost) {//update health when using a potion
         this.health += healthBoost.getHealthBoost();
     }
 
     /**
-     * @param WeaponStrength it's the attack value that a Weapon iteam will
+     * Purpose: Updates baseline attack value from acquiring a weapon item.
+     * @param weaponStrength it's the attack value that a Weapon iteam will
      * added to the avatar as a type of integer
      */
     public void updateAttack(Weapon weaponStrength) {//update attack when carring some weapons
@@ -149,7 +165,8 @@ public class Avatar extends Sprite {
     }
 
     /**
-     * @param DefenceBoost it's the defence value that a defence iteam will
+     * Purpose: Updates baseline defence value from acquiring a defence item.
+     * @param defenceBoost it's the defence value that a defence iteam will
      * added to the avatar as a type of integer
      */
     public void updateDefence(Defence defenceBoost) {//update defence when carring some defence items.
@@ -158,7 +175,6 @@ public class Avatar extends Sprite {
 
     /**
      * Purpose: To print out a string representation of the class attributes
-     *
      * @return a string with all the attributes
      */
     @Override
