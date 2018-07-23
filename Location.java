@@ -17,6 +17,11 @@ public class Location {
 	private int ySize;
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
+
+	/**
+	 * Purpose: to create a constructor for the location class that takes the
+	 * x/y coordinates and the x and y dimensions.
+	 */
 	public Location(int xCoord,int yCoord,int xSize,int ySize) {
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
@@ -24,6 +29,10 @@ public class Location {
 		this.ySize = ySize;
 	}
 
+	/**
+	 * Purpose: to create a default cosntructor for the location to be set to
+	 * (0, 0, 0, 0).
+	 */
 	public Location() {
 		this.xCoord = 0;
 		this.yCoord = 0;
@@ -33,15 +42,18 @@ public class Location {
 
 	/*--------------------------- GETTER/SETTERS -----------------------------*/
 	/**
+	 * Purpose: To retrieve the x coordinate.
 	 * @return xCoord renew xCoordinate of the object    as a type of integer
 	 */
-	public int getxCoord() { 				//getter for xCoord
+	public int getxCoord() {
 		return this.xCoord;
 	}
 	/**
-	 * @param xCoord it's the x Coordinate information of the object  as a type of integer
+	 * Purpose: to set the y coordinate value.
+	 * @param xCoord It's the x Coordinate information of the object  as a type
+	 * of integer
 	 */
-	public void setxCoord(int xCoord) {    //setter for xCoord
+	public void setxCoord(int xCoord) {
 		if (xCoord < 200 && xCoord >= 0) { // range of map is from 0-199 (200 in total)
 		this.xCoord = xCoord;
 		}
@@ -49,16 +61,19 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To retrieve the x coordinate.
 	 * @return yCoord renew yCoordinate of the object    as a type of integer
 	 */
-	public int getyCoord() {				//getter for yCoord
+	public int getyCoord() {
 		return this.yCoord;
 	}
 
 	/**
-	 * @param yCoord it's the y Coordinate information of the object  as a type of integer
+	 * Purpose: to set the y coordinate value.
+	 * @param yCoord it's the y Coordinate information of the object  as a type
+	 * of integer
 	 */
-	public void setyCoord(int yCoord) {    //setter for yCoord
+	public void setyCoord(int yCoord) {
 		if (yCoord >= 0 && yCoord < 40) { // range of map is from 0-39 (40 in total)
 			this.yCoord = yCoord;
 		}
@@ -66,15 +81,17 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To retrieve the x values dimension.
 	 * @return xSize renew the x Size of the object  as a type of integer
 	 */
 	public int getxSize() {	//getter for xSize
 		return this.xSize;
 	}
 	/**
+	 * Purpose: To set the x values dimension.
 	 * @param xSize it's the x Size information of the object  as a type of integer
 	 */
-	public void setxSize(int xSize) {		//setter for xSize
+	public void setxSize(int xSize) {
 		if (xSize >= 0) { // make sure the value is positive
 			this.xSize = xSize;
 		}
@@ -82,15 +99,17 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To retrieve the y values dimension.
 	 * @return ySize renew the y Size information of the object  as a type of integer
 	 */
-	public int getySize() {					//getter for ySize
+	public int getySize() {
 		return this.ySize;
 	}
 	/**
+	* Purpose: To set the y values dimension.
 	 * @param ySize it's the y Size information of the object  as a type of integer
 	 */
-	public void setySize(int ySize) {		//setter for ySize
+	public void setySize(int ySize) {
 		if (ySize >= 0) { // make sure the value is positive
 			this.ySize = ySize;
 		}
@@ -98,6 +117,7 @@ public class Location {
 
 	/*------------------------------- METHODS --------------------------------*/
 	/**
+	 * Purpose: To get the lower boundary of the y coordinate.
 	 * @return lowerboudary return the lowerbounday for y value as a type of integer
 	 */
 	public int getLowerBoundary() {
@@ -105,6 +125,7 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To get the upper boundary of the y coordinate.
 	 * @return upperboudary return the upperbounday for y value as a type of integer
 	 */
 	public int getUpperBoundary() {
@@ -112,6 +133,7 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To get the left boundary of the x coordinate.
 	 * @return leftboudary return the leftbounday for x value as a type of integer
 	 */
 	public int getLeftBoundary() {
@@ -119,13 +141,12 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To get the right boundary of the x coordinate.
 	 * @return rightboudary return the rightbounday for x value as a type of integer
 	 */
 	public int getRightBoundary() {
 		return this.xCoord + this.xSize;
 	}
-
-// *** maybe it would be useful to create a left, right, top, and bottom bound method to eliminate some work ***
 
 	/**
 	 * Purpose: To print out a string representation of the class attributes
@@ -137,6 +158,9 @@ public class Location {
 		"), (X Size: " + this.xSize + ", Y Size: " + this.ySize + "))";
 	}
 
+	/**
+	 * Purpose: To test out various methods of the location class.
+	 */
 	public static void main(String[] args) {
 		// Tests
 		Location l1 = new Location(); // test the default constructor
