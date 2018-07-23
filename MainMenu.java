@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.Console;
+import java.util.ArrayList;
 
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
@@ -51,35 +52,41 @@ public class MainMenu { // change this name to be the name of the game
      * @return true or false depending on whether they would or would not like
      * play again
      */
-/*    public boolean gameLoop() {
+    public boolean gameLoop() {
         boolean gameState = false;
         GameLoop gamePlay = new GameLoop();
+        GameBoard gb = new GameBoard();
+        String userMove;
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        Player player =  new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
+        Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
                                 null, true, false, 100, 50, 50, moves);
-
+        // draw the initialized state
+        // initialize
+        gamePlay.initialize();
+        gamePlay.refreshPrintArray();
+        gamePlay.drawState(player, gamePlay.getPrintArray());
         // run through the game
         while (!gameState) { // keep playing unless the game has been lost or won
             userMove = gamePlay.playerInput();
-            gameState = true;
+            gameState = false;
 
-            if (checkCollisions(player, userMove)){
+            if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
                 // pass the new x/y for the player
-                player.updatePosition(); // if collision is not detected update player position
+                gamePlay.updatePosition(player, userMove); // if collision is not detected update player position
             }
-            gamePlay.checkGate(); // checks if enough keys have been collected and updates image if needed?
+/*            gamePlay.checkGate(); // checks if enough keys have been collected and updates image if needed?
             if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
                 gameState = false; // this is to terminate the game loop
                 continue; // exit to the beginning of the loop to check this condition
-            }
-            gamePlay.drawState(); // redraw the game board with the updated coordinates
-
+            }*/
+            gamePlay.refreshPrintArray();
+            gamePlay.drawState(player, gamePlay.getPrintArray());
         }
 
         // get the user input for playing again, this will go to exit splash
         return returnMain();
     }
-*/
+
     /**
      * Purpose: To prompt the user about whether they would like to play the
      * game again.

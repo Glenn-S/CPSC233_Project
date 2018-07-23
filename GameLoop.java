@@ -19,7 +19,7 @@ public class GameLoop {
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     public GameLoop() {
         this.terrain = new ArrayList<Sprite>();
-        this.items = new ArrayList<Sprite>(); // this won't work unfortunately
+        this.items = new ArrayList<Sprite>();
         this.enemy = new ArrayList<Enemy>();
         this.totalKeys = 4; // default value
         this.winState = false;
@@ -37,6 +37,16 @@ public class GameLoop {
     }
 
     /*------------------------------- METHODS --------------------------------*/
+
+    /**
+     *
+     */
+    public void initialize() {
+        GameBoard gb = new GameBoard();
+        gb.createItemArray(this.items);
+        gb.createTerrainArray(this.terrain);
+        gb.createEnemyArray(this.enemy);
+    }
 
     /**
      * Purpose: To check and see if the players move will collide with an enemy
@@ -137,16 +147,16 @@ public class GameLoop {
         if (player != null) { // this could be a try and except statement?
             switch (move) {
                 case "up":
-                    if (player.getCoord().getUpperBoundary()-1 < 0) result = true; // remove these hard coded values later
+                    if (player.getCoord().getUpperBoundary()-1 == 0) result = true; // remove these hard coded values later
                     break;
                 case "down":
-                    if (player.getCoord().getLowerBoundary()+1 > this.boardHeight-1) result = true;
+                    if (player.getCoord().getLowerBoundary()+1 == this.boardHeight-1) result = true; // adjust for edge now
                     break;
                 case "left":
-                    if (player.getCoord().getLeftBoundary()-1 < 0) result = true;
+                    if (player.getCoord().getLeftBoundary()-1 == 0) result = true;
                     break;
                 case "right":
-                    if (player.getCoord().getRightBoundary()+1 > this.boardLength-1) result = true;
+                    if (player.getCoord().getRightBoundary()+1 == this.boardLength-1) result = true; // adjust for edge now
                     break;
             }
         }
@@ -168,7 +178,7 @@ public class GameLoop {
     /**
      *
      */
-    private void updatePosition(Player player, String move) {
+    public void updatePosition(Player player, String move) {
         // move will only be up, down, left, and right
         // assumes coordinates have been checked
         switch (move) {
@@ -288,7 +298,7 @@ public class GameLoop {
      * @return an array list containing the terrain objects
      */
     public ArrayList<Sprite> getTerrain() {
-        return new ArrayList<Sprite>(this.terrain); //create copy of the list
+        return this.terrain; //create copy of the list
     }
 
     /**
@@ -297,7 +307,7 @@ public class GameLoop {
      * @return an array list containing the item objects
      */
     public ArrayList<Sprite> getItem() {
-        return new ArrayList<Sprite>(this.items); //create copy of the list
+        return this.items; //create copy of the list
     }
 
     /**
@@ -306,7 +316,7 @@ public class GameLoop {
      * @return an array list containing the enemy objects
      */
     public ArrayList<Enemy> getEnemy() {
-        return new ArrayList<Enemy>(this.enemy); //create copy of the list
+        return this.enemy; //create copy of the list
     }
 
     /**
@@ -334,6 +344,13 @@ public class GameLoop {
      */
     public boolean checkLoseState() {
         return this.loseState; // returns true if true else false
+    }
+
+    /**
+     * @return the printArray
+     */
+    public char[][] getPrintArray() {
+    	return printArray;
     }
 
     /**
@@ -387,7 +404,61 @@ public class GameLoop {
         this.loseState = value;
     }
 
+    /**
+     * Purpose:
+     * @param printArray the printArray to set
+     */
+    public void setPrintArray(char[][] printArray) {
+    	this.printArray = printArray;
+    }
+
     /*--------------------------- PUBLIC METHODS -----------------------------*/
+    /**
+     * Purpose: This function creates the 2-D array of characters, that will then be printed out onto
+     * the screen. It finds the column and row of each point in the terrain, enemy, and item array
+     * lists. Then puts the correct character into the the corresponding column, and row in the
+     * 2-D array. The 2-D array will not be filled completely because there is parts of the map that
+     * is empty.
+     *
+     * @param  items  This is the item arraylist
+     * @param  enemy  This is the enemy arrayList
+     * @param  terrain  This is the enemy ArrayList
+     */
+    public void refreshPrintArray () {
+        int rowTemp;
+        int columnTemp;
+
+        // empty the array
+        for (int i = 0; i < this.printArray.length; i++) {
+            for (int j = 0; j < this.printArray[0].length; j++) {
+                this.printArray[i][j] = ' ';
+            }
+        }
+
+        for (int index = 0; index < this.items.size(); index++) {
+            columnTemp = this.items.get(index).getCoord().getxCoord();
+            rowTemp = this.items.get(index).getCoord().getyCoord();
+            if (this.items.get(index).getSpriteChar() != ' ') {
+                this.printArray[columnTemp][rowTemp] = this.items.get(index).getSpriteChar();
+            }
+        }
+
+        for (int index = 0; index < this.terrain.size(); index++) {
+            columnTemp = this.terrain.get(index).getCoord().getxCoord();
+            rowTemp = this.terrain.get(index).getCoord().getyCoord();
+            if (this.terrain.get(index).getSpriteChar() != ' ') {
+                this.printArray[columnTemp][rowTemp] = this.terrain.get(index).getSpriteChar();
+            }
+        }
+
+        for (int index = 0; index < this.enemy.size(); index++) {
+            columnTemp = this.enemy.get(index).getCoord().getxCoord();
+            rowTemp = this.enemy.get(index).getCoord().getyCoord();
+            if (this.enemy.get(index).getSpriteChar() != ' ') {
+                this.printArray[columnTemp][rowTemp] = this.enemy.get(index).getSpriteChar();
+            }
+        }
+    }
     /**
      * Purpose: This function prints out the border to the screen
      *
@@ -470,10 +541,13 @@ public class GameLoop {
          boolean collision = false;
 
          // check all collisions and if any are false
-         if (checkEdges(player, move) || checkSprites(player, move, this.terrain) ||
+/*         if (checkEdges(player, move) || checkSprites(player, move, this.terrain) ||
                  checkSprites(player, move, this.items) || checkEnemies(player, move, this.enemy)) {
              collision = true;
-         }
+         }*/
+         System.out.println("me:" + player.getCoord() + ", enemy:" + this.enemy.get(2).getCoord());
+         if (checkEdges(player, move)) collision = true;
+         else if (checkEnemies(player, move, this.enemy)) collision = true;
          return collision; // true if there is one
      }
 

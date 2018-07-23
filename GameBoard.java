@@ -20,10 +20,10 @@ public class GameBoard extends GameLoop  {
         bossPotions.add(smallPotion);
         bossPotions.add(mediumPotion);
 
-        enemy.add(new Enemy("Grunt", new Location(5,6,0,0), null, '+', null, true, false, 100, 100, 100, moves, false, gruntPotions));
-        enemy.add(new Enemy("Grunt", new Location(2,40,0,0), null, '+', null, true, false, 100, 100, 100, moves, false, gruntPotions));
-        enemy.add(new Enemy("Grunt", new Location(37,54,0,0), null, '+', null,true,false,100,100,100, moves, false, gruntPotions));
-        enemy.add(new Enemy("Boss", new Location(6,196,0,0), null, '+', null, true, false, 200, 200, 200, moves, false, bossPotions));
+        enemy.add(new Enemy("Grunt", new Location(5,6,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(2,40,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(37,54,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Boss", new Location(6,196,0,0), null, '+', null, true, false, 200, 200, 200, moves, true, bossPotions));
     }
 
     public void createTerrainArray(ArrayList<Sprite> terrain) {
@@ -566,11 +566,12 @@ public class GameBoard extends GameLoop  {
      * @param  enemy  This is the enemy arrayList
      * @param  terrain  This is the enemy ArrayList
      */
-    public void createPrintArray (char[][] printArray, ArrayList<Sprite> items,
+/*    public void createPrintArray (char[][] printArray, ArrayList<Sprite> items,
             ArrayList<Sprite> terrain, ArrayList<Enemy> enemy) {
         int rowTemp;
         int columnTemp;
 
+        // empty the array
         for (int i = 0; i < printArray.length; i++) {
             for (int j = 0; j < printArray[0].length; j++) {
                 printArray[i][j] = ' ';
@@ -600,9 +601,8 @@ public class GameBoard extends GameLoop  {
                 printArray[columnTemp][rowTemp] = enemy.get(index).getSpriteChar();
             }
         }
-
     }
-
+*/
     public static void main(String[] args) {
         GameLoop gl = new GameLoop();
         GameBoard gb = new GameBoard();
@@ -625,7 +625,7 @@ public class GameBoard extends GameLoop  {
 
         System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
 
-        gb.createPrintArray(charArray, items, terrain, enemy);
+        //gl.createPrintArray(charArray, items, terrain, enemy);
         gl.drawState(player, charArray);
         System.out.println();
     }
