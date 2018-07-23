@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class GameLoop {
+
     private int boardHeight = 40, boardLength = 200; // move these later
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
@@ -37,7 +38,6 @@ public class GameLoop {
     }
 
     /*------------------------------- METHODS --------------------------------*/
-
     /**
      *
      */
@@ -56,45 +56,46 @@ public class GameLoop {
      * @param move the desired direction that the player would like to move
      * @return true if there is a collision with an enemy
      */
-
     private boolean checkEnemies(Player player, String move, ArrayList<Enemy> enemy) {
         boolean result = false;
 
         if ((player != null) && (enemy != null)) { // this could be a try and except statement?
             for (int i = 0; i < enemy.size(); i++) { // should I get it to exit if any are true or just finish?
-                if (!enemy.get(i).getExists()) continue; // go to the next item since this object doesn't exist
+                if (!enemy.get(i).getExists()) {
+                    continue; // go to the next item since this object doesn't exist
+                }
                 switch (move) {
                     case "up":
-                        if ((player.getCoord().getUpperBoundary()-1 == enemy.get(i).getCoord().getLowerBoundary()) &&
-                            (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                                engageBattle(player, enemy.get(i)); // begin battle against enemy
-                                result = true;
-                            }
+                        if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
+                                && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
+                                && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
                         break;
                     case "down":
-                        if (player.getCoord().getLowerBoundary()+1 == enemy.get(i).getCoord().getUpperBoundary() &&
-                            (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                                engageBattle(player, enemy.get(i)); // begin battle against enemy
-                                result = true;
-                            }
+                        if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
+                                && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
+                                && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
                         break;
                     case "left":
-                        if (player.getCoord().getLeftBoundary()-1 == enemy.get(i).getCoord().getRightBoundary() &&
-                            (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
-                            (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                                engageBattle(player, enemy.get(i)); // begin battle against enemy
-                                result = true;
-                            }
+                        if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
+                                && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
+                                && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
                         break;
                     case "right":
-                        if (player.getCoord().getRightBoundary()+1 == enemy.get(i).getCoord().getLeftBoundary() &&
-                            (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
-                            (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                                engageBattle(player, enemy.get(i)); // begin battle against enemy
-                                result = true;
-                            }
+                        if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
+                                && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
+                                && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
                         break;
                 }
             }
@@ -111,37 +112,42 @@ public class GameLoop {
      * @return true if there is a collision with a terrain tile that is
      * un-crossable
      */
-
     private boolean checkSprites(Player player, String move, ArrayList<Sprite> obj) { // for checking terrain and items
         boolean result = false;
 
         if ((player != null) && (obj != null)) { // this could be a try and except statement?
             for (int i = 0; i < obj.size(); i++) { // should I get it to exit if any are true or just finish?
-                if (!obj.get(i).getExists()) continue; // go to the next item since this object doesn't exist
+                if (!obj.get(i).getExists()) {
+                    continue; // go to the next item since this object doesn't exist
+                }
                 switch (move) {
                     case "up":
-                        if ((player.getCoord().getUpperBoundary()-1 == obj.get(i).getCoord().getLowerBoundary()) &&
-                            (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                                result = true;
-                            }
+                        if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
+                                && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
+                                && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                            result = true;
+                        }
                         break;
                     case "down":
-                        if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
-                            (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                                result = true;
-                            }
+                        if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary()
+                                && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
+                                && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                            result = true;
+                        }
                         break;
                     case "left":
-                        if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
-                            (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
-                            (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) result = true;
+                        if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary()
+                                && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
+                                && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            result = true;
+                        }
                         break;
                     case "right":
-                        if (player.getCoord().getRightBoundary()+1 == obj.get(i).getCoord().getLeftBoundary() &&
-                            (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
-                            (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) result = true;
+                        if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary()
+                                && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
+                                && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            result = true;
+                        }
                         break;
                 }
             }
@@ -163,16 +169,24 @@ public class GameLoop {
         if (player != null) { // this could be a try and except statement?
             switch (move) {
                 case "up":
-                    if (player.getCoord().getUpperBoundary()-1 == 0) result = true; // remove these hard coded values later
+                    if (player.getCoord().getUpperBoundary() - 1 == 0) {
+                        result = true; // remove these hard coded values later
+                    }
                     break;
                 case "down":
-                    if (player.getCoord().getLowerBoundary()+1 == this.boardHeight-1) result = true; // adjust for edge now
+                    if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
+                        result = true; // adjust for edge now
+                    }
                     break;
                 case "left":
-                    if (player.getCoord().getLeftBoundary()-1 == 0) result = true;
+                    if (player.getCoord().getLeftBoundary() - 1 == 0) {
+                        result = true;
+                    }
                     break;
                 case "right":
-                    if (player.getCoord().getRightBoundary()+1 == this.boardLength-1) result = true; // adjust for edge now
+                    if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
+                        result = true; // adjust for edge now
+                    }
                     break;
             }
         }
@@ -199,16 +213,16 @@ public class GameLoop {
         // assumes coordinates have been checked
         switch (move) {
             case "up":
-                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord()-1);
+                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() - 1);
                 break;
             case "down":
-                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord()+1);
+                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() + 1);
                 break;
             case "left":
-                player.updatePosition(player.getCoord().getxCoord()-1, player.getCoord().getyCoord());
+                player.updatePosition(player.getCoord().getxCoord() - 1, player.getCoord().getyCoord());
                 break;
             case "right":
-                player.updatePosition(player.getCoord().getxCoord()+1, player.getCoord().getyCoord());
+                player.updatePosition(player.getCoord().getxCoord() + 1, player.getCoord().getyCoord());
                 break;
         }
     }
@@ -217,7 +231,7 @@ public class GameLoop {
      * @param e - Enemy who is battling the player. should be found by the
      * collision detection
      */
-    private void engageBattle(Player player,Enemy e) {
+    private void engageBattle(Player player, Enemy e) {
         BattleLoop b = new BattleLoop();
         int i = 0;
         int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
@@ -226,6 +240,7 @@ public class GameLoop {
         while (i == 0) {
             if (bbCounter == 0) {
                 String attack = b.playerInput(player);
+                System.out.println("You used " + attack);
                 switch (attack) {
                     case "Slash":
                         damage = 15;
@@ -233,6 +248,7 @@ public class GameLoop {
                         break;
                     case "Butter Boomerang":
                         bbCounter = 1;
+                        System.out.println("Powering up!");
                         break;
                     case "Parry":
                         b.setUsedParry(true);
@@ -253,10 +269,10 @@ public class GameLoop {
                 b.drawState(player, e);
                 System.out.println("You Win!");
                 player.setHealth(100);
-                if(e.getKey()){
-                player.setKeyCount(player.getKeyCount()+1);
-System.out.println("You have obtained a key from defeating this enemy!");
-                e.setKey(false);
+                if (e.getKey()) {
+                    player.setKeyCount(player.getKeyCount() + 1);
+                    System.out.println("You have obtained a key from defeating this enemy!");
+                    e.setKey(false);
                 }
                 System.out.println("Player key count: " + player.getKeyCount());
                 b.removeEnemy(e, enemy, terrain);
@@ -268,10 +284,10 @@ System.out.println("You have obtained a key from defeating this enemy!");
 //                    b.setUsedParry(false);
 //                }
             }
-              b.drawState(player, e);
+            b.drawState(player, e);
             if (mmCounter == 0) {
                 String eAttack = e.attackLogic(player);
-                        System.out.println("Enemy used " + eAttack);
+                System.out.println("Enemy used " + eAttack);
                 switch (eAttack) {
                     case "Slash":
                         damage = 15;
@@ -280,7 +296,7 @@ System.out.println("You have obtained a key from defeating this enemy!");
                         break;
                     case "Margarine Missile":
                         mmCounter = 1;
-
+                        System.out.println("Powering up!");
                         break;
                     case "Parry":
                         b.setEnemyUsedParry(true);
@@ -311,7 +327,7 @@ System.out.println("You have obtained a key from defeating this enemy!");
 //                    b.setEnemyUsedParry(false);
 //                }
             }
-            b.drawState(player,e);
+            b.drawState(player, e);
 
         }
 
@@ -376,7 +392,7 @@ System.out.println("You have obtained a key from defeating this enemy!");
      * @return the printArray
      */
     public char[][] getPrintArray() {
-    	return printArray;
+        return printArray;
     }
 
     /**
@@ -432,25 +448,27 @@ System.out.println("You have obtained a key from defeating this enemy!");
 
     /**
      * Purpose:
+     *
      * @param printArray the printArray to set
      */
     public void setPrintArray(char[][] printArray) {
-    	this.printArray = printArray;
+        this.printArray = printArray;
     }
 
     /*--------------------------- PUBLIC METHODS -----------------------------*/
     /**
-     * Purpose: This function creates the 2-D array of characters, that will then be printed out onto
-     * the screen. It finds the column and row of each point in the terrain, enemy, and item array
-     * lists. Then puts the correct character into the the corresponding column, and row in the
-     * 2-D array. The 2-D array will not be filled completely because there is parts of the map that
-     * is empty.
+     * Purpose: This function creates the 2-D array of characters, that will
+     * then be printed out onto the screen. It finds the column and row of each
+     * point in the terrain, enemy, and item array lists. Then puts the correct
+     * character into the the corresponding column, and row in the 2-D array.
+     * The 2-D array will not be filled completely because there is parts of the
+     * map that is empty.
      *
-     * @param  items  This is the item arraylist
-     * @param  enemy  This is the enemy arrayList
-     * @param  terrain  This is the enemy ArrayList
+     * @param items This is the item arraylist
+     * @param enemy This is the enemy arrayList
+     * @param terrain This is the enemy ArrayList
      */
-    public void refreshPrintArray () {
+    public void refreshPrintArray() {
         int rowTemp;
         int columnTemp;
 
@@ -485,15 +503,15 @@ System.out.println("You have obtained a key from defeating this enemy!");
             }
         }
     }
+
     /**
      * Purpose: This function prints out the border to the screen
      *
-     * @param  player  This is the player that is playing the game.
-     * Their char image has to be added to the print array before
-     * the array can be printed
+     * @param player This is the player that is playing the game. Their char
+     * image has to be added to the print array before the array can be printed
      *
-     * @param  printArray  This is the 2-D array of chars that will
-     * be printed out to the screen
+     * @param printArray This is the 2-D array of chars that will be printed out
+     * to the screen
      */
     public void drawState(Player player, char[][] printArray) {
         int colTemp;
@@ -528,6 +546,7 @@ System.out.println("You have obtained a key from defeating this enemy!");
 
     /**
      * Purpose: To obtain the users input for moving around the game board
+     *
      * @return a string representation of the users directional choice
      */
     public String playerInput() {
@@ -537,21 +556,32 @@ System.out.println("You have obtained a key from defeating this enemy!");
         String error = "Invalid input";
         boolean valid = false;
 
-        if (console == null) return null;
+        if (console == null) {
+            return null;
+        }
         do {
             input = console.readLine(userPrompt);
-            if (input.toLowerCase().equals("w") || input.toLowerCase().equals("a") ||
-                    input.toLowerCase().equals("s") || input.toLowerCase().equals("d")) {
+            if (input.toLowerCase().equals("w") || input.toLowerCase().equals("a")
+                    || input.toLowerCase().equals("s") || input.toLowerCase().equals("d")) {
                 valid = true;
+            } else {
+                System.out.println(error);
             }
-            else System.out.println(error);
         } while (!valid);
         // convert characters into representative symbols
         switch (input) {
-            case "w": input = "up"; break;
-            case "a": input = "left"; break;
-            case "s": input = "down"; break;
-            case "d": input = "right"; break;
+            case "w":
+                input = "up";
+                break;
+            case "a":
+                input = "left";
+                break;
+            case "s":
+                input = "down";
+                break;
+            case "d":
+                input = "right";
+                break;
         }
         return input;
     }
@@ -559,6 +589,7 @@ System.out.println("You have obtained a key from defeating this enemy!");
     /**
      * Purpose: To check all possible collisions in the game and return true or
      * false depending.
+     *
      * @param player an instance of the player class
      * @param move a string representation of the users input
      * @return true if a collision was detected else false
@@ -566,25 +597,24 @@ System.out.println("You have obtained a key from defeating this enemy!");
     public boolean checkCollisions(Player player, String move) {
         // check all collisions and if any are false
         System.out.println("me:" + player.getCoord()); // for debugging purposes
-        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy) ||
-                checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
+        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
+                || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-
     /**
      * Purpose: To print out a string representation of the class attributes
+     *
      * @return a string with all the attributes
      */
     @Override
     public String toString() {
-        return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: " +
-            this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: " +
-            this.winState + ", Lose State: " + this.loseState;
+        return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
+                + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
+                + this.winState + ", Lose State: " + this.loseState;
     }
 
     /**
@@ -596,16 +626,16 @@ System.out.println("You have obtained a key from defeating this enemy!");
         // check constructor
         GameLoop gl = new GameLoop();
         GameLoop gl2 = new GameLoop(new ArrayList<Sprite>(), new ArrayList<Sprite>(),
-                                    new ArrayList<Enemy>(), 3);
+                new ArrayList<Enemy>(), 3);
         // print the toString representation of this object
         System.out.println("\nGL: " + gl);
         System.out.println("GL2: " + gl2);
 
         String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
-        Player p1 =  new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                                null, true, false, 100, 50, 50, null);
-        Player p2 =  new Player("Burro", new Location(39, 39, 0, 0), null, 'x',
-                                null, true, false, 100, 50, 50, moves);
+        Player p1 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
+                null, true, false, 100, 50, 50, null);
+        Player p2 = new Player("Burro", new Location(39, 39, 0, 0), null, 'x',
+                null, true, false, 100, 50, 50, moves);
         System.out.println("\nPlayer 1: " + p1);
         System.out.println("Player 2: " + p2);
         // check gate method
@@ -629,7 +659,6 @@ System.out.println("You have obtained a key from defeating this enemy!");
 
         // check SETTERS
         // add some testing?
-
         // check playerInput
         String input = gl.playerInput();
         System.out.println("\nYou inputed: " + input);
@@ -698,10 +727,16 @@ System.out.println("You have obtained a key from defeating this enemy!");
 
         System.out.println("\nItems Tests");
         for (int i = 0; i < iList.size(); i++) {
-            if (i == 0) System.out.print("(");
+            if (i == 0) {
+                System.out.print("(");
+            }
             System.out.print(iList.get(i).getName());
-            if (i < iList.size()-1) System.out.print(", ");
-            if (i == iList.size()-1) System.out.print(")\n");
+            if (i < iList.size() - 1) {
+                System.out.print(", ");
+            }
+            if (i == iList.size() - 1) {
+                System.out.print(")\n");
+            }
         }
         System.out.println("move right check (1, 1): " + gl.checkSprites(p2, "right", iList)); // I expect false
         System.out.println("move down check (1, 1): " + gl.checkSprites(p2, "down", iList)); // I expect true
@@ -714,26 +749,44 @@ System.out.println("You have obtained a key from defeating this enemy!");
         // print enemies
         System.out.println("\nPrint Enemies");
         for (int i = 0; i < gl.getEnemy().size(); i++) {
-            if (i == 0) System.out.print("(");
+            if (i == 0) {
+                System.out.print("(");
+            }
             System.out.print(gl.getEnemy().get(i).getName());
-            if (i < gl.getEnemy().size()-1) System.out.print(", ");
-            if (i == gl.getEnemy().size()-1) System.out.print(")\n");
+            if (i < gl.getEnemy().size() - 1) {
+                System.out.print(", ");
+            }
+            if (i == gl.getEnemy().size() - 1) {
+                System.out.print(")\n");
+            }
         }
         // print terrain
         System.out.println("\nPrint Terrain");
         for (int i = 0; i < gl.getTerrain().size(); i++) {
-            if (i == 0) System.out.print("(");
+            if (i == 0) {
+                System.out.print("(");
+            }
             System.out.print(gl.getTerrain().get(i).getName());
-            if (i < gl.getTerrain().size()-1) System.out.print(", ");
-            if (i == gl.getTerrain().size()-1) System.out.print(")\n");
+            if (i < gl.getTerrain().size() - 1) {
+                System.out.print(", ");
+            }
+            if (i == gl.getTerrain().size() - 1) {
+                System.out.print(")\n");
+            }
         }
         // print items
         System.out.println("\nPrint Items");
         for (int i = 0; i < gl.getItem().size(); i++) {
-            if (i == 0) System.out.print("(");
+            if (i == 0) {
+                System.out.print("(");
+            }
             System.out.print(gl.getItem().get(i).getName());
-            if (i < gl.getItem().size()-1) System.out.print(", ");
-            if (i == gl.getItem().size()-1) System.out.print(")\n");
+            if (i < gl.getItem().size() - 1) {
+                System.out.print(", ");
+            }
+            if (i == gl.getItem().size() - 1) {
+                System.out.print(")\n");
+            }
         }
 
         p1.setCoord(new Location(3, 2, 0, 0));
@@ -750,7 +803,7 @@ System.out.println("You have obtained a key from defeating this enemy!");
         System.out.println("p2 move right: " + gl.checkCollisions(p2, "right")); // should be false
 
         Player p3 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                                null, true, false, 100, 50, 50, null);
+                null, true, false, 100, 50, 50, null);
         gl.pickUpItem(p3, i1);
         gl.pickUpItem(p3, i3);
         ArrayList<Sprite> playerItems = p3.getItems();
