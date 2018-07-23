@@ -113,7 +113,7 @@ public class BattleLoop extends GameLoop {
                 }
             }
         }
-
+        // scanner needs to be closed
         return player.moves[attack];
 
     }
