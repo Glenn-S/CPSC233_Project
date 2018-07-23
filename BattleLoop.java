@@ -233,7 +233,7 @@ public class BattleLoop extends GameLoop {
         q.setHealthBoost(25);
         ArrayList<Sprite> pl = new ArrayList<>();
         pl.add(q);
-player.setItems(pl);
+        player.setItems(pl);
         p.setHealthBoost(25);
         arrayList.add(p);
         e.setPotions(arrayList);

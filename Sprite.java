@@ -14,14 +14,14 @@ import java.awt.Image;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Sprite {
-		protected String name;
+	protected String name;
     protected Location coord;
     protected Image spriteImage;
     protected char spriteChar; // will become the sprite image class later
     protected String[] dialogue;
     protected boolean exists;
     protected boolean overlapsWith;
-/*-------------------------Constructors---------------------------------------*/
+	/*-------------------------Constructors---------------------------------------*/
 	/**
 	* Purpose: This is constructor initializes all the diferent instance Variables
 	*
@@ -67,7 +67,7 @@ public class Sprite {
 	    this.overlapsWith = false;
 	}
 
-/*----------------------------SETTERS/GETTER----------------------------------*/
+	/*------------------------SETTERS/GETTER----------------------------------*/
 	/**
 	 * @param xCoord the xCoordinate of the sprite as a type of integer
 	 * @param yCoord the yCoordinate of the Sprite as a type of integer
@@ -105,11 +105,11 @@ public class Sprite {
 		return this.name;
 	}
 
-/**
- * Purpose: This is the setter for the sprites Image
- *
- * @param  newSpriteImage  This is the new sprite Image
- */
+	/**
+ 	 * Purpose: This is the setter for the sprites Image
+ 	 *
+ 	 * @param  newSpriteImage  This is the new sprite Image
+ 	 */
 	public void setSpriteImage(Image newSpriteImage){				//set the image
 		this.spriteImage = newSpriteImage;
 	}
@@ -206,13 +206,9 @@ public class Sprite {
 		this.spriteChar = spriteChar;
 	}
 
-
-	/*--------------------------Testing-----------------------------------------*/
-
-
 	/** Purpose: To print out a string representation of the class attributes
-	* @return a string with all the attributes
-	*/
+	 * @return a string with all the attributes
+	 */
 	public String toString() {
 		String strRep = "Name: " + this.getName() + ", Coord: " +
 			this.getCoord() + ", Image: " + this.getSpriteImage() + ", Char: " +
@@ -221,6 +217,7 @@ public class Sprite {
 		return strRep;
 	}
 
+	/*--------------------------Testing---------------------------------------*/
 	public static void main(String[] args) {
 		// Tests
 		Sprite s1 = new Sprite();
