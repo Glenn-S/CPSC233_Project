@@ -92,8 +92,8 @@ public class Sprite {
 	 *
 	 * @param setname   the name of the sprite  as a type of String
 	 */
-	public void setName(String setname){		//set the name
-		this.name = setname;
+	public void setName(String setName){		//set the name
+		this.name = setName;
 	}
 
 	/**
@@ -163,17 +163,17 @@ public class Sprite {
 	 * @param overlapsWith true if the player is overlaps with an enemy, an
 	 * item, an edge, or terrain as a type of boolean.
 	 */
-/*	public void setoverlapsWith(Player player){//set if player is overlapswith enemy , terrain ,potions or edges
-		if (player.xCoord <= Enemy.xCoor + Enemy.xSize && player.xCoord >= Enemy.xCoor - Enemy.xSize && player.yCoord <= Enemy.yCoord + Enemy.ySize && player.yCoord >= Enemy.yCoord - Enemy.ySize){
+/*	public void setOverlapsWith(Sprite sprite){//set if player is overlapswith enemy , terrain ,potions or edges
+		if (sprite.xCoord <= Enemy.xCoord + Enemy.xSize && sprite.xCoord >= Enemy.xCoord - Enemy.xSize && sprite.yCoord <= Enemy.yCoord + Enemy.ySize && sprtie.yCoord >= Enemy.yCoord - Enemy.ySize){
 			overlapsWith = true;//it returns true if the player is in an area of rectangle with x range [xcood - xsize, xccord + xsize] and y range [ycoord - ysize , ycoord + ysize]
 		}
-		else if(player.xCoord == Terrain.xCoord && player.yCoord == Terrain.yCoord ) {
+		else if(sprite.xCoord == Terrain.xCoord && sprite.yCoord == Terrain.yCoord ) {
 			overlapsWith = true;//it returns true if the player is ate the same position of a terrain
 		}
-		else if(player.xCoord == Edges.xCoord && player.yCoord == Edges.yCoord) {
+		else if(sprite.xCoord == Edges.xCoord && sprite.yCoord == Edges.yCoord) {
 			overlapsWith = true;//it returns true if the player is ate the same position of the edge
 		}
-		else if (player.Location == Iteam.Location && player.yCoord == Iteam.yCoord ) {
+		else if (sprite.Location == Iteam.Location && sprite.yCoord == Item.yCoord ) {
 			overlapsWith = true;//it returns true if the player is ate the same position of an iteam
 		}
 		overlapsWith = false;
