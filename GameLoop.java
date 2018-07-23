@@ -541,13 +541,17 @@ public class GameLoop {
          boolean collision = false;
 
          // check all collisions and if any are false
-/*         if (checkEdges(player, move) || checkSprites(player, move, this.terrain) ||
+         if (checkEdges(player, move) || checkSprites(player, move, this.terrain) ||
                  checkSprites(player, move, this.items) || checkEnemies(player, move, this.enemy)) {
              collision = true;
-         }*/
+         }
+         /*
          System.out.println("me:" + player.getCoord() + ", enemy:" + this.enemy.get(2).getCoord());
          if (checkEdges(player, move)) collision = true;
-         else if (checkEnemies(player, move, this.enemy)) collision = true;
+         if (checkEnemies(player, move, this.enemy)) collision = true;
+         if (checkSprites(player, move, this.terrain)) collision = true;
+         if (checkSprites(player, move, this.items)) collision = true;
+         */
          return collision; // true if there is one
      }
 
