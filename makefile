@@ -5,7 +5,7 @@ JCC = javac
 RUN = java
 SRC = *.java
 OBJ = *.class
-JFLAGS = -g
+JFLAGS = -g -Xlint
 ECHO = echo
 RESPONSE = Building the dependency
 

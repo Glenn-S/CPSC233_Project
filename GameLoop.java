@@ -66,33 +66,57 @@ public class GameLoop {
                 }
                 switch (move) {
                     case "up":
+<<<<<<< HEAD
                         if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+=======
+                        if ((player.getCoord().getUpperBoundary()-1 == enemy.get(i).getCoord().getLowerBoundary()) &&
+                                (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+>>>>>>> master
                             engageBattle(player, enemy.get(i)); // begin battle against enemy
                             result = true;
                         }
                         break;
                     case "down":
+<<<<<<< HEAD
                         if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+=======
+                        if (player.getCoord().getLowerBoundary()+1 == enemy.get(i).getCoord().getUpperBoundary() &&
+                                (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+>>>>>>> master
                             engageBattle(player, enemy.get(i)); // begin battle against enemy
                             result = true;
                         }
                         break;
                     case "left":
+<<<<<<< HEAD
                         if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+=======
+                        if (player.getCoord().getLeftBoundary()-1 == enemy.get(i).getCoord().getRightBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+>>>>>>> master
                             engageBattle(player, enemy.get(i)); // begin battle against enemy
                             result = true;
                         }
                         break;
                     case "right":
+<<<<<<< HEAD
                         if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+=======
+                        if (player.getCoord().getRightBoundary()+1 == enemy.get(i).getCoord().getLeftBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+>>>>>>> master
                             engageBattle(player, enemy.get(i)); // begin battle against enemy
                             result = true;
                         }
@@ -122,30 +146,82 @@ public class GameLoop {
                 }
                 switch (move) {
                     case "up":
+<<<<<<< HEAD
                         if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+=======
+                        if ((player.getCoord().getUpperBoundary()-1 == obj.get(i).getCoord().getLowerBoundary()) &&
+                                (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+>>>>>>> master
                             result = true;
                         }
                         break;
                     case "down":
+<<<<<<< HEAD
                         if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary()
                                 && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+=======
+                        if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
+                                (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+>>>>>>> master
                             result = true;
                         }
                         break;
                     case "left":
+<<<<<<< HEAD
                         if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary()
                                 && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+=======
+                        if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+>>>>>>> master
                             result = true;
                         }
                         break;
                     case "right":
+<<<<<<< HEAD
                         if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary()
                                 && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+=======
+                        if (player.getCoord().getRightBoundary()+1 == obj.get(i).getCoord().getLeftBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+>>>>>>> master
                             result = true;
                         }
                         break;
@@ -596,9 +672,15 @@ public class GameLoop {
      */
     public boolean checkCollisions(Player player, String move) {
         // check all collisions and if any are false
+<<<<<<< HEAD
         System.out.println("me:" + player.getCoord()); // for debugging purposes
         if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
                 || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
+=======
+        //System.out.println("me:" + player.getCoord()); // for debugging purposes
+        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy) ||
+                checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
+>>>>>>> master
             return true;
         } else {
             return false;
@@ -695,7 +777,7 @@ public class GameLoop {
         System.out.println("move right check (39, 199): " + gl.checkEdges(p2, "right")); // I expect true
 
         // check for player and obstacles
-        ArrayList<Enemy> eList = new ArrayList();
+        ArrayList<Enemy> eList = new ArrayList<Enemy>();
         Enemy e1 = new Enemy("Enemy", new Location(2, 1, 0, 0), null, '*', null, true, false, 100, 100, 100, null, false, null);
         Enemy e2 = new Enemy("Enemy2", new Location(1, 2, 0, 0), null, '*', null, false, false, 100, 100, 100, null, false, null);
         p2.setCoord(new Location(1, 1, 0, 0));
