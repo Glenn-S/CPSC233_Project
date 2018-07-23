@@ -162,6 +162,15 @@ public class Player extends Avatar {
 	}
 
 	/**
+	 * Purpose: This method is used to set the item array of the calling player
+	 *
+	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
+	 */
+	public void setItems(ArrayList<Sprite> newItems) {
+		this.items = newItems;
+	}
+
+	/**
 	 * Purpose: This method is used to get the inventory of the calling Player
 	 */
 	public String getInventory() {
@@ -174,16 +183,7 @@ public class Player extends Avatar {
 		}
 		return strRep + "\n" + "Number of keys: " + this.keyCount;
 	}
-
-	/**
-	 * Purpose: This method is used to set the item array of the calling player
-	 *
-	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
-	 */
-	public void setItems(ArrayList<Sprite> newItems) {
-		this.items = newItems;
-	}
-
+	
 	/**
 	 * Purpose: This method returns the calling players currency value
 	 *

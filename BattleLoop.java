@@ -58,10 +58,9 @@ public class BattleLoop extends GameLoop {
      * here
      */
      public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Sprite> terrainList) {
-      enemy.setExists(false);
-      terrainList.add(new Sprite("tombstone",enemy.getCoord(),null,'t',null,true,false));
-      enemyList.remove(enemy);
-
+         enemy.setExists(false);
+         terrainList.add(new Sprite("tombstone",enemy.getCoord(),null,'t',null,true,false));
+         enemyList.remove(enemy);
      }
 
      /**
@@ -97,19 +96,16 @@ public class BattleLoop extends GameLoop {
             System.out.println(i + ". " + player.moves[i]);
         }
 
-        Scanner sc = new Scanner(System.in);       
+        Scanner sc = new Scanner(System.in);
         int attack = -1;
         do {
-    while (!sc.hasNextInt()) {
-        System.out.println("Please enter a valid number");
-        sc.next(); // this is important!
-    }
-    attack = sc.nextInt();
-} while (attack < 0);
-        
-        
-        
-        
+            while (!sc.hasNextInt()) {
+                System.out.println("Please enter a valid number");
+                sc.next(); // this is important!
+            }
+            attack = sc.nextInt();
+        } while (attack < 0);
+
         if (attack > 3 || attack < 0) {
             System.out.println("Error, invalid move entered. Please enter a valid move");
             attack = sc.nextInt();
@@ -246,7 +242,7 @@ public class BattleLoop extends GameLoop {
         q.setHealthBoost(25);
         ArrayList<Sprite> pl = new ArrayList<>();
         pl.add(q);
-player.setItems(pl);
+        player.setItems(pl);
         p.setHealthBoost(25);
         arrayList.add(p);
         e.setPotions(arrayList);

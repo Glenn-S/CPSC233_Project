@@ -94,6 +94,13 @@ public class Enemy extends Avatar {
         return this.key;
     }
     /**
+     * Purpose: Changes if the enemy has a key or not
+     * @param key - new state of the enemy's key
+     */
+    public void setKey(boolean key) {
+        this.key = key;
+    }
+    /**
      * Purpose: Returns if the enemy has potions
      * @return - true if enemy possesses potions, false otherwise
      */
@@ -116,14 +123,6 @@ public class Enemy extends Avatar {
      */
     public void setPotions(ArrayList<Potion> p) {
         this.potions = p; //fix privacy leaks
-    }
-
-    /**
-     * Purpose: Changes if the enemy has a key or not
-     * @param key - new state of the enemy's key
-     */
-    public void setKey(boolean key) {
-        this.key = key;
     }
 
     /*------------------------------- METHODS --------------------------------*/

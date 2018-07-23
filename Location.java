@@ -155,7 +155,7 @@ public class Location {
 	@Override
 	public String toString() {
 		return "((" + this.getxCoord() + ", " + this.getyCoord() +
-		"), (X Size: " + this.xSize + ", Y Size: " + this.ySize + "))";
+			"), (X Size: " + this.xSize + ", Y Size: " + this.ySize + "))";
 	}
 
 	/**
