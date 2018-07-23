@@ -22,9 +22,11 @@ public class Defence extends Sprite {
      * sprite symbol will change to image later
      * @param coordinate the location for the sprite to exist in the game
      * @param title the name associated with the sprite
+     * @param spriteImage - image used to represent defence item
      * @param spriteSymbol the image to print representing the sprite
      * @param existence a value to determine whether the object exists or not
      * @param defenceValue the integer value associated with the items defence value
+     * @param overlapsWith - True if player overlaps with defence item
      * @param spriteMessages the list of messages that the sprite has for interactions
      */
     public Defence(String title,
@@ -61,7 +63,7 @@ public class Defence extends Sprite {
 
     /**
      * Purpose: To set the defence value of the item
-     * @param defenceBoost the weaponBoost to set
+     * @param defenceBoost the defenceBoost to set
      */
     public void setDefenceBoost(int defenceBoost) {
     	this.defenceBoost = defenceBoost;

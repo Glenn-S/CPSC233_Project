@@ -20,7 +20,7 @@ public class BattleLoop extends GameLoop {
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**
      * Purpose: Change state of the usedParry variable for the enemy
-     * @param uP - the desired state for the usedParry variable
+     * @param eUP - the desired state for the usedParry variable
      */
     public void setEnemyUsedParry(boolean eUP) {
         this.enemyUsedParry = eUP;
@@ -67,6 +67,7 @@ public class BattleLoop extends GameLoop {
      /**
      * Purpose: To check if the enemy has lost the game(their health has
      * reached 0).
+     * @param e - enemy whose health is checked
      * @return the win state condition
      */
     public boolean checkWinState(Enemy e) {
@@ -76,6 +77,7 @@ public class BattleLoop extends GameLoop {
     /**
      * Purpose: To check if the player has lost the game(their health has
      * reached 0).
+     * @param player - player whose lose state is checked
      * @return the lose state condition
      */
     public boolean checkLoseState(Player player) {
@@ -85,7 +87,7 @@ public class BattleLoop extends GameLoop {
     /**
      * Purpose: Interprets user inputs and returns the corresponding attack name
      * and legality of the attack.
-     * @param player
+     * @param player - player whose input is taken
      * @return attack name
      * @override
      */
@@ -95,7 +97,7 @@ public class BattleLoop extends GameLoop {
             System.out.println(i + ". " + player.moves[i]);
         }
 
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);       
         int attack = sc.nextInt();
         if (attack > 3 || attack < 0) {
             System.out.println("Error, invalid move entered. Please enter a valid move");
