@@ -98,7 +98,18 @@ public class BattleLoop extends GameLoop {
         }
 
         Scanner sc = new Scanner(System.in);       
-        int attack = sc.nextInt();
+        int attack = -1;
+        do {
+    while (!sc.hasNextInt()) {
+        System.out.println("Please enter a valid number");
+        sc.next(); // this is important!
+    }
+    attack = sc.nextInt();
+} while (attack < 0);
+        
+        
+        
+        
         if (attack > 3 || attack < 0) {
             System.out.println("Error, invalid move entered. Please enter a valid move");
             attack = sc.nextInt();
@@ -235,7 +246,7 @@ public class BattleLoop extends GameLoop {
         q.setHealthBoost(25);
         ArrayList<Sprite> pl = new ArrayList<>();
         pl.add(q);
-        player.setItems(pl);
+player.setItems(pl);
         p.setHealthBoost(25);
         arrayList.add(p);
         e.setPotions(arrayList);
