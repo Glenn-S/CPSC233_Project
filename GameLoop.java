@@ -19,6 +19,9 @@ public class GameLoop {
     private boolean loseState;
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
+    /**
+     * Purpose: To create a default constructor for the GameLoop class.
+     */
     public GameLoop() {
         this.terrain = new ArrayList<Sprite>();
         this.items = new ArrayList<Sprite>();
@@ -28,6 +31,10 @@ public class GameLoop {
         this.loseState = false;
     }
 
+    /**
+     * Purpose: To create a constructor to allow the user to set the arrays and
+     * the number of keys in the game.
+     */
     public GameLoop(ArrayList<Sprite> terrain, ArrayList<Sprite> items,
             ArrayList<Enemy> enemy, int totalKeys) {
         this.terrain = (terrain != null) ? terrain : new ArrayList<Sprite>();
@@ -36,333 +43,6 @@ public class GameLoop {
         this.totalKeys = (totalKeys > 0) ? totalKeys : 4;
         this.winState = false;
         this.loseState = false;
-    }
-
-    /*------------------------------- METHODS --------------------------------*/
-    /**
-     *
-     */
-    public void initialize() {
-        GameBoard gb = new GameBoard();
-        gb.createItemArray(this.items);
-        gb.createTerrainArray(this.terrain);
-        gb.createEnemyArray(this.enemy);
-    }
-
-    /**
-     * Purpose: To check and see if the players move will collide with an enemy
-     * on the map.
-     *
-     * @param player an instance of the player in the current game
-     * @param move the desired direction that the player would like to move
-     * @return true if there is a collision with an enemy
-     */
-    private boolean checkEnemies(Player player, String move, ArrayList<Enemy> enemy) {
-        boolean result = false;
-
-        if ((player != null) && (enemy != null)) { // this could be a try and except statement?
-            for (int i = 0; i < enemy.size(); i++) { // should I get it to exit if any are true or just finish?
-                if (!enemy.get(i).getExists()) {
-                    continue; // go to the next item since this object doesn't exist
-                }
-                switch (move) {
-                    case "up":
-
-                            if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
-                                    && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
-                                    && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                                engageBattle(player, enemy.get(i)); // begin battle against enemy
-                                result = true;
-                            }
-                            break;
-                        case "down":
-                        if (player.getCoord().getLowerBoundary()+1 == enemy.get(i).getCoord().getUpperBoundary() &&
-                                (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
-                                (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                            engageBattle(player, enemy.get(i)); // begin battle against enemy
-                            result = true;
-                        }
-                        break;
-                    case "left":
-                        if (player.getCoord().getLeftBoundary()-1 == enemy.get(i).getCoord().getRightBoundary() &&
-                                (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
-                                (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            engageBattle(player, enemy.get(i)); // begin battle against enemy
-                            result = true;
-                        }
-                        break;
-                    case "right":
-                        if (player.getCoord().getRightBoundary()+1 == enemy.get(i).getCoord().getLeftBoundary() &&
-                                (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
-                                (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            engageBattle(player, enemy.get(i)); // begin battle against enemy
-                            result = true;
-                        }
-                        break;
-                }
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Purpose: To check and see if the players move will collide with a terrain
-     * tile that cannot be crossed (ie. mountains).
-     *
-     * @param player an instance of the player in the current game
-     * @param move the desired direction that the player would like to move
-     * @return true if there is a collision with a terrain tile that is
-     * un-crossable
-     */
-
-                private boolean checkSprites(Player player, String move, ArrayList<Sprite> obj) { // for checking terrain and items
-        boolean result = false;
-
-        if ((player != null) && (obj != null)) { // this could be a try and except statement?
-            for (int i = 0; i < obj.size(); i++) { // should I get it to exit if any are true or just finish?
-                if (!obj.get(i).getExists()) {
-                    continue; // go to the next item since this object doesn't exist
-                }
-                switch (move) {
-                    case "up":
-                            if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
-                                    && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
-                                    && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                                if ((obj.get(i) instanceof Potion)
-                                        || (obj.get(i) instanceof Defence)
-                                        || (obj.get(i) instanceof Weapon)) {
-                                    pickUpItem(player, obj.get(i));
-                                    System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                    obj.remove(obj.get(i)); // remove the object from the array
-                                }
-                                result = true;
-                            }
-                            break;
-
-                        case "down":
-                        if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
-                                (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
-                                (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                            if ((obj.get(i) instanceof Potion) ||
-                                    (obj.get(i) instanceof Defence) ||
-                                    (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
-                            result = true;
-                        }
-                        break;
-                    case "left":
-                        if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
-                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
-                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            if ((obj.get(i) instanceof Potion) ||
-                                    (obj.get(i) instanceof Defence) ||
-                                    (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
-                            result = true;
-                        }
-                        break;
-                    case "right":
-                        if (player.getCoord().getRightBoundary()+1 == obj.get(i).getCoord().getLeftBoundary() &&
-                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
-                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            if ((obj.get(i) instanceof Potion) ||
-                                    (obj.get(i) instanceof Defence) ||
-                                    (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
-                            result = true;
-                        }
-                        break;
-                }
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Purpose: To check and see if the players move will collide with an edge
-     * of the map.
-     *
-     * @param player an instance of the player in the current game
-     * @param move the desired direction that the player would like to move
-     * @return true if there is a collision with an edge of the map
-     */
-                    private boolean checkEdges(Player player, String move) {
-        boolean result = false;
-
-        if (player != null) { // this could be a try and except statement?
-            switch (move) {
-                case "up":
-                        if (player.getCoord().getUpperBoundary() - 1 == 0) {
-                            result = true; // remove these hard coded values later
-                        }
-                        break;
-                    case "down":
-                        if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
-                            result = true; // adjust for edge now
-                        }
-                        break;
-                    case "left":
-                        if (player.getCoord().getLeftBoundary() - 1 == 0) {
-                            result = true;
-                        }
-                        break;
-                    case "right":
-                        if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
-                            result = true; // adjust for edge now
-                        }
-                        break;
-                }
-            }
-            return result;
-        }
-        /**
-         * Purpose: To check and see if the player has obtained tall of the keys
-         * necessary to unlock the gate to the final boss.
-         *
-         * @param player an instance of the player class in the current game
-         * @return a boolean value for if the player meets the condition to
-         * unlock
-         */
-    public boolean checkGate(Player player) {
-        // also update images
-        return (player.getKeyCount() == totalKeys - 1) ? true : false;
-    }
-
-    /**
-     *
-     */
-    public void updatePosition(Player player, String move) {
-        // move will only be up, down, left, and right
-        // assumes coordinates have been checked
-        switch (move) {
-            case "up":
-                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() - 1);
-                break;
-            case "down":
-                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() + 1);
-                break;
-            case "left":
-                player.updatePosition(player.getCoord().getxCoord() - 1, player.getCoord().getyCoord());
-                break;
-            case "right":
-                player.updatePosition(player.getCoord().getxCoord() + 1, player.getCoord().getyCoord());
-                break;
-        }
-    }
-
-    /**
-     * @param e - Enemy who is battling the player. should be found by the
-     * collision detection
-     */
-    private void engageBattle(Player player, Enemy e) {
-        BattleLoop b = new BattleLoop();
-        int i = 0;
-        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
-        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
-        int damage;
-        while (i == 0) {
-            if (bbCounter == 0) {
-                String attack = b.playerInput(player);
-                System.out.println("You used " + attack);
-                switch (attack) {
-                    case "Slash":
-                        damage = 15;
-                        b.damageCalc(damage, e);
-                        break;
-                    case "Butter Boomerang":
-                        bbCounter = 1;
-                        System.out.println("Powering up!");
-                        break;
-                    case "Parry":
-                        b.setUsedParry(true);
-                        break;
-                    case "Potion":
-                        b.usePotion(player);
-                        break;
-                }
-            } else if (bbCounter == 2) {
-                damage = 40;
-                b.damageCalc(damage, e);
-                bbCounter = 0;
-            }
-            if (b.getEnemyUsedParry()) {
-                b.setEnemyUsedParry(false);
-            }
-            if (b.checkWinState(e) == true) {
-                b.drawState(player, e);
-                System.out.println("You Win!");
-                player.setHealth(100);
-                if (e.getKey()) {
-                    player.setKeyCount(player.getKeyCount() + 1);
-                    System.out.println("You have obtained a key from defeating this enemy!");
-                    e.setKey(false);
-                }
-                System.out.println("Player key count: " + player.getKeyCount());
-                b.removeEnemy(e, enemy, terrain);
-                break;
-            }
-            if (mmCounter == 1) {
-                mmCounter = 2;
-//                if (b.getUsedParry()) {
-//                    b.setUsedParry(false);
-//                }
-            }
-            b.drawState(player, e);
-            if (mmCounter == 0) {
-                String eAttack = e.attackLogic(player);
-                System.out.println("Enemy used " + eAttack);
-                switch (eAttack) {
-                    case "Slash":
-                        damage = 15;
-                        b.damageCalc(damage, player);
-
-                        break;
-                    case "Margarine Missile":
-                        mmCounter = 1;
-                        System.out.println("Powering up!");
-                        break;
-                    case "Parry":
-                        b.setEnemyUsedParry(true);
-
-                        break;
-                    case "Potion":
-                        b.usePotion(e);
-
-                        break;
-                }
-            } else if (mmCounter == 2) {
-                damage = 40;
-                b.damageCalc(damage, player);
-                mmCounter = 0;
-            }
-            if (b.getUsedParry()) {
-                b.setUsedParry(false);
-            }
-            if (b.checkLoseState(player) == true) {
-                b.drawState(player, e);
-                System.out.println("You lose");
-                this.setLoseState(true);
-                break;
-            }
-            if (bbCounter == 1) {
-                bbCounter = 2;
-//                if (b.getEnemyUsedParry()) {
-//                    b.setEnemyUsedParry(false);
-//                }
-            }
-            b.drawState(player, e);
-
-        }
-
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
@@ -487,14 +167,344 @@ public class GameLoop {
         this.printArray = printArray;
     }
 
-    /*--------------------------- PUBLIC METHODS -----------------------------*/
+    /*------------------------------- METHODS --------------------------------*/
     /**
-     * Purpose: This function creates the 2-D array of characters, that will
+     * Purpose: To initialize all of the arrays that contain objects in the game.
+     */
+    public void initialize() {
+        GameBoard gb = new GameBoard();
+        gb.createItemArray(this.items);
+        gb.createTerrainArray(this.terrain);
+        gb.createEnemyArray(this.enemy);
+    }
+
+    /**
+     * Purpose: To check and see if the players move will collide with an enemy
+     * on the map.
+     *
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with an enemy
+     */
+    private boolean checkEnemies(Player player, String move, ArrayList<Enemy> enemy) {
+        boolean result = false;
+
+        if ((player != null) && (enemy != null)) { // this could be a try and except statement?
+            for (int i = 0; i < enemy.size(); i++) {
+                if (!enemy.get(i).getExists()) {
+                    continue; // go to the next item since this object doesn't exist
+                }
+                switch (move) { // check the tile adjacent
+                    case "up":
+                        if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary()) &&
+                                (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
+                        break;
+                    case "down":
+                        if (player.getCoord().getLowerBoundary()+1 == enemy.get(i).getCoord().getUpperBoundary() &&
+                                (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
+                        break;
+                    case "left":
+                        if (player.getCoord().getLeftBoundary()-1 == enemy.get(i).getCoord().getRightBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
+                        break;
+                    case "right":
+                        if (player.getCoord().getRightBoundary()+1 == enemy.get(i).getCoord().getLeftBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            result = true;
+                        }
+                        break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Purpose: To check and see if the players move will collide with a terrain
+     * tile that cannot be crossed (ie. mountains).
+     *
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with a terrain tile that is
+     * un-crossable
+     */
+     private boolean checkSprites(Player player, String move, ArrayList<Sprite> obj) { // for checking terrain and items
+        boolean result = false;
+
+        if ((player != null) && (obj != null)) { // this could be a try and except statement?
+            for (int i = 0; i < obj.size(); i++) {
+                if (!obj.get(i).getExists()) {
+                    continue; // go to the next item since this object doesn't exist
+                }
+                switch (move) { // evaluate each adjacent tile for collisions
+                    case "up":
+                            if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
+                                    && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
+                                    && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                                if ((obj.get(i) instanceof Potion)
+                                        || (obj.get(i) instanceof Defence)
+                                        || (obj.get(i) instanceof Weapon)) {
+                                    pickUpItem(player, obj.get(i));
+                                    System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                    obj.remove(obj.get(i)); // remove the object from the array, this will need to change for the gui version maybe
+                                }
+                                result = true;
+                            }
+                            break;
+
+                    case "down":
+                        if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
+                                (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+                            result = true;
+                        }
+                        break;
+                    case "left":
+                        if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+                            result = true;
+                        }
+                        break;
+                    case "right":
+                        if (player.getCoord().getRightBoundary()+1 == obj.get(i).getCoord().getLeftBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            if ((obj.get(i) instanceof Potion) ||
+                                    (obj.get(i) instanceof Defence) ||
+                                    (obj.get(i) instanceof Weapon)) {
+                                pickUpItem(player, obj.get(i));
+                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                obj.remove(obj.get(i)); // remove the object from the array
+                            }
+                            result = true;
+                        }
+                        break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Purpose: To check and see if the players move will collide with an edge
+     * of the map.
+     *
+     * @param player an instance of the player in the current game
+     * @param move the desired direction that the player would like to move
+     * @return true if there is a collision with an edge of the map
+     */
+    private boolean checkEdges(Player player, String move) {
+        boolean result = false;
+
+        if (player != null) { // this could be a try and except statement?
+            switch (move) {
+                case "up":
+                        if (player.getCoord().getUpperBoundary() - 1 == 0) {
+                            result = true; // remove these hard coded values later
+                        }
+                        break;
+                    case "down":
+                        if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
+                            result = true; // adjust for edge now
+                        }
+                        break;
+                    case "left":
+                        if (player.getCoord().getLeftBoundary() - 1 == 0) {
+                            result = true;
+                        }
+                        break;
+                    case "right":
+                        if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
+                            result = true; // adjust for edge now
+                        }
+                        break;
+            }
+        }
+        return result;
+    }
+    /**
+     * Purpose: To check and see if the player has obtained tall of the keys
+     * necessary to unlock the gate to the final boss.
+     *
+     * @param player an instance of the player class in the current game
+     * @return a boolean value for if the player meets the condition to
+     * unlock
+     */
+    public boolean checkGate(Player player) {
+        // also update images in the gui version
+        return (player.getKeyCount() == totalKeys - 1) ? true : false;
+    }
+
+    /**
+     * Purpose: To take the move entered by the user and, given that the move is
+     * valid from a prior check, adjust the players coordinates appropriately.
+     * @param player an instance of a player who is controlled by the user
+     * @param move a string representation of the move being performed
+     */
+    public void updatePosition(Player player, String move) {
+        // move will only be up, down, left, and right
+        // assumes coordinates have been checked
+        switch (move) {
+            case "up":
+                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() - 1);
+                break;
+            case "down":
+                player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() + 1);
+                break;
+            case "left":
+                player.updatePosition(player.getCoord().getxCoord() - 1, player.getCoord().getyCoord());
+                break;
+            case "right":
+                player.updatePosition(player.getCoord().getxCoord() + 1, player.getCoord().getyCoord());
+                break;
+        }
+    }
+
+    /**
+     * Purpose: To run the battle mechanics for the game loop portion of the
+     * game.
+     * @param e - Enemy who is battling the player. should be found by the
+     * collision detection
+     */
+    private void engageBattle(Player player, Enemy e) {
+        BattleLoop b = new BattleLoop();
+        int i = 0;
+        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
+        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
+        int damage;
+        while (i == 0) {
+            if (bbCounter == 0) {
+                String attack = b.playerInput(player);
+                System.out.println("You used " + attack);
+                switch (attack) {
+                    case "Slash":
+                        damage = 15;
+                        b.damageCalc(damage, e);
+                        break;
+                    case "Butter Boomerang":
+                        bbCounter = 1;
+                        System.out.println("Powering up!");
+                        break;
+                    case "Parry":
+                        b.setUsedParry(true);
+                        break;
+                    case "Potion":
+                        b.usePotion(player);
+                        break;
+                }
+            } else if (bbCounter == 2) {
+                damage = 40;
+                b.damageCalc(damage, e);
+                bbCounter = 0;
+            }
+            if (b.getEnemyUsedParry()) {
+                b.setEnemyUsedParry(false);
+            }
+            if (b.checkWinState(e) == true) {
+                b.drawState(player, e);
+                System.out.println("You Win!");
+                player.setHealth(100);
+                if (e.getKey()) {
+                    player.setKeyCount(player.getKeyCount() + 1);
+                    System.out.println("You have obtained a key from defeating this enemy!");
+                    e.setKey(false);
+                }
+                System.out.println("Player key count: " + player.getKeyCount());
+                b.removeEnemy(e, enemy, terrain);
+                break;
+            }
+            if (mmCounter == 1) {
+                mmCounter = 2;
+    //                if (b.getUsedParry()) {
+    //                    b.setUsedParry(false);
+    //                }
+            }
+            b.drawState(player, e);
+            if (mmCounter == 0) {
+                String eAttack = e.attackLogic(player);
+                System.out.println("Enemy used " + eAttack);
+                switch (eAttack) {
+                    case "Slash":
+                        damage = 15;
+                        b.damageCalc(damage, player);
+
+                        break;
+                    case "Margarine Missile":
+                        mmCounter = 1;
+                        System.out.println("Powering up!");
+                        break;
+                    case "Parry":
+                        b.setEnemyUsedParry(true);
+
+                        break;
+                    case "Potion":
+                        b.usePotion(e);
+
+                        break;
+                }
+            } else if (mmCounter == 2) {
+                damage = 40;
+                b.damageCalc(damage, player);
+                mmCounter = 0;
+            }
+            if (b.getUsedParry()) {
+                b.setUsedParry(false);
+            }
+            if (b.checkLoseState(player) == true) {
+                b.drawState(player, e);
+                System.out.println("You lose");
+                this.setLoseState(true);
+                break;
+            }
+            if (bbCounter == 1) {
+                bbCounter = 2;
+    //                if (b.getEnemyUsedParry()) {
+    //                    b.setEnemyUsedParry(false);
+    //                }
+            }
+            b.drawState(player, e);
+
+        }
+
+    }
+
+
+    /**
+     * Purpose: This method creates the 2-D array of characters, that will
      * then be printed out onto the screen. It finds the column and row of each
      * point in the terrain, enemy, and item array lists. Then puts the correct
      * character into the the corresponding column, and row in the 2-D array.
-     * The 2-D array will not be filled completely because there is parts of the
-     * map that is empty.
+     * The 2-D array will not be filled completely because there are parts of the
+     * map that are empty.
      *
      * @param items This is the item arraylist
      * @param enemy This is the enemy arrayList
@@ -537,7 +547,7 @@ public class GameLoop {
     }
 
     /**
-     * Purpose: This function prints out the border to the screen
+     * Purpose: This method prints out the border to the screen
      *
      * @param player This is the player that is playing the game. Their char
      * image has to be added to the print array before the array can be printed
@@ -628,31 +638,30 @@ public class GameLoop {
      */
     public boolean checkCollisions(Player player, String move) {
         // check all collisions and if any are false
-                    //= System.out.println("me:" + player.getCoord()); // for debugging purposes
-            if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
-                    || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
-                return true;
-            } else {
-                return false;
-            }
+        // System.out.println("me:" + player.getCoord()); // for debugging purposes
+        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
+                || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        /**
-         * Purpose: To print out a string representation of the class attributes
-         *
-         * @return a string with all the attributes
-         */
-        @Override
-        public String toString
-
-            () {
+    /**
+     * Purpose: To print out a string representation of the class attributes
+     *
+     * @return a string with all the attributes
+     */
+    @Override
+    public String toString() {
         return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
-                    + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
-                    + this.winState + ", Lose State: " + this.loseState;
-        }
-        /**
-         * Purpose: To allow the ability to test methods
-         */
+                + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
+                + this.winState + ", Lose State: " + this.loseState;
+    }
+
+    /**
+     * Purpose: To allow the ability to test the various methods of the GameLoop
+     */
     public static void main(String[] args) {
         // for testing methods
 
