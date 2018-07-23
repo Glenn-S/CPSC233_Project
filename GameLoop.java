@@ -67,22 +67,34 @@ public class GameLoop {
                     case "up":
                         if ((player.getCoord().getUpperBoundary()-1 == enemy.get(i).getCoord().getLowerBoundary()) &&
                             (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) result = true; // remove these hard coded values later
+                            (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy
+                                result = true;
+                            }
                         break;
                     case "down":
                         if (player.getCoord().getLowerBoundary()+1 == enemy.get(i).getCoord().getUpperBoundary() &&
                             (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) result = true;
+                            (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy
+                                result = true;
+                            }
                         break;
                     case "left":
                         if (player.getCoord().getLeftBoundary()-1 == enemy.get(i).getCoord().getRightBoundary() &&
                             (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
-                            (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) result = true;
+                            (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy
+                                result = true;
+                            }
                         break;
                     case "right":
                         if (player.getCoord().getRightBoundary()+1 == enemy.get(i).getCoord().getLeftBoundary() &&
                             (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary()) &&
-                            (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) result = true;
+                            (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy
+                                result = true;
+                            }
                         break;
                 }
             }
@@ -110,12 +122,16 @@ public class GameLoop {
                     case "up":
                         if ((player.getCoord().getUpperBoundary()-1 == obj.get(i).getCoord().getLowerBoundary()) &&
                             (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) result = true; // remove these hard coded values later
+                            (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                                result = true;
+                            }
                         break;
                     case "down":
                         if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
                             (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
-                            (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) result = true;
+                            (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                                result = true;
+                            }
                         break;
                     case "left":
                         if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
@@ -170,7 +186,7 @@ public class GameLoop {
      * @param player an instance of the player class in the current game
      * @return a boolean value for if the player meets the condition to unlock
      */
-    private boolean checkGate(Player player) {
+    public boolean checkGate(Player player) {
         // also update images
         return (player.getKeyCount() == totalKeys - 1) ? true : false;
     }
@@ -500,60 +516,54 @@ public class GameLoop {
         return;
     }
 
-     /**
-      * Purpose: To obtain the users input for moving around the game board
-      * @return a string representation of the users directional choice
-      */
-     public String playerInput() {
-         Console console = System.console();
-         String input;
-         String userPrompt = "Please make a move (wasd): ";
-         String error = "Invalid input";
-         boolean valid = false;
+    /**
+     * Purpose: To obtain the users input for moving around the game board
+     * @return a string representation of the users directional choice
+     */
+    public String playerInput() {
+        Console console = System.console();
+        String input;
+        String userPrompt = "Please make a move (wasd): ";
+        String error = "Invalid input";
+        boolean valid = false;
 
-         if (console == null) return null;
-         do {
-             input = console.readLine(userPrompt);
-             if (input.toLowerCase().equals("w") || input.toLowerCase().equals("a") ||
-                     input.toLowerCase().equals("s") || input.toLowerCase().equals("d")) {
-                 valid = true;
-             }
-             else System.out.println(error);
-         } while (!valid);
-         // convert characters into representative symbols
-         switch (input) {
-             case "w": input = "up"; break;
-             case "a": input = "left"; break;
-             case "s": input = "down"; break;
-             case "d": input = "right"; break;
-         }
-         return input;
-     }
+        if (console == null) return null;
+        do {
+            input = console.readLine(userPrompt);
+            if (input.toLowerCase().equals("w") || input.toLowerCase().equals("a") ||
+                    input.toLowerCase().equals("s") || input.toLowerCase().equals("d")) {
+                valid = true;
+            }
+            else System.out.println(error);
+        } while (!valid);
+        // convert characters into representative symbols
+        switch (input) {
+            case "w": input = "up"; break;
+            case "a": input = "left"; break;
+            case "s": input = "down"; break;
+            case "d": input = "right"; break;
+        }
+        return input;
+    }
 
-     /**
-      * Purpose: To check all possible collisions in the game and return true or
-      * false depending.
-      * @param player an instance of the player class
-      * @param move a string representation of the users input
-      * @return true if a collision was detected else false
-      */
-     public boolean checkCollisions(Player player, String move) {
-         boolean collision = false;
-
-         // check all collisions and if any are false
-         if (checkEdges(player, move) || checkSprites(player, move, this.terrain) ||
-                 checkSprites(player, move, this.items) || checkEnemies(player, move, this.enemy)) {
-             collision = true;
-         }
-         /*
-         System.out.println("me:" + player.getCoord() + ", enemy:" + this.enemy.get(2).getCoord());
-         if (checkEdges(player, move)) collision = true;
-         if (checkEnemies(player, move, this.enemy)) collision = true;
-         if (checkSprites(player, move, this.terrain)) collision = true;
-         if (checkSprites(player, move, this.items)) collision = true;
-         */
-         return collision; // true if there is one
-     }
+    /**
+     * Purpose: To check all possible collisions in the game and return true or
+     * false depending.
+     * @param player an instance of the player class
+     * @param move a string representation of the users input
+     * @return true if a collision was detected else false
+     */
+    public boolean checkCollisions(Player player, String move) {
+        // check all collisions and if any are false
+        System.out.println("me:" + player.getCoord()); // for debugging purposes
+        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy) ||
+                checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
     /**

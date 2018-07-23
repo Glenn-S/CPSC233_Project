@@ -20,9 +20,10 @@ public class GameBoard extends GameLoop  {
         bossPotions.add(smallPotion);
         bossPotions.add(mediumPotion);
 
-        enemy.add(new Enemy("Grunt", new Location(6,5,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
-        enemy.add(new Enemy("Grunt", new Location(40,2,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
-        enemy.add(new Enemy("Grunt", new Location(54,37,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        // maybe adjust the enemies range
+        enemy.add(new Enemy("Grunt", new Location(6,10,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(100,8,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(50,30,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
         enemy.add(new Enemy("Boss", new Location(196,6,0,0), null, '+', null, true, false, 200, 200, 200, moves, true, bossPotions));
     }
 
@@ -548,61 +549,16 @@ public class GameBoard extends GameLoop  {
         }
     }
 
+    /**
+     *
+     */
     public void createItemArray(ArrayList<Sprite> items) {
-        items.add(new Sprite("chest",new Location(5,4,0,0),null, '#',null,true,true));
+        items.add(new Sprite("chest", new Location(5,4,0,0), null, '#', null, true, true));
         items.add(new Potion("small", new Location(5,4,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("chest",new Location(196,24,0,0),null, '#',null,true,true));
+        items.add(new Sprite("chest", new Location(196,24,0,0), null, '#', null, true, true));
         items.add(new Potion("medium", new Location(196,24,0,0), null,' ', null, true, true, 50));
     }
 
-    /**
-     * Purpose: This function creates the 2-D array of characters, that will then be printed out onto
-     * the screen. It finds the column and row of each point in the terrain, enemy, and item array
-     * lists. Then puts the correct character into the the corresponding column, and row in the
-     * 2-D array. The 2-D array will not be filled completely because there is parts of the map that
-     * is empty.
-     *
-     * @param  items  This is the item arraylist
-     * @param  enemy  This is the enemy arrayList
-     * @param  terrain  This is the enemy ArrayList
-     */
-/*    public void createPrintArray (char[][] printArray, ArrayList<Sprite> items,
-            ArrayList<Sprite> terrain, ArrayList<Enemy> enemy) {
-        int rowTemp;
-        int columnTemp;
-
-        // empty the array
-        for (int i = 0; i < printArray.length; i++) {
-            for (int j = 0; j < printArray[0].length; j++) {
-                printArray[i][j] = ' ';
-            }
-        }
-
-        for (int index = 0; index < items.size(); index++) {
-            columnTemp = items.get(index).getCoord().getxCoord();
-            rowTemp = items.get(index).getCoord().getyCoord();
-            if (items.get(index).getSpriteChar() != ' ') {
-                printArray[columnTemp][rowTemp] = items.get(index).getSpriteChar();
-            }
-        }
-
-        for (int index = 0; index < terrain.size(); index++) {
-            columnTemp = terrain.get(index).getCoord().getxCoord();
-            rowTemp = terrain.get(index).getCoord().getyCoord();
-            if (terrain.get(index).getSpriteChar() != ' ') {
-                printArray[columnTemp][rowTemp] = terrain.get(index).getSpriteChar();
-            }
-        }
-
-        for (int index = 0; index < 4; index++) {
-            columnTemp = enemy.get(index).getCoord().getxCoord();
-            rowTemp = enemy.get(index).getCoord().getyCoord();
-            if (enemy.get(index).getSpriteChar() != ' ') {
-                printArray[columnTemp][rowTemp] = enemy.get(index).getSpriteChar();
-            }
-        }
-    }
-*/
     public static void main(String[] args) {
         GameLoop gl = new GameLoop();
         GameBoard gb = new GameBoard();

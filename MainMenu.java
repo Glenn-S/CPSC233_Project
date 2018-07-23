@@ -74,11 +74,11 @@ public class MainMenu { // change this name to be the name of the game
                 // pass the new x/y for the player
                 gamePlay.updatePosition(player, userMove); // if collision is not detected update player position
             }
-/*            gamePlay.checkGate(); // checks if enough keys have been collected and updates image if needed?
+            //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
             if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
                 gameState = false; // this is to terminate the game loop
                 continue; // exit to the beginning of the loop to check this condition
-            }*/
+            }
             gamePlay.refreshPrintArray();
             gamePlay.drawState(player, gamePlay.getPrintArray());
         }
