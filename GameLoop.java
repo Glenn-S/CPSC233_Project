@@ -398,27 +398,19 @@ public class GameLoop {
      * @param  printArray  This is the 2-D array of chars that will
      * be printed out to the screen
      */
-      public void drawState(Player player, char[][] printArray) {
+    public void drawState(Player player, char[][] printArray) {
         int colTemp;
         int rowTemp;
 
-        rowTemp = player.getCoord().getxCoord();
-        colTemp = player.getCoord().getyCoord();
+        colTemp = player.getCoord().getxCoord();
+        rowTemp = player.getCoord().getyCoord();
         printArray[rowTemp][colTemp] = player.getSpriteChar();
 
-        for(int index1 = 0; index1 < printArray.length; index1++)
-        {
-          for(int index2 = 0; index2 < printArray[index1].length; index2++)
-            {
-//              if(printArray[index1][index2] == "")
-//              {
-//                System.out.print(' ');
-//              }
-//              else
-//              {
-//              System.out.print(printArray[index1][index2]);
-//              }
+        for (int i = 0; i < printArray.length; i++) {
+            for (int j = 0; j < printArray[0].length; j++) {
+                System.out.print(printArray[i][j]);
             }
+            System.out.print("\n");
         }
     }
 

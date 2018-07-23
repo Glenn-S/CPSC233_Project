@@ -56,6 +56,15 @@ GameLoop: GameLoop.class
 	$(ECHO) $(RESPONSE) $@
 	$(RUN) $@
 
+# ------------------------------ Build GameBoard
+GameBoard.class: GameBoard.java
+	$(ECHO) $(RESPONSE) $@
+	$(JCC) $(JFLAGS) GameBoard.java
+
+GameBoard: GameBoard.class
+	$(ECHO) $(RESPONSE) $@
+	$(RUN) $@
+
 # ------------------------------ Build Location
 Location.class: Location.java
 	$(ECHO) $(RESPONSE) $@
