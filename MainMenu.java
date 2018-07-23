@@ -76,16 +76,20 @@ public class MainMenu { // change this name to be the name of the game
                                 null, true, false, 100, 25, 25, moves);
         Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
         player.addItem(starterSword);
-        System.out.println("\n\n*** " + starterSword.getName() + " has been added to your pack ***\n");
+        System.out.println("*** " + starterSword.getName() + " has been added to your pack ***");
         player.updateAttack(starterSword);
         player.addItem(starterShield);
-        System.out.println("\n\n*** " + starterShield.getName() + " has been added to your pack ***\n");
+        System.out.println("*** " + starterShield.getName() + " has been added to your pack ***");
         player.updateDefence(starterShield);
+        player.addItem(smallPotion);
+        System.out.println("*** " + smallPotion.getName() + " has been added to your pack ***");
         // draw the initialized state
         // initialize
         gamePlay.initialize();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // add screen spacing
+        printLegend();
+        System.out.println("\n\n\n\n"); // add screen spacing
         gamePlay.refreshPrintArray();
         System.out.println("\n" + player.getStats());
         System.out.println("Inventory: " + player.getInventory());
@@ -105,7 +109,8 @@ public class MainMenu { // change this name to be the name of the game
                 continue; // exit to the beginning of the loop to check this condition
             }
 
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // add screen spacing
+            printLegend();
+            System.out.println("\n\n\n\n\n"); // add screen spacing
             gamePlay.refreshPrintArray();
             System.out.println("\n" + player.getStats());
             System.out.println("Inventory: " + player.getInventory());
@@ -129,6 +134,16 @@ public class MainMenu { // change this name to be the name of the game
         System.out.println();
         return true;
     }
+
+    public void printLegend(){
+		System.out.println("You                   *");
+		System.out.println("Enemry                +");
+		System.out.println("Sign Post             ^");
+		System.out.println("Object(Chest)         #");
+		System.out.println("Vertical Edge         |");
+		System.out.println("Horizontal Edge       -");
+		System.out.println("Diagonal Edge         /");
+	}
 
     // add method to get user input of name for their character
 
