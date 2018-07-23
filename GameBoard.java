@@ -553,10 +553,10 @@ public class GameBoard extends GameLoop  {
      *
      */
     public void createItemArray(ArrayList<Sprite> items) {
-        items.add(new Sprite("chest", new Location(5,4,0,0), null, '#', null, true, true));
-        items.add(new Potion("small", new Location(5,4,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("chest", new Location(196,24,0,0), null, '#', null, true, true));
-        items.add(new Potion("medium", new Location(196,24,0,0), null,' ', null, true, true, 50));
+        items.add(new Sprite("Chest", new Location(5,4,0,0), null, '#', null, true, true));
+        items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 50));
+        items.add(new Sprite("Chest", new Location(196,24,0,0), null, '#', null, true, true));
+        items.add(new Potion("Medium Potion", new Location(196,24,0,0), null,' ', null, true, true, 100));
     }
 
     public static void main(String[] args) {

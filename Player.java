@@ -158,6 +158,17 @@ public class Player extends Avatar {
 	}
 
 	/**
+	 *
+	 */
+	public String getInventory() {
+		String strRep = "";
+		for (int i = 0; i < this.items.size(); i++) {
+			strRep = strRep + this.items.get(i).getName() + " ";
+		}
+		return strRep + "\n" + "Number of keys: " + this.keyCount;
+	}
+
+	/**
 	 * Purpose: This method is used to set the item array of the calling player
 	 *
 	 * @param  newItems  This paramter is the new items array that will replace the calling players current item array
