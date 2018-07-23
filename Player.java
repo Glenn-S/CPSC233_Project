@@ -165,7 +165,7 @@ public class Player extends Avatar {
 		for (int i = 0; i < this.items.size(); i++) {
 			strRep = strRep + this.items.get(i).getName() + " ";
 		}
-		return strRep;
+		return strRep + "\n" + "Number of keys: " + this.keyCount;
 	}
 
 	/**
