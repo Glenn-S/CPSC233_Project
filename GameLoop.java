@@ -657,5 +657,7 @@ public class GameLoop {
         gl.pickUpItem(p3, i3);
         ArrayList<Sprite> playerItems = p3.getItems();
         System.out.println("\nPlayer Item: " + playerItems.get(0).getName());
+
+        // drawState has been tested out in GameBoard
     }
 }

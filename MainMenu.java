@@ -51,17 +51,18 @@ public class MainMenu { // change this name to be the name of the game
      * @return true or false depending on whether they would or would not like
      * play again
      */
-    public boolean gameLoop() {
+/*    public boolean gameLoop() {
         boolean gameState = false;
         GameLoop gamePlay = new GameLoop();
-        //Player player = new Player(); // initialized value
-        String userMove;
+        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+        Player player =  new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
+                                null, true, false, 100, 50, 50, moves);
 
         // run through the game
         while (!gameState) { // keep playing unless the game has been lost or won
             userMove = gamePlay.playerInput();
             gameState = true;
-            /*
+
             if (checkCollisions(player, userMove)){
                 // pass the new x/y for the player
                 player.updatePosition(); // if collision is not detected update player position
@@ -72,13 +73,13 @@ public class MainMenu { // change this name to be the name of the game
                 continue; // exit to the beginning of the loop to check this condition
             }
             gamePlay.drawState(); // redraw the game board with the updated coordinates
-            */
+
         }
 
         // get the user input for playing again, this will go to exit splash
         return returnMain();
     }
-
+*/
     /**
      * Purpose: To prompt the user about whether they would like to play the
      * game again.
