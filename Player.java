@@ -163,7 +163,10 @@ public class Player extends Avatar {
 	public String getInventory() {
 		String strRep = "";
 		for (int i = 0; i < this.items.size(); i++) {
-			strRep = strRep + this.items.get(i).getName() + " ";
+			if (i == this.items.size()-1) {
+				strRep = strRep + this.items.get(i).getName();
+			}
+			else strRep = strRep + this.items.get(i).getName() + ", ";
 		}
 		return strRep + "\n" + "Number of keys: " + this.keyCount;
 	}

@@ -74,6 +74,10 @@ public class MainMenu { // change this name to be the name of the game
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
         Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
                                 null, true, false, 100, 50, 50, moves);
+        player.addItem(new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50));
+        System.out.println("\n\n*** " + "Bronze Butterknife" + " has been added to your pack ***\n"); //hard coded for now
+        player.addItem(new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50));
+        System.out.println("\n\n*** " + "Styrofoam Plate Shield" + " has been added to your pack ***\n");
         // draw the initialized state
         // initialize
         gamePlay.initialize();

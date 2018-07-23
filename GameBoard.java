@@ -12,8 +12,8 @@ public class GameBoard extends GameLoop  {
      */
     public void createEnemyArray(ArrayList<Enemy> enemy) {
         String[] moves = {"Slash", "Margarine Missile", "Parry", "Potion"};
-        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
-        Potion mediumPotion = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 100);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+        Potion mediumPotion = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
         ArrayList<Potion> gruntPotions = new ArrayList<Potion>();
         ArrayList<Potion> bossPotions = new ArrayList<Potion>();
         gruntPotions.add(smallPotion);
@@ -554,9 +554,9 @@ public class GameBoard extends GameLoop  {
      */
     public void createItemArray(ArrayList<Sprite> items) {
         items.add(new Sprite("Chest", new Location(5,4,0,0), null, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 50));
+        items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(196,24,0,0), null, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(196,24,0,0), null,' ', null, true, true, 100));
+        items.add(new Potion("Medium Potion", new Location(196,24,0,0), null,' ', null, true, true, 50));
     }
 
     public static void main(String[] args) {
