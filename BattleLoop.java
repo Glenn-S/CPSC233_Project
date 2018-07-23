@@ -15,12 +15,13 @@ public class BattleLoop extends GameLoop {
 
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
+
+
+    /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**
      * Purpose: Change state of the usedParry variable for the enemy
      * @param uP - the desired state for the usedParry variable
      */
-
-    /*-------------------------- GETTERS/SETTERS -----------------------------*/
     public void setEnemyUsedParry(boolean eUP) {
         this.enemyUsedParry = eUP;
     }
@@ -50,7 +51,6 @@ public class BattleLoop extends GameLoop {
     /**
      * If a player has won a battle, the defeated enemy is removed from the game
      * and replaced with a tombstone at the coordinates of the enemy.
-     *
      * @param enemy - enemy in battle
      * @param enemyList - list of all enemies in game, defeated enemy removed
      * from here
