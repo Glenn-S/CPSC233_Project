@@ -253,6 +253,12 @@ public class GameLoop {
                 b.drawState(player, e);
                 System.out.println("You Win!");
                 player.setHealth(100);
+                if(e.getKey()){
+                player.setKeyCount(player.getKeyCount()+1);
+System.out.println("You have obtained a key from defeating this enemy!");
+                e.setKey(false);
+                }
+                System.out.println("Player key count: " + player.getKeyCount());
                 b.removeEnemy(e, enemy, terrain);
                 break;
             }
