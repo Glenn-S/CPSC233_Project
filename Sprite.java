@@ -14,15 +14,29 @@ import java.awt.Image;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Sprite {
-	protected String name;
+		protected String name;
     protected Location coord;
     protected Image spriteImage;
     protected char spriteChar; // will become the sprite image class later
     protected String[] dialogue;
     protected boolean exists;
     protected boolean overlapsWith;
-
-	//constructors
+/*-------------------------Constructors---------------------------------------*/
+	/**
+	* Purpose: This is constructor initializes all the diferent instance Variables
+	*
+	* @param  name  This is a string, of the sprites name
+	* @param  coord  This is a location object
+	* @param  spriteImage  This will be used in version two. It is the image of a Sprite
+	* @param  spriteChar  This is the char variable used to identify the sprite when
+	* printed to the Terminal
+	* @param  dialogue  This is a string array, filled with all the dialogue of the
+	* Sprite
+	* @param  exists  This is the boolean value, indicating whether or not the sprite
+	* Exists
+	* @param  overlapsWith  This is a boolean value, that indicates whther or not the
+	* sprite is overlapping with another object
+	*/
 	public Sprite(String name,
                   Location coord,
                   Image spriteImage,
@@ -38,7 +52,11 @@ public class Sprite {
 		this.dialogue = dialogue;
 		this.overlapsWith = overlapsWith;
 	}
-
+	/**
+	* Purpose: This is the default constructor for the sprite class. If a
+	* sprite object is instantiated, without being passed any variables.
+	* Then this is the method that is to be caled.
+	*/
 	public Sprite() {
 		this.name = "";
 	    this.coord = new Location();
@@ -49,6 +67,7 @@ public class Sprite {
 	    this.overlapsWith = false;
 	}
 
+/*----------------------------SETTERS/GETTER----------------------------------*/
 	/**
 	 * @param xCoord the xCoordinate of the sprite as a type of integer
 	 * @param yCoord the yCoordinate of the Sprite as a type of integer
@@ -60,6 +79,8 @@ public class Sprite {
 	}
 
 	/**
+	 *Purpose: This is the getter for the sprites location variable
+	 *
 	 * @return coord 	it's the Location of the sprite as a type of integer
 	 */
 	public Location getCoord() {				//get xCoord and yCoord as a type Location
@@ -67,6 +88,8 @@ public class Sprite {
 	}
 
 	/**
+	 * Purpose: This is the setter for the sprites name variable
+	 *
 	 * @param setname   the name of the sprite  as a type of String
 	 */
 	public void setName(String setname){		//set the name
@@ -74,18 +97,26 @@ public class Sprite {
 	}
 
 	/**
+	 * Purpose: This is the getter for the sprites name
+	 *
 	 * @return name   the name of the sprite  as a type of String
 	 */
 	public String getName(){					//get the name
 		return this.name;
 	}
 
-
+/**
+ * Purpose: This is the setter for the sprites Image
+ *
+ * @param  newSpriteImage  This is the new sprite Image
+ */
 	public void setSpriteImage(Image newSpriteImage){				//set the image
 		this.spriteImage = newSpriteImage;
 	}
 
 	/**
+	 *Purpose: This is the getter for the sprites image
+	 *
 	 * @return spriteImage - renew the spriteImage as a type of Image
 	 */
 	public Image getSpriteImage(){				//get the image
@@ -93,6 +124,8 @@ public class Sprite {
 	}
 
 	/**
+	 * Purpose: This is the setter for the sprites exist variable
+	 *
 	 * @param exist the sate of iteams and enemis if they are exist
 	 * as a type of boolean
 	 */
@@ -101,6 +134,8 @@ public class Sprite {
 	}
 
 	/**
+	 *Purpose: This is the getter for the sprites exists variable
+	 *
 	 * @return exists - renew the exist state of iteams and enemies
 	 * as a type of boolean
 	 */
@@ -108,12 +143,16 @@ public class Sprite {
 		return this.exists;
 	}
 	/**
+	 * Purpose: This is the setter for the sprites dialogue array
+	 *
 	 * @param dialog set dialogues as a type of String array
 	 */
 	public void setDialogue(String[] dialogue){	//set the dialogue
 		this.dialogue = dialogue;
 	}
 	/**
+	 * Purpose: This is the getter for the sprites dialogue array
+	 *
 	 * @return dialogue	- renew the dialogue we need as a String array
 	 */
 	public String[] getDialogue(){				//get the dialogue
@@ -141,6 +180,8 @@ public class Sprite {
 		}//it returns false if none of above is true
 */
 	/**
+	 * Purpose: This is the getter for the sprites overlap varibale
+	 *
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
@@ -149,17 +190,26 @@ public class Sprite {
 	}
 
 	/**
+	 * Purpose: This is the getter for the sprites character varibale
+	 *
 	 * @return the spriteChar
 	 */
 	public char getSpriteChar() {
 		return this.spriteChar;
 	}
 	/**
+	 * Purpose: This is the setter for the sprites character variable
+	 *
 	 * @param spriteChar the spriteChar to set
 	 */
 	public void setSpriteChar(char spriteChar) {
 		this.spriteChar = spriteChar;
 	}
+
+
+	/*--------------------------Testing-----------------------------------------*/
+
+
 	/** Purpose: To print out a string representation of the class attributes
 	* @return a string with all the attributes
 	*/

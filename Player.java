@@ -162,7 +162,7 @@ public class Player extends Avatar {
 	}
 
 	/**
-	 *
+	 * Purpose: This method is used to get the inventory of the calling Player
 	 */
 	public String getInventory() {
 		String strRep = "";
