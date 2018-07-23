@@ -101,6 +101,13 @@ public class Avatar extends Sprite {
     }
 
     /**
+     *
+     */
+    public String getStats() {
+		return "Name: " + this.name + "\nHealth: " + this.health;
+	}
+
+    /**
      * @param defence it's the defence of an avatar as a type of integer
      */
     public void setDefence(int defence) {//set defence for the avatar

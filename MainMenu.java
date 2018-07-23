@@ -63,12 +63,15 @@ public class MainMenu { // change this name to be the name of the game
         // draw the initialized state
         // initialize
         gamePlay.initialize();
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // add screen spacing
         gamePlay.refreshPrintArray();
+        System.out.println("\n" + player.getStats());
+        System.out.println("Inventory: " + player.getInventory());
         gamePlay.drawState(player, gamePlay.getPrintArray());
         // run through the game
         while (!gameState) { // keep playing unless the game has been lost or won
             userMove = gamePlay.playerInput();
-            gameState = false;
+            System.out.println("\n\n\n\n");
 
             if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
                 // pass the new x/y for the player
@@ -79,10 +82,13 @@ public class MainMenu { // change this name to be the name of the game
                 gameState = false; // this is to terminate the game loop
                 continue; // exit to the beginning of the loop to check this condition
             }
+
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // add screen spacing
             gamePlay.refreshPrintArray();
+            System.out.println("\n" + player.getStats());
+            System.out.println("Inventory: " + player.getInventory());
             gamePlay.drawState(player, gamePlay.getPrintArray());
         }
-
         // get the user input for playing again, this will go to exit splash
         return returnMain();
     }
