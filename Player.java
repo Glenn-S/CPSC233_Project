@@ -1,6 +1,10 @@
 import java.util.*;
 import java.awt.Image;
 
+/**
+ * Purpose: To represent a player and their attributes and moves in the game.
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
+ */
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
 	private ArrayList<Sprite> items; //arraylist of items player is holding currently

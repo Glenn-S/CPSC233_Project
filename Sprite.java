@@ -1,19 +1,17 @@
 import java.awt.Image;
 /**
- * it's the parent class of  Avator , Potion ,Weapon and Defence
+ * Purpose: It's the parent class of  Avator , Potion ,Weapon and Defence
  *
  * @version 		20.39   19  July 2018
- * @author    		Yuhui  Yan
- *
- *
- *instance variable
- * spriteImage   image that represent an object on map as a type Image
- * name  		the name of the player/avatar/iteams  as a type String
- * exist			it's true if the objecet is exit on the map  as a type boolean
- * dialogue		the dialogue between avatars    as a type of string array
- * overlapsWith  it's true if the player is overlaps with an enemy,a iteam , edge or terrains as a type boolean
- * coord			the location includes xCoordinate and yCoordinate  as a type of Location
- * s				it's an object of Sprite      as a type of Sprite
+ * instance variable
+ * spriteImage image that represent an object on map as a type Image
+ * name the name of the player/avatar/iteams  as a type String
+ * exist it's true if the objecet is exit on the map  as a type boolean
+ * dialogue	the dialogue between avatars    as a type of string array
+ * overlapsWith it's true if the player is overlaps with an enemy,a iteam , edge or terrains as a type boolean
+ * coord the location includes xCoordinate and yCoordinate  as a type of Location
+ * s it's an object of Sprite      as a type of Sprite
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Sprite {
 	protected String name;

@@ -3,6 +3,8 @@ import java.io.Console;
 import java.util.ArrayList;
 
 /**
+ * Purpose: To drive the main game mechanics and prompt the user to start the
+ * game.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class MainMenu { // change this name to be the name of the game
@@ -35,6 +37,7 @@ public class MainMenu { // change this name to be the name of the game
         String error = "\t\t\t\t\tInvalid input";
         boolean valid = false;
 
+        // print out the main premise for the game
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\t\t\t\t\tThe Adventures of Montequilla\n");
         System.out.println("\t\tB-town is under attack by “I can’t believe it’s not butter” boy and\n" +

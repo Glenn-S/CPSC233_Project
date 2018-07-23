@@ -3,17 +3,11 @@
 import java.awt.Image;
 
 /**
- * Avatar is a subclass of Sprite
- *
- *
  * @version 20.41 19 July 2018
- * @author Yuhui Yan
- *
- *
- *
- * @param health it's the health of an avator as a type of integer
- * @param defence	it's the defence of an avator as a type of integer
- * @param attack it's the attact of an avator as a type of integer
+ * health it's the health of an avator as a type of integer
+ * defence it's the defence of an avator as a type of integer
+ * attack it's the attact of an avator as a type of integer
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Avatar extends Sprite {
 

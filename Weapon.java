@@ -1,6 +1,7 @@
 import java.awt.Image;
 
 /**
+ * Purpose: To represent an offensive class of weapons for the user to own
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Weapon extends Sprite {

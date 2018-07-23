@@ -1,15 +1,13 @@
 /**
- * This is a class to get the location informations from the user
- *
- *
+ * Purpose: This is a class to get the location informations from the user
  * @version 20.41   19  July 2018
- * @author Yuhui  Yan
  *
  * Instance variables
  * xCoord the xCoordinate of an object on map   as a type of integer
  * yCoord	the yCoordinate of an object on map   as a type of integer
  * xSize the xSize of an object on map   as a type of integer
  * ySzie the ySize of an object on map   as a type of integer
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Location {
 

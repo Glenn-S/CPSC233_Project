@@ -1,6 +1,7 @@
 import java.awt.Image;
 
 /**
+ * Purpose: To represent a defensive class of items for the users to own
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Defence extends Sprite {

@@ -1,6 +1,7 @@
 import java.awt.Image;
 
 /**
+ * Purpose: To represent a healing class of items for the user to own
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Potion extends Sprite {

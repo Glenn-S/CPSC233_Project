@@ -6,9 +6,10 @@ import java.util.Scanner;
 
 /**
  * Purpose: Handles all actions regarding the battle system in the game.
- * This includes choosing the user's move, keeping track of attack 
- * characteristics calculating damage from battling and updating the health of 
+ * This includes choosing the user's move, keeping track of attack
+ * characteristics calculating damage from battling and updating the health of
  * the player and enemies involved.
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class BattleLoop extends GameLoop {
 
@@ -18,8 +19,8 @@ public class BattleLoop extends GameLoop {
      * Purpose: Change state of the usedParry variable for the enemy
      * @param uP - the desired state for the usedParry variable
      */
-    
-    /*-------------------------- GETTERS/SETTERS -----------------------------*/  
+
+    /*-------------------------- GETTERS/SETTERS -----------------------------*/
     public void setEnemyUsedParry(boolean eUP) {
         this.enemyUsedParry = eUP;
     }
@@ -44,7 +45,7 @@ public class BattleLoop extends GameLoop {
     public boolean getEnemyUsedParry() {
         return this.enemyUsedParry;
     }
-    
+
     /*------------------------------- METHODS --------------------------------*/
     /**
      * If a player has won a battle, the defeated enemy is removed from the game
@@ -64,25 +65,25 @@ public class BattleLoop extends GameLoop {
      }
 
      /**
-     * Purpose: To check if the enemy has lost the game(their health has 
+     * Purpose: To check if the enemy has lost the game(their health has
      * reached 0).
-     * @return the win state condition 
+     * @return the win state condition
      */
     public boolean checkWinState(Enemy e) {
         return e.getHealth() <= 0; // returns true if true else false
     }
 
     /**
-     * Purpose: To check if the player has lost the game(their health has 
+     * Purpose: To check if the player has lost the game(their health has
      * reached 0).
-     * @return the lose state condition 
+     * @return the lose state condition
      */
     public boolean checkLoseState(Player player) {
         return player.getHealth() <= 0; // returns true if true else false
     }
 
     /**
-     * Purpose: Interprets user inputs and returns the corresponding attack name  
+     * Purpose: Interprets user inputs and returns the corresponding attack name
      * and legality of the attack.
      * @param player
      * @return attack name
@@ -117,7 +118,7 @@ public class BattleLoop extends GameLoop {
 
     }
     /**
-     * Purpose: Calculates the damage done to the enemy by the user's most 
+     * Purpose: Calculates the damage done to the enemy by the user's most
      * recent attack.
      * @param damage - integer value of damage received
      * @param e - enemy who is taking the damage
@@ -138,7 +139,7 @@ public class BattleLoop extends GameLoop {
         }
     }
     /**
-     * Purpose: Calculates the damage done to the player by the enemy's most 
+     * Purpose: Calculates the damage done to the player by the enemy's most
      * recent attack.
      * @param damage - integer value of damage received
      * @param player - player who is taking the damage
@@ -210,10 +211,10 @@ public class BattleLoop extends GameLoop {
         e.getPotions().remove(0);
 
     }
-    
+
     /**
      * Purpose: To test engage Battle and this class
-     * @param args 
+     * @param args
      */
     public static void main(String[] args){
      BattleLoop b = new BattleLoop();

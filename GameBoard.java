@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * Purpose: To create all of the map objects to be placed on the game board.
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
+ */
 public class GameBoard extends GameLoop  {
     /**
      * Purpose: This function is used to create/set up the enemy array ArrayList

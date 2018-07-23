@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.ArrayList;
 
 /**
+ * Purpose: to run the underlying mechanics of the game loop.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class GameLoop {
@@ -113,7 +114,7 @@ public class GameLoop {
      * @return true if there is a collision with a terrain tile that is
      * un-crossable
      */
-                
+
                 private boolean checkSprites(Player player, String move, ArrayList<Sprite> obj) { // for checking terrain and items
         boolean result = false;
 
@@ -137,7 +138,7 @@ public class GameLoop {
                                 result = true;
                             }
                             break;
-                        
+
                         case "down":
                         if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
                                 (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
@@ -643,7 +644,7 @@ public class GameLoop {
          */
         @Override
         public String toString
-        
+
             () {
         return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
                     + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "

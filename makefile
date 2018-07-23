@@ -1,4 +1,5 @@
 # Makefile for the 233 project
+#authors: Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
 
 
 JCC = javac

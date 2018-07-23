@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * moves[3] = Potion recovers HP
  * engageBattle should have
  * an enemy as a parameter to check specifically which enemy is being fought.
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Enemy extends Avatar {
 
