@@ -252,6 +252,8 @@ public class GameLoop {
             if (b.checkWinState(e) == true) {
                 b.drawState(player, e);
                 System.out.println("You Win!");
+                player.setHealth(100);
+                b.removeEnemy(e, enemy, terrain);
                 break;
             }
             if (mmCounter == 1) {
@@ -263,23 +265,24 @@ public class GameLoop {
               b.drawState(player, e);
             if (mmCounter == 0) {
                 String eAttack = e.attackLogic(player);
+                        System.out.println("Enemy used " + eAttack);
                 switch (eAttack) {
                     case "Slash":
                         damage = 15;
                         b.damageCalc(damage, player);
-                        System.out.println("Enemy used " + eAttack);
+
                         break;
                     case "Margarine Missile":
                         mmCounter = 1;
-                        System.out.println("Enemy used " + eAttack);
+
                         break;
                     case "Parry":
                         b.setEnemyUsedParry(true);
-                        System.out.println("Enemy used " + eAttack);
+
                         break;
                     case "Potion":
                         b.usePotion(e);
-                        System.out.println("Enemy used " + eAttack);
+
                         break;
                 }
             } else if (mmCounter == 2) {
@@ -293,6 +296,7 @@ public class GameLoop {
             if (b.checkLoseState(player) == true) {
                 b.drawState(player, e);
                 System.out.println("You lose");
+                this.setLoseState(true);
                 break;
             }
             if (bbCounter == 1) {

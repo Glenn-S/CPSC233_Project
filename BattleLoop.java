@@ -56,10 +56,12 @@ public class BattleLoop extends GameLoop {
      * @param terrainList - list of all terrain objects in game, tombstone added
      * here
      */
-    // public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Terrain>      terrainList) {
-    //  enemyList.remove(enemy);
-    //terrainList.add(new Terrain());
-    // }
+     public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Sprite> terrainList) {
+      enemy.setExists(false);
+      terrainList.add(new Sprite("tombstone",enemy.getCoord(),null,'T',null,true,false));
+      enemyList.remove(enemy);
+
+     }
 
      /**
      * Purpose: To check if the enemy has lost the game(their health has 

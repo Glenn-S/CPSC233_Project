@@ -11,7 +11,7 @@ public class GameBoard extends GameLoop  {
      * array list outside as well
      */
     public void createEnemyArray(ArrayList<Enemy> enemy) {
-        String[] moves = {"up", "down", "left", "right"};
+        String[] moves = {"Slash", "Margarine Missile", "Parry", "Potion"};
         Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
         Potion mediumPotion = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 100);
         ArrayList<Potion> gruntPotions = new ArrayList<Potion>();
