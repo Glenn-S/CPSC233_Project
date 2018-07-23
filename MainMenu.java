@@ -76,12 +76,15 @@ public class MainMenu { // change this name to be the name of the game
                                 null, true, false, 100, 25, 25, moves);
         Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
         player.addItem(starterSword);
         System.out.println("*** " + starterSword.getName() + " has been added to your pack ***");
         player.updateAttack(starterSword);
         player.addItem(starterShield);
         System.out.println("*** " + starterShield.getName() + " has been added to your pack ***");
         player.updateDefence(starterShield);
+        player.addItem(smallPotion);
+        System.out.println("*** " + smallPotion.getName() + " has been added to your pack ***");
         // draw the initialized state
         // initialize
         gamePlay.initialize();
