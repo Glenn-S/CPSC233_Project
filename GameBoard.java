@@ -31,11 +31,13 @@ public class GameBoard extends GameLoop  {
         enemy.add(new Enemy("Boss", new Location(196,6,0,0), null, '+', null, true, false, 200, 200, 200, moves, true, bossPotions));
     }
 
+    /**
+     * Purpose: To populate the terrain array with any object in the game that
+     * represents a natural obsticle.
+     * @param terrain a list to be populated with all of the terrain sprites in
+     * the game.
+     */
     public void createTerrainArray(ArrayList<Sprite> terrain) {
-
-        // somehow the coordinate system go backwards, need to fix
-        // eventually come up with a better system for defining this
-
         /*------------------------ROW 0-------------------------------------------*/
 
         for(int index = 0; index < 200; index++) {
@@ -554,7 +556,9 @@ public class GameBoard extends GameLoop  {
     }
 
     /**
-     *
+     * Purpose: To populate the items array with objects that the user can find
+     * and obtain in the game as well as containing man made obsticles.
+     * @param items an array list to be populated with items for in the game.
      */
     public void createItemArray(ArrayList<Sprite> items) {
         items.add(new Sprite("Chest", new Location(5,4,0,0), null, '#', null, true, true));
@@ -563,6 +567,9 @@ public class GameBoard extends GameLoop  {
         items.add(new Potion("Medium Potion", new Location(196,24,0,0), null,' ', null, true, true, 50));
     }
 
+    /**
+     * Purpose: To test out various methods of the GameBoard class
+     */
     public static void main(String[] args) {
         GameLoop gl = new GameLoop();
         GameBoard gb = new GameBoard();
