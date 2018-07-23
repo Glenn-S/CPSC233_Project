@@ -13,7 +13,7 @@ public class Avatar extends Sprite {
     protected int health;   // health of the avatar as an integer
     protected int defence;  // defence stat of the avatar as an integer
     protected int attack;  // attack stat of the avatar as an integer
-    protected gString[] moves;        // list of attack the avatar has
+    protected String[] moves;        // list of attack the avatar has
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     public Avatar(String name,
