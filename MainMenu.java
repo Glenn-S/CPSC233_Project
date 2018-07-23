@@ -93,7 +93,7 @@ public class MainMenu { // change this name to be the name of the game
             }
             //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
             if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
-                gameState = false; // this is to terminate the game loop
+                gameState = true; // this is to terminate the game loop
                 continue; // exit to the beginning of the loop to check this condition
             }
 
