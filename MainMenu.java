@@ -41,16 +41,16 @@ public class MainMenu { // change this name to be the name of the game
         // print out the main premise for the game
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\t\t\t\t\tThe Adventures of Montequilla\n");
-        System.out.println("\t\tB-town is under attack by “I can’t believe it’s not butter” boy and\n" +
+        System.out.println("\t\tB-town is under attack by \"I can’t believe it\'s not butter\" boy and\n" +
         "\t\this army of Margarine men. All sources of butter are destroyed in the town\n" +
         "\t\texcept for one. Your best friend Butter Bob Brown has been in his lab developing\n" +
         "\t\ta new 0 sodium butter. Realizing the applications for his process of removing\n" +
-        "\t\tsodium, “I can’t believe it’s not butter” boy abducts him to his lair of oil.\n" +
+        "\t\tsodium, \"I can’t believe it’s not butter\" boy abducts him to his lair of oil.\n" +
         "\t\tAfter remembering something the town oracle spoke of in the past you see the\n" +
         "\t\tancient scriptures in the town describing a hero of legend who would save the\n" +
         "\t\tButter Industry from its competitors. Here you acquire the bronze butter knife\n" +
-        "\t\tand styrofoam plate shield.  Now it’s up to you to assemble the holy\n" +
-        "\t\ttriglyceride (combination of the 3 “keys” known as monoglycerides)\n" +
+        "\t\tand styrofoam plate shield.  Now it\'s up to you to assemble the holy\n" +
+        "\t\ttriglyceride (combination of the 3 \"keys\" known as monoglycerides)\n" +
         "\t\tand rescue Butter Bob Brown to restore peace to the Butter Industry.\n");
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         if (console == null) return false; // check to make sure that the console was oppened properly
