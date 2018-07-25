@@ -9,11 +9,11 @@ import java.util.ArrayList;
  */
 public class GameLoop {
 
-    private int boardHeight = 40, boardLength = 200; // move these later
+    private int boardHeight = 40, boardLength = 80; // move these later
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
-    private char[][] printArray = new char[boardHeight][boardLength]; //[40][200]
+    private char[][] printArray = new char[boardHeight][boardLength]; //[40][80]
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;

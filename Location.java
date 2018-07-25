@@ -54,7 +54,7 @@ public class Location {
 	 * of integer
 	 */
 	public void setxCoord(int xCoord) {
-		if (xCoord < 200 && xCoord >= 0) { // range of map is from 0-199 (200 in total)
+		if (xCoord < 80 && xCoord >= 0) { // range of map is from 0-199 (200 in total)
 		this.xCoord = xCoord;
 		}
 		else this.xCoord = 0; // set default value
