@@ -360,8 +360,21 @@ public class GameLoop {
      * unlock
      */
     public boolean checkGate(Player player) {
-        // also update images in the gui version
-        return (player.getKeyCount() == totalKeys - 1) ? true : false;
+        boolean gateOpen = (player.getKeyCount() == totalKeys - 1) ? true : false;
+        if (gateOpen) updateGate(); // if it is open, delete the previous gate
+        return gateOpen;
+    }
+
+    /**
+     * Purpose: To update all of the gate images if needed. For now it will just
+     * remove the gates from the terrain list.
+     */
+    public void updateGate() {
+        for (int i = 0; i < terrain.size(); i++) {
+            if (terrainElement.getName().equals("gate")) {
+                terrain.remove(i); // remove the element from the terrain list
+            }
+        }
     }
 
     /**
@@ -495,55 +508,6 @@ public class GameLoop {
 
         }
 
-    }
-
-
-    /**
-     * Purpose: This method creates the 2-D array of characters, that will
-     * then be printed out onto the screen. It finds the column and row of each
-     * point in the terrain, enemy, and item array lists. Then puts the correct
-     * character into the the corresponding column, and row in the 2-D array.
-     * The 2-D array will not be filled completely because there are parts of the
-     * map that are empty.
-     *
-     * @param items This is the item arraylist
-     * @param enemy This is the enemy arrayList
-     * @param terrain This is the enemy ArrayList
-     */
-    public void refreshPrintArray() {
-        int rowTemp;
-        int columnTemp;
-
-        // empty the array
-        for (int i = 0; i < this.printArray.length; i++) {
-            for (int j = 0; j < this.printArray[0].length; j++) {
-                this.printArray[i][j] = ' ';
-            }
-        }
-
-        for (int index = 0; index < this.items.size(); index++) {
-            rowTemp = this.items.get(index).getCoord().getyCoord();
-            columnTemp = this.items.get(index).getCoord().getxCoord();
-            if (this.items.get(index).getSpriteChar() != ' ') {
-                this.printArray[rowTemp][columnTemp] = this.items.get(index).getSpriteChar();
-            }
-        }
-
-        for (int index = 0; index < this.terrain.size(); index++) {
-            rowTemp = this.terrain.get(index).getCoord().getyCoord();
-            columnTemp = this.terrain.get(index).getCoord().getxCoord();
-            if (this.terrain.get(index).getSpriteChar() != ' ') {
-                this.printArray[rowTemp][columnTemp] = this.terrain.get(index).getSpriteChar();
-            }
-        }
-
-        for (int index = 0; index < this.enemy.size(); index++) {
-            rowTemp = this.enemy.get(index).getCoord().getyCoord();
-            columnTemp = this.enemy.get(index).getCoord().getxCoord();
-            if (this.enemy.get(index).getSpriteChar() != ' ') {
-                this.printArray[rowTemp][columnTemp] = this.enemy.get(index).getSpriteChar();
-            }
-        }
     }
 
     /**
@@ -854,3 +818,53 @@ public class GameLoop {
         // drawState has been tested out in GameBoard
     }
 }
+
+/*
+    /**
+     * Purpose: This method creates the 2-D array of characters, that will
+     * then be printed out onto the screen. It finds the column and row of each
+     * point in the terrain, enemy, and item array lists. Then puts the correct
+     * character into the the corresponding column, and row in the 2-D array.
+     * The 2-D array will not be filled completely because there are parts of the
+     * map that are empty.
+     *
+     * @param items This is the item arraylist
+     * @param enemy This is the enemy arrayList
+     * @param terrain This is the enemy ArrayList
+     */
+/*    public void refreshPrintArray() {
+        int rowTemp;
+        int columnTemp;
+
+        // empty the array
+        for (int i = 0; i < this.printArray.length; i++) {
+            for (int j = 0; j < this.printArray[0].length; j++) {
+                this.printArray[i][j] = ' ';
+            }
+        }
+
+        for (int index = 0; index < this.items.size(); index++) {
+            rowTemp = this.items.get(index).getCoord().getyCoord();
+            columnTemp = this.items.get(index).getCoord().getxCoord();
+            if (this.items.get(index).getSpriteChar() != ' ') {
+                this.printArray[rowTemp][columnTemp] = this.items.get(index).getSpriteChar();
+            }
+        }
+
+        for (int index = 0; index < this.terrain.size(); index++) {
+            rowTemp = this.terrain.get(index).getCoord().getyCoord();
+            columnTemp = this.terrain.get(index).getCoord().getxCoord();
+            if (this.terrain.get(index).getSpriteChar() != ' ') {
+                this.printArray[rowTemp][columnTemp] = this.terrain.get(index).getSpriteChar();
+            }
+        }
+
+        for (int index = 0; index < this.enemy.size(); index++) {
+            rowTemp = this.enemy.get(index).getCoord().getyCoord();
+            columnTemp = this.enemy.get(index).getCoord().getxCoord();
+            if (this.enemy.get(index).getSpriteChar() != ' ') {
+                this.printArray[rowTemp][columnTemp] = this.enemy.get(index).getSpriteChar();
+            }
+        }
+    }
+*/
