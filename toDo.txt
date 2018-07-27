@@ -1,0 +1,17 @@
+main menu
+    GUI
+    interactions
+    DONE!
+
+gameLoop()
+    remove printLegend
+
+returnMain()
+    GUI lose and win
+
+    DONE!!!
+
+gameLoop
+    remove printArray
+    checkSprites() remove printing and add toast to tell user they obtained an item
+    check gate {update the gate image}
