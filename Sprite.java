@@ -185,10 +185,10 @@ public class Sprite {
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
-	public boolean getOverlapsWith(){	//get the overlapsWith
+	/*public boolean getOverlapsWith(){	//get the overlapsWith
 		return this.overlapsWith;
-	}
-
+	}(remove overlapswith for now.)
+	*/
 	/**
 	 * Purpose: This is the getter for the sprites character varibale
 	 *
@@ -213,9 +213,9 @@ public class Sprite {
 		String strRep = "Name: " + this.getName() + ", Coord: " +
 			this.getCoord() + ", Image: " + this.getSpriteImage() + ", Char: " +
 			this.getSpriteChar() + ", Text: " + this.getDialogue() + ", Exists: " +
-			this.getExists() + ", Overlaps: " + this.getOverlapsWith();
+			this.getExists() ;
 		return strRep;
-	}
+		}
 
 	/*--------------------------Testing---------------------------------------*/
 	public static void main(String[] args) {

@@ -15,6 +15,10 @@ public class Location {
 	private int yCoord;
 	private int xSize;
 	private int ySize;
+	private int getPixelX;
+	private int getPixelYSize;
+	private int getPixelXSize;
+	private int getPixelY;
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
 
@@ -144,9 +148,44 @@ public class Location {
 	 * Purpose: To get the right boundary of the x coordinate.
 	 * @return rightboudary return the rightbounday for x value as a type of integer
 	 */
+	
 	public int getRightBoundary() {
 		return this.xCoord + this.xSize;
 	}
+	
+	/**
+	 * 
+	 * @return return the pixel set for x
+	 */
+
+	public int getPixelX(){
+		return this.getPixelX = this.xCoord * 100;
+	}
+
+	/**
+	 * 
+	 * @return return the pixel set for y
+	 */
+	public int getPixelY(){
+		return this.getPixelY = this.yCoord * 100;
+	}
+	
+	/**
+	 * @return return the pixel set for xsize
+	 */
+
+	public int getPixelXSzie(){
+		return this.getPixelXSize = this.xSize * 100;
+	}
+	/**
+	 * 
+	 * @return return the pixel set for ysize
+	 */
+	public int getPixelYSzie(){
+		return this.getPixelYSize = this.ySize * 100;
+	}
+
+
 
 	/**
 	 * Purpose: To print out a string representation of the class attributes
