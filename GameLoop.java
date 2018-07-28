@@ -1,3 +1,24 @@
+import java.util.Scanner;
+import java.io.Console;
+import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.Group;
+import javafx.animation.AnimationTimer;
+import javafx.scene.text.Font;
 
 import java.util.Scanner;
 import java.io.Console;
@@ -259,7 +280,8 @@ public class GameLoop {
                                         || (obj.get(i) instanceof Defence)
                                         || (obj.get(i) instanceof Weapon)) {
                                     pickUpItem(player, obj.get(i));
-                                    System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                    // maybe no toast here?
+                                    //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                     obj.remove(obj.get(i)); // remove the object from the array, this will need to change for the gui version maybe
                                 }
                                 result = true;
@@ -274,7 +296,7 @@ public class GameLoop {
                                     (obj.get(i) instanceof Defence) ||
                                     (obj.get(i) instanceof Weapon)) {
                                 pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
                             result = true;
@@ -288,7 +310,7 @@ public class GameLoop {
                                     (obj.get(i) instanceof Defence) ||
                                     (obj.get(i) instanceof Weapon)) {
                                 pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
                             result = true;
@@ -302,7 +324,7 @@ public class GameLoop {
                                     (obj.get(i) instanceof Defence) ||
                                     (obj.get(i) instanceof Weapon)) {
                                 pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
                             result = true;
@@ -371,7 +393,7 @@ public class GameLoop {
      */
     public void updateGate() {
         for (int i = 0; i < terrain.size(); i++) {
-            if (terrainElement.getName().equals("gate")) {
+            if (terrain.get(i).getName().equals("gate")) {
                 terrain.remove(i); // remove the element from the terrain list
             }
         }
@@ -519,7 +541,7 @@ public class GameLoop {
      * @param printArray This is the 2-D array of chars that will be printed out
      * to the screen
      */
-    public void drawState(Player player, char[][] printArray) {
+    public FlowPane drawState(Player player) {
         int colTemp;
         int rowTemp;
 
@@ -527,12 +549,21 @@ public class GameLoop {
         rowTemp = player.getCoord().getyCoord();
         printArray[rowTemp][colTemp] = player.getSpriteChar();
 
+        // set the scene elements
         for (int i = 0; i < printArray.length; i++) {
             for (int j = 0; j < printArray[0].length; j++) {
                 System.out.print(printArray[i][j]);
             }
             System.out.print("\n");
         }
+
+        // add the background (as refresh), all the elements from each array for
+        // printing and the player by using a GridPane view which automatically
+        // creates a grid for you. Lay the grid in to a FlowPane which will have
+        // the background image so it should hopefully print over top of it. pass
+        // this FlowPane as you return value.
+
+        return new FlowPane(); // this method just needs to
     }
 
     /**

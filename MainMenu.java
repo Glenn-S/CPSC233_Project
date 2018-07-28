@@ -18,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
+import javafx.scene.text.Font;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -60,7 +61,9 @@ public class MainMenu extends Application { // change this name to be the name o
         final String START = "START";
         final String STOP = "STOP";
         //String btnColour = "-fx-background-color: #FFFFFF; ";
-        final String BTNSTYLE = "-fx-font-size: 24; -fx-border-width: 10; ";
+        final Font BTNSTYLE = new Font(24);
+        final Font TITLESTYLE = new Font("Verdana", 42);
+        final Font SYNOPSISSTYLE = new Font(18);
         final double GAP = 10.0;
         final double BTNWIDTH = 150;
         final double BTNHEIGHT = 40;
@@ -81,15 +84,15 @@ public class MainMenu extends Application { // change this name to be the name o
         BorderPane bp = new BorderPane();
         VBox vb = new VBox();
         vb.setAlignment(Pos.CENTER);
-        vb.setStyle("-fx-background-color: #FFFFF0; ");
+        vb.setStyle("-fx-background-color: #FFFF20; ");
         vb.setSpacing(GAP);
 
         // GO BACK AND CITE HOW I KNOW HOW TO DO SOME OF THIS STUFF
 
         Button startBtn = new Button(START);
         Button exitBtn = new Button(STOP);
-        startBtn.setStyle(BTNSTYLE); // set the CSS preferences
-        exitBtn.setStyle(BTNSTYLE);
+        startBtn.setFont(BTNSTYLE); // set the CSS preferences
+        exitBtn.setFont(BTNSTYLE);
         startBtn.setPrefSize(BTNWIDTH, BTNHEIGHT);
         exitBtn.setPrefSize(BTNWIDTH, BTNHEIGHT);
         startBtn.setAlignment(Pos.CENTER);
@@ -99,9 +102,11 @@ public class MainMenu extends Application { // change this name to be the name o
         synopsis.setPrefSize(800, 300);
         synopsis.setAlignment(Pos.CENTER);
         synopsis.setWrapText(true);
+        synopsis.setFont(SYNOPSISSTYLE);
         Label title = new Label(GAMETITLE);
         title.setAlignment(Pos.CENTER);
-        title.setStyle(BTNSTYLE);
+        //title.setStyle(TITLESTYLE);
+        title.setFont(TITLESTYLE);
 
         vb.getChildren().addAll(title, synopsis, startBtn, exitBtn);
         bp.setCenter(vb);
@@ -150,8 +155,8 @@ public class MainMenu extends Application { // change this name to be the name o
         final String LOSEMESSAGE = "CONGRATULATIONS!, YOU ARE THE WORST AT WINNING";
         final String WINMESSAGE = "CONGRATULATIONS!, YOU ARE THE BEST AT NOT LOSING";
         final String RETURNMSG = "Press any key to return to the main menu";
-        final String MSGSTYLE = "-fx-font-size: 36; ";
-        final String PROMPTSTYLE = "-fx-font-size: 24; ";
+        final Font MSGSTYLE = new Font(36);
+        final Font PROMPTSTYLE = new Font(24);
         final double GAP = 20.0;
 
         boolean win = false;
@@ -203,17 +208,17 @@ public class MainMenu extends Application { // change this name to be the name o
         Label userMsg = new Label();
         if (win) userMsg.setText(WINMESSAGE);
         if (!win) userMsg.setText(LOSEMESSAGE);
-        userMsg.setStyle(MSGSTYLE);
+        userMsg.setFont(MSGSTYLE);
 
         Label prompt = new Label(RETURNMSG);
-        prompt.setStyle(PROMPTSTYLE);
+        prompt.setFont(PROMPTSTYLE);
         vb.getChildren().addAll(userMsg, prompt);
 
+        // get a prompt from the user to exit to the main scren
         Scene scene = mainStage.getScene();
         scene.setOnKeyTyped(e -> {
             scene.setRoot(mainMenu());
         });
-        System.out.println("I printed");
         return vb;
     }
 
