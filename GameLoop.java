@@ -1,3 +1,24 @@
+import java.util.Scanner;
+import java.io.Console;
+import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.Group;
+import javafx.animation.AnimationTimer;
+import javafx.scene.text.Font;
 
 import java.util.Scanner;
 import java.io.Console;
@@ -259,7 +280,8 @@ public class GameLoop {
                                         || (obj.get(i) instanceof Defence)
                                         || (obj.get(i) instanceof Weapon)) {
                                     pickUpItem(player, obj.get(i));
-                                    System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                    // maybe no toast here?
+                                    //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                     obj.remove(obj.get(i)); // remove the object from the array, this will need to change for the gui version maybe
                                 }
                                 result = true;
@@ -274,7 +296,7 @@ public class GameLoop {
                                     (obj.get(i) instanceof Defence) ||
                                     (obj.get(i) instanceof Weapon)) {
                                 pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
                             result = true;
@@ -288,7 +310,7 @@ public class GameLoop {
                                     (obj.get(i) instanceof Defence) ||
                                     (obj.get(i) instanceof Weapon)) {
                                 pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
                             result = true;
@@ -302,7 +324,7 @@ public class GameLoop {
                                     (obj.get(i) instanceof Defence) ||
                                     (obj.get(i) instanceof Weapon)) {
                                 pickUpItem(player, obj.get(i));
-                                System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
                             result = true;
@@ -360,8 +382,21 @@ public class GameLoop {
      * unlock
      */
     public boolean checkGate(Player player) {
-        // also update images in the gui version
-        return (player.getKeyCount() == totalKeys - 1) ? true : false;
+        boolean gateOpen = (player.getKeyCount() == totalKeys - 1) ? true : false;
+        if (gateOpen) updateGate(); // if it is open, delete the previous gate
+        return gateOpen;
+    }
+
+    /**
+     * Purpose: To update all of the gate images if needed. For now it will just
+     * remove the gates from the terrain list.
+     */
+    public void updateGate() {
+        for (int i = 0; i < terrain.size(); i++) {
+            if (terrain.get(i).getName().equals("gate")) {
+                terrain.remove(i); // remove the element from the terrain list
+            }
+        }
     }
 
     /**
@@ -497,55 +532,6 @@ public class GameLoop {
 
     }
 
-
-    /**
-     * Purpose: This method creates the 2-D array of characters, that will
-     * then be printed out onto the screen. It finds the column and row of each
-     * point in the terrain, enemy, and item array lists. Then puts the correct
-     * character into the the corresponding column, and row in the 2-D array.
-     * The 2-D array will not be filled completely because there are parts of the
-     * map that are empty.
-     *
-     * @param items This is the item arraylist
-     * @param enemy This is the enemy arrayList
-     * @param terrain This is the enemy ArrayList
-     */
-    public void refreshPrintArray() {
-        int rowTemp;
-        int columnTemp;
-
-        // empty the array
-        for (int i = 0; i < this.printArray.length; i++) {
-            for (int j = 0; j < this.printArray[0].length; j++) {
-                this.printArray[i][j] = ' ';
-            }
-        }
-
-        for (int index = 0; index < this.items.size(); index++) {
-            rowTemp = this.items.get(index).getCoord().getyCoord();
-            columnTemp = this.items.get(index).getCoord().getxCoord();
-            if (this.items.get(index).getSpriteChar() != ' ') {
-                this.printArray[rowTemp][columnTemp] = this.items.get(index).getSpriteChar();
-            }
-        }
-
-        for (int index = 0; index < this.terrain.size(); index++) {
-            rowTemp = this.terrain.get(index).getCoord().getyCoord();
-            columnTemp = this.terrain.get(index).getCoord().getxCoord();
-            if (this.terrain.get(index).getSpriteChar() != ' ') {
-                this.printArray[rowTemp][columnTemp] = this.terrain.get(index).getSpriteChar();
-            }
-        }
-
-        for (int index = 0; index < this.enemy.size(); index++) {
-            rowTemp = this.enemy.get(index).getCoord().getyCoord();
-            columnTemp = this.enemy.get(index).getCoord().getxCoord();
-            if (this.enemy.get(index).getSpriteChar() != ' ') {
-                this.printArray[rowTemp][columnTemp] = this.enemy.get(index).getSpriteChar();
-            }
-        }
-    }
-
     /**
      * Purpose: This method prints out the border to the screen
      *
@@ -555,7 +541,7 @@ public class GameLoop {
      * @param printArray This is the 2-D array of chars that will be printed out
      * to the screen
      */
-    public void drawState(Player player, char[][] printArray) {
+    public FlowPane drawState(Player player) {
         int colTemp;
         int rowTemp;
 
@@ -563,12 +549,21 @@ public class GameLoop {
         rowTemp = player.getCoord().getyCoord();
         printArray[rowTemp][colTemp] = player.getSpriteChar();
 
+        // set the scene elements
         for (int i = 0; i < printArray.length; i++) {
             for (int j = 0; j < printArray[0].length; j++) {
                 System.out.print(printArray[i][j]);
             }
             System.out.print("\n");
         }
+
+        // add the background (as refresh), all the elements from each array for
+        // printing and the player by using a GridPane view which automatically
+        // creates a grid for you. Lay the grid in to a FlowPane which will have
+        // the background image so it should hopefully print over top of it. pass
+        // this FlowPane as you return value.
+
+        return new FlowPane(); // this method just needs to
     }
 
     /**
@@ -854,3 +849,53 @@ public class GameLoop {
         // drawState has been tested out in GameBoard
     }
 }
+
+/*
+    /**
+     * Purpose: This method creates the 2-D array of characters, that will
+     * then be printed out onto the screen. It finds the column and row of each
+     * point in the terrain, enemy, and item array lists. Then puts the correct
+     * character into the the corresponding column, and row in the 2-D array.
+     * The 2-D array will not be filled completely because there are parts of the
+     * map that are empty.
+     *
+     * @param items This is the item arraylist
+     * @param enemy This is the enemy arrayList
+     * @param terrain This is the enemy ArrayList
+     */
+/*    public void refreshPrintArray() {
+        int rowTemp;
+        int columnTemp;
+
+        // empty the array
+        for (int i = 0; i < this.printArray.length; i++) {
+            for (int j = 0; j < this.printArray[0].length; j++) {
+                this.printArray[i][j] = ' ';
+            }
+        }
+
+        for (int index = 0; index < this.items.size(); index++) {
+            rowTemp = this.items.get(index).getCoord().getyCoord();
+            columnTemp = this.items.get(index).getCoord().getxCoord();
+            if (this.items.get(index).getSpriteChar() != ' ') {
+                this.printArray[rowTemp][columnTemp] = this.items.get(index).getSpriteChar();
+            }
+        }
+
+        for (int index = 0; index < this.terrain.size(); index++) {
+            rowTemp = this.terrain.get(index).getCoord().getyCoord();
+            columnTemp = this.terrain.get(index).getCoord().getxCoord();
+            if (this.terrain.get(index).getSpriteChar() != ' ') {
+                this.printArray[rowTemp][columnTemp] = this.terrain.get(index).getSpriteChar();
+            }
+        }
+
+        for (int index = 0; index < this.enemy.size(); index++) {
+            rowTemp = this.enemy.get(index).getCoord().getyCoord();
+            columnTemp = this.enemy.get(index).getCoord().getxCoord();
+            if (this.enemy.get(index).getSpriteChar() != ' ') {
+                this.printArray[rowTemp][columnTemp] = this.enemy.get(index).getSpriteChar();
+            }
+        }
+    }
+*/

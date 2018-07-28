@@ -102,7 +102,7 @@ public class Sprite {
 	 * @return name   the name of the sprite  as a type of String
 	 */
 	public String getName(){					//get the name
-		return this.name;
+		return new String(this.name);
 	}
 
 	/**
