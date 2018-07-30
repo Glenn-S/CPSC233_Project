@@ -551,7 +551,6 @@ public class GameLoop{
     {
         GridPane grid = new GridPane();
         FlowPane flow = new FlowPane();
-<<<<<<< HEAD
 
       ImageView playerImage = new ImageView(player.getSpriteImage());
 
@@ -564,47 +563,22 @@ public class GameLoop{
         GridPane.setConstraints(terrainImage,this.terrain.get(index).getCoord().getPixelX(),
                                 this.terrain.get(index).getCoord().getPixelY());
         grid.getChildren().addAll(terrainImage);
-=======
-
-      GridPane.setConstraints(new ImageView(player.getSpriteImage()), player.getPixelX(), player.getPixelY());
-      grid.getChildren().addAll(new ImageView(player.getSpriteImage()));
-
-      for(int index = 0; index < this.terrain.size(); index++)
-      {
-        GridPane.setConstraints(new ImageView(this.terrain.get(index).getSpriteImage()),this.terrain.get(index).getPixelX(),
-                                this.terrain.get(index).getPixelY());
-        grid.addAll(terrainImage);
->>>>>>> 564dae8862bd7155b4bb873a93fdbdf8cfc2df6e
       }
 
       for(int index = 0; index < this.enemy.size(); index++)
       {
-<<<<<<< HEAD
         ImageView enemyImage = new ImageView(this.enemy.get(index).getSpriteImage());
         GridPane.setConstraints(enemyImage,this.enemy.get(index).getCoord().getPixelX(),
                                 this.enemy.get(index).getCoord().getPixelY());
         grid.getChildren().addAll(enemyImage);
-=======
-
-        GridPane.setConstraints(new ImageView(this.enemy.get(index).getSpriteImage()),this.enemy.get(index).getPixelX(),
-                                this.enemy.get(index).getPixelY());
-        grid.addAll(enemyImage);
->>>>>>> 564dae8862bd7155b4bb873a93fdbdf8cfc2df6e
       }
 
       for(int index = 0; index < this.items.size(); index++)
       {
         ImageView itemImage = new ImageView(this.items.get(index).getSpriteImage());
-<<<<<<< HEAD
         GridPane.setConstraints(itemImage,this.items.get(index).getCoord().getPixelX(),
                                 this.items.get(index).getCoord().getPixelY());
         grid.getChildren().addAll(itemImage);
-=======
-
-        GridPane.setConstraints(new ImageView(this.items.get(index).getSpriteImage()),this.items.get(index).getPixelX(),
-                                this.items.get(index).getPixelY());
-        grid.addAll(itemImage);
->>>>>>> 564dae8862bd7155b4bb873a93fdbdf8cfc2df6e
       }
       flow.getChildren().add(grid);
 

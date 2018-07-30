@@ -78,12 +78,8 @@ public class GameBoard extends GameLoop {
       Image middleBottomGate = new Image("Gate7.png");
       Image rightBottomGate = new Image("Gate8.png");
       /*-----------------------------Border-------------------------------*/
-<<<<<<< HEAD
       Image border = new Image("borderGreen.png");
-=======
-      Image border = new Image("file:borderGreen.png");
 
->>>>>>> 564dae8862bd7155b4bb873a93fdbdf8cfc2df6e
 
 
       /*------------------------ROW 0-------------------------------------------*/
