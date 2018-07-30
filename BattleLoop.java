@@ -12,13 +12,12 @@ import java.util.Scanner;
  */
 public class BattleLoop extends GameLoop {
 
-    int bbCounter;
-    int mmCounter;
-    char turn = 'P';
+    int bbCounter; // counter for Butter Boomerang
+    int mmCounter; // counter for Margarine Missile
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
 
-    String turnAttack;
+    String turnAttack; // attack used during the current turn
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**
@@ -58,37 +57,53 @@ public class BattleLoop extends GameLoop {
     public boolean getEnemyUsedParry() {
         return this.enemyUsedParry;
     }
-
+    /**
+     * Purpose: Returns the number of turns that have passed since a use of the
+     * Butter Boomerang attack. 
+     * @return - turn count between 0 and 2 (inclusive) after Butter Boomerang
+     * has been selected as an attack
+     */
     public int getBBCounter() {
         return this.bbCounter;
     }
-
+    /**
+     * Purpose: Updates the number of turns that have passed since a use of the
+     * Butter Boomerang attack. 
+     * @param newCount - turns passed since last use of Butter Boomerang
+     */
     public void setBBCounter(int newCount) {
         this.bbCounter = newCount;
 
     }
-
+    /**
+     * Purpose: Returns the number of turns that have passed since a use of the
+     * Margarine Missile attack. 
+     * @return - turn count between 0 and 2 (inclusive) after Margarine Missile
+     * has been selected as an attack
+     */
     public int getMMCounter() {
         return this.mmCounter;
     }
-
+    /**
+     * Purpose: Updates the number of turns that have passed since a use of the
+     * Margarine Missile attack. 
+     * @param newCount - turns passed since last use of Margarine Missile
+     */
     public void setMMCounter(int newCount) {
         this.mmCounter = newCount;
 
     }
-
-    public char getTurn() {
-        return this.turn;
-    }
-
-    public void setTurn(char newTurn) {
-        this.turn = newTurn;
-    }
-
+    /**
+     * Purpose: Returns the selected attack of the player for the current turn 
+     * @return - attack the player wants to use as a String
+     */
     public String getTurnAttack() {
         return this.turnAttack;
     }
-
+    /**
+     * Purpose: Sets the desired attack of the player for the current turn 
+     * @param newATK - attack to be used by the player this turn
+     */
     public void setTurnAttack(String newATK) {
         this.turnAttack = newATK;
 
@@ -96,8 +111,8 @@ public class BattleLoop extends GameLoop {
 
     /*------------------------------- METHODS --------------------------------*/
     /**
-     * If a player has won a battle, the defeated enemy is removed from the game
-     * and replaced with a tombstone at the coordinates of the enemy.
+     * Purpose:If a player has won a battle, the defeated enemy is removed from 
+     * the game and replaced with a tombstone at the coordinates of the enemy.
      *
      * @param enemy - enemy in battle
      * @param enemyList - list of all enemies in game, defeated enemy removed
@@ -135,7 +150,7 @@ public class BattleLoop extends GameLoop {
 
     /**
      * Purpose: Interprets user inputs and returns the corresponding attack name
-     * and legality of the attack.
+     * and legality of the attack. Text version only.
      *
      * @param player - player whose input is taken
      * @return attack name
@@ -227,7 +242,7 @@ public class BattleLoop extends GameLoop {
 
     /**
      * Purpose: To update the player and enemy's health after each move
-     *
+     * For text version only.
      * @param player - player involved in battle
      * @param e - enemy involved in battle
      */
@@ -237,9 +252,11 @@ public class BattleLoop extends GameLoop {
     }
 
     /**
-     * Purpose: Output of enemy's selected attack
+     * Purpose: Output of enemy's selected attack. For GUI version of the game.
      *
-     * @param eAttack
+     * @param eAttack - attack of enemy
+     * @param player - player being attacked
+     * @param e - enemy who is attacking
      */
     public void eAttackExecute(String eAttack, Player player, Enemy e) {
         switch (eAttack) {
@@ -265,11 +282,11 @@ public class BattleLoop extends GameLoop {
     }
 
     /**
-     * Purpose: Output of player's selected attack
+     * Purpose: Output of player's selected attack. For GUI version only.
      *
-     * @param attack
-     * @param player
-     * @param e
+     * @param attack - desired attack of player
+     * @param player - player who is attacking
+     * @param e - enemy who is being attacked.
      */
     public void attackExecute(String attack, Player player, Enemy e) {
         switch (attack) {
@@ -297,7 +314,7 @@ public class BattleLoop extends GameLoop {
     /**
      * Purpose: Checks to see if a player has a potion to use in battle
      *
-     * @param player
+     * @param player - player who is being checked for potion
      * @return - true if player has a potion, false otherwise
      */
     public boolean playerHasPotion(Player player) {
@@ -355,7 +372,7 @@ public class BattleLoop extends GameLoop {
     }
 
     /**
-     * Purpose: To test engage Battle and this class
+     * Purpose: To test engage Battle and this class for text version only
      *
      * @param args
      */
