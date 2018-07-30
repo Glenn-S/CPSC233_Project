@@ -935,7 +935,7 @@ public class GameBoard extends GameLoop {
      * @param items an array list to be populated with items for in the game.
      */
     public void createItemArray(ArrayList<Sprite> items) {
-      Image chest = new Iamge("Chest1.png");
+      Image chest = new Image("Chest1.png");
 
 
 
@@ -989,7 +989,7 @@ public class GameBoard extends GameLoop {
         System.out.println("Terrain array size: " + terrain.size()); // expect lots (949)
         System.out.println("Enemy array size: " + enemy.size()); // expect 4
 
-        System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
+        //System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
 
         //gl.createPrintArray(charArray, items, terrain, enemy);
 
