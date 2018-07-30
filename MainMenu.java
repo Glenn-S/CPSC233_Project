@@ -87,11 +87,6 @@ public class MainMenu extends Application { // change this name to be the name o
         window.show();
     }
 
-    @Override
-    public void stop() {
-        // release resources
-    }
-
     public Parent display(GameLoop gamePlay) {
 
         // set up the user
@@ -115,12 +110,20 @@ public class MainMenu extends Application { // change this name to be the name o
                     // if game is done
                     Platform.exit();
                 }
-
+                
                 root = drawState(player);
             }
         };
         timer.start();
         return root;
+    }
+
+    /**
+     * Purpose: The main game driver for The Adventures of Montequilla. this
+     * will continue until the user selects quit.
+     */
+    public static void main(String[] args) {
+        launch(args);
     }
 
     /**
@@ -328,13 +331,7 @@ public class MainMenu extends Application { // change this name to be the name o
         window.show();
     }
 */
-    /**
-     * Purpose: The main game driver for The Adventures of Montequilla. this
-     * will continue until the user selects quit.
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 
 }
 
