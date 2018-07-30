@@ -961,7 +961,11 @@ public class GameBoard extends GameLoop  {
         System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
 
         //gl.createPrintArray(charArray, items, terrain, enemy);
+<<<<<<< HEAD
         g1.drawState(player);
+=======
+        //gl.drawState(player, charArray);
+>>>>>>> Glenn2
         System.out.println();
     }
 }

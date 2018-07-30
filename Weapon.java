@@ -67,8 +67,7 @@ public class Weapon extends Sprite {
     public Weapon(Weapon item) {
         // call supers constructor(s)
         super(item.getName(), item.getCoord(), item.getSpriteImage(),
-            item.getSpriteChar(), item.getDialogue(), item.getExists(),
-            item.getOverlapsWith());
+            item.getSpriteChar(), item.getDialogue(), item.getExists());
         this.weaponBoost = item.getWeaponBoost();
     }
 
