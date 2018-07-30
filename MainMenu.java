@@ -23,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
  * game.
@@ -33,6 +34,7 @@ public class MainMenu extends Application { // change this name to be the name o
     private final int WIDTH = 8000;
     private final String GAMETITLE = "The Adventures of Montequilla";
     private String userMove = "";
+    private Player player;
 
     private Pane root;
 
@@ -47,7 +49,20 @@ public class MainMenu extends Application { // change this name to be the name o
 
     @Override
     public void start(Stage window) throws Exception {
-        window.setScene(new Scene(createContent()));
+        GameLoop gamePlay = new GameLoop();
+        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+        player =  new Player("Montequilla", new Location(5, 38, 0, 0), new Image("Montequilla_BG.png"), 'x',
+                                null, true, false, 100, 25, 25, moves);
+        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
+        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+        player.addItem(starterSword);
+        player.updateAttack(starterSword);
+        player.addItem(starterShield);
+        player.updateDefence(starterShield);
+        player.addItem(smallPotion);
+
+        window.setScene(new Scene(createContent(gamePlay)));
         window.getScene().setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.W)) {
                 userMove = "up";
@@ -75,7 +90,8 @@ public class MainMenu extends Application { // change this name to be the name o
         // release resources
     }
 
-    public Parent createContent() {
+    public Parent createContent(GameLoop gamePlay) {
+        // set up the user
         root = new Pane();
         root.setPrefSize(WIDTH, HEIGHT);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
@@ -85,30 +101,22 @@ public class MainMenu extends Application { // change this name to be the name o
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
+                    // pass the new x/y for the player
+                    gamePlay.updatePosition(player, userMove); // if collision is not detected update player position
+                }
+                //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
+                if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
+                    // add in exit message later
+                    // if game is done
+                    Platform.exit();
+                }
 
-                //gc.strokeRect(x, y, 10, 10);
-                onUpdate();
-
-                //drawState()
+                drawState(player);
             }
         };
         timer.start();
         return root;
-    }
-
-    private void onUpdate() {
-        //update
-        if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
-            // pass the new x/y for the player
-            gamePlay.updatePosition(player, userMove); // if collision is not detected update player position
-        }
-        //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
-        if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
-            // add in exit message later
-            // if game is done
-            Platform.exit();
-        }
-        //render (draw)
     }
 
     /**

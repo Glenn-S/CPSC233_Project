@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import javafx.scene.image.image;
+
 /**
  * Purpose: To create all of the map objects to be placed on the game board.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class GameBoard extends GameLoop  {
+public class GameBoard extends GameLoop {
     /**
      * Purpose: This function is used to create/set up the enemy array ArrayList
      * every enemy has to be instantiated, and set up individually, then added to
@@ -39,37 +40,38 @@ public class GameBoard extends GameLoop  {
      */
     public void createTerrainArray(ArrayList<Sprite> terrain) {
       /*-----------------Middle mountain--------------------------------*/
-      Image rightMiddleMountain = new Image("file:rightMountainTile.png");
-      Image leftMiddleMountain = new Image("file:leftMountainTile.png");
-      Image middleMiddleMountain = new Image("file:centerMountainTile.png");
+      Image rightMiddleMountain = new Image("rightMountainTile.png");
+      Image leftMiddleMountain = new Image("leftMountainTile.png");
+      Image middleMiddleMountain = new Image("centerMountainTile.png");
       /*-----------------Top mountain-----------------------------------*/
-      Image rightTopMountain = new Image("file:rightTopMountainTile.png");
-      Image leftTopMountain = new Image("file:leftTopMountainTile.png");
-      Image middleTopMountain = new Image("file:topMountainTile.png");
+      Image rightTopMountain = new Image("rightTopMountainTile.png");
+      Image leftTopMountain = new Image("leftTopMountainTile.png");
+      Image middleTopMountain = new Image("topMountainTile.png");
       /*------------------Bottom mountain-------------------------------*/
-      Image rightBottomMountain = new Image("file:bottomRightMountainTile.png");
-      Image leftBottomMountain = new Image("file:bottomleftMountainTile.png");
-      Image middleBottomMountain = new Image("file:bottomCenterMountainTile.png");
+      Image rightBottomMountain = new Image("bottomRightMountainTile.png");
+      Image leftBottomMountain = new Image("bottomleftMountainTile.png");
+      Image middleBottomMountain = new Image("bottomCenterMountainTile.png");
       /*--------------------- Middle water------------------------------*/
-      Image rightMiddleWater = new Image("file:middleRightWaterTile.png");
-      Image leftMiddleWater = new Image("file:leftMiddleWaterTile.png");
-      Image middleMiddleWater = new Image("file:middleMiddleWaterTile.png");
+      Image rightMiddleWater = new Image("middleRightWaterTile.png");
+      Image leftMiddleWater = new Image("leftMiddleWaterTile.png");
+      Image middleMiddleWater = new Image("middleMiddleWaterTile.png");
       /*--------------------Top water-----------------------------------*/
-      Image rightTopWater = new Image("file:topRightWaterTile.png");
-      Image leftTopWater = new Image("file:topLeftWaterTile.png");
-      Image middleTopWater = new Image("file:topMiddleWaterTile.png");
+      Image rightTopWater = new Image("topRightWaterTile.png");
+      Image leftTopWater = new Image("topLeftWaterTile.png");
+      Image middleTopWater = new Image("topMiddleWaterTile.png");
       /*-------------------Bottom water------------------------------*/
-      Image rightBottomWater = new Image("file:bottomRightWaterTile.png");
-      Image leftBottomWater = new Image("file:bottomLeftWaterTile.png");
-      Image middleBottomWater = new Image("file:bottomMiddleWaterTile.png");
+      Image rightBottomWater = new Image("bottomRightWaterTile.png");
+      Image leftBottomWater = new Image("bottomLeftWaterTile.png");
+      Image middleBottomWater = new Image("bottomMiddleWaterTile.png");
       /*--------------------------Top Gate-----------------------------------*/
-      Image leftTopGate = new Image("file:Gate1.png");
-      Image middleTopGate = new Image("file:Gate2.png");
-      Image rightTopGate = new Image("file:Gate3.png");
+      Image leftTopGate = new Image("Gate1.png");
+      Image middleTopGate = new Image("Gate2.png");
+      Image rightTopGate = new Image("Gate3.png");
       /*---------------------------Middle Gate-----------------------------*/
-      Image leftMiddleGate = new Image("file:Gate4.png");
-      Image rightMiddleGate = new Image("file:Gate5.png");
+      Image leftMiddleGate = new Image("Gate4.png");
+      Image rightMiddleGate = new Image("Gate5.png");
       /*------------------------- Bottom Gate----------------------------*/
+<<<<<<< HEAD
       Image leftBottomGate = new Image("file:Gate6.png");
       Image middleBottomGate = new Image("file:Gate7.png");
       Image rightBottomGate = new Image("file:Gate8.png");
@@ -77,6 +79,11 @@ public class GameBoard extends GameLoop  {
       Image border = new Image("file:borderGreen.png");
 
 
+=======
+      Image leftBottomGate = new Image("Gate6.png");
+      Image middleBottomGate = new Image("Gate7.png");
+      Image rightBottomGate = new Image("Gate8.png");
+>>>>>>> master
 
 
       /*------------------------ROW 0-------------------------------------------*/
@@ -328,7 +335,11 @@ public class GameBoard extends GameLoop  {
         {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
+<<<<<<< HEAD
         terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0),middleTopMountain, '|', null, true, false));
+=======
+        terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0), null,middleTopMountain, '|', null, true, false));
+>>>>>>> master
         for(int index = 62; index < 67; index++)
         {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleTopMountain, '-', null, true, false));
@@ -982,11 +993,10 @@ public class GameBoard extends GameLoop  {
         System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
 
         //gl.createPrintArray(charArray, items, terrain, enemy);
-<<<<<<< HEAD
-        g1.drawState(player);
-=======
+
+        //g1.drawState(player);
+
         //gl.drawState(player, charArray);
->>>>>>> Glenn2
-        System.out.println();
     }
+
 }

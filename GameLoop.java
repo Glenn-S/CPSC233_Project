@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * Purpose: to run the underlying mechanics of the game loop.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class GameLoop extends Application {
+public class GameLoop {
 
     private int boardHeight = 40, boardLength = 80; // move these later
     private ArrayList<Sprite> terrain;
@@ -547,9 +547,10 @@ public class GameLoop extends Application {
      * to the screen
      */
     public FlowPane drawState(Player player) {
-      GridPane grid = new GridPane();
-      FlowPane flow = new FlowPane();
+        GridPane grid = new GridPane();
+        FlowPane flow = new FlowPane();
 
+<<<<<<< HEAD
       ImageView playerImage = new ImageView(player.getSpriteImage());
 
       GridPane.setConstraints(playerIamge, player.getPixelX(), player.getPixelY());
@@ -579,6 +580,29 @@ public class GameLoop extends Application {
         grid.addAll(itemImage);
       }
       flow.getChildren().add(grid);
+=======
+        GridPane.setConstraints(player.getSpriteImage(), player.getPixelX(), player.getPixelY());
+        grid.addAll(player.getSpriteImage());
+
+        for(int index = 0; index < this.terrain.size(); index++) {
+            GridPane.setConstraints(this.terrain.get(index).getSpriteImage(),this.terrain.get(index).getPixelX(),
+                                this.terrain.get(index).getPixelY());
+            grid.addAll(this.terrain.get(index).getSpriteImage());
+        }
+
+        for(int index = 0; index < this.enemy.size(); index++) {
+            GridPane.setConstraints(this.enemy.get(index).getSpriteImage(),this.enemy.get(index).getPixelX(),
+                                this.enemy.get(index).getPixelY());
+            grid.addAll(this.enemy.get(index).getSpriteImage());
+        }
+
+        for(int index = 0; index < this.items.size(); index++) {
+            GridPane.setConstraints(this.items.get(index).getSpriteImage(),this.items.get(index).getPixelX(),
+                                this.items.get(index).getPixelY());
+            grid.addAll(this.items.get(index).getSpriteImage());
+        }
+        flow.getChildren().add(grid);
+>>>>>>> master
 
         return flow; // this method just needs
       /*
