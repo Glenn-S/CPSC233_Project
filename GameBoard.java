@@ -937,9 +937,6 @@ public class GameBoard extends GameLoop {
     public void createItemArray(ArrayList<Sprite> items) {
       Image chest = new Image("Chest1.png");
 
-
-
-
         items.add(new Sprite("Chest", new Location(5,4,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(76,28,0,0), chest, '#', null, true, true));

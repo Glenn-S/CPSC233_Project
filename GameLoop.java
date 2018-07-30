@@ -554,6 +554,8 @@ public class GameLoop{
         GridPane grid = new GridPane();
         FlowPane flow = new FlowPane();
 
+      grid.setStyle("-fx-background-image: url('Green.png')");
+
       ImageView playerImage = new ImageView(player.getSpriteImage());
 
       GridPane.setConstraints(playerImage, player.getCoord().getPixelX(), player.getCoord().getPixelY());
@@ -695,17 +697,20 @@ public class GameLoop{
      *
      * @return a string with all the attributes
      */
-    @Override
+
     public String toString() {
         return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
                 + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
                 + this.winState + ", Lose State: " + this.loseState;
     }
 
+
+
+
     /**
      * Purpose: To allow the ability to test the various methods of the GameLoop
      */
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         // for testing methods
 
         // check constructor
