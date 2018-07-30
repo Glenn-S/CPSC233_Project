@@ -67,8 +67,7 @@ public class Potion extends Sprite {
     public Potion(Potion potion) {
         // call constructor of super(s)
         super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
-            potion.getSpriteChar(), potion.getDialogue(), potion.getExists(),
-            potion.getOverlapsWith());
+            potion.getSpriteChar(), potion.getDialogue(), potion.getExists());
         this.healthBoost = potion.getHealthBoost();
     }
 

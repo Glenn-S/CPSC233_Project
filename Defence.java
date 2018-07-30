@@ -47,8 +47,7 @@ public class Defence extends Sprite {
      */
     public Defence(Defence item) {
         super(item.getName(), item.getCoord(), item.getSpriteImage(),
-            item.getSpriteChar(), item.getDialogue(), item.getExists(),
-            item.getOverlapsWith());
+            item.getSpriteChar(), item.getDialogue(), item.getExists());
         this.defenceBoost = item.getDefenceBoost();
     }
 
