@@ -21,15 +21,18 @@ public class GameBoard extends GameLoop {
         Potion mediumPotion = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
         ArrayList<Potion> gruntPotions = new ArrayList<Potion>();
         ArrayList<Potion> bossPotions = new ArrayList<Potion>();
+        Image grunt = new Image("Margerine Men.png");
+        Image boss = new Image("I cant't believe its not butter boy.png");
+
         gruntPotions.add(smallPotion);
         bossPotions.add(smallPotion);
         bossPotions.add(mediumPotion);
 
         // maybe adjust the enemies range
-        enemy.add(new Enemy("Grunt", new Location(6,10,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
-        enemy.add(new Enemy("Grunt", new Location(55,8,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
-        enemy.add(new Enemy("Grunt", new Location(50,30,0,0), null, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
-        enemy.add(new Enemy("Boss", new Location(77,3,0,0), null, '+', null, true, false, 200, 200, 200, moves, true, bossPotions));
+        enemy.add(new Enemy("Grunt", new Location(6,10,0,0), grunt, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(55,8,0,0), grunt, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(50,30,0,0), grunt, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        enemy.add(new Enemy("Boss", new Location(77,3,0,0), boss, '+', null, true, false, 200, 200, 200, moves, true, bossPotions));
     }
 
     /**
@@ -71,19 +74,12 @@ public class GameBoard extends GameLoop {
       Image leftMiddleGate = new Image("Gate4.png");
       Image rightMiddleGate = new Image("Gate5.png");
       /*------------------------- Bottom Gate----------------------------*/
-<<<<<<< HEAD
-      Image leftBottomGate = new Image("file:Gate6.png");
-      Image middleBottomGate = new Image("file:Gate7.png");
-      Image rightBottomGate = new Image("file:Gate8.png");
-      /*-----------------------------Border-------------------------------*/
-      Image border = new Image("file:borderGreen.png");
-
-
-=======
       Image leftBottomGate = new Image("Gate6.png");
       Image middleBottomGate = new Image("Gate7.png");
       Image rightBottomGate = new Image("Gate8.png");
->>>>>>> master
+      /*-----------------------------Border-------------------------------*/
+      Image border = new Image("file:borderGreen.png");
+
 
 
       /*------------------------ROW 0-------------------------------------------*/
@@ -335,11 +331,9 @@ public class GameBoard extends GameLoop {
         {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
-<<<<<<< HEAD
+
         terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0),middleTopMountain, '|', null, true, false));
-=======
-        terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0), null,middleTopMountain, '|', null, true, false));
->>>>>>> master
+
         for(int index = 62; index < 67; index++)
         {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleTopMountain, '-', null, true, false));
@@ -941,29 +935,34 @@ public class GameBoard extends GameLoop {
      * @param items an array list to be populated with items for in the game.
      */
     public void createItemArray(ArrayList<Sprite> items) {
-        items.add(new Sprite("Chest", new Location(5,4,0,0), null, '#', null, true, true));
+      Image chest = new Iamge("Chest1.png");
+
+
+
+
+        items.add(new Sprite("Chest", new Location(5,4,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("Chest", new Location(76,28,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(76,28,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(76,28,0,0), null,' ', null, true, true, 50));
-        items.add(new Sprite("Chest", new Location(38,38,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(38,38,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(38,38,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("Chest", new Location(45,30,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(45,30,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(45,30,0,0), null,' ', null, true, true, 50));
-        items.add(new Sprite("Chest", new Location(74,36,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(74,36,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(74,36,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("Chest", new Location(51,6,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(51,6,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(51,6,0,0), null,' ', null, true, true, 50));
-        items.add(new Sprite("Chest", new Location(37,10,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(37,10,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(37,10,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("Chest", new Location(44,21,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(44,21,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(44,21,0,0), null,' ', null, true, true, 50));
-        items.add(new Sprite("Chest", new Location(22,19,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(22,19,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(22,19,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("Chest", new Location(6,30,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(6,30,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(6,30,0,0), null,' ', null, true, true, 50));
-        items.add(new Sprite("Chest", new Location(25,25,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(25,25,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(25,25,0,0), null,' ', null, true, true, 25));
-        items.add(new Sprite("Chest", new Location(13,9,0,0), null, '#', null, true, true));
+        items.add(new Sprite("Chest", new Location(13,9,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(13,9,0,0), null,' ', null, true, true, 50));
     }
 
@@ -973,7 +972,7 @@ public class GameBoard extends GameLoop {
     public static void main(String[] args) {
         GameLoop gl = new GameLoop();
         GameBoard gb = new GameBoard();
-        char[][] charArray = new char[40][80]; // initialize the array (200, 40)
+        //char[][] charArray = new char[40][80]; // initialize the array (200, 40)
         String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
         Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
                                 null, true, false, 100, 50, 50, null);
