@@ -92,7 +92,7 @@ public class MainMenu extends Application { // change this name to be the name o
 
     public Parent createContent(GameLoop gamePlay) {
         // set up the user
-        root = new Pane();
+        root = new FlowPane();
         root.setPrefSize(WIDTH, HEIGHT);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         root.getChildren().add(canvas);
@@ -112,7 +112,7 @@ public class MainMenu extends Application { // change this name to be the name o
                     Platform.exit();
                 }
 
-                drawState(player);
+                root = drawState(player);
             }
         };
         timer.start();
