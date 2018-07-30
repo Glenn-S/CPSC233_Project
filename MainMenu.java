@@ -76,6 +76,20 @@ public class MainMenu extends Application { // change this name to be the name o
     }
 
     public Parent createContent() {
+        GameLoop gamePlay = new GameLoop();
+        // set up the user
+        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+        Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
+                                null, true, false, 100, 25, 25, moves);
+        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
+        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+        player.addItem(starterSword);
+        player.updateAttack(starterSword);
+        player.addItem(starterShield);
+        player.updateDefence(starterShield);
+        player.addItem(smallPotion);
+
         root = new Pane();
         root.setPrefSize(WIDTH, HEIGHT);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
@@ -88,8 +102,7 @@ public class MainMenu extends Application { // change this name to be the name o
 
                 //gc.strokeRect(x, y, 10, 10);
                 onUpdate();
-
-                //drawState()
+                gamePlay.drawState(player);
             }
         };
         timer.start();

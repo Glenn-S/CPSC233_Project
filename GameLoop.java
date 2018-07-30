@@ -355,25 +355,25 @@ public class GameLoop extends Application {
         if (player != null) { // this could be a try and except statement?
             switch (move) {
                 case "up":
-                        if (player.getCoord().getUpperBoundary() - 1 == 0) {
-                            result = true; // remove these hard coded values later
-                        }
-                        break;
-                    case "down":
-                        if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
-                            result = true; // adjust for edge now
-                        }
-                        break;
-                    case "left":
-                        if (player.getCoord().getLeftBoundary() - 1 == 0) {
-                            result = true;
-                        }
-                        break;
-                    case "right":
-                        if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
-                            result = true; // adjust for edge now
-                        }
-                        break;
+                    if (player.getCoord().getUpperBoundary() - 1 == 0) {
+                        result = true; // remove these hard coded values later
+                    }
+                    break;
+                case "down":
+                    if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
+                        result = true; // adjust for edge now
+                    }
+                    break;
+                case "left":
+                    if (player.getCoord().getLeftBoundary() - 1 == 0) {
+                        result = true;
+                    }
+                    break;
+                case "right":
+                    if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
+                        result = true; // adjust for edge now
+                    }
+                    break;
             }
         }
         return result;
