@@ -148,13 +148,13 @@ public class Location {
 	 * Purpose: To get the right boundary of the x coordinate.
 	 * @return rightboudary return the rightbounday for x value as a type of integer
 	 */
-	
+
 	public int getRightBoundary() {
 		return this.xCoord + this.xSize;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @return return the pixel set for x
 	 */
 
@@ -163,25 +163,25 @@ public class Location {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return return the pixel set for y
 	 */
 	public int getPixelY(){
 		return this.getPixelY = this.yCoord * 100;
 	}
-	
+
 	/**
 	 * @return return the pixel set for xsize
 	 */
 
-	public int getPixelXSzie(){
+	public int getPixelXSize(){
 		return this.getPixelXSize = this.xSize * 100;
 	}
 	/**
-	 * 
+	 *
 	 * @return return the pixel set for ysize
 	 */
-	public int getPixelYSzie(){
+	public int getPixelYSize(){
 		return this.getPixelYSize = this.ySize * 100;
 	}
 

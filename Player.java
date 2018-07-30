@@ -171,9 +171,20 @@ public class Player extends Avatar {
 	}
 
 	/**
-	 * Purpose: This method is used to get the inventory of the calling Player
+	 * Purpose: This method is used to get the images of the items in the players Inventory
+	 *
+	 * @return  itemInventoryImage  This is an array list of images, the images represent the
+	 * items which are in the calling players items array
 	 */
-	public String getInventory() {
+	public ArrayList<Image> getInventory() {
+		ArrayList<Image> itemInventoryImage = new ArrayList<Image>();
+
+		for(int index = 0; index < this.items.size(); index++)
+		{
+			itemInventoryImage.add(this.items.get(index).getSpriteImage());
+		}
+		return itemInventoryImage;
+		/*
 		String strRep = "";
 		for (int i = 0; i < this.items.size(); i++) {
 			if (i == this.items.size()-1) {
@@ -182,8 +193,9 @@ public class Player extends Avatar {
 			else strRep = strRep + this.items.get(i).getName() + ", ";
 		}
 		return strRep + "\n" + "Number of keys: " + this.keyCount;
-	}
-	
+*/
+		}
+
 	/**
 	 * Purpose: This method returns the calling players currency value
 	 *

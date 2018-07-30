@@ -19,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Font;
+import javafx.scene.layout.GridPane;
 
 import java.util.Scanner;
 import java.io.Console;
@@ -28,13 +29,13 @@ import java.util.ArrayList;
  * Purpose: to run the underlying mechanics of the game loop.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class GameLoop {
+public class GameLoop extends Application {
 
     private int boardHeight = 40, boardLength = 80; // move these later
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
-    private char[][] printArray = new char[boardHeight][boardLength]; //[40][80]
+  //  private char[][] printArray = new char[boardHeight][boardLength]; //[40][80]
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
@@ -124,9 +125,11 @@ public class GameLoop {
     /**
      * @return the printArray
      */
+     /*
     public char[][] getPrintArray() {
         return printArray;
     }
+    */
 
     /**
      * Purpose: To set a new terrain objects list for the current game
@@ -184,9 +187,11 @@ public class GameLoop {
      *
      * @param printArray the printArray to set
      */
+      /*
     public void setPrintArray(char[][] printArray) {
         this.printArray = printArray;
     }
+    */
 
     /*------------------------------- METHODS --------------------------------*/
     /**
@@ -542,6 +547,36 @@ public class GameLoop {
      * to the screen
      */
     public FlowPane drawState(Player player) {
+      GridPane grid = new GridPane();
+      FlowPane flow = new FlowPane();
+
+      GridPane.setConstraints(player.getSpriteImage(), player.getPixelX(), player.getPixelY());
+      grid.addAll(player.getSpriteImage());
+
+      for(int index = 0; index < this.terrain.size(); index++)
+      {
+        GridPane.setConstraints(this.terrain.get(index).getSpriteImage(),this.terrain.get(index).getPixelX(),
+                                this.terrain.get(index).getPixelY());
+        grid.addAll(this.terrain.get(index).getSpriteImage());
+      }
+
+      for(int index = 0; index < this.enemy.size(); index++)
+      {
+        GridPane.setConstraints(this.enemy.get(index).getSpriteImage(),this.enemy.get(index).getPixelX(),
+                                this.enemy.get(index).getPixelY());
+        grid.addAll(this.enemy.get(index).getSpriteImage());
+      }
+
+      for(int index = 0; index < this.items.size(); index++)
+      {
+        GridPane.setConstraints(this.items.get(index).getSpriteImage(),this.items.get(index).getPixelX(),
+                                this.items.get(index).getPixelY());
+        grid.addAll(this.items.get(index).getSpriteImage());
+      }
+      flow.getChildren().add(grid);
+
+        return flow; // this method just needs
+      /*
         int colTemp;
         int rowTemp;
 
@@ -555,15 +590,14 @@ public class GameLoop {
                 System.out.print(printArray[i][j]);
             }
             System.out.print("\n");
-        }
+            */
+
 
         // add the background (as refresh), all the elements from each array for
         // printing and the player by using a GridPane view which automatically
         // creates a grid for you. Lay the grid in to a FlowPane which will have
         // the background image so it should hopefully print over top of it. pass
         // this FlowPane as you return value.
-
-        return new FlowPane(); // this method just needs to
     }
 
     /**
