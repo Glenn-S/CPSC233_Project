@@ -12,9 +12,9 @@ import java.util.Scanner;
  */
 public class BattleLoop extends GameLoop {
 
-    int bbCounter;
-    int mmCounter;
-    char turn = 'P';
+    private int bbCounter;
+    private int mmCounter;
+    private char turn = 'P';
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
 

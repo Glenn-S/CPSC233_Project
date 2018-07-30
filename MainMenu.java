@@ -43,12 +43,17 @@ public class MainMenu extends Application { // change this name to be the name o
     //private double x = 40;
     //private double y = 40;
 
-    @Override
+/*    @Override
     public void init() {
         // init resources
         // calls start after
     }
-
+*/
+    /**
+     * Purpose: The main game driver for The Adventures of Montequilla. this
+     * will continue until the user selects quit.
+     * @param window a Stage class used to
+     */
     @Override
     public void start(Stage window) throws Exception {
         GameLoop gamePlay = new GameLoop();
@@ -87,6 +92,10 @@ public class MainMenu extends Application { // change this name to be the name o
         window.show();
     }
 
+    /**
+     * Purpose: To create the content to fill each pane for an update.
+     * @param gamePlay an instance of the GameLoop class
+     */
     public Parent display(GameLoop gamePlay) {
 
         // set up the user
@@ -119,8 +128,7 @@ public class MainMenu extends Application { // change this name to be the name o
     }
 
     /**
-     * Purpose: The main game driver for The Adventures of Montequilla. this
-     * will continue until the user selects quit.
+     * Purpose: To call the start sequence for the game loop
      */
     public static void main(String[] args) {
         launch(args);
