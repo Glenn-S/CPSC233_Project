@@ -550,28 +550,33 @@ public class GameLoop extends Application {
       GridPane grid = new GridPane();
       FlowPane flow = new FlowPane();
 
-      GridPane.setConstraints(player.getSpriteImage(), player.getPixelX(), player.getPixelY());
-      grid.addAll(player.getSpriteImage());
+      ImageView playerImage = new ImageView(player.getSpriteImage());
+
+      GridPane.setConstraints(playerIamge, player.getPixelX(), player.getPixelY());
+      grid.addAll(playerImage);
 
       for(int index = 0; index < this.terrain.size(); index++)
       {
-        GridPane.setConstraints(this.terrain.get(index).getSpriteImage(),this.terrain.get(index).getPixelX(),
+        ImageView terrainImage = new ImageView(this.terrain.get(index). getSpriteImage());
+        GridPane.setConstraints(terrainImage,this.terrain.get(index).getPixelX(),
                                 this.terrain.get(index).getPixelY());
-        grid.addAll(this.terrain.get(index).getSpriteImage());
+        grid.addAll(terrainImage);
       }
 
       for(int index = 0; index < this.enemy.size(); index++)
       {
-        GridPane.setConstraints(this.enemy.get(index).getSpriteImage(),this.enemy.get(index).getPixelX(),
+        ImageView enemyImage = new ImageView(this.enemy.get(index).getSpriteImage());
+        GridPane.setConstraints(enemyImage,this.enemy.get(index).getPixelX(),
                                 this.enemy.get(index).getPixelY());
-        grid.addAll(this.enemy.get(index).getSpriteImage());
+        grid.addAll(enemyImage);
       }
 
       for(int index = 0; index < this.items.size(); index++)
       {
-        GridPane.setConstraints(this.items.get(index).getSpriteImage(),this.items.get(index).getPixelX(),
+        ImageView itemImage = new ImageView(this.items.get(index).getSpriteImage());
+        GridPane.setConstraints(itemImage,this.items.get(index).getPixelX(),
                                 this.items.get(index).getPixelY());
-        grid.addAll(this.items.get(index).getSpriteImage());
+        grid.addAll(itemImage);
       }
       flow.getChildren().add(grid);
 
