@@ -1,5 +1,5 @@
 import java.util.*;
-import java.awt.Image;
+import javafx.scene.image.Image;
 
 /**
  * Purpose: To represent a player and their attributes and moves in the game.

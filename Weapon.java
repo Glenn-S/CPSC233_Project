@@ -1,4 +1,5 @@
-import java.awt.Image;
+
+import javafx.scene.image.Image;
 
 /**
  * Purpose: To represent an offensive class of weapons for the user to own
@@ -67,7 +68,7 @@ public class Weapon extends Sprite {
     public Weapon(Weapon item) {
         // call supers constructor(s)
         super(item.getName(), item.getCoord(), item.getSpriteImage(),
-            item.getSpriteChar(), item.getDialogue(), item.getExists());
+            item.getSpriteChar(), item.getDialogue(), item.getExists(), item.getOverlapsWith());
         this.weaponBoost = item.getWeaponBoost();
     }
 

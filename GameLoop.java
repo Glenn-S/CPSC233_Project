@@ -24,12 +24,13 @@ import javafx.scene.layout.GridPane;
 import java.util.Scanner;
 import java.io.Console;
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class GameLoop extends Application {
+public class GameLoop{
 
     private int boardHeight = 40, boardLength = 80; // move these later
     private ArrayList<Sprite> terrain;
@@ -538,40 +539,50 @@ public class GameLoop extends Application {
     }
 
     /**
-     * Purpose: This method prints out the border to the screen
+     * Purpose: This method adds the images from the terrain, items, and enemy arraylists
+     * to a gridpane. This grid pane is then put onto a flow pane which is then returned
      *
-     * @param player This is the player that is playing the game. Their char
-     * image has to be added to the print array before the array can be printed
+     * @param player This is the player that is playing the game. Their
+     * image has to be added to the grid pane, as they are not a part of any
+     * arraylist
      *
-     * @param printArray This is the 2-D array of chars that will be printed out
-     * to the screen
+     * @return flow This is a flow pane that is is filled with the images from the terrain,
+     * items, and emeny arraylists. This flow pane is then returned, and is put onto the main stage
      */
-    public FlowPane drawState(Player player) {
-      GridPane grid = new GridPane();
-      FlowPane flow = new FlowPane();
+    public FlowPane drawState(Player player)
+    {
+        GridPane grid = new GridPane();
+        FlowPane flow = new FlowPane();
 
-      GridPane.setConstraints(player.getSpriteImage(), player.getPixelX(), player.getPixelY());
-      grid.addAll(player.getSpriteImage());
+      grid.setStyle("-fx-background-image: url('Green.png')");
+
+      ImageView playerImage = new ImageView(player.getSpriteImage());
+
+      GridPane.setConstraints(playerImage, player.getCoord().getPixelX(), player.getCoord().getPixelY());
+      grid.getChildren().addAll(playerImage);
 
       for(int index = 0; index < this.terrain.size(); index++)
       {
-        GridPane.setConstraints(this.terrain.get(index).getSpriteImage(),this.terrain.get(index).getPixelX(),
-                                this.terrain.get(index).getPixelY());
-        grid.addAll(this.terrain.get(index).getSpriteImage());
+        ImageView terrainImage = new ImageView(this.terrain.get(index). getSpriteImage());
+        GridPane.setConstraints(terrainImage,this.terrain.get(index).getCoord().getPixelX(),
+                                this.terrain.get(index).getCoord().getPixelY());
+        grid.getChildren().addAll(terrainImage);
       }
 
       for(int index = 0; index < this.enemy.size(); index++)
       {
-        GridPane.setConstraints(this.enemy.get(index).getSpriteImage(),this.enemy.get(index).getPixelX(),
-                                this.enemy.get(index).getPixelY());
-        grid.addAll(this.enemy.get(index).getSpriteImage());
+        ImageView enemyImage = new ImageView(this.enemy.get(index).getSpriteImage());
+        GridPane.setConstraints(enemyImage,this.enemy.get(index).getCoord().getPixelX(),
+                                this.enemy.get(index).getCoord().getPixelY());
+        grid.getChildren().addAll(enemyImage);
       }
 
       for(int index = 0; index < this.items.size(); index++)
       {
-        GridPane.setConstraints(this.items.get(index).getSpriteImage(),this.items.get(index).getPixelX(),
-                                this.items.get(index).getPixelY());
-        grid.addAll(this.items.get(index).getSpriteImage());
+        ImageView itemImage = new ImageView(this.items.get(index).getSpriteImage());
+        GridPane.setConstraints(itemImage,this.items.get(index).getCoord().getPixelX(),
+                                this.items.get(index).getCoord().getPixelY());
+        grid.getChildren().addAll(itemImage);
       }
       flow.getChildren().add(grid);
 
@@ -618,7 +629,12 @@ public class GameLoop extends Application {
     /**
      * Purpose: To obtain the users input for moving around the game board
      *
+<<<<<<< HEAD
      * @return a string representation of the users directional choice
+     * deprecated for the gui version, it is not in use now
+=======
+   } * @return a string representation of the users directional choice
+>>>>>>> 564dae8862bd7155b4bb873a93fdbdf8cfc2df6e
      */
     public String playerInput() {
         Console console = System.console();
@@ -681,17 +697,20 @@ public class GameLoop extends Application {
      *
      * @return a string with all the attributes
      */
-    @Override
+
     public String toString() {
         return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
                 + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
                 + this.winState + ", Lose State: " + this.loseState;
     }
 
+
+
+
     /**
      * Purpose: To allow the ability to test the various methods of the GameLoop
      */
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         // for testing methods
 
         // check constructor
