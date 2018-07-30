@@ -94,9 +94,10 @@ public class MainMenu extends Application { // change this name to be the name o
         // set up the user
         root = new FlowPane();
         root.setPrefSize(WIDTH, HEIGHT);
-        Canvas canvas = new Canvas(WIDTH, HEIGHT);
-        root.getChildren().add(canvas);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        // was used for testing with a drawing
+        //Canvas canvas = new Canvas(WIDTH, HEIGHT);
+        //root.getChildren().add(canvas);
+        //GraphicsContext gc = canvas.getGraphicsContext2D();
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
