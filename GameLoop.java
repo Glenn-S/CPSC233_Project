@@ -549,8 +549,7 @@ public class GameLoop {
     public FlowPane drawState(Player player) {
         GridPane grid = new GridPane();
         FlowPane flow = new FlowPane();
-
-<<<<<<< HEAD
+        
       ImageView playerImage = new ImageView(player.getSpriteImage());
 
       GridPane.setConstraints(playerIamge, player.getPixelX(), player.getPixelY());
@@ -580,31 +579,9 @@ public class GameLoop {
         grid.addAll(itemImage);
       }
       flow.getChildren().add(grid);
-=======
-        GridPane.setConstraints(player.getSpriteImage(), player.getPixelX(), player.getPixelY());
-        grid.addAll(player.getSpriteImage());
 
-        for(int index = 0; index < this.terrain.size(); index++) {
-            GridPane.setConstraints(this.terrain.get(index).getSpriteImage(),this.terrain.get(index).getPixelX(),
-                                this.terrain.get(index).getPixelY());
-            grid.addAll(this.terrain.get(index).getSpriteImage());
-        }
 
-        for(int index = 0; index < this.enemy.size(); index++) {
-            GridPane.setConstraints(this.enemy.get(index).getSpriteImage(),this.enemy.get(index).getPixelX(),
-                                this.enemy.get(index).getPixelY());
-            grid.addAll(this.enemy.get(index).getSpriteImage());
-        }
-
-        for(int index = 0; index < this.items.size(); index++) {
-            GridPane.setConstraints(this.items.get(index).getSpriteImage(),this.items.get(index).getPixelX(),
-                                this.items.get(index).getPixelY());
-            grid.addAll(this.items.get(index).getSpriteImage());
-        }
-        flow.getChildren().add(grid);
->>>>>>> master
-
-        return flow; // this method just needs
+      return flow; // this method just needs
       /*
         int colTemp;
         int rowTemp;

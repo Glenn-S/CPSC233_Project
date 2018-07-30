@@ -27,6 +27,8 @@ import javafx.scene.image.Image;
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
  * game.
+ * inspiration borrowed from:
+ * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class MainMenu extends Application { // change this name to be the name of the game
@@ -62,7 +64,7 @@ public class MainMenu extends Application { // change this name to be the name o
         player.updateDefence(starterShield);
         player.addItem(smallPotion);
 
-        window.setScene(new Scene(createContent(gamePlay)));
+        window.setScene(new Scene(display(gamePlay)));
         window.getScene().setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.W)) {
                 userMove = "up";
@@ -90,7 +92,8 @@ public class MainMenu extends Application { // change this name to be the name o
         // release resources
     }
 
-    public Parent createContent(GameLoop gamePlay) {
+    public Parent display(GameLoop gamePlay) {
+
         // set up the user
         root = new FlowPane();
         root.setPrefSize(WIDTH, HEIGHT);
