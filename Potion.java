@@ -1,4 +1,4 @@
-import java.awt.Image;
+import javafx.scene.image.Image;
 
 /**
  * Purpose: To represent a healing class of items for the user to own
@@ -67,7 +67,7 @@ public class Potion extends Sprite {
     public Potion(Potion potion) {
         // call constructor of super(s)
         super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
-            potion.getSpriteChar(), potion.getDialogue(), potion.getExists());
+            potion.getSpriteChar(), potion.getDialogue(), potion.getExists(), potion.getOverlapsWith());
         this.healthBoost = potion.getHealthBoost();
     }
 

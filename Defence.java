@@ -1,4 +1,4 @@
-import java.awt.Image;
+import javafx.scene.image.Image;
 
 /**
  * Purpose: To represent a defensive class of items for the users to own
@@ -47,7 +47,7 @@ public class Defence extends Sprite {
      */
     public Defence(Defence item) {
         super(item.getName(), item.getCoord(), item.getSpriteImage(),
-            item.getSpriteChar(), item.getDialogue(), item.getExists());
+            item.getSpriteChar(), item.getDialogue(), item.getExists(), item.getOverlapsWith());
         this.defenceBoost = item.getDefenceBoost();
     }
 

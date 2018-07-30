@@ -110,8 +110,8 @@ public class MainMenu extends Application { // change this name to be the name o
                     // if game is done
                     Platform.exit();
                 }
-                
-                root = drawState(player);
+
+                root = gamePlay.drawState(player);
             }
         };
         timer.start();

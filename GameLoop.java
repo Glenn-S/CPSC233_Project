@@ -24,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import java.util.Scanner;
 import java.io.Console;
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -549,34 +550,34 @@ public class GameLoop {
     public FlowPane drawState(Player player) {
         GridPane grid = new GridPane();
         FlowPane flow = new FlowPane();
-        
+
       ImageView playerImage = new ImageView(player.getSpriteImage());
 
-      GridPane.setConstraints(playerIamge, player.getPixelX(), player.getPixelY());
-      grid.addAll(playerImage);
+      GridPane.setConstraints(playerImage, player.getCoord().getPixelX(), player.getCoord().getPixelY());
+      grid.getChildren().addAll(playerImage);
 
       for(int index = 0; index < this.terrain.size(); index++)
       {
         ImageView terrainImage = new ImageView(this.terrain.get(index). getSpriteImage());
-        GridPane.setConstraints(terrainImage,this.terrain.get(index).getPixelX(),
-                                this.terrain.get(index).getPixelY());
-        grid.addAll(terrainImage);
+        GridPane.setConstraints(terrainImage,this.terrain.get(index).getCoord().getPixelX(),
+                                this.terrain.get(index).getCoord().getPixelY());
+        grid.getChildren().addAll(terrainImage);
       }
 
       for(int index = 0; index < this.enemy.size(); index++)
       {
         ImageView enemyImage = new ImageView(this.enemy.get(index).getSpriteImage());
-        GridPane.setConstraints(enemyImage,this.enemy.get(index).getPixelX(),
-                                this.enemy.get(index).getPixelY());
-        grid.addAll(enemyImage);
+        GridPane.setConstraints(enemyImage,this.enemy.get(index).getCoord().getPixelX(),
+                                this.enemy.get(index).getCoord().getPixelY());
+        grid.getChildren().addAll(enemyImage);
       }
 
       for(int index = 0; index < this.items.size(); index++)
       {
         ImageView itemImage = new ImageView(this.items.get(index).getSpriteImage());
-        GridPane.setConstraints(itemImage,this.items.get(index).getPixelX(),
-                                this.items.get(index).getPixelY());
-        grid.addAll(itemImage);
+        GridPane.setConstraints(itemImage,this.items.get(index).getCoord().getPixelX(),
+                                this.items.get(index).getCoord().getPixelY());
+        grid.getChildren().addAll(itemImage);
       }
       flow.getChildren().add(grid);
 
@@ -625,6 +626,7 @@ public class GameLoop {
      * Purpose: To obtain the users input for moving around the game board
      *
      * @return a string representation of the users directional choice
+     * deprecated for the gui version, it is not in use now
      */
     public String playerInput() {
         Console console = System.console();

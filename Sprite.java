@@ -1,4 +1,5 @@
-import java.awt.Image;
+//import java.awt.Image;
+import javafx.scene.image.Image;
 /**
  * Purpose: It's the parent class of  Avator , Potion ,Weapon and Defence
  *
@@ -185,10 +186,10 @@ public class Sprite {
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
-	/*public boolean getOverlapsWith(){	//get the overlapsWith
+	public boolean getOverlapsWith(){	//get the overlapsWith
 		return this.overlapsWith;
-	}(remove overlapswith for now.)
-	*/
+	} //(remove overlapswith for now.)
+
 	/**
 	 * Purpose: This is the getter for the sprites character varibale
 	 *

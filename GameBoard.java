@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import javafx.scene.image.image;
+import javafx.scene.image.Image;
 
 /**
  * Purpose: To create all of the map objects to be placed on the game board.
@@ -71,19 +71,11 @@ public class GameBoard extends GameLoop {
       Image leftMiddleGate = new Image("Gate4.png");
       Image rightMiddleGate = new Image("Gate5.png");
       /*------------------------- Bottom Gate----------------------------*/
-<<<<<<< HEAD
-      Image leftBottomGate = new Image("file:Gate6.png");
-      Image middleBottomGate = new Image("file:Gate7.png");
-      Image rightBottomGate = new Image("file:Gate8.png");
-      /*-----------------------------Border-------------------------------*/
-      Image border = new Image("file:borderGreen.png");
-
-
-=======
       Image leftBottomGate = new Image("Gate6.png");
       Image middleBottomGate = new Image("Gate7.png");
       Image rightBottomGate = new Image("Gate8.png");
->>>>>>> master
+      /*-----------------------------Border-------------------------------*/
+      Image border = new Image("borderGreen.png");
 
 
       /*------------------------ROW 0-------------------------------------------*/
@@ -335,11 +327,9 @@ public class GameBoard extends GameLoop {
         {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
-<<<<<<< HEAD
+
         terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0),middleTopMountain, '|', null, true, false));
-=======
-        terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0), null,middleTopMountain, '|', null, true, false));
->>>>>>> master
+
         for(int index = 62; index < 67; index++)
         {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleTopMountain, '-', null, true, false));

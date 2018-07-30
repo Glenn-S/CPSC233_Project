@@ -1,6 +1,4 @@
-
-
-import java.awt.Image;
+import javafx.scene.image.Image;
 
 /**
  * Purpose: This class represents all living/actionable sprites in the game
