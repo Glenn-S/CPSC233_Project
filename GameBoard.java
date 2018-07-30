@@ -1,11 +1,38 @@
+//import java.util.Scanner;
+//import java.io.Console;
 import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.Group;
+import javafx.animation.AnimationTimer;
+import javafx.scene.text.Font;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 
 /**
  * Purpose: To create all of the map objects to be placed on the game board.
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class GameBoard extends GameLoop {
+public class GameBoard extends Application {
     /**
      * Purpose: This function is used to create/set up the enemy array ArrayList
      * every enemy has to be instantiated, and set up individually, then added to
@@ -21,17 +48,20 @@ public class GameBoard extends GameLoop {
         Potion mediumPotion = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
         ArrayList<Potion> gruntPotions = new ArrayList<Potion>();
         ArrayList<Potion> bossPotions = new ArrayList<Potion>();
-        Image grunt = new Image("Margerine Men.png");
-        Image boss = new Image("I cant't believe its not butter boy.png");
+        Image grunt = new Image("file:Images/Margarine Men.png");
+        Image boss = new Image("file:Images/I can\'t believe it\'s not butter boy.png");
 
         gruntPotions.add(smallPotion);
         bossPotions.add(smallPotion);
         bossPotions.add(mediumPotion);
 
-        // maybe adjust the enemies range
+        // maybe adjust the enemies range 6, 10
         enemy.add(new Enemy("Grunt", new Location(6,10,0,0), grunt, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        // 55, 8
         enemy.add(new Enemy("Grunt", new Location(55,8,0,0), grunt, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        // 50, 30
         enemy.add(new Enemy("Grunt", new Location(50,30,0,0), grunt, '+', null, true, false, 100, 100, 100, moves, true, gruntPotions));
+        // 77, 3
         enemy.add(new Enemy("Boss", new Location(77,3,0,0), boss, '+', null, true, false, 200, 200, 200, moves, true, bossPotions));
     }
 
@@ -42,48 +72,48 @@ public class GameBoard extends GameLoop {
      * the game.
      */
     public void createTerrainArray(ArrayList<Sprite> terrain) {
-      /*-----------------Middle mountain--------------------------------*/
-      Image rightMiddleMountain = new Image("rightMountainTile.png");
-      Image leftMiddleMountain = new Image("leftMountainTile.png");
-      Image middleMiddleMountain = new Image("centerMountainTile.png");
-      /*-----------------Top mountain-----------------------------------*/
-      Image rightTopMountain = new Image("rightTopMountainTile.png");
-      Image leftTopMountain = new Image("leftTopMountainTile.png");
-      Image middleTopMountain = new Image("topMountainTile.png");
-      /*------------------Bottom mountain-------------------------------*/
-      Image rightBottomMountain = new Image("bottomRightMountainTile.png");
-      Image leftBottomMountain = new Image("bottomleftMountainTile.png");
-      Image middleBottomMountain = new Image("bottomCenterMountainTile.png");
-      /*--------------------- Middle water------------------------------*/
-      Image rightMiddleWater = new Image("middleRightWaterTile.png");
-      Image leftMiddleWater = new Image("leftMiddleWaterTile.png");
-      Image middleMiddleWater = new Image("middleMiddleWaterTile.png");
-      /*--------------------Top water-----------------------------------*/
-      Image rightTopWater = new Image("topRightWaterTile.png");
-      Image leftTopWater = new Image("topLeftWaterTile.png");
-      Image middleTopWater = new Image("topMiddleWaterTile.png");
-      /*-------------------Bottom water------------------------------*/
-      Image rightBottomWater = new Image("bottomRightWaterTile.png");
-      Image leftBottomWater = new Image("bottomLeftWaterTile.png");
-      Image middleBottomWater = new Image("bottomMiddleWaterTile.png");
-      /*--------------------------Top Gate-----------------------------------*/
-      Image leftTopGate = new Image("Gate1.png");
-      Image middleTopGate = new Image("Gate2.png");
-      Image rightTopGate = new Image("Gate3.png");
-      /*---------------------------Middle Gate-----------------------------*/
-      Image leftMiddleGate = new Image("Gate4.png");
-      Image rightMiddleGate = new Image("Gate5.png");
-      /*------------------------- Bottom Gate----------------------------*/
-      Image leftBottomGate = new Image("Gate6.png");
-      Image middleBottomGate = new Image("Gate7.png");
-      Image rightBottomGate = new Image("Gate8.png");
-      /*-----------------------------Border-------------------------------*/
-      Image border = new Image("borderGreen.png");
+        /*-----------------Middle mountain--------------------------------*/
+        Image rightMiddleMountain = new Image("file:Images/rightMountainTile.png");
+        Image leftMiddleMountain = new Image("file:Images/leftMounftainTile.png");
+        Image middleMiddleMountain = new Image("file:Images/centerMountainTile.png");
+        /*-----------------Top mountain-----------------------------------*/
+        Image rightTopMountain = new Image("file:Images/rightTopMountainTile.png");
+        Image leftTopMountain = new Image("file:Images/leftTopMountainTile.png");
+        Image middleTopMountain = new Image("file:Images/topMountainTile.png");
+        /*------------------Bottom mountain-------------------------------*/
+        Image rightBottomMountain = new Image("file:Images/bottomRightMountainTile.png");
+        Image leftBottomMountain = new Image("file:Images/bottomleftMountainTile.png");
+        Image middleBottomMountain = new Image("file:Images/bottomCenterMountainTile.png");
+        /*--------------------- Middle water------------------------------*/
+        Image rightMiddleWater = new Image("file:Images/middleRightWaterTile.png");
+        Image leftMiddleWater = new Image("file:Images/leftMiddleWaterTile.png");
+        Image middleMiddleWater = new Image("file:Images/middleMiddleWaterTile.png");
+        /*--------------------Top water-----------------------------------*/
+        Image rightTopWater = new Image("file:Images/topRightWaterTile.png");
+        Image leftTopWater = new Image("file:Images/topLeftWaterTile.png");
+        Image middleTopWater = new Image("file:Images/topMiddleWaterTile.png");
+        /*-------------------Bottom water------------------------------*/
+        Image rightBottomWater = new Image("file:Images/bottomRightWaterTile.png");
+        Image leftBottomWater = new Image("file:Images/bottomLeftWaterTile.png");
+        Image middleBottomWater = new Image("file:Images/bottomMiddleWaterTile.png");
+        /*--------------------------Top Gate-----------------------------------*/
+        Image leftTopGate = new Image("file:Images/Gate1.png");
+        Image middleTopGate = new Image("file:Images/Gate2.png");
+        Image rightTopGate = new Image("file:Images/Gate3.png");
+        /*---------------------------Middle Gate-----------------------------*/
+        Image leftMiddleGate = new Image("file:Images/Gate4.png");
+        Image rightMiddleGate = new Image("file:Images/Gate5.png");
+        /*------------------------- Bottom Gate----------------------------*/
+        Image leftBottomGate = new Image("file:Images/Gate6.png");
+        Image middleBottomGate = new Image("file:Images/Gate7.png");
+        Image rightBottomGate = new Image("file:Images/Gate8.png");
+        /*-----------------------------Border-------------------------------*/
+        Image border = new Image("file:Images/border.png");
 
 
 
-      /*------------------------ROW 0-------------------------------------------*/
-
+        /*------------------------ROW 0-------------------------------------------*/
+        // border
         for(int index = 0; index < 80; index++) {
             terrain.add(new Sprite("border", new Location(index, 0, 0, 0), border, '-', null, true, false));
         }
@@ -99,10 +129,10 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite("water",new Location(38, 1, 0, 0),rightBottomWater , '/', null, true, false));
         terrain.add(new Sprite("water",new Location(47, 1, 0, 0), leftMiddleWater, '|', null, true, false));
 
-        for(int index = 48; index < 57; index++)
-        {
-          terrain.add(new Sprite("water",new Location(index, 1, 0, 0), middleMiddleWater, '~', null, true, false));
+        for(int index = 48; index < 57; index++) {
+            terrain.add(new Sprite("water",new Location(index, 1, 0, 0), middleMiddleWater, '~', null, true, false));
         }
+
         terrain.add(new Sprite("water",new Location(57, 1, 0, 0), rightBottomWater, '/', null, true, false));
 
         terrain.add(new Sprite("mountain",new Location(66, 1, 0, 0),leftMiddleMountain , '|', null, true, false));
@@ -111,7 +141,7 @@ public class GameBoard extends GameLoop {
             terrain.add(new Sprite("mountain",new Location(index, 1, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
-          terrain.add(new Sprite("border",new Location(79, 1, 0, 0), border, '|', null, true, false));
+        terrain.add(new Sprite("border",new Location(79, 1, 0, 0), border, '|', null, true, false));
 
         /*-------------------------ROW 2--------------------------------------*/
 
@@ -126,9 +156,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("water",new Location(47, 2, 0, 0), leftMiddleWater, '|', null, true, false));
 
-        for(int index = 48; index < 56; index++)
-        {
-          terrain.add(new Sprite("water",new Location(index, 2, 0, 0), middleMiddleWater, '~', null, true, false));
+        for(int index = 48; index < 56; index++) {
+            terrain.add(new Sprite("water",new Location(index, 2, 0, 0), middleMiddleWater, '~', null, true, false));
         }
 
         terrain.add(new Sprite("water",new Location(56, 2, 0, 0), rightBottomWater, '/', null, true, false));
@@ -139,6 +168,7 @@ public class GameBoard extends GameLoop {
         for(int index = 67; index < 76; index++) {
             terrain.add(new Sprite("mountain",new Location(index, 2, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
+
         terrain.add(new Sprite("mountain",new Location(76, 2, 0, 0), middleBottomMountain, '-', null, true, false));
         terrain.add(new Sprite("mountain",new Location(77, 2, 0, 0), middleBottomMountain, '-', null, true, false));
         terrain.add(new Sprite("mountain",new Location(78, 2, 0, 0), middleBottomMountain, '-', null, true, false));
@@ -154,19 +184,19 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("water",new Location(36, 3, 0, 0), rightBottomWater, '/', null, true, false));
         terrain.add(new Sprite("water",new Location(47, 3, 0, 0), leftMiddleWater, '|', null, true, false));
-        for(int index = 48; index < 55; index++)
-        {
-          terrain.add(new Sprite("water",new Location(index, 3, 0, 0), middleMiddleWater, '~', null, true, false));
+        for(int index = 48; index < 55; index++) {
+            terrain.add(new Sprite("water",new Location(index, 3, 0, 0), middleMiddleWater, '~', null, true, false));
         }
+
         terrain.add(new Sprite("water",new Location(55, 3, 0, 0), rightBottomWater, '/', null, true, false));
         terrain.add(new Sprite("mountain",new Location(66, 3, 0, 0), leftMiddleMountain, '|', null, true, false));
 
         for(int index = 67; index < 76; index++) {
-          terrain.add(new Sprite("mountain",new Location(index, 3, 0, 0), middleMiddleMountain, 'm', null, true, false));
+            terrain.add(new Sprite("mountain",new Location(index, 3, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
-          terrain.add(new Sprite("mountain", new Location(76, 3, 0, 0), rightMiddleMountain, '|', null, true, false));
-          terrain.add(new Sprite("border",new Location(79, 3, 0, 0), border, '|', null, true, false));
+        terrain.add(new Sprite("mountain", new Location(76, 3, 0, 0), rightMiddleMountain, '|', null, true, false));
+        terrain.add(new Sprite("border",new Location(79, 3, 0, 0), border, '|', null, true, false));
 
         /*-------------------------------ROW 4--------------------------------*/
 
@@ -180,8 +210,7 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite("water", new Location(35, 4, 0, 0), rightBottomWater, '/', null, true, false));
 
         terrain.add(new Sprite("water",new Location(47, 4, 0, 0), leftBottomWater, '|', null, true, false));
-        for(int index = 48; index < 54; index++)
-        {
+        for(int index = 48; index < 54; index++) {
           terrain.add(new Sprite("water",new Location(index, 4, 0, 0), middleBottomWater, '-', null, true, false));
         }
 
@@ -189,12 +218,12 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(66, 4, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-          for(int index = 67; index < 76; index++) {
-              terrain.add(new Sprite("mountain", new Location(index, 4, 0, 0), middleMiddleMountain, 'm', null, true, false));
-            }
+        for(int index = 67; index < 76; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 4, 0, 0), middleMiddleMountain, 'm', null, true, false));
+        }
 
-          terrain.add(new Sprite("mountain", new Location(76, 4, 0, 0), rightMiddleMountain, '|', null, true, false));
-          terrain.add(new Sprite("border",new Location(79, 4, 0, 0),border,'|',null,true,false));
+        terrain.add(new Sprite("mountain", new Location(76, 4, 0, 0), rightMiddleMountain, '|', null, true, false));
+        terrain.add(new Sprite("border",new Location(79, 4, 0, 0),border,'|',null,true,false));
 
         /*---------------------------ROW 5------------------------------------*/
 
@@ -209,16 +238,15 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(59, 5, 0, 0), leftTopMountain, '/', null, true, false));
 
-        for(int index = 60; index < 63; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 5, 0, 0), middleTopMountain, '-', null, true, false));
+        for(int index = 60; index < 63; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 5, 0, 0), middleTopMountain, '-', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(66, 5, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-      for(int index = 67; index < 76; index++) {
-          terrain.add(new Sprite("mountain", new Location(index, 5, 0, 0),middleMiddleMountain , 'm', null, true, false));
-          }
+        for(int index = 67; index < 76; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 5, 0, 0),middleMiddleMountain , 'm', null, true, false));
+        }
 
         terrain.add(new Sprite("mountain", new Location(76, 5, 0, 0), rightBottomMountain, '/', null, true, false));
         terrain.add(new Sprite("border", new Location(79, 5, 0, 0), border, '|', null, true, false));
@@ -236,10 +264,10 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(58, 6, 0, 0), leftTopMountain, '/', null, true, false));
 
-        for(int index = 59; index < 62; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 6, 0, 0), middleMiddleMountain, 'm', null, true, false));
+        for(int index = 59; index < 62; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 6, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
+
         terrain.add(new Sprite("mountain", new Location(62, 6, 0, 0), rightBottomMountain, '/', null, true, false));
 
         terrain.add(new Sprite("mountain", new Location(66, 6, 0, 0), leftMiddleMountain, '|', null, true, false));
@@ -249,7 +277,7 @@ public class GameBoard extends GameLoop {
           }
 
         for(int index = 72; index < 77; index++)  {
-          terrain.add(new Sprite("mountain", new Location(index, 6, 0, 0), middleTopMountain, '-', null, true, false));
+            terrain.add(new Sprite("mountain", new Location(index, 6, 0, 0), middleTopMountain, '-', null, true, false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 6, 0, 0), border, '|', null, true, false));
@@ -267,8 +295,7 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(57, 7, 0, 0), leftTopMountain, '/', null, true, false));
 
-        for(int index = 58; index < 61; index++)
-        {
+        for(int index = 58; index < 61; index++) {
           terrain.add(new Sprite("mountain", new Location(index, 7, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
@@ -296,19 +323,16 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(57, 8, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-        for(int index = 57; index < 60; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 8, 0, 0), middleMiddleMountain, 'm', null, true, false));
+        for(int index = 57; index < 60; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 8, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(61, 8, 0, 0), rightBottomMountain, '/', null, true, false));
 
         terrain.add(new Sprite("mountain", new Location(66, 8, 0, 0), leftMiddleMountain, '|', null, true, false));
-        for(int index = 67; index < 70; index++)
-        {
+        for(int index = 67; index < 70; index++) {
           terrain.add(new Sprite("mountain", new Location(index, 8, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
-
 
         terrain.add(new Sprite("mountain", new Location(70, 8, 0, 0), rightBottomMountain, '/', null, true, false));
 
@@ -327,27 +351,24 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(57, 9, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-        for(int index = 58; index < 60; index++)
-        {
+        for(int index = 58; index < 60; index++) {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(60, 9, 0, 0),middleTopMountain, '|', null, true, false));
 
-        for(int index = 62; index < 67; index++)
-        {
+        for(int index = 62; index < 67; index++) {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleTopMountain, '-', null, true, false));
         }
 
-        for(int index = 67; index < 69; index++)
-        {
+        for(int index = 67; index < 69; index++) {
           terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(69, 9, 0, 0), rightBottomMountain, '/', null, true, false));
 
         for(int index = 72; index < 79; index++) {
-          terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleTopMountain, '-', null, true, false));
+            terrain.add(new Sprite("mountain", new Location(index, 9, 0, 0), middleTopMountain, '-', null, true, false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 9, 0, 0), border, '|', null, true, false));
@@ -365,9 +386,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(57, 10, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-        for(int index = 58; index < 68; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 10, 0, 0), middleMiddleMountain, 'm', null, true, false));
+        for(int index = 58; index < 68; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 10, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(68, 10, 0, 0), rightBottomMountain, '/', null, true, false));
@@ -375,7 +395,7 @@ public class GameBoard extends GameLoop {
 
 
         for(int index = 72; index < 79;index++) {
-          terrain.add(new Sprite("mountain", new Location(index, 10, 0, 0), middleMiddleMountain, 'm', null, true, false));
+            terrain.add(new Sprite("mountain", new Location(index, 10, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 10, 0, 0), border, '|', null, true, false));
@@ -393,19 +413,17 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(57, 11, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 11, 0, 0), middleMiddleMountain, 'm', null, true, false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 11, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(70, 11, 0, 0), rightBottomMountain, '/', null, true, false));
 
-        for(int index = 71; index < 79; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 11, 0, 0), middleMiddleMountain, 'm', null, true, false));
-
+        for(int index = 71; index < 79; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 11, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
-          terrain.add(new Sprite("border", new Location(79, 11, 0, 0), border, '|', null, true, false));
+
+        terrain.add(new Sprite("border", new Location(79, 11, 0, 0), border, '|', null, true, false));
 
         /*-------------------------------Row 12-----------------------------------*/
 
@@ -420,9 +438,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(57, 12, 0, 0), rightTopMountain, '|', null, true, false));
 
-        for(int index = 58; index < 66; index++)
-        {
-          terrain.add(new Sprite("mountain", new Location(index, 12, 0, 0), middleTopMountain, '-', null, true, false));
+        for(int index = 58; index < 66; index++) {
+            terrain.add(new Sprite("mountain", new Location(index, 12, 0, 0), middleTopMountain, '-', null, true, false));
         }
 
         terrain.add(new Sprite("mountain", new Location(66, 12, 0, 0), rightBottomMountain, '/', null, true, false));
@@ -430,7 +447,7 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite("mountain", new Location(69, 12, 0, 0), leftTopMountain, '/', null, true, false));
 
         for(int index = 70; index < 79; index++) {
-          terrain.add(new Sprite("mountain", new Location(index, 12, 0, 0), middleMiddleMountain, 'm', null, true, false));
+            terrain.add(new Sprite("mountain", new Location(index, 12, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 12, 0, 0), border, '|', null, true, false));
@@ -447,7 +464,7 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite("water", new Location(26, 13, 0, 0), rightBottomWater, '/', null, true, false));
         terrain.add(new Sprite ("gate", new Location(60,13,0,0),middleTopGate , '=', null, true,false));
         terrain.add(new Sprite ("gate", new Location(61,13,0,0), middleTopGate, '=', null, true,false));
-      terrain.add(new Sprite("mountain", new Location(69, 13, 0, 0), leftMiddleMountain, '|', null, true, false));
+        terrain.add(new Sprite("mountain", new Location(69, 13, 0, 0), leftMiddleMountain, '|', null, true, false));
 
         for(int index = 70; index < 79; index++) {
             terrain.add(new Sprite("mountain", new Location(index, 13, 0, 0), middleMiddleMountain, 'm', null, true, false));
@@ -463,11 +480,11 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite ("gate", new Location(62,14,0,0), leftMiddleGate,'=', null, true,false));
         terrain.add(new Sprite("mountain", new Location(69, 14, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-          for(int index = 70; index < 79; index++) {
+        for(int index = 70; index < 79; index++) {
             terrain.add(new Sprite("mountain", new Location(index, 14, 0, 0), middleMiddleMountain, 'm', null, true, false));
-          }
+        }
 
-          terrain.add(new Sprite("border", new Location(79, 14, 0, 0), border, '|', null, true, false));
+        terrain.add(new Sprite("border", new Location(79, 14, 0, 0), border, '|', null, true, false));
 
 
         /*----------------------------------Row 15--------------------------------*/
@@ -478,21 +495,20 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite ("gate", new Location(63,15,0,0), leftMiddleGate, '=', null, true,false));
         terrain.add(new Sprite("mountain", new Location(69, 15, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-          for(int index = 70; index < 79; index++) {
+        for(int index = 70; index < 79; index++) {
             terrain.add(new Sprite("mountain", new Location(index, 15, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 15, 0, 0), border, '|', null, true, false));
 
-
         /*-----------------------------------Row 16-------------------------------*/
 
         terrain.add(new Sprite("border", new Location(0, 16, 0, 0), border, '|', null, true, false));
 
-        for(int index = 63; index < 69; index++)
-        {
-          terrain.add(new Sprite ("gate", new Location(index,16,0,0), middleBottomGate, '=', null, true,false));
+        for(int index = 63; index < 69; index++) {
+            terrain.add(new Sprite ("gate", new Location(index,16,0,0), middleBottomGate, '=', null, true,false));
         }
+
         terrain.add(new Sprite("mountain", new Location(69, 16, 0, 0), leftMiddleMountain, '|', null, true, false));
 
         for(int index = 70; index < 79; index++) {
@@ -522,7 +538,7 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite("mountain", new Location(69, 18, 0, 0), leftMiddleMountain, '|', null, true, false));
 
-      for(int index = 70; index < 79; index++) {
+        for(int index = 70; index < 79; index++) {
             terrain.add(new Sprite("mountain", new Location(index, 18, 0, 0), middleMiddleMountain, '-', null, true, false));
         }
 
@@ -541,9 +557,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(61,20,0,0), leftTopMountain, '/', null, true,false));
 
-        for(int index = 62; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,20,0,0), middleTopMountain, '-', null, true,false));
+        for(int index = 62; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,20,0,0), middleTopMountain, '-', null, true,false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 20, 0, 0), border, '|', null, true, false));
@@ -561,10 +576,10 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(60,21,0,0), leftTopMountain, '/', null, true,false));
 
-        for(int index = 61; index < 66; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,21,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 61; index < 66; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,21,0,0), middleMiddleMountain, 'm', null, true,false));
         }
+
         terrain.add(new Sprite ("mountain", new Location(66,21,0,0), rightMiddleMountain, '|', null, true,false));
 
         terrain.add(new Sprite("border", new Location(79, 21, 0, 0), border, '|', null, true, false));
@@ -582,10 +597,10 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(59,22,0,0), leftTopMountain, '/', null, true,false));
 
-        for(int index = 60; index < 66; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,22,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 60; index < 66; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,22,0,0), middleMiddleMountain, 'm', null, true,false));
         }
+
         terrain.add(new Sprite ("mountain", new Location(66,22,0,0), rightMiddleMountain, '|', null, true,false));
 
         terrain.add(new Sprite("border", new Location(79, 22, 0, 0), border, '|', null, true, false));
@@ -602,14 +617,12 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(58,23,0,0), leftTopMountain, '/', null, true,false));
 
-        for(int index = 59; index < 66;)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,23,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 59; index < 66; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,23,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
-        for(int index = 66; index < 73; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,23,0,0), middleTopMountain, '-', null, true,false));
+        for(int index = 66; index < 73; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,23,0,0), middleTopMountain, '-', null, true,false));
         }
 
         terrain.add(new Sprite("border", new Location(79, 23, 0, 0), border, '|', null, true, false));
@@ -626,9 +639,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,24,0,0), leftTopMountain, '/', null, true,false));
 
-        for(int index = 58; index < 72; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,24,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 72; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,24,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(72,24,0,0), rightBottomMountain, '/', null, true,false));
@@ -647,9 +659,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,25,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 71; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,25,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 71; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,25,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(71,25,0,0), rightBottomMountain, '/', null, true,false));
@@ -668,9 +679,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,26,0,0), leftMiddleWater, '|', null, true,false));
 
-        for(int index = 58; index < 70; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,26,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 70; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,26,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(70,26,0,0), rightBottomMountain, '/', null, true,false));
@@ -689,9 +699,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,27,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 69; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,27,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 69; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,27,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(69,27,0,0), rightBottomMountain, '/', null, true,false));
@@ -710,9 +719,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,28,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 68; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,28,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 68; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,28,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(68,28,0,0), rightBottomMountain, '/', null, true,false));
@@ -731,9 +739,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,29,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,29,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,29,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,29,0,0), rightMiddleMountain, '|', null, true,false));
@@ -752,9 +759,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,30,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,30,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,30,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,30,0,0), rightMiddleMountain, '|', null, true,false));
@@ -766,16 +772,15 @@ public class GameBoard extends GameLoop {
         terrain.add(new Sprite("border", new Location(0, 31, 0, 0), border, '|', null, true, false));
 
         for(int index =1; index < 8; index++) {
-          terrain.add(new Sprite("water", new Location(index, 31, 0, 0), middleMiddleWater, '~', null, true, false));
+            terrain.add(new Sprite("water", new Location(index, 31, 0, 0), middleMiddleWater, '~', null, true, false));
         }
 
         terrain.add(new Sprite("water", new Location(8, 31, 0, 0), rightBottomWater, '/', null, true, false));
 
         terrain.add(new Sprite ("mountain", new Location(57,31,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,31,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,31,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,31,0,0), rightMiddleMountain, '|', null, true,false));
@@ -794,8 +799,7 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,32,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
+        for(int index = 58; index < 67; index++) {
           terrain.add(new Sprite ("mountain", new Location(index,32,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
@@ -815,9 +819,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,33,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,33,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,33,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,33,0,0), rightMiddleMountain, '|', null, true,false));
@@ -836,9 +839,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,34,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,34,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,34,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,34,0,0), rightMiddleMountain, '|', null, true,false));
@@ -857,9 +859,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,35,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,35,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,35,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,35,0,0), rightMiddleMountain, '|', null, true,false));
@@ -878,9 +879,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,36,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 67; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,36,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 67; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,36,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(67,36,0,0), rightMiddleMountain, '|', null, true,false));
@@ -897,9 +897,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,37,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 66; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,37,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 66; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,37,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(66,37,0,0), rightBottomMountain, '/', null, true,false));
@@ -913,9 +912,8 @@ public class GameBoard extends GameLoop {
 
         terrain.add(new Sprite ("mountain", new Location(57,38,0,0), leftMiddleMountain, '|', null, true,false));
 
-        for(int index = 58; index < 65; index++)
-        {
-          terrain.add(new Sprite ("mountain", new Location(index,38,0,0), middleMiddleMountain, 'm', null, true,false));
+        for(int index = 58; index < 65; index++) {
+            terrain.add(new Sprite ("mountain", new Location(index,38,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(65,38,0,0), rightBottomMountain, '/', null, true,false));
@@ -927,7 +925,10 @@ public class GameBoard extends GameLoop {
         for(int index = 0; index < 80; index ++) {
             terrain.add(new Sprite("border", new Location(index, 39, 0, 0), border, '-', null, true, false));
         }
+
     }
+
+
 
     /**
      * Purpose: To populate the items array with objects that the user can find
@@ -935,7 +936,7 @@ public class GameBoard extends GameLoop {
      * @param items an array list to be populated with items for in the game.
      */
     public void createItemArray(ArrayList<Sprite> items) {
-      Image chest = new Image("Chest1.png");
+        Image chest = new Image("file:Images/Chest1.png");
 
         items.add(new Sprite("Chest", new Location(5,4,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 25));
@@ -967,6 +968,55 @@ public class GameBoard extends GameLoop {
      * Purpose: To test out various methods of the GameBoard class
      */
     public static void main(String[] args) {
+         launch(args);
+    }
+
+    @Override
+    public void start(Stage window) {
+        //https://stackoverflow.com/questions/39488460/how-to-display-an-image-larger-than-the-screen-using-using-a-scrollpane-javafx
+        //http://www.java2s.com/Tutorials/Java/JavaFX/0350__JavaFX_ScrollPane.html
+
+        GameLoop gl = new GameLoop();
+        gl.initialize();
+
+        window.setWidth(1440);
+        window.setHeight(720);
+
+        Scene scene = new Scene(new Group());
+        VBox root = new VBox();
+        Group group = new Group();
+        Canvas foreground = new Canvas(8000, 4000);
+        GraphicsContext gc = foreground.getGraphicsContext2D();
+
+        ImageView backing = new ImageView(new Image("file:Images/background.png"));
+        ScrollPane scrollPane = new ScrollPane();
+
+        ArrayList<Enemy> enemy = gl.getEnemy();
+        ArrayList<Sprite> items = gl.getItem();
+        ArrayList<Sprite> terrain = gl.getTerrain();
+        System.out.println(terrain.get(0));
+
+        for (int i = 0; i < enemy.size(); i++) {
+            gc.drawImage(enemy.get(i).getSpriteImage(), enemy.get(i).getCoord().getPixelX(), enemy.get(i).getCoord().getPixelY());
+        }
+        for (int i = 0; i < terrain.size(); i++) {
+            gc.drawImage(terrain.get(i).getSpriteImage(), terrain.get(i).getCoord().getPixelX(), terrain.get(i).getCoord().getPixelY());
+        }
+        for (int i = 0; i < items.size(); i++) {
+            gc.drawImage(items.get(i).getSpriteImage(), items.get(i).getCoord().getPixelX(), items.get(i).getCoord().getPixelY());
+        }
+
+        group.getChildren().addAll(backing, foreground);
+
+        scrollPane.setContent(group);
+        root.getChildren().add(scrollPane);
+        scene.setRoot(root);
+
+        window.setScene(scene);
+        window.show();
+
+    }
+/*
         GameLoop gl = new GameLoop();
         GameBoard gb = new GameBoard();
         //char[][] charArray = new char[40][80]; // initialize the array (200, 40)
@@ -985,7 +1035,7 @@ public class GameBoard extends GameLoop {
         System.out.println("Items array size: " + items.size()); // expect 4
         System.out.println("Terrain array size: " + terrain.size()); // expect lots (949)
         System.out.println("Enemy array size: " + enemy.size()); // expect 4
-
+*/
         //System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
 
         //gl.createPrintArray(charArray, items, terrain, enemy);
@@ -993,6 +1043,6 @@ public class GameBoard extends GameLoop {
         //g1.drawState(player);
 
         //gl.drawState(player, charArray);
-    }
+    //}
 
 }

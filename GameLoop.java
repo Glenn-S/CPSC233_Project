@@ -19,12 +19,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Font;
-import javafx.scene.layout.GridPane;
 
-import java.util.Scanner;
-import java.io.Console;
-import java.util.ArrayList;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -40,6 +42,7 @@ public class GameLoop{
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
+    private Player player;
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     /**
@@ -131,6 +134,12 @@ public class GameLoop{
         return printArray;
     }
     */
+    /**
+     * @return the player
+     */
+    public Player getPlayer() {
+    	return new Player(player);
+    }
 
     /**
      * Purpose: To set a new terrain objects list for the current game
@@ -193,6 +202,12 @@ public class GameLoop{
         this.printArray = printArray;
     }
     */
+    /**
+     * @param player the player to set
+     */
+    public void setPlayer(Player player) {
+    	this.player = new Player(player);
+    }
 
     /*------------------------------- METHODS --------------------------------*/
     /**
@@ -203,6 +218,18 @@ public class GameLoop{
         gb.createItemArray(this.items);
         gb.createTerrainArray(this.terrain);
         gb.createEnemyArray(this.enemy);
+
+        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+        this.player =  new Player("Montequilla", new Location(1, 1, 0, 0), new Image("file:Images/Montequilla.png"), 'x',
+                                null, true, false, 100, 25, 25, moves);
+        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
+        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+        this.player.addItem(starterSword);
+        this.player.updateAttack(starterSword);
+        this.player.addItem(starterShield);
+        this.player.updateDefence(starterShield);
+        this.player.addItem(smallPotion);
     }
 
     /**
@@ -549,44 +576,38 @@ public class GameLoop{
      * @return flow This is a flow pane that is is filled with the images from the terrain,
      * items, and emeny arraylists. This flow pane is then returned, and is put onto the main stage
      */
-    public FlowPane drawState(Player player)
-    {
-        GridPane grid = new GridPane();
-        FlowPane flow = new FlowPane();
+    public Pane drawState(Player player) {
 
-      grid.setStyle("-fx-background-image: url('Green.png')");
+        //Scene scene = new Scene(new Group());
+        VBox root = new VBox();
+        Group group = new Group();
+        Canvas foreground = new Canvas(8000, 4000);
+        GraphicsContext gc = foreground.getGraphicsContext2D();
 
-      ImageView playerImage = new ImageView(player.getSpriteImage());
+        ImageView backing = new ImageView(new Image("file:Images/background.png"));
+        ScrollPane scrollPane = new ScrollPane();
 
-      GridPane.setConstraints(playerImage, player.getCoord().getPixelX(), player.getCoord().getPixelY());
-      grid.getChildren().addAll(playerImage);
+        for (int i = 0; i < getEnemy().size(); i++) {
+            gc.drawImage(enemy.get(i).getSpriteImage(), enemy.get(i).getCoord().getPixelX(), enemy.get(i).getCoord().getPixelY());
+        }
+        for (int i = 0; i < getTerrain().size(); i++) {
+            gc.drawImage(terrain.get(i).getSpriteImage(), terrain.get(i).getCoord().getPixelX(), terrain.get(i).getCoord().getPixelY());
+        }
+        for (int i = 0; i < getItem().size(); i++) {
+            gc.drawImage(items.get(i).getSpriteImage(), items.get(i).getCoord().getPixelX(), items.get(i).getCoord().getPixelY());
+        }
+        // draw the player
+        gc.drawImage(player.getSpriteImage(), player.getCoord().getPixelX(), player.getCoord().getPixelY());
+        group.getChildren().addAll(backing, foreground);
 
-      for(int index = 0; index < this.terrain.size(); index++)
-      {
-        ImageView terrainImage = new ImageView(this.terrain.get(index). getSpriteImage());
-        GridPane.setConstraints(terrainImage,this.terrain.get(index).getCoord().getPixelX(),
-                                this.terrain.get(index).getCoord().getPixelY());
-        grid.getChildren().addAll(terrainImage);
-      }
+        scrollPane.setContent(group);
+        root.getChildren().add(scrollPane);
+        //scene.setRoot(root);
 
-      for(int index = 0; index < this.enemy.size(); index++)
-      {
-        ImageView enemyImage = new ImageView(this.enemy.get(index).getSpriteImage());
-        GridPane.setConstraints(enemyImage,this.enemy.get(index).getCoord().getPixelX(),
-                                this.enemy.get(index).getCoord().getPixelY());
-        grid.getChildren().addAll(enemyImage);
-      }
+        //window.setScene(scene);
+        //window.show();
 
-      for(int index = 0; index < this.items.size(); index++)
-      {
-        ImageView itemImage = new ImageView(this.items.get(index).getSpriteImage());
-        GridPane.setConstraints(itemImage,this.items.get(index).getCoord().getPixelX(),
-                                this.items.get(index).getCoord().getPixelY());
-        grid.getChildren().addAll(itemImage);
-      }
-      flow.getChildren().add(grid);
-
-        return flow; // this method just needs
+        return root; // this method just needs
       /*
         int colTemp;
         int rowTemp;
@@ -710,7 +731,7 @@ public class GameLoop{
     /**
      * Purpose: To allow the ability to test the various methods of the GameLoop
      */
-   public static void main(String[] args) {
+/*   public static void main(String[] args) {
         // for testing methods
 
         // check constructor
@@ -900,7 +921,7 @@ public class GameLoop{
         System.out.println("\nPlayer Item: " + playerItems.get(0).getName());
 
         // drawState has been tested out in GameBoard
-    }
+    }*/
 }
 
 /*

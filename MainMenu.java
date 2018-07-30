@@ -57,38 +57,14 @@ public class MainMenu extends Application { // change this name to be the name o
     @Override
     public void start(Stage window) throws Exception {
         GameLoop gamePlay = new GameLoop();
-        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        player =  new Player("Montequilla", new Location(5, 38, 0, 0), new Image("Montequilla_BG.png"), 'x',
-                                null, true, false, 100, 25, 25, moves);
-        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
-        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
-        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
-        player.addItem(starterSword);
-        player.updateAttack(starterSword);
-        player.addItem(starterShield);
-        player.updateDefence(starterShield);
-        player.addItem(smallPotion);
+        gamePlay.initialize();
 
-        window.setScene(new Scene(display(gamePlay)));
-        window.getScene().setOnKeyPressed(e -> {
-            if (e.getCode().equals(KeyCode.W)) {
-                userMove = "up";
-                //y -= 5;
-            }
-            if (e.getCode().equals(KeyCode.S)) {
-                userMove = "down";
-                //y += 5;
-            }
-            if (e.getCode().equals(KeyCode.A)) {
-                userMove = "left";
-                //x -= 5;
-            }
-            if (e.getCode().equals(KeyCode.D)) {
-                userMove = "right";
-                //x += 5;
-            }
-            System.out.println(userMove);
-        });
+        Scene scene = new Scene(new Group());
+        window.setWidth(1440);
+        window.setHeight(720);
+
+        scene.setRoot(display(gamePlay, scene));
+        window.setScene(scene);
         window.show();
     }
 
@@ -96,14 +72,11 @@ public class MainMenu extends Application { // change this name to be the name o
      * Purpose: To create the content to fill each pane for an update.
      * @param gamePlay an instance of the GameLoop class
      */
-    public Parent display(GameLoop gamePlay) {
+    public Parent display(GameLoop gamePlay, Scene scene) {
 
-<<<<<<< HEAD
-    public Parent createContent() {
-        GameLoop gamePlay = new GameLoop();
         // set up the user
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
+        Player player =  new Player("Montequilla", new Location(1, 1, 0, 0), new Image("file:Images/Montequilla.png"), 'x',
                                 null, true, false, 100, 25, 25, moves);
         Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
@@ -115,38 +88,54 @@ public class MainMenu extends Application { // change this name to be the name o
         player.addItem(smallPotion);
 
         root = new Pane();
-=======
-        // set up the user
-        root = new FlowPane();
->>>>>>> master
+
         root.setPrefSize(WIDTH, HEIGHT);
         // was used for testing with a drawing
         //Canvas canvas = new Canvas(WIDTH, HEIGHT);
         //root.getChildren().add(canvas);
         //GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        // print initial
+        root = gamePlay.drawState(player);
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-<<<<<<< HEAD
+                scene.setOnKeyPressed(e -> {
+                    if (e.getCode().equals(KeyCode.W)) {
+                        userMove = "up";
+                        //y -= 5;
+                    }
+                    if (e.getCode().equals(KeyCode.S)) {
+                        userMove = "down";
+                        //y += 5;
+                    }
+                    if (e.getCode().equals(KeyCode.A)) {
+                        userMove = "left";
+                        //x -= 5;
+                    }
+                    if (e.getCode().equals(KeyCode.D)) {
+                        userMove = "right";
+                        //x += 5;
+                    }
+                    //gamePlay.updatePosition(player, userMove);
+                    System.out.println(gamePlay.getPlayer().getCoord());
+                    System.out.println(userMove);
+                    if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
+                        // pass the new x/y for the player
+                        gamePlay.updatePosition(gamePlay.getPlayer(), userMove); // if collision is not detected update player position
+                    }
+                    //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
+                    if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
+                        // add in exit message later
+                        // if game is done
+                        Platform.exit();
+                    }
+                });
 
-                //gc.strokeRect(x, y, 10, 10);
-                onUpdate();
-                gamePlay.drawState(player);
-=======
-                if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
-                    // pass the new x/y for the player
-                    gamePlay.updatePosition(player, userMove); // if collision is not detected update player position
-                }
-                //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
-                if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
-                    // add in exit message later
-                    // if game is done
-                    Platform.exit();
-                }
+                root = gamePlay.drawState(gamePlay.getPlayer());
 
-                root = gamePlay.drawState(player);
->>>>>>> master
+                scene.setRoot(root);
+
             }
         };
         timer.start();
