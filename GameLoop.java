@@ -539,13 +539,15 @@ public class GameLoop{
     }
 
     /**
-     * Purpose: This method prints out the border to the screen
+     * Purpose: This method adds the images from the terrain, items, and enemy arraylists
+     * to a gridpane. This grid pane is then put onto a flow pane which is then returned
      *
-     * @param player This is the player that is playing the game. Their char
-     * image has to be added to the print array before the array can be printed
+     * @param player This is the player that is playing the game. Their
+     * image has to be added to the grid pane, as they are not a part of any
+     * arraylist
      *
-     * @param printArray This is the 2-D array of chars that will be printed out
-     * to the screen
+     * @return flow This is a flow pane that is is filled with the images from the terrain,
+     * items, and emeny arraylists. This flow pane is then returned, and is put onto the main stage
      */
     public FlowPane drawState(Player player)
     {
