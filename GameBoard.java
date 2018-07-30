@@ -661,7 +661,7 @@ public class GameBoard extends GameLoop  {
 
         for(int index = 58; index < 70; index++)
         {
-          terrain.add(new Sprite ("mountain", new Location(index,26,0,0), null, 'm', null, true,false));
+          terrain.add(new Sprite ("mountain", new Location(index,26,0,0), middleMiddleMountain, 'm', null, true,false));
         }
 
         terrain.add(new Sprite ("mountain", new Location(70,26,0,0), null, '/', null, true,false));
