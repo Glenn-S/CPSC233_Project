@@ -32,7 +32,7 @@ import javafx.scene.image.Image;
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class Main2 extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
+public class MainMenu extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
     private final int HEIGHT = 4000;
     private final int WIDTH = 8000;
     private final String GAMETITLE = "The Adventures of Montequilla";
