@@ -990,7 +990,6 @@ public class GameBoard extends Application {
 
         ImageView backing = new ImageView(new Image("file:Images/background.png"));
         ScrollPane scrollPane = new ScrollPane();
-        
 
         ArrayList<Enemy> enemy = gl.getEnemy();
         ArrayList<Sprite> items = gl.getItem();

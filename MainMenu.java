@@ -19,11 +19,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Font;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
+
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
  * game.
@@ -43,6 +43,13 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
 
     private Pane root = new Pane();
 
+    public enum STATE {
+        MENU,
+        GAME,
+        BATTLE,
+        END
+    };
+
     /**
      * Purpose: The main game driver for The Adventures of Montequilla. this
      * will continue until the user selects quit.
@@ -53,7 +60,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         gamePlay = new GameLoop();
         gamePlay.initialize();
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        player =  new Player("Montequilla", new Location(1, 1, 0, 0), new Image("file:Images/Montequilla.png"), 'x',
+        player =  new Player("Montequilla", new Location(3, 38, 0, 0), new Image("file:Images/Montequilla.png"), 'x',
                                 null, true, false, 100, 25, 25, moves);
         Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
