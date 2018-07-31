@@ -589,6 +589,26 @@ public class GameLoop{
         group.getChildren().addAll(backing, foreground);
 
         scrollPane.setContent(group);
+        //scrollPane.setVvalue(1);
+        //scrollPane.setHvalue(0);
+        scrollPane.setVvalue((double)player.getCoord().getyCoord()/boardHeight);
+        scrollPane.setHvalue((double)player.getCoord().getxCoord()/boardLength);
+        //scrollPane.setVvalue(((((double)player.getCoord().getyCoord())+(3*((((double)player.getCoord().getyCoord()))/boardHeight)))/boardHeight));
+        //scrollPane.setHvalue(((((double)player.getCoord().getxCoord())-(7 * (((((double)player.getCoord().getxCoord()))/boardLength)))/boardLength)));
+        /*if (player.getCoord().getyCoord() >= 36) {
+            scrollPane.setVvalue(1.0);
+        }
+        else {
+            scrollPane.setVvalue(((((double)player.getCoord().getyCoord()))/boardHeight));
+        }
+        if (player.getCoord().getxCoord() < 6) {
+            scrollPane.setHvalue(0.0);
+        }
+        else {
+            scrollPane.setHvalue((((double)player.getCoord().getxCoord()))/boardLength);
+        }*/
+        //scrollPane.setVvalue((((double)player.getCoord().getyCoord())/boardHeight));
+        //scrollPane.setHvalue(((double)player.getCoord().getxCoord())/boardLength);
         root.getChildren().add(scrollPane);
         //scene.setRoot(root);
 
