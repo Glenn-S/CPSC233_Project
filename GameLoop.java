@@ -589,6 +589,8 @@ public class GameLoop{
         group.getChildren().addAll(backing, foreground);
 
         scrollPane.setContent(group);
+        scrollPane.setV(1.0);
+        scrollPane.setHvalue(0.0);
         root.getChildren().add(scrollPane);
         //scene.setRoot(root);
 
