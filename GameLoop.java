@@ -211,13 +211,28 @@ public class GameLoop{
 
     /*------------------------------- METHODS --------------------------------*/
     /**
-     * Purpose: To initialize all of the arrays that contain objects in the game.
+     * Purpose: To initialize all of the arrays that contain objects in the game
+     * and the player for the game
      */
     public void initialize() {
         GameBoard gb = new GameBoard();
         gb.createItemArray(this.items);
         gb.createTerrainArray(this.terrain);
         gb.createEnemyArray(this.enemy);
+
+        // setup the player
+        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+        this.setPlayer(new Player("Montequilla", new Location(3, 38, 0, 0),
+            new Image("file:Smaller Images/Montequilla.png"), 'x', null, true,
+            false, 100, 25, 25, moves));
+        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
+        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+        player.addItem(starterSword);
+        player.updateAttack(starterSword);
+        player.addItem(starterShield);
+        player.updateDefence(starterShield);
+        player.addItem(smallPotion);
     }
 
     /**

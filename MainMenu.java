@@ -34,6 +34,7 @@ import javafx.scene.Node;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class MainMenu extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
+    private final String GAMETITLE = "The Adventures of Montequilla";
     private final String SYNOPSIS =
         "B-town is under attack by \"I can’t believe it\'s not butter\" boy and " +
         "his army of Margarine men. All sources of butter are destroyed in the town " +
@@ -46,33 +47,34 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         "and styrofoam plate shield.  Now it\'s up to you to assemble the holy" +
         "triglyceride (combination of the 3 \"keys\" known as monoglycerides)" +
         "and rescue Butter Bob Brown to restore peace to the Butter Industry.";
-    private final String GAMETITLE = "The Adventures of Montequilla";
-    private final int WIDTH = 4000, HEIGHT = 2000;
     private final int WINWIDTH = 1440, WINHEIGHT = 720;
-    // main menu stylings
+
+    // main menu stylings CONSTANTS
     private final String START = "START"; // label for the start button
+    private final String RESUME = "RESUME"; // label for the resume button
     private final String STOP = "STOP"; // label for the exit button
     private final Font BTNSTYLE = new Font(24); // set the button stylings
     private final Font TITLESTYLE = new Font("Verdana", 42); // set the title stylings
     private final Font SYNOPSISSTYLE = new Font(18); // set the text stylings
     private final double GAP = 10.0; // set the button gap widths
     private final double BTNWIDTH = 150, BTNHEIGHT = 40; // set the width and height for the buttons
+    // setup buttons for main
     private Button startBtn;
     private Button exitBtn;
+
+    // return menu stylings
+    private final String LOSEMESSAGE = "CONGRATULATIONS! YOU ARE THE WORST AT WINNING";
+    private final String WINMESSAGE = "CONGRATULATIONS! YOU ARE THE BEST AT NOT LOSING";
+    private final String RETURNMSG = "Press any key to return to the main menu";
+    private final String TEMPMSG = "Press any key to quit";
+    private final String MSGSTYLE = "-fx-font-size: 36; ";
+    private final String PROMPTSTYLE = "-fx-font-size: 24; ";
+
     // game play Constants
     private String userMove = "";
-    private GameLoop gamePlay;
+    private GameLoop gamePlay = new GameLoop();
     // set up player
-    private String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-    private Player player = new Player("Montequilla", new Location(3, 38, 0, 0),
-        new Image("file:Smaller Images/Montequilla.png"), 'x', null, true,
-        false, 100, 25, 25, moves);
-    private Weapon starterSword =
-        new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
-    private Defence starterShield =
-        new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
-    private Potion smallPotion =
-        new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+
 
     private Pane root = new Pane(); // for game play scenes
     private Stage window;
@@ -95,20 +97,24 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
 
         // main Scene
         main = new Scene(mainSceneContent()); // set the scene for main
+        gamePlay.initialize(); // maybe pass player into initialize to add items
+
+        // end screen
+        end = new Scene(endSceneContent(true));
+        end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+            // need to reset the game parameters
+            gamePlay = new GameLoop();
+            gamePlay.initialize();
+            //redraw the state
+            root = gamePlay.drawState(gamePlay.getPlayer());
+            game.setRoot(root); // refresh the page
+            window.setScene(main);
+        });
 
         // game Scene
-        gamePlay = new GameLoop();
-        gamePlay.initialize(); // maybe pass player into initialize to add items
-        player.addItem(starterSword);
-        player.updateAttack(starterSword);
-        player.addItem(starterShield);
-        player.updateDefence(starterShield);
-        player.addItem(smallPotion);
-
-        System.out.println(this.player.getCoord()); // for test purposes
-
+        //System.out.println(this.player.getCoord()); // for test purposes
         game = new Scene(root); // set up the game state scene
-        root = gamePlay.drawState(player); // draw the initial game state
+        root = gamePlay.drawState(gamePlay.getPlayer()); // draw the initial game state
         game.setOnKeyPressed(this);
         game.setRoot(root);
 
@@ -116,19 +122,19 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             @Override
             public void handle(long now) {
                 if (!userMove.equals("")) {
-                    if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
-                        gamePlay.updatePosition(player, userMove);
+                    if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
+                        gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
                     }
-                    root = gamePlay.drawState(player);
+                    root = gamePlay.drawState(gamePlay.getPlayer());
                     game.setRoot(root); // refresh the page
                     userMove = "";
                 }
 
-                gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
+                gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
                 if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
-                    boolean state = (gamePlay.checkWinState()) ? true : false; //
+                    boolean winLose = (gamePlay.checkWinState()) ? true : false;
                     // exit menu
-                    end = new Scene(endSceneContent(state)); // set the scene for main
+                    end = new Scene(endSceneContent(winLose)); // set the scene for main
                     window.setScene(end);
                     //Platform.exit(); // add in exit message later
                 }
@@ -149,6 +155,9 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
 
     }
 
+    /**
+     * Purpose:
+     */
     public VBox mainSceneContent() {
         // mainMenu Layout
         VBox mainLayout = new VBox();
@@ -194,30 +203,57 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             }
         });
         startBtn.setOnKeyPressed(e -> {
-            if (e.getCode().equals(KeyCode.ENTER)) window.setScene(game);
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                window.setScene(game);
+            }
             if (e.getCode().equals(KeyCode.S) ||
                 (e.getCode().equals(KeyCode.DOWN))) exitBtn.requestFocus();
         });
         return mainLayout;
     }
 
-    public void endSceneContent(boolean state) {
+    /**
+     * Purpose:
+     */
+    public VBox endSceneContent(boolean win) {
         // depending on the state change the text
+
+
+        VBox endContent = new VBox();
+
+        endContent.setAlignment(Pos.CENTER);
+        endContent.setSpacing(GAP*2);
+
+        // GO BACK AND CITE HOW I KNOW HOW TO DO SOME OF THIS STUFF
+        Label userMsg = new Label();
+        if (win) userMsg.setText(WINMESSAGE);
+        if (!win) userMsg.setText(LOSEMESSAGE);
+        userMsg.setStyle(MSGSTYLE);
+
+        Label prompt = new Label(RETURNMSG);
+        prompt.setStyle(PROMPTSTYLE);
+        endContent.getChildren().addAll(userMsg, prompt);
+
+        return endContent;
+
     }
 
     /**
-     *
+     * Purpsoe:
      */
     @Override
     public void handle(KeyEvent e) {
-        String userMove = "";
-
+        userMove = "";
+        if (e.getCode().equals(KeyCode.Q)) {
+            startBtn.setText(START); // change the button text to say start in the main menu
+            window.setScene(end); // go back to the main menu
+        }
         if (e.getCode().equals(KeyCode.W)) this.userMove = "up";
         if (e.getCode().equals(KeyCode.S)) this.userMove = "down";
         if (e.getCode().equals(KeyCode.A)) this.userMove = "left";
         if (e.getCode().equals(KeyCode.D)) this.userMove = "right";
         if (e.getCode().equals(KeyCode.ESCAPE)) {
-            startBtn.setText("RESUME"); // change the button text to say resume in the main menu
+            startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
         }
 
