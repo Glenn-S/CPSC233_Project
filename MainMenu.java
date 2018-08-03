@@ -56,54 +56,62 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
      */
     @Override
     public void start(Stage window) throws Exception {
-        gamePlay = new GameLoop();
-        gamePlay.initialize();
-        String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        player =  new Player("Montequilla", new Location(3, 38, 0, 0), new Image("file:Smaller Images/Montequilla.png"), 'x',
-                                null, true, false, 100, 25, 25, moves);
-        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
-        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
-        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
-        player.addItem(starterSword);
-        player.updateAttack(starterSword);
-        player.addItem(starterShield);
-        player.updateDefence(starterShield);
-        player.addItem(smallPotion);
+        STATE state = STATE.GAME;
+        if (state == STATE.MENU) {
+            
+        }
 
-        System.out.println(this.player.getCoord());
-        window.setWidth(1440);
-        window.setHeight(720);
+        if (state == STATE.GAME) {
+            gamePlay = new GameLoop();
+            gamePlay.initialize();
+            String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+            player =  new Player("Montequilla", new Location(3, 38, 0, 0), new Image("file:Smaller Images/Montequilla.png"), 'x',
+                                    null, true, false, 100, 25, 25, moves);
+            Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
+            Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
+            Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+            player.addItem(starterSword);
+            player.updateAttack(starterSword);
+            player.addItem(starterShield);
+            player.updateDefence(starterShield);
+            player.addItem(smallPotion);
 
-        Scene scene = new Scene(root);
-        scene.setOnKeyPressed(this);
+            System.out.println(this.player.getCoord());
+            window.setWidth(1440);
+            window.setHeight(720);
 
-        root = gamePlay.drawState(player);
+            Scene scene = new Scene(root);
+            scene.setOnKeyPressed(this);
 
-        scene.setRoot(root);
-        window.setScene(scene);
-        window.show();
+            root = gamePlay.drawState(player);
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (!userMove.equals("")) {
-                    if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
-                        gamePlay.updatePosition(player, userMove);
+            scene.setRoot(root);
+            window.setScene(scene);
+            window.show();
+
+            AnimationTimer timer = new AnimationTimer() {
+                @Override
+                public void handle(long now) {
+                    if (!userMove.equals("")) {
+                        if (!gamePlay.checkCollisions(player, userMove)) { // if check collisions comes back false, move the player
+                            gamePlay.updatePosition(player, userMove);
+                        }
+                        root = gamePlay.drawState(player);
+                        scene.setRoot(root); // refresh the page
+                        userMove = "";
                     }
-                    root = gamePlay.drawState(player);
-                    scene.setRoot(root); // refresh the page
-                    userMove = "";
-                }
 
-                gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
-                if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
-                    // if game is done
-                    Platform.exit(); // add in exit message later
-                }
+                    gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
+                    if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
+                        // if game is done
+                        Platform.exit(); // add in exit message later
+                    }
 
-            }
-        };
-        timer.start();
+                }
+            };
+            timer.start();
+        }
+
 
     }
 
