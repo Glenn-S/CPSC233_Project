@@ -1,3 +1,5 @@
+package GUI;
+
 
 import static java.awt.SystemColor.text;
 import java.util.ArrayList;
@@ -21,6 +23,14 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import static javafx.scene.paint.Color.color;
 import javafx.stage.Stage;
+import Sprite.Location;
+import Sprite.Avatar;
+import Sprite.Enemy;
+import Sprite.Defence;
+import Sprite.Sprite;
+import Sprite.Player;
+import Sprite.Potion;
+import Sprite.Weapon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

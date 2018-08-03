@@ -1,3 +1,13 @@
+package GUI;
+import Sprite.Location;
+import Sprite.Avatar;
+import Sprite.Enemy;
+import Sprite.Defence;
+import Sprite.Sprite;
+import Sprite.Player;
+import Sprite.Potion;
+import Sprite.Weapon;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;

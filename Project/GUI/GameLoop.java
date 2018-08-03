@@ -1,3 +1,13 @@
+package GUI;
+import Sprite.Location;
+import Sprite.Avatar;
+import Sprite.Enemy;
+import Sprite.Defence;
+import Sprite.Sprite;
+import Sprite.Player;
+import Sprite.Potion;
+import Sprite.Weapon;
+
 import java.util.Scanner;
 import java.io.Console;
 import java.util.ArrayList;
@@ -467,8 +477,8 @@ public class GameLoop{
      * collision detection
      */
     private void engageBattle(Player player, Enemy e) {
-BattleGUI b = new BattleGUI(player);
-b.battle(player, e, enemy, terrain);
+    	BattleGUI b = new BattleGUI(player);
+    	b.battle(player, e, enemy, terrain);
     }
 
     /**
