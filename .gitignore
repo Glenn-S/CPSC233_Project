@@ -10,3 +10,4 @@ Sprite.java
 Location.java
 Sprite.java
 *.java
+!/BattleGUI.java
