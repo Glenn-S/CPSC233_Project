@@ -225,9 +225,9 @@ public class GameLoop{
         this.setPlayer(new Player("Montequilla", new Location(3, 38, 0, 0),
             new Image("file:Smaller Images/Montequilla.png"), 'x', null, true,
             false, 100, 25, 25, moves));
-        Weapon starterSword = new Weapon("Bronze Butterknife", null, null, ' ', null, true, false, 50);
-        Defence starterShield = new Defence("Styrofoam Plate Shield", null, null, ' ', null, true, false, 50);
-        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 25);
+        Weapon starterSword = new Weapon("Bronze Butterknife", null, new Image("file:Images/Bronze butterknife.png"), ' ', null, true, false, 50);
+        Defence starterShield = new Defence("Styrofoam Plate Shield", null, new Image("file:Images/bronzeShield.png"), ' ', null, true, false, 50);
+        Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), new Image("file:Images/Small potion.png"), ' ', null, true, false, 25);
         player.addItem(starterSword);
         player.updateAttack(starterSword);
         player.addItem(starterShield);
@@ -467,8 +467,8 @@ public class GameLoop{
      * collision detection
      */
     private void engageBattle(Player player, Enemy e) {
-BattleGUI b = new BattleGUI(player);
-b.battle(player, e, enemy, terrain);
+        BattleGUI b = new BattleGUI(player);
+        b.battle(player, e, enemy, terrain);
     }
 
     /**
@@ -499,7 +499,9 @@ b.battle(player, e, enemy, terrain);
             gc.drawImage(terrain.get(i).getSpriteImage(), terrain.get(i).getCoord().getPixelX(), terrain.get(i).getCoord().getPixelY());
         }
         for (int i = 0; i < getItem().size(); i++) {
-            gc.drawImage(items.get(i).getSpriteImage(), items.get(i).getCoord().getPixelX(), items.get(i).getCoord().getPixelY());
+            if (items.get(i).getName().equals("Chest")){
+                gc.drawImage(items.get(i).getSpriteImage(), items.get(i).getCoord().getPixelX(), items.get(i).getCoord().getPixelY());
+            }
         }
         // draw the player
         gc.drawImage(player.getSpriteImage(), player.getCoord().getPixelX(), player.getCoord().getPixelY());
@@ -510,7 +512,28 @@ b.battle(player, e, enemy, terrain);
         scrollPane.setHvalue((double)player.getCoord().getxCoord()/boardLength);
         //scrollPane.setVvalue(((((double)player.getCoord().getyCoord())+(3*((((double)player.getCoord().getyCoord()))/boardHeight)))/boardHeight));
         //scrollPane.setHvalue(((((double)player.getCoord().getxCoord())-(7 * (((((double)player.getCoord().getxCoord()))/boardLength)))/boardLength)));
-        root.getChildren().add(scrollPane);
+
+
+        HBox itemsStrip = new HBox();
+        Group itemImages = new Group();
+        Canvas inventory = new Canvas(); // old values 8000x4000
+        GraphicsContext gcInventory = inventory.getGraphicsContext2D();
+
+        // add the inventory items
+        //this.getPlayer().getItems().size()
+        /*for (int i = 0; i < 1; i++) {
+            gcInventory.drawImage(this.getPlayer().getItems().get(i).getSpriteImage(), 0, 0);
+        }*/
+
+        gcInventory.drawImage(this.getPlayer().getItems().get(0).getSpriteImage(), 0, 0);
+        itemImages.getChildren().add(inventory);
+        itemsStrip.getChildren().addAll(new Label("ITEMS"), itemImages);
+
+        VBox windowContainer = new VBox();
+        windowContainer.getChildren().addAll(scrollPane, itemsStrip);
+
+        //root.getChildren().add(scrollPane);
+        root.getChildren().add(windowContainer); // used to be scrollPane
 
         return root; // this method just needs
       /*

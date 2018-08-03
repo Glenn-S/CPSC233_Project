@@ -94,6 +94,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         window = mainStage; // keep the reference so that window may be accessed globally
         window.setWidth(WINWIDTH);
         window.setHeight(WINHEIGHT);
+        //window.setMaximized(true);
 
         // main Scene
         main = new Scene(mainSceneContent()); // set the scene for main
@@ -142,7 +143,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             }
         };
         timer.start();
-
+        System.out.println(gamePlay.getPlayer());
 
         // battleScene
         // add battle scene setups here

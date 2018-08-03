@@ -950,31 +950,34 @@ public class GameBoard extends Application {
      */
     public void createItemArray(ArrayList<Sprite> items) {
         Image chest = new Image("file:Smaller Images/Chest1.png");
+        Image smallPotion = new Image("file:Images/Small potion.png");
+        Image mediumPotion = new Image("file:Images/Medium potion.png");
 
+
+        items.add(new Potion("Small Potion", new Location(5,4,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(5,4,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(5,4,0,0), null,' ', null, true, true, 25));
+        items.add(new Potion("Medium Potion", new Location(76,28,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(76,28,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(76,28,0,0), null,' ', null, true, true, 50));
+        items.add(new Potion("Small Potion", new Location(38,38,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(38,38,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(38,38,0,0), null,' ', null, true, true, 25));
+        items.add(new Potion("Medium Potion", new Location(45,30,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(45,30,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(45,30,0,0), null,' ', null, true, true, 50));
+        items.add(new Potion("Small Potion", new Location(74,36,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(74,36,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(74,36,0,0), null,' ', null, true, true, 25));
+        items.add(new Potion("Medium Potion", new Location(51,6,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(51,6,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(51,6,0,0), null,' ', null, true, true, 50));
+        items.add(new Potion("Small Potion", new Location(37,10,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(37,10,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(37,10,0,0), null,' ', null, true, true, 25));
+        items.add(new Potion("Medium Potion", new Location(44,21,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(44,21,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(44,21,0,0), null,' ', null, true, true, 50));
+        items.add(new Potion("Small Potion", new Location(22,19,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(22,19,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(22,19,0,0), null,' ', null, true, true, 25));
+        items.add(new Potion("Medium Potion", new Location(10,30,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(10,30,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(10,30,0,0), null,' ', null, true, true, 50));
+        items.add(new Potion("Small Potion", new Location(25,25,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(25,25,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(25,25,0,0), null,' ', null, true, true, 25));
+        items.add(new Potion("Medium Potion", new Location(13,9,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(13,9,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(13,9,0,0), null,' ', null, true, true, 50));
     }
 
     /**
