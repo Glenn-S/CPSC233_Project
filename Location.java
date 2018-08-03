@@ -15,10 +15,6 @@ public class Location {
 	private int yCoord;
 	private int xSize;
 	private int ySize;
-	private int getPixelX;
-	private int getPixelYSize;
-	private int getPixelXSize;
-	private int getPixelY;
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
 
@@ -159,7 +155,7 @@ public class Location {
 	 */
 
 	public int getPixelX(){
-		return this.getPixelX = this.xCoord * 100;
+		return this.xCoord * 50; // old size 100
 	}
 
 	/**
@@ -167,7 +163,7 @@ public class Location {
 	 * @return return the pixel set for y
 	 */
 	public int getPixelY(){
-		return this.getPixelY = this.yCoord * 100;
+		return this.yCoord * 50; // old size 100
 	}
 
 	/**
@@ -175,14 +171,14 @@ public class Location {
 	 */
 
 	public int getPixelXSize(){
-		return this.getPixelXSize = this.xSize * 100;
+		return this.xSize * 50; // old size 100
 	}
 	/**
 	 *
 	 * @return return the pixel set for ysize
 	 */
 	public int getPixelYSize(){
-		return this.getPixelYSize = this.ySize * 100;
+		return this.ySize * 50; // old size 100
 	}
 
 

@@ -468,16 +468,15 @@ b.battle(player, e, enemy, terrain);
      * items, and emeny arraylists. This flow pane is then returned, and is put onto the main stage
      */
     public Pane drawState(Player player) {
-
         //Scene scene = new Scene(new Group());
         VBox root = new VBox();
         Group group = new Group();
-        Canvas foreground = new Canvas(8000, 4000);
+        Canvas foreground = new Canvas(4000, 2000); // old values 8000x4000
         GraphicsContext gc = foreground.getGraphicsContext2D();
 
-        ImageView backing = new ImageView(new Image("file:Images/background.png"));
+        ImageView backing = new ImageView(new Image("file:Smaller Images/background.png"));
         ScrollPane scrollPane = new ScrollPane();
-
+        // go through each list and draw the images to the scene
         for (int i = 0; i < getEnemy().size(); i++) {
             gc.drawImage(enemy.get(i).getSpriteImage(), enemy.get(i).getCoord().getPixelX(), enemy.get(i).getCoord().getPixelY());
         }
@@ -492,31 +491,11 @@ b.battle(player, e, enemy, terrain);
         group.getChildren().addAll(backing, foreground);
 
         scrollPane.setContent(group);
-        //scrollPane.setVvalue(1);
-        //scrollPane.setHvalue(0);
         scrollPane.setVvalue((double)player.getCoord().getyCoord()/boardHeight);
         scrollPane.setHvalue((double)player.getCoord().getxCoord()/boardLength);
         //scrollPane.setVvalue(((((double)player.getCoord().getyCoord())+(3*((((double)player.getCoord().getyCoord()))/boardHeight)))/boardHeight));
         //scrollPane.setHvalue(((((double)player.getCoord().getxCoord())-(7 * (((((double)player.getCoord().getxCoord()))/boardLength)))/boardLength)));
-        /*if (player.getCoord().getyCoord() >= 36) {
-            scrollPane.setVvalue(1.0);
-        }
-        else {
-            scrollPane.setVvalue(((((double)player.getCoord().getyCoord()))/boardHeight));
-        }
-        if (player.getCoord().getxCoord() < 6) {
-            scrollPane.setHvalue(0.0);
-        }
-        else {
-            scrollPane.setHvalue((((double)player.getCoord().getxCoord()))/boardLength);
-        }*/
-        //scrollPane.setVvalue((((double)player.getCoord().getyCoord())/boardHeight));
-        //scrollPane.setHvalue(((double)player.getCoord().getxCoord())/boardLength);
         root.getChildren().add(scrollPane);
-        //scene.setRoot(root);
-
-        //window.setScene(scene);
-        //window.show();
 
         return root; // this method just needs
       /*
@@ -561,12 +540,8 @@ b.battle(player, e, enemy, terrain);
     /**
      * Purpose: To obtain the users input for moving around the game board
      *
-<<<<<<< HEAD
      * @return a string representation of the users directional choice
      * deprecated for the gui version, it is not in use now
-=======
-   } * @return a string representation of the users directional choice
->>>>>>> 564dae8862bd7155b4bb873a93fdbdf8cfc2df6e
      */
     public String playerInput() {
         Console console = System.console();
