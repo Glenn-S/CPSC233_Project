@@ -1,0 +1,12 @@
+How to run the Terminal Version:
+1.enter Project folder
+2.right click the mouse and choose open in terminal
+3.copy "javac Terminal/MainMenu.java" to terminal and press enter(compile)
+4.copy "java Terminal/MainMenu" to terminal and press enter(run)
+
+
+How to run the GUI Version:
+1.enter Project folder
+2.right click the mouse and choose open in terminal
+3.copy "javac GUI/MainMenu.java" to terminal and press enter(compile)
+4.copy "java GUI/MainMenu" to terminal and press enter(run)
