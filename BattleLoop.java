@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.scene.image.Image;
 
 /**
  * Purpose: Handles all actions regarding the battle system in the game. This
@@ -14,11 +15,10 @@ public class BattleLoop extends GameLoop {
 
     private int bbCounter; // counter for Butter Boomerang
     private int mmCounter; // counter for Margarine Missile
-    private char turn = 'P';
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
 
-    String turnAttack; // attack used during the current turn
+    String turnAttack = ""; // attack used during the current turn
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**
@@ -123,7 +123,7 @@ public class BattleLoop extends GameLoop {
      */
     public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Sprite> terrainList) {
         enemy.setExists(false);
-        terrainList.add(new Sprite("tombstone", enemy.getCoord(), null, 't', null, true, false));
+        terrainList.add(new Sprite("tombstone", enemy.getCoord(),new Image("Images/Tombstone.png"), 't', null, true, false));
         enemyList.remove(enemy);
     }
 
