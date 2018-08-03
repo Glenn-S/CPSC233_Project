@@ -217,8 +217,6 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
      */
     public VBox endSceneContent(boolean win) {
         // depending on the state change the text
-
-
         VBox endContent = new VBox();
 
         endContent.setAlignment(Pos.CENTER);
