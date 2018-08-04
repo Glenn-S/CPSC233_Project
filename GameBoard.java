@@ -962,7 +962,7 @@ public class GameBoard extends Application {
 
         items.add(new Potion("Small Potion", new Location(5,4,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(5,4,0,0), chest, '#', null, true, true));
-        //items.add(new Potion("Medium Potion", new Location(76,28,0,0), mediumPotion,' ', null, true, true, 50));
+        items.add(new Potion("Medium Potion", new Location(76,28,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(76,28,0,0), chest, '#', null, true, true));
 
         //items.add(new Potion("Small Potion", new Location(38,38,0,0), smallPotion,' ', null, true, true, 25));
@@ -989,7 +989,7 @@ public class GameBoard extends Application {
         items.add(new Sprite("Chest", new Location(22,19,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(10,30,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(10,30,0,0), chest, '#', null, true, true));
-        //items.add(new Potion("Small Potion", new Location(25,25,0,0), smallPotion,' ', null, true, true, 25));
+        items.add(new Potion("Small Potion", new Location(25,25,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(25,25,0,0), chest, '#', null, true, true));
 
         //items.add(new Potion("Medium Potion", new Location(13,9,0,0), mediumPotion,' ', null, true, true, 50));
