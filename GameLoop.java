@@ -392,6 +392,8 @@ public class GameLoop{
             }
             //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
             obj.remove(obj.get(index)); // remove the object from the array
+            // open the chest after an item has been picked up
+            obj.get(index).setSpriteImage(new Image("file:Smaller Images/chest2.png"));
         }
     }
 
