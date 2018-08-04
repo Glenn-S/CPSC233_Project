@@ -343,7 +343,7 @@ public class GameLoop {
      * @return true if there is a collision with a terrain tile that is
      * un-crossable
      */
-    private boolean checkSprites(Player player, String move, ArrayList<Sprite> obj) { // for checking terrain and items
+     private boolean checkSprites(Player player, String move, ArrayList<Sprite> obj) { // for checking terrain and items
         boolean result = false;
 
         if ((player != null) && (obj != null)) { // this could be a try and except statement?
@@ -353,89 +353,35 @@ public class GameLoop {
                 }
                 switch (move) { // evaluate each adjacent tile for collisions
                     case "up":
-<<<<<<< HEAD
-                        if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
-                                && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
-                                && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                            if ((obj.get(i) instanceof Potion)
-                                    || (obj.get(i) instanceof Defence)
-                                    || (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                // maybe no toast here?
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array, this will need to change for the gui version maybe
-=======
                             if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
                                     && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                     && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
                                 this.checkItemType(obj, i);
                                 result = true;
->>>>>>> master
                             }
-                            result = true;
-                        }
-                        break;
+                            break;
 
                     case "down":
-<<<<<<< HEAD
-                        if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary()
-                                && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
-                                && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                            if ((obj.get(i) instanceof Potion)
-                                    || (obj.get(i) instanceof Defence)
-                                    || (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
-=======
                         if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary() &&
                                 (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
                                 (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
                             this.checkItemType(obj, i);
->>>>>>> master
                             result = true;
                         }
                         break;
                     case "left":
-<<<<<<< HEAD
-                        if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary()
-                                && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
-                                && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            if ((obj.get(i) instanceof Potion)
-                                    || (obj.get(i) instanceof Defence)
-                                    || (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
-=======
                         if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
                             this.checkItemType(obj, i);
->>>>>>> master
                             result = true;
                         }
                         break;
                     case "right":
-<<<<<<< HEAD
-                        if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary()
-                                && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
-                                && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            if ((obj.get(i) instanceof Potion)
-                                    || (obj.get(i) instanceof Defence)
-                                    || (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
-=======
                         if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
                             this.checkItemType(obj, i);
->>>>>>> master
                             result = true;
                         }
                         break;
@@ -444,7 +390,6 @@ public class GameLoop {
         }
         return result;
     }
-
     /**
      * Purpose: To determine if the item can be picked up and if so, if it is a
      * weapon or shield, remove the old one and replace it with the new. This
