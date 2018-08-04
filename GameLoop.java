@@ -315,14 +315,7 @@ public class GameLoop{
                             if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
                                     && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                     && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                                if ((obj.get(i) instanceof Potion)
-                                        || (obj.get(i) instanceof Defence)
-                                        || (obj.get(i) instanceof Weapon)) {
-                                    pickUpItem(player, obj.get(i));
-                                    // maybe no toast here?
-                                    //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                    obj.remove(obj.get(i)); // remove the object from the array, this will need to change for the gui version maybe
-                                }
+                                this.checkItemType(obj, i);
                                 result = true;
                             }
                             break;
@@ -331,13 +324,7 @@ public class GameLoop{
                         if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
                                 (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
                                 (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                            if ((obj.get(i) instanceof Potion) ||
-                                    (obj.get(i) instanceof Defence) ||
-                                    (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
+                            this.checkItemType(obj, i);
                             result = true;
                         }
                         break;
@@ -345,13 +332,7 @@ public class GameLoop{
                         if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            if ((obj.get(i) instanceof Potion) ||
-                                    (obj.get(i) instanceof Defence) ||
-                                    (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
+                            this.checkItemType(obj, i);
                             result = true;
                         }
                         break;
@@ -359,13 +340,7 @@ public class GameLoop{
                         if (player.getCoord().getRightBoundary()+1 == obj.get(i).getCoord().getLeftBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            if ((obj.get(i) instanceof Potion) ||
-                                    (obj.get(i) instanceof Defence) ||
-                                    (obj.get(i) instanceof Weapon)) {
-                                pickUpItem(player, obj.get(i));
-                                //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
-                                obj.remove(obj.get(i)); // remove the object from the array
-                            }
+                            this.checkItemType(obj, i);
                             result = true;
                         }
                         break;
@@ -373,6 +348,20 @@ public class GameLoop{
             }
         }
         return result;
+    }
+
+    /**
+     * Purpose:
+     * 
+     */
+    private void checkItemType(ArrayList<Sprite> obj, int index) {
+        if ((obj.get(index) instanceof Potion) ||
+                (obj.get(index) instanceof Defence) ||
+                (obj.get(index) instanceof Weapon)) {
+            pickUpItem(player, obj.get(index));
+            //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+            obj.remove(obj.get(index)); // remove the object from the array
+        }
     }
 
     /**
