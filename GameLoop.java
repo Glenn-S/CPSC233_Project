@@ -27,6 +27,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.FontPosture;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -515,27 +518,90 @@ public class GameLoop{
 
 
         HBox itemsStrip = new HBox();
-        Group itemImages = new Group();
-        Canvas inventory = new Canvas(); // old values 8000x4000
-        GraphicsContext gcInventory = inventory.getGraphicsContext2D();
+        VBox itemContainer;
+        ImageView item;
+        int smallPotionCount = 0;
+        int mediumPotionCount = 0;
+        int largePotionCount = 0;
+        Label smallPotionCnt = new Label();
+        Label mediumPotionCnt = new Label();
+        Label largePotionCnt = new Label();
 
-        // add the inventory items
-        //this.getPlayer().getItems().size()
-        /*for (int i = 0; i < 1; i++) {
-            gcInventory.drawImage(this.getPlayer().getItems().get(i).getSpriteImage(), 0, 0);
-        }*/
+        // maybe break up into a new method?
+        // go through the users items and add them to the status bar
+        for (int i = 0; i < this.getPlayer().getItems().size(); i++) {
+            item = new ImageView(this.getPlayer().getItems().get(i).getSpriteImage());
+            itemContainer = new VBox();
+            itemContainer.setPadding(new Insets(10));
+            switch (this.getPlayer().getItems().get(i).getName()) {
+                case "Small Potion":
+                    smallPotionCount++;
+                    if (smallPotionCount == 1) {
+                        smallPotionCnt.setText("x" + smallPotionCount);
+                        itemContainer.getChildren().addAll(
+                            new Label(this.getPlayer().getItems().get(i).getName()), item, smallPotionCnt);
+                    }
+                    else if (smallPotionCount > 1) smallPotionCnt.setText("x" + smallPotionCount);
+                    break;
 
-        gcInventory.drawImage(this.getPlayer().getItems().get(0).getSpriteImage(), 0, 0);
-        itemImages.getChildren().add(inventory);
-        itemsStrip.getChildren().addAll(new Label("ITEMS"), itemImages);
+                case "Medium Potion":
+                    mediumPotionCount++;
+                    if (mediumPotionCount == 1) {
+                        mediumPotionCnt.setText("x" + mediumPotionCount);
+                        itemContainer.getChildren().addAll(
+                            new Label(this.getPlayer().getItems().get(i).getName()), item, mediumPotionCnt);
+                    }
+                else if (mediumPotionCount > 1) mediumPotionCnt.setText("x" + mediumPotionCount);
+                    break;
 
+                case "Large Potion":
+                    largePotionCount++;
+                    if (largePotionCount == 1) {
+                        largePotionCnt.setText("x" + largePotionCount);
+                        itemContainer.getChildren().addAll(
+                            new Label(this.getPlayer().getItems().get(i).getName()), item, largePotionCnt);
+                    }
+                    else if (largePotionCount > 1) largePotionCnt.setText("x" + largePotionCount);
+                    break;
+                default:
+                    itemContainer.getChildren().addAll(
+                        new Label(this.getPlayer().getItems().get(i).getName()), item);
+
+            }
+
+            itemsStrip.getChildren().addAll(itemContainer);
+        }
+
+        HBox keyContainer = new HBox();
+        for (int j = 0; j < this.getPlayer().getKeyCount(); j++) {
+            keyContainer.getChildren().add(new ImageView(new Image("file:Images/Normal key.png")));
+        }
+        itemsStrip.getChildren().add(keyContainer);
+
+        HBox playerStats = new HBox();
+        playerStats.setSpacing(10);
+        playerStats.setPadding(new Insets(10));
+        Label statsName = new Label(this.getPlayer().getName());
+        Label statsKeys = new Label("Keys: " + this.getPlayer().getKeyCount());
+        Label statsHealth = new Label("Health: " + this.getPlayer().getHealth());
+        Label statsAttack = new Label("Attack: " + this.getPlayer().getAttack());
+        Label statsDefence = new Label("Defence: " + this.getPlayer().getDefence());
+        //research from https://www.tutorialspoint.com/javafx/javafx_text.htm
+        statsName.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
+        statsKeys.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
+        statsHealth.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
+        statsAttack.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
+        statsDefence.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
+        playerStats.getChildren().addAll(statsName,
+                                         statsKeys,
+                                         statsHealth,
+                                         statsAttack,
+                                         statsDefence);
         VBox windowContainer = new VBox();
-        windowContainer.getChildren().addAll(scrollPane, itemsStrip);
-
-        //root.getChildren().add(scrollPane);
+        windowContainer.getChildren().addAll(scrollPane, playerStats, itemsStrip);
         root.getChildren().add(windowContainer); // used to be scrollPane
+        return root;
 
-        return root; // this method just needs
       /*
         int colTemp;
         int rowTemp;

@@ -47,7 +47,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         "and styrofoam plate shield.  Now it\'s up to you to assemble the holy" +
         "triglyceride (combination of the 3 \"keys\" known as monoglycerides)" +
         "and rescue Butter Bob Brown to restore peace to the Butter Industry.";
-    private final int WINWIDTH = 1440, WINHEIGHT = 720;
+    private final int WINWIDTH = 1440, WINHEIGHT = 800; // used to be 720
 
     // main menu stylings CONSTANTS
     private final String START = "START"; // label for the start button
@@ -254,6 +254,9 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
+        }
+        if (true) {
+            // check to see if enter was pressed near a chest
         }
 
         System.out.println(this.userMove); // for test purposes
