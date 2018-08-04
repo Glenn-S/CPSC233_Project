@@ -561,7 +561,7 @@ public class GameLoop {
             gc.drawImage(terrain.get(i).getSpriteImage(), terrain.get(i).getCoord().getPixelX(), terrain.get(i).getCoord().getPixelY());
         }
         for (int i = 0; i < getItem().size(); i++) {
-            if (items.get(i).getName().equals("Chest")) {
+            if (items.get(i).getName().equals("Chest")){
                 gc.drawImage(items.get(i).getSpriteImage(), items.get(i).getCoord().getPixelX(), items.get(i).getCoord().getPixelY());
             }
         }
@@ -573,19 +573,13 @@ public class GameLoop {
         scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
         scrollPane.setContent(group);
-<<<<<<< HEAD
-        scrollPane.setVvalue((double) player.getCoord().getyCoord() / boardHeight);
-        scrollPane.setHvalue((double) player.getCoord().getxCoord() / boardLength);
-        //scrollPane.setVvalue(((((double)player.getCoord().getyCoord())+(3*((((double)player.getCoord().getyCoord()))/boardHeight)))/boardHeight));
-        //scrollPane.setHvalue(((((double)player.getCoord().getxCoord())-(7 * (((((double)player.getCoord().getxCoord()))/boardLength)))/boardLength)));
-=======
         // set the scroll to follow the player as they move relative to the viewable area
         if (player.getCoord().getxCoord() < 15) scrollPane.setHvalue(0.0);
         else scrollPane.setHvalue(((double)player.getCoord().getxCoord() - 14)/50);
         // set for vertical view following
         if (player.getCoord().getyCoord() > 39-6) scrollPane.setVvalue(1.0);
         else scrollPane.setVvalue(((double)player.getCoord().getyCoord() - 6)/28);
->>>>>>> master
+
 
         HBox itemsStrip = new HBox();
         VBox itemContainer;
@@ -611,10 +605,9 @@ public class GameLoop {
                         itemContainer.setPrefWidth(165);
                         smallPotionCnt.setText("x" + smallPotionCount);
                         itemContainer.getChildren().addAll(
-                                new Label(this.getPlayer().getItems().get(i).getName()), item, smallPotionCnt);
-                    } else if (smallPotionCount > 1) {
-                        smallPotionCnt.setText("x" + smallPotionCount);
+                            new Label(this.getPlayer().getItems().get(i).getName()), item, smallPotionCnt);
                     }
+                    else if (smallPotionCount > 1) smallPotionCnt.setText("x" + smallPotionCount);
                     break;
 
                 case "Medium Potion":
@@ -624,14 +617,9 @@ public class GameLoop {
                         itemContainer.setPrefWidth(165);
                         mediumPotionCnt.setText("x" + mediumPotionCount);
                         itemContainer.getChildren().addAll(
-                                new Label(this.getPlayer().getItems().get(i).getName()), item, mediumPotionCnt);
-                    } else if (mediumPotionCount > 1) {
-                        mediumPotionCnt.setText("x" + mediumPotionCount);
+                            new Label(this.getPlayer().getItems().get(i).getName()), item, mediumPotionCnt);
                     }
-<<<<<<< HEAD
-=======
                     else if (mediumPotionCount > 1) mediumPotionCnt.setText("x" + mediumPotionCount);
->>>>>>> master
                     break;
 
                 case "Large Potion":
@@ -641,16 +629,15 @@ public class GameLoop {
                         itemContainer.setPrefWidth(165);
                         largePotionCnt.setText("x" + largePotionCount);
                         itemContainer.getChildren().addAll(
-                                new Label(this.getPlayer().getItems().get(i).getName()), item, largePotionCnt);
-                    } else if (largePotionCount > 1) {
-                        largePotionCnt.setText("x" + largePotionCount);
+                            new Label(this.getPlayer().getItems().get(i).getName()), item, largePotionCnt);
                     }
+                    else if (largePotionCount > 1) largePotionCnt.setText("x" + largePotionCount);
                     break;
                 default:
                     itemContainer.setPadding(new Insets(10));
                     itemContainer.setPrefWidth(165);
                     itemContainer.getChildren().addAll(
-                            new Label(this.getPlayer().getItems().get(i).getName()), item);
+                        new Label(this.getPlayer().getItems().get(i).getName()), item);
 
             }
 
@@ -678,16 +665,16 @@ public class GameLoop {
         statsAttack.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
         statsDefence.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 14));
         playerStats.getChildren().addAll(statsName,
-                statsKeys,
-                statsHealth,
-                statsAttack,
-                statsDefence);
+                                         statsKeys,
+                                         statsHealth,
+                                         statsAttack,
+                                         statsDefence);
         VBox windowContainer = new VBox();
         windowContainer.getChildren().addAll(scrollPane, playerStats, itemsStrip);
         root.getChildren().add(windowContainer); // used to be scrollPane
         return root;
 
-        /*
+      /*
         int colTemp;
         int rowTemp;
 
@@ -701,7 +688,9 @@ public class GameLoop {
                 System.out.print(printArray[i][j]);
             }
             System.out.print("\n");
-         */
+            */
+
+
         // add the background (as refresh), all the elements from each array for
         // printing and the player by using a GridPane view which automatically
         // creates a grid for you. Lay the grid in to a FlowPane which will have
