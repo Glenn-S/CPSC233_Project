@@ -139,7 +139,6 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                     window.setScene(end);
                     //Platform.exit(); // add in exit message later
                 }
-
             }
         };
         timer.start();

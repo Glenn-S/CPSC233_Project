@@ -351,14 +351,45 @@ public class GameLoop{
     }
 
     /**
-     * Purpose:
-     * 
+     * Purpose: To determine if the item can be picked up and if so, if it is a
+     * weapon or shield, remove the old one and replace it with the new. This
+     * only happens if the item is better than the one they currently own.
+     * @param obj
+     * @param index
      */
     private void checkItemType(ArrayList<Sprite> obj, int index) {
         if ((obj.get(index) instanceof Potion) ||
                 (obj.get(index) instanceof Defence) ||
                 (obj.get(index) instanceof Weapon)) {
-            pickUpItem(player, obj.get(index));
+
+            if (obj.get(index) instanceof Potion) {
+                pickUpItem(player, obj.get(index));
+            }
+            if (obj.get(index) instanceof Weapon) {
+                ArrayList<Sprite> newItemList = player.getItems();
+                for (int i = 0; i < newItemList.size(); i++) {
+                    if ((newItemList.get(i) instanceof Weapon) &&
+                        (((Weapon)newItemList.get(i)).getWeaponBoost() < ((Weapon)obj.get(index)).getWeaponBoost())){
+                        //newItemList.set(i, obj.get(index))
+                        player.updateAttack((Weapon)obj.get(index));
+                        newItemList.set(i, (Weapon)obj.get(index));
+                    }
+                }
+                player.setItems(newItemList);
+            }
+            if (obj.get(index) instanceof Defence) {
+                ArrayList<Sprite> newItemList = player.getItems();
+                // remove the old shield
+                for (int i = 0; i < newItemList.size(); i++) {
+                    if ((newItemList.get(i) instanceof Defence) &&
+                        (((Defence)newItemList.get(i)).getDefenceBoost() < ((Defence)obj.get(index)).getDefenceBoost())){
+                        //newItemList.set(i, obj.get(index))
+                        player.updateDefence((Defence)obj.get(index));
+                        newItemList.set(i, (Defence)obj.get(index));
+                    }
+                }
+                player.setItems(newItemList);
+            }
             //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
             obj.remove(obj.get(index)); // remove the object from the array
         }
@@ -553,6 +584,7 @@ public class GameLoop{
                     else if (largePotionCount > 1) largePotionCnt.setText("x" + largePotionCount);
                     break;
                 default:
+
                     itemContainer.getChildren().addAll(
                         new Label(this.getPlayer().getItems().get(i).getName()), item);
 
