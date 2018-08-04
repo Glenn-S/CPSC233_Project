@@ -161,6 +161,10 @@ public class Player extends Avatar {
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles
 	 */
 	public ArrayList<Sprite> getItems() {
+		/*ArrayList<Sprite> copyList = new ArrayList<Sprite>();
+		for (int i = 0; i < this.items.size(); i++) {
+			copyList.set(i, new Sprite(this.items.get(i)));
+		}*/
 		return this.items;
 	}
 

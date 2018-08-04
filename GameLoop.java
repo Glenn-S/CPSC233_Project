@@ -353,6 +353,7 @@ public class GameLoop {
                 }
                 switch (move) { // evaluate each adjacent tile for collisions
                     case "up":
+<<<<<<< HEAD
                         if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
@@ -363,12 +364,20 @@ public class GameLoop {
                                 // maybe no toast here?
                                 //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array, this will need to change for the gui version maybe
+=======
+                            if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
+                                    && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
+                                    && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                                this.checkItemType(obj, i);
+                                result = true;
+>>>>>>> master
                             }
                             result = true;
                         }
                         break;
 
                     case "down":
+<<<<<<< HEAD
                         if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary()
                                 && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
@@ -379,10 +388,17 @@ public class GameLoop {
                                 //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
+=======
+                        if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary() &&
+                                (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
+                                (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
+                            this.checkItemType(obj, i);
+>>>>>>> master
                             result = true;
                         }
                         break;
                     case "left":
+<<<<<<< HEAD
                         if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary()
                                 && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
@@ -393,10 +409,17 @@ public class GameLoop {
                                 //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
+=======
+                        if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            this.checkItemType(obj, i);
+>>>>>>> master
                             result = true;
                         }
                         break;
                     case "right":
+<<<<<<< HEAD
                         if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary()
                                 && (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
@@ -407,6 +430,12 @@ public class GameLoop {
                                 //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
                                 obj.remove(obj.get(i)); // remove the object from the array
                             }
+=======
+                        if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary() &&
+                                (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
+                                (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
+                            this.checkItemType(obj, i);
+>>>>>>> master
                             result = true;
                         }
                         break;
@@ -414,6 +443,53 @@ public class GameLoop {
             }
         }
         return result;
+    }
+
+    /**
+     * Purpose: To determine if the item can be picked up and if so, if it is a
+     * weapon or shield, remove the old one and replace it with the new. This
+     * only happens if the item is better than the one they currently own.
+     * @param obj
+     * @param index
+     */
+    private void checkItemType(ArrayList<Sprite> obj, int index) {
+        if ((obj.get(index) instanceof Potion) ||
+                (obj.get(index) instanceof Defence) ||
+                (obj.get(index) instanceof Weapon)) {
+
+            if (obj.get(index) instanceof Potion) {
+                pickUpItem(player, obj.get(index));
+            }
+            if (obj.get(index) instanceof Weapon) {
+                ArrayList<Sprite> newItemList = player.getItems();
+                for (int i = 0; i < newItemList.size(); i++) {
+                    if ((newItemList.get(i) instanceof Weapon) &&
+                        (((Weapon)newItemList.get(i)).getWeaponBoost() < ((Weapon)obj.get(index)).getWeaponBoost())){
+                        //newItemList.set(i, obj.get(index))
+                        player.updateAttack((Weapon)obj.get(index));
+                        newItemList.set(i, (Weapon)obj.get(index));
+                    }
+                }
+                player.setItems(newItemList);
+            }
+            if (obj.get(index) instanceof Defence) {
+                ArrayList<Sprite> newItemList = player.getItems();
+                // remove the old shield
+                for (int i = 0; i < newItemList.size(); i++) {
+                    if ((newItemList.get(i) instanceof Defence) &&
+                        (((Defence)newItemList.get(i)).getDefenceBoost() < ((Defence)obj.get(index)).getDefenceBoost())){
+                        //newItemList.set(i, obj.get(index))
+                        player.updateDefence((Defence)obj.get(index));
+                        newItemList.set(i, (Defence)obj.get(index));
+                    }
+                }
+                player.setItems(newItemList);
+            }
+            //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+            obj.remove(obj.get(index)); // remove the object from the array
+            // open the chest after an item has been picked up
+            obj.get(index).setSpriteImage(new Image("file:Smaller Images/chest2.png"));
+        }
     }
 
     /**
@@ -430,24 +506,16 @@ public class GameLoop {
         if (player != null) { // this could be a try and except statement?
             switch (move) {
                 case "up":
-                    if (player.getCoord().getUpperBoundary() - 1 == 0) {
-                        result = true; // remove these hard coded values later
-                    }
+                    if (player.getCoord().getUpperBoundary() - 1 == 0)  result = true;
                     break;
                 case "down":
-                    if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
-                        result = true; // adjust for edge now
-                    }
+                    if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) result = true;
                     break;
                 case "left":
-                    if (player.getCoord().getLeftBoundary() - 1 == 0) {
-                        result = true;
-                    }
+                    if (player.getCoord().getLeftBoundary() - 1 == 0) result = true;
                     break;
                 case "right":
-                    if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
-                        result = true; // adjust for edge now
-                    }
+                    if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) result = true;
                     break;
             }
         }
@@ -555,12 +623,24 @@ public class GameLoop {
         // draw the player
         gc.drawImage(player.getSpriteImage(), player.getCoord().getPixelX(), player.getCoord().getPixelY());
         group.getChildren().addAll(backing, foreground);
+        // turn off the scroll bars so that they aren't visible
 
+        scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
         scrollPane.setContent(group);
+<<<<<<< HEAD
         scrollPane.setVvalue((double) player.getCoord().getyCoord() / boardHeight);
         scrollPane.setHvalue((double) player.getCoord().getxCoord() / boardLength);
         //scrollPane.setVvalue(((((double)player.getCoord().getyCoord())+(3*((((double)player.getCoord().getyCoord()))/boardHeight)))/boardHeight));
         //scrollPane.setHvalue(((((double)player.getCoord().getxCoord())-(7 * (((((double)player.getCoord().getxCoord()))/boardLength)))/boardLength)));
+=======
+        // set the scroll to follow the player as they move relative to the viewable area
+        if (player.getCoord().getxCoord() < 15) scrollPane.setHvalue(0.0);
+        else scrollPane.setHvalue(((double)player.getCoord().getxCoord() - 14)/50);
+        // set for vertical view following
+        if (player.getCoord().getyCoord() > 39-6) scrollPane.setVvalue(1.0);
+        else scrollPane.setVvalue(((double)player.getCoord().getyCoord() - 6)/28);
+>>>>>>> master
 
         HBox itemsStrip = new HBox();
         VBox itemContainer;
@@ -577,11 +657,13 @@ public class GameLoop {
         for (int i = 0; i < this.getPlayer().getItems().size(); i++) {
             item = new ImageView(this.getPlayer().getItems().get(i).getSpriteImage());
             itemContainer = new VBox();
-            itemContainer.setPadding(new Insets(10));
+
             switch (this.getPlayer().getItems().get(i).getName()) {
                 case "Small Potion":
                     smallPotionCount++;
                     if (smallPotionCount == 1) {
+                        itemContainer.setPadding(new Insets(10));
+                        itemContainer.setPrefWidth(165);
                         smallPotionCnt.setText("x" + smallPotionCount);
                         itemContainer.getChildren().addAll(
                                 new Label(this.getPlayer().getItems().get(i).getName()), item, smallPotionCnt);
@@ -593,17 +675,25 @@ public class GameLoop {
                 case "Medium Potion":
                     mediumPotionCount++;
                     if (mediumPotionCount == 1) {
+                        itemContainer.setPadding(new Insets(10));
+                        itemContainer.setPrefWidth(165);
                         mediumPotionCnt.setText("x" + mediumPotionCount);
                         itemContainer.getChildren().addAll(
                                 new Label(this.getPlayer().getItems().get(i).getName()), item, mediumPotionCnt);
                     } else if (mediumPotionCount > 1) {
                         mediumPotionCnt.setText("x" + mediumPotionCount);
                     }
+<<<<<<< HEAD
+=======
+                    else if (mediumPotionCount > 1) mediumPotionCnt.setText("x" + mediumPotionCount);
+>>>>>>> master
                     break;
 
                 case "Large Potion":
                     largePotionCount++;
                     if (largePotionCount == 1) {
+                        itemContainer.setPadding(new Insets(10));
+                        itemContainer.setPrefWidth(165);
                         largePotionCnt.setText("x" + largePotionCount);
                         itemContainer.getChildren().addAll(
                                 new Label(this.getPlayer().getItems().get(i).getName()), item, largePotionCnt);
@@ -612,6 +702,8 @@ public class GameLoop {
                     }
                     break;
                 default:
+                    itemContainer.setPadding(new Insets(10));
+                    itemContainer.setPrefWidth(165);
                     itemContainer.getChildren().addAll(
                             new Label(this.getPlayer().getItems().get(i).getName()), item);
 

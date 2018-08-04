@@ -952,31 +952,48 @@ public class GameBoard extends Application {
         Image chest = new Image("file:Smaller Images/Chest1.png");
         Image smallPotion = new Image("file:Images/Small potion.png");
         Image mediumPotion = new Image("file:Images/Medium potion.png");
+        Image intermediateSword = new Image("file:Images/Silver butterknife.png");
+        Image intermediateShield = new Image("file:Images/silverShield.png");
+        Image bestSword = new Image("file:Images/Gold butterknife.png");
+        Image bestShield = new Image("file:Images/goldShield.png");
 
+        // *** made the number of items to get less so that not every chest has something ***
+        // need to move the locations of items to make the game more challenging
 
         items.add(new Potion("Small Potion", new Location(5,4,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(5,4,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(76,28,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(76,28,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Small Potion", new Location(38,38,0,0), smallPotion,' ', null, true, true, 25));
+
+        //items.add(new Potion("Small Potion", new Location(38,38,0,0), smallPotion,' ', null, true, true, 25));
+        items.add(new Defence("Ceramic Plate Shield", new Location(38,38,0,0), intermediateShield, ' ', null, true, false, 75));
         items.add(new Sprite("Chest", new Location(38,38,0,0), chest, '#', null, true, true));
+
         items.add(new Potion("Medium Potion", new Location(45,30,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(45,30,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(74,36,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(74,36,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(51,6,0,0), mediumPotion,' ', null, true, true, 50));
+
+        //items.add(new Potion("Medium Potion", new Location(51,6,0,0), mediumPotion,' ', null, true, true, 50));
+        items.add(new Weapon("Silver Butterknife", new Location(51,6,0,0), intermediateSword, ' ', null, true, false, 75));
         items.add(new Sprite("Chest", new Location(51,6,0,0), chest, '#', null, true, true));
+
         items.add(new Potion("Small Potion", new Location(37,10,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(37,10,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(44,21,0,0), mediumPotion,' ', null, true, true, 50));
+
+        //items.add(new Potion("Medium Potion", new Location(44,21,0,0), mediumPotion,' ', null, true, true, 50));
+        items.add(new Weapon("Gold Butterknife", new Location(44,21,0,0), bestSword, ' ', null, true, false, 100));
         items.add(new Sprite("Chest", new Location(44,21,0,0), chest, '#', null, true, true));
+
         items.add(new Potion("Small Potion", new Location(22,19,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(22,19,0,0), chest, '#', null, true, true));
         items.add(new Potion("Medium Potion", new Location(10,30,0,0), mediumPotion,' ', null, true, true, 50));
         items.add(new Sprite("Chest", new Location(10,30,0,0), chest, '#', null, true, true));
         items.add(new Potion("Small Potion", new Location(25,25,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(25,25,0,0), chest, '#', null, true, true));
-        items.add(new Potion("Medium Potion", new Location(13,9,0,0), mediumPotion,' ', null, true, true, 50));
+
+        //items.add(new Potion("Medium Potion", new Location(13,9,0,0), mediumPotion,' ', null, true, true, 50));
+        items.add(new Defence("Fine China Plate Shield", new Location(13,9,0,0), bestShield, ' ', null, true, false, 100));
         items.add(new Sprite("Chest", new Location(13,9,0,0), chest, '#', null, true, true));
     }
 

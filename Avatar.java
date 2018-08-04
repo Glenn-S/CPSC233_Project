@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Avatar extends Sprite {
-
+    private final int BASEHEALTH = 25;
     protected int health;   // health of the avatar as an integer
     protected int defence;  // defence stat of the avatar as an integer
     protected int attack;  // attack stat of the avatar as an integer
@@ -159,7 +159,7 @@ public class Avatar extends Sprite {
      * added to the avatar as a type of integer
      */
     public void updateAttack(Weapon weaponStrength) {//update attack when carring some weapons
-        this.attack += weaponStrength.getWeaponBoost();
+        this.attack = weaponStrength.getWeaponBoost() + BASEHEALTH;
     }
 
     /**
@@ -168,7 +168,7 @@ public class Avatar extends Sprite {
      * added to the avatar as a type of integer
      */
     public void updateDefence(Defence defenceBoost) {//update defence when carring some defence items.
-        this.defence += defenceBoost.getDefenceBoost();
+        this.defence = defenceBoost.getDefenceBoost() + BASEHEALTH;
     }
 
     /**

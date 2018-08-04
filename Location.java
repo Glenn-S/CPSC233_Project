@@ -40,6 +40,16 @@ public class Location {
 		this.ySize = 0;
 	}
 
+	/**
+	 * Purpose: Copy constructor
+	 */
+	public Location(Location copyLocation) {
+		this.xCoord = copyLocation.getxCoord();
+		this.yCoord = copyLocation.getyCoord();
+		this.xSize = copyLocation.getxSize();
+		this.ySize = copyLocation.getySize();
+	}
+
 	/*--------------------------- GETTER/SETTERS -----------------------------*/
 	/**
 	 * Purpose: To retrieve the x coordinate.
