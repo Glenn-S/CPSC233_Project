@@ -321,7 +321,7 @@ public class GameLoop{
                             break;
 
                     case "down":
-                        if (player.getCoord().getLowerBoundary()+1 == obj.get(i).getCoord().getUpperBoundary() &&
+                        if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary() &&
                                 (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
                                 (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
                             this.checkItemType(obj, i);
@@ -329,7 +329,7 @@ public class GameLoop{
                         }
                         break;
                     case "left":
-                        if (player.getCoord().getLeftBoundary()-1 == obj.get(i).getCoord().getRightBoundary() &&
+                        if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
                             this.checkItemType(obj, i);
@@ -337,7 +337,7 @@ public class GameLoop{
                         }
                         break;
                     case "right":
-                        if (player.getCoord().getRightBoundary()+1 == obj.get(i).getCoord().getLeftBoundary() &&
+                        if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
                             this.checkItemType(obj, i);
@@ -411,24 +411,16 @@ public class GameLoop{
         if (player != null) { // this could be a try and except statement?
             switch (move) {
                 case "up":
-                    if (player.getCoord().getUpperBoundary() - 1 == 0) {
-                        result = true; // remove these hard coded values later
-                    }
+                    if (player.getCoord().getUpperBoundary() - 1 == 0)  result = true;
                     break;
                 case "down":
-                    if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) {
-                        result = true; // adjust for edge now
-                    }
+                    if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) result = true;
                     break;
                 case "left":
-                    if (player.getCoord().getLeftBoundary() - 1 == 0) {
-                        result = true;
-                    }
+                    if (player.getCoord().getLeftBoundary() - 1 == 0) result = true;
                     break;
                 case "right":
-                    if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) {
-                        result = true; // adjust for edge now
-                    }
+                    if (player.getCoord().getRightBoundary() + 1 == this.boardLength - 1) result = true;
                     break;
             }
         }
@@ -531,12 +523,17 @@ public class GameLoop{
         // draw the player
         gc.drawImage(player.getSpriteImage(), player.getCoord().getPixelX(), player.getCoord().getPixelY());
         group.getChildren().addAll(backing, foreground);
+        // turn off the scroll bars so that they aren't visible
 
+        scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
         scrollPane.setContent(group);
-        scrollPane.setVvalue((double)player.getCoord().getyCoord()/boardHeight);
-        scrollPane.setHvalue((double)player.getCoord().getxCoord()/boardLength);
-        //scrollPane.setVvalue(((((double)player.getCoord().getyCoord())+(3*((((double)player.getCoord().getyCoord()))/boardHeight)))/boardHeight));
-        //scrollPane.setHvalue(((((double)player.getCoord().getxCoord())-(7 * (((((double)player.getCoord().getxCoord()))/boardLength)))/boardLength)));
+        // set the scroll to follow the player as they move relative to the viewable area
+        if (player.getCoord().getxCoord() < 15) scrollPane.setHvalue(0.0);
+        else scrollPane.setHvalue(((double)player.getCoord().getxCoord() - 14)/50);
+        // set for vertical view following
+        if (player.getCoord().getyCoord() > 39-6) scrollPane.setVvalue(1.0);
+        else scrollPane.setVvalue(((double)player.getCoord().getyCoord() - 6)/28);
 
 
         HBox itemsStrip = new HBox();
