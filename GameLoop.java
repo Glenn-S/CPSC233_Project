@@ -294,7 +294,46 @@ public class GameLoop {
         }
         return result;
     }
-
+    public Enemy checkEnemies(String move,Player player , ArrayList<Enemy> enemy) {
+        if ((player != null) && (enemy != null)) { // this could be a try and except statement?
+            for (int i = 0; i < enemy.size(); i++) {
+                if (!enemy.get(i).getExists()) {
+                    continue; // go to the next item since this object doesn't exist
+                }
+                switch (move) { // check the tile adjacent
+                    case "up":
+                        if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
+                                && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
+                                && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                            return enemy.get(i);
+                        }
+                        break;
+                    case "down":
+                        if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
+                                && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
+                                && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
+                            return enemy.get(i);
+                        }
+                        break;
+                    case "left":
+                        if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
+                                && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
+                                && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                            return enemy.get(i);
+                        }
+                        break;
+                    case "right":
+                        if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
+                                && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
+                                && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
+                            return enemy.get(i);
+                        }
+                        break;
+                }
+            }
+        }
+        return null;
+    }
     /**
      * Purpose: To check and see if the players move will collide with a terrain
      * tile that cannot be crossed (ie. mountains).
@@ -689,47 +728,6 @@ public class GameLoop {
                 break;
         }
         return input;
-    }
-
-    public Enemy getCollidedEnemy(Player player, String move, ArrayList<Enemy> enemy) {
-        if ((player != null) && (enemy != null)) { // this could be a try and except statement?
-            for (int i = 0; i < enemy.size(); i++) {
-                if (!enemy.get(i).getExists()) {
-                    continue; // go to the next item since this object doesn't exist
-                }
-                switch (move) { // check the tile adjacent
-                    case "up":
-                        if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
-                                && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
-                                && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                            return enemy.get(i);
-                        }
-                        break;
-                    case "down":
-                        if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
-                                && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
-                                && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                            return enemy.get(i);
-                        }
-                        break;
-                    case "left":
-                        if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
-                                && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
-                                && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            return enemy.get(i);
-                        }
-                        break;
-                    case "right":
-                        if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
-                                && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
-                                && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            return enemy.get(i);
-                        }
-                        break;
-                }
-            }
-        }
-        return null;
     }
 
     /**

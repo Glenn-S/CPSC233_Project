@@ -85,8 +85,8 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
     private Scene main, game, end, battle; // store scenes for each state
 
     // battle scene elements
-    private ProgressBar enemyHealth = new ProgressBar(1.0f);
-    private ProgressBar playerHealth = new ProgressBar(1.0f);
+    private ProgressBar enemyHealth;
+    private ProgressBar playerHealth;
     private int damage = 0;
     private BattleLoop b;
     private StackPane bRoot;
@@ -139,12 +139,12 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                 if (!userMove.equals("")) {
                     if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                         gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
-                    } else if (gamePlay.getCollidedEnemy(gamePlay.getPlayer(), userMove, gamePlay.getEnemy()) != null) {
-                        Enemy collidedEnemy = gamePlay.getCollidedEnemy(gamePlay.getPlayer(), userMove, gamePlay.getEnemy());
+                    } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
+                        Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                         battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
                         battle.getStylesheets().add("textareafix.css");
                         window.setScene(battle);
-                        battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(),battle);
+                        battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
                     }
                     root = gamePlay.drawState(gamePlay.getPlayer());
 
@@ -167,21 +167,12 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         System.out.println(gamePlay.getPlayer());
 
         /**
-         * 1. move constructor into new method called battleScenecontent() 2.
-         * move battle method into here 3. duirng check win and lose state, set
-         * window to appropriate scene 4. fix potion and key usage 5. make
-         * attack and defense actually used
+         * 1. Fix when multiple type of one potion you have to wait a turn 
+         * 2. Make attack and defense relevant
+         *
+         *
          */
         // add battle scene setups here
-        if (gamePlay.getCollidedEnemy(gamePlay.getPlayer(), this.userMove, gamePlay.getEnemy()) != null) {
-            Enemy collidedEnemy = gamePlay.getCollidedEnemy(gamePlay.getPlayer(), this.userMove, gamePlay.getEnemy());
-            System.out.print("AYE");
-            battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
-            battle.getStylesheets().add("textareafix.css");
-            window.setScene(battle);
-            battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(),battle);
-        }
-
         // send the scene to the window to be displayed
         window.setScene(main);
         window.show();
@@ -195,8 +186,12 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         ImageView i1 = new ImageView(bkgrnd);
         this.margM = new ImageView("Images/Margarine Men_BG.png");
         this.monte = new ImageView("Images/Montequilla_BG.png");
+        this.enemyHealth = new ProgressBar(1.0f);
+        this.playerHealth = new ProgressBar(1.0f);
         this.playerHealth.setPrefSize(225, 25);
         this.enemyHealth.setPrefSize(225, 25);
+        this.playerHealth.setVisible(true);
+        this.enemyHealth.setVisible(true);
         i1.setFitHeight(960);
         i1.setFitWidth(1440);
         margM.setFitHeight(400);
@@ -252,6 +247,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+
                 this.moveLeftRight(event);
                 this.moveupDown(event);
                 if (event.getCode() == KeyCode.ENTER) {
