@@ -551,11 +551,13 @@ public class GameLoop{
         for (int i = 0; i < this.getPlayer().getItems().size(); i++) {
             item = new ImageView(this.getPlayer().getItems().get(i).getSpriteImage());
             itemContainer = new VBox();
-            itemContainer.setPadding(new Insets(10));
+
             switch (this.getPlayer().getItems().get(i).getName()) {
                 case "Small Potion":
                     smallPotionCount++;
                     if (smallPotionCount == 1) {
+                        itemContainer.setPadding(new Insets(10));
+                        itemContainer.setPrefWidth(165);
                         smallPotionCnt.setText("x" + smallPotionCount);
                         itemContainer.getChildren().addAll(
                             new Label(this.getPlayer().getItems().get(i).getName()), item, smallPotionCnt);
@@ -566,16 +568,20 @@ public class GameLoop{
                 case "Medium Potion":
                     mediumPotionCount++;
                     if (mediumPotionCount == 1) {
+                        itemContainer.setPadding(new Insets(10));
+                        itemContainer.setPrefWidth(165);
                         mediumPotionCnt.setText("x" + mediumPotionCount);
                         itemContainer.getChildren().addAll(
                             new Label(this.getPlayer().getItems().get(i).getName()), item, mediumPotionCnt);
                     }
-                else if (mediumPotionCount > 1) mediumPotionCnt.setText("x" + mediumPotionCount);
+                    else if (mediumPotionCount > 1) mediumPotionCnt.setText("x" + mediumPotionCount);
                     break;
 
                 case "Large Potion":
                     largePotionCount++;
                     if (largePotionCount == 1) {
+                        itemContainer.setPadding(new Insets(10));
+                        itemContainer.setPrefWidth(165);
                         largePotionCnt.setText("x" + largePotionCount);
                         itemContainer.getChildren().addAll(
                             new Label(this.getPlayer().getItems().get(i).getName()), item, largePotionCnt);
@@ -583,7 +589,8 @@ public class GameLoop{
                     else if (largePotionCount > 1) largePotionCnt.setText("x" + largePotionCount);
                     break;
                 default:
-
+                    itemContainer.setPadding(new Insets(10));
+                    itemContainer.setPrefWidth(165);
                     itemContainer.getChildren().addAll(
                         new Label(this.getPlayer().getItems().get(i).getName()), item);
 
