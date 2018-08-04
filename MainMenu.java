@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import java.io.Console;
 import java.util.ArrayList;
@@ -24,29 +25,33 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.Node;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
- * game.
- * inspiration borrowed from:
+ * game. inspiration borrowed from:
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
+ *
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class MainMenu extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
+
     private final String GAMETITLE = "The Adventures of Montequilla";
-    private final String SYNOPSIS =
-        "B-town is under attack by \"I can’t believe it\'s not butter\" boy and " +
-        "his army of Margarine men. All sources of butter are destroyed in the town " +
-        "except for one. Your best friend Butter Bob Brown has been in his lab developing " +
-        "a new 0 sodium butter. Realizing the applications for his process of removing " +
-        "sodium, \"I can’t believe it’s not butter\" boy abducts him to his lair of oil. " +
-        "After remembering something the town oracle spoke of in the past you see the " +
-        "ancient scriptures in the town describing a hero of legend who would save the " +
-        "Butter Industry from its competitors. Here you acquire the bronze butter knife " +
-        "and styrofoam plate shield.  Now it\'s up to you to assemble the holy" +
-        "triglyceride (combination of the 3 \"keys\" known as monoglycerides)" +
-        "and rescue Butter Bob Brown to restore peace to the Butter Industry.";
+    private final String SYNOPSIS
+            = "B-town is under attack by \"I can’t believe it\'s not butter\" boy and "
+            + "his army of Margarine men. All sources of butter are destroyed in the town "
+            + "except for one. Your best friend Butter Bob Brown has been in his lab developing "
+            + "a new 0 sodium butter. Realizing the applications for his process of removing "
+            + "sodium, \"I can’t believe it’s not butter\" boy abducts him to his lair of oil. "
+            + "After remembering something the town oracle spoke of in the past you see the "
+            + "ancient scriptures in the town describing a hero of legend who would save the "
+            + "Butter Industry from its competitors. Here you acquire the bronze butter knife "
+            + "and styrofoam plate shield.  Now it\'s up to you to assemble the holy"
+            + "triglyceride (combination of the 3 \"keys\" known as monoglycerides)"
+            + "and rescue Butter Bob Brown to restore peace to the Butter Industry.";
     private final int WINWIDTH = 1440, WINHEIGHT = 800; // used to be 720
 
     // main menu stylings CONSTANTS
@@ -75,18 +80,27 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
     private GameLoop gamePlay = new GameLoop();
     // set up player
 
-
     private Pane root = new Pane(); // for game play scenes
     private Stage window;
-    private Scene main, game, end; // store scenes for each state
+    private Scene main, game, end, battle; // store scenes for each state
 
-
-
+    // battle scene elements
+    private ProgressBar enemyHealth = new ProgressBar(1.0f);
+    private ProgressBar playerHealth = new ProgressBar(1.0f);
+    private int damage = 0;
+    private BattleLoop b;
+    private StackPane bRoot;
+    private GridPane attacks;
+    private TextArea log;
+    private ImageView margM;
+    private ImageView monte;
+    private Button potion;
     // main scene elements
 
     /**
      * Purpose: The main game driver for The Adventures of Montequilla. this
      * will continue until the user selects quit.
+     *
      * @param window a Stage class used to
      */
     @Override
@@ -125,14 +139,21 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                 if (!userMove.equals("")) {
                     if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                         gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
+                    } else if (gamePlay.getCollidedEnemy(gamePlay.getPlayer(), userMove, gamePlay.getEnemy()) != null) {
+                        Enemy collidedEnemy = gamePlay.getCollidedEnemy(gamePlay.getPlayer(), userMove, gamePlay.getEnemy());
+                        battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
+                        battle.getStylesheets().add("textareafix.css");
+                        window.setScene(battle);
+                        battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(),battle);
                     }
                     root = gamePlay.drawState(gamePlay.getPlayer());
+
                     game.setRoot(root); // refresh the page
                     userMove = "";
                 }
 
                 gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
-                if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
+                if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                     boolean winLose = (gamePlay.checkWinState()) ? true : false;
                     // exit menu
                     end = new Scene(endSceneContent(winLose)); // set the scene for main
@@ -145,15 +166,267 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         timer.start();
         System.out.println(gamePlay.getPlayer());
 
-        // battleScene
+        /**
+         * 1. move constructor into new method called battleScenecontent() 2.
+         * move battle method into here 3. duirng check win and lose state, set
+         * window to appropriate scene 4. fix potion and key usage 5. make
+         * attack and defense actually used
+         */
         // add battle scene setups here
-
-
+        if (gamePlay.getCollidedEnemy(gamePlay.getPlayer(), this.userMove, gamePlay.getEnemy()) != null) {
+            Enemy collidedEnemy = gamePlay.getCollidedEnemy(gamePlay.getPlayer(), this.userMove, gamePlay.getEnemy());
+            System.out.print("AYE");
+            battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
+            battle.getStylesheets().add("textareafix.css");
+            window.setScene(battle);
+            battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(),battle);
+        }
 
         // send the scene to the window to be displayed
         window.setScene(main);
         window.show();
 
+    }
+
+    public StackPane battleSceneContent(Player player) {
+        this.b = new BattleLoop();
+        this.bRoot = new StackPane();
+        Image bkgrnd = new Image("Images/Battle Background.png");
+        ImageView i1 = new ImageView(bkgrnd);
+        this.margM = new ImageView("Images/Margarine Men_BG.png");
+        this.monte = new ImageView("Images/Montequilla_BG.png");
+        this.playerHealth.setPrefSize(225, 25);
+        this.enemyHealth.setPrefSize(225, 25);
+        i1.setFitHeight(960);
+        i1.setFitWidth(1440);
+        margM.setFitHeight(400);
+        margM.setFitWidth(400);
+        monte.setFitHeight(500);
+        monte.setFitWidth(500);
+        this.log = new TextArea("Select an attack to initiate battle!"
+                + "\n(W)(A)(S)(D) = up/down/left/right"
+                + "\n(ENTER) = Use highlighted attack");
+        log.setPrefSize(300, 240);
+        log.setEditable(false);
+        this.attacks = new GridPane();
+        attacks.setPrefWidth(150);
+        attacks.setPrefHeight(120);
+        Button slash = new Button("Slash");
+        Button bb = new Button("Butter Boomerang");
+        Button parry = new Button("Parry");
+        this.potion = new Button("Potion");
+
+        slash.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
+        bb.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
+        parry.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
+        this.potion.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
+        this.attacks.add(slash, 0, 0);
+        this.attacks.add(bb, 1, 0);
+        this.attacks.add(parry, 0, 1);
+        this.attacks.add(this.potion, 1, 1);
+        if (!this.b.playerHasPotion(player) || this.b.validPotion(player) == null) {
+            this.potion.setDisable(true);
+        }
+        AnchorPane ap = new AnchorPane(this.enemyHealth, this.playerHealth, attacks);
+        ap.getChildren().add(this.log);
+        ap.getChildren().add(this.margM);
+        ap.getChildren().add(this.monte);
+        AnchorPane.setLeftAnchor(this.margM, 150.0);
+        AnchorPane.setTopAnchor(this.margM, 150.0);
+        AnchorPane.setRightAnchor(this.monte, 250.0);
+        AnchorPane.setBottomAnchor(this.monte, 40.0);
+        AnchorPane.setTopAnchor(this.enemyHealth, 165.0);
+        AnchorPane.setLeftAnchor(this.enemyHealth, 250.0);
+        AnchorPane.setTopAnchor(this.playerHealth, 250.0);
+        AnchorPane.setRightAnchor(this.playerHealth, 300.0);
+        AnchorPane.setBottomAnchor(this.attacks, 0.0);
+        AnchorPane.setRightAnchor(this.attacks, 0.0);
+        AnchorPane.setBottomAnchor(this.log, 0.0);
+        AnchorPane.setLeftAnchor(this.log, 0.0);
+        this.bRoot.getChildren().add(i1);
+        this.bRoot.getChildren().add(ap);
+        return bRoot;
+    }
+
+    public void battle(Player player, Enemy e, ArrayList<Enemy> enemy, ArrayList<Sprite> terrain, Scene battle) {
+        battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                this.moveLeftRight(event);
+                this.moveupDown(event);
+                if (event.getCode() == KeyCode.ENTER) {
+                    if (b.checkLoseState(player) || b.checkWinState(e)) {
+                        b.setTurnAttack("");
+                    }
+                    if (!(b.getTurnAttack().equals(""))) {
+                        if (b.getBBCounter() == 0) {
+                            log.appendText("\nYou used " + b.getTurnAttack());
+
+                            int eH = e.getHealth();
+                            b.attackExecute(b.getTurnAttack(), player, e);
+                            if (b.getEnemyUsedParry()) {
+                                if (e.getHealth() == eH) {
+                                    log.appendText("\nEnemy Parry Success!");
+                                } else {
+                                    log.appendText("\nEnemy Parry Failed!");
+                                }
+
+                            }
+                        } else if (b.getBBCounter() == 2) {
+                            log.appendText("\nBoomerang Fired!");
+                            damage = 40;
+                            int eH = e.getHealth();
+                            b.damageCalc(damage, e);
+                            if (b.getEnemyUsedParry()) {
+                                if (e.getHealth() == eH) {
+                                    log.appendText("\nEnemy Parry Success!");
+                                } else {
+                                    log.appendText("\nEnemy Parry Failed!");
+                                }
+
+                            }
+                            b.setBBCounter(0);
+                        }
+                        if (b.getEnemyUsedParry()) {
+                            b.setEnemyUsedParry(false);
+                        }
+                        if (b.checkWinState(e) == true) {
+                            this.drawState(player, e);
+                            log.appendText("\nYou Win!");
+                            margM.setRotate(90);
+                            attacks.setVisible(false);
+                            enemyHealth.setVisible(false);
+                            player.setHealth(100);
+                            if (e.getKey()) {
+                                player.setKeyCount(player.getKeyCount() + 1);
+                                log.appendText("\nYou have obtained a key from defeating this enemy!");
+                                e.setKey(false);
+                            }
+                            log.appendText("\nPlayer key count: " + player.getKeyCount());
+                            b.removeEnemy(e, enemy, terrain);
+                            window.setScene(game);
+
+                        } else {
+                            if (b.getMMCounter() == 1) {
+                                log.appendText("\nMargarine Missile Powering Up!");
+                                b.setMMCounter(2);
+                            }
+                            this.drawState(player, e);
+                            if (b.getMMCounter() == 0) {
+                                String eAttack = e.attackLogic(player);
+                                log.appendText("\nEnemy used " + eAttack);
+                                int pH = player.getHealth();
+                                b.eAttackExecute(eAttack, player, e);
+                                if (b.getUsedParry()) {
+                                    if (player.getHealth() == pH) {
+                                        log.appendText("\nPlayer Parry Success!");
+                                    } else {
+                                        log.appendText("\nPlayer Parry Failed!");
+                                    }
+
+                                }
+                            } else if (b.getMMCounter() == 2) {
+                                damage = 40;
+                                int pH = player.getHealth();
+                                b.damageCalc(damage, player);
+                                log.appendText("\nMissile Fired!");
+                                if (b.getUsedParry()) {
+                                    if (player.getHealth() == pH) {
+                                        log.appendText("\nPlayer Parry Success!");
+                                    } else {
+                                        log.appendText("\nPlayer Parry Failed!");
+                                    }
+
+                                }
+                                b.setMMCounter(0);
+                            }
+                            if (b.getUsedParry()) {
+                                b.setUsedParry(false);
+                            }
+                            if (b.checkLoseState(player) == true) {
+                                this.drawState(player, e);
+                                log.appendText("\nYou Lose!");
+                                monte.setRotate(90);
+                                attacks.setVisible(false);
+                                playerHealth.setVisible(false);
+                                window.setScene(end);
+                            }
+                            if (b.getBBCounter() == 1) {
+                                log.appendText("\nButter Boomerang Powering Up!");
+                                log.appendText("\nPress ENTER to fire");
+                                b.setBBCounter(2);
+                            }
+                            this.drawState(player, e);
+
+                        }
+                    }
+
+                }
+
+            }
+
+            private void drawState(Player player, Enemy e) {
+                playerHealth.setProgress((double) player.getHealth() / 100);
+                enemyHealth.setProgress((double) e.getHealth() / 100);
+                if (b.playerHasPotion(player) && b.validPotion(player) != null) {
+                    potion.setDisable(false);
+                } else if (b.getTurnAttack().equals("Potion") && (!b.playerHasPotion(player) || b.validPotion(player) == null)) {
+                    potion.setDisable(true);
+                    attacks.getChildren().get(0).requestFocus();
+                }
+            }
+
+            private void moveLeftRight(KeyEvent event) {
+                int leftRight = 0; // if 1, move right if -1 move left
+                if (event.getCode() == KeyCode.A) {
+                    leftRight = -1;
+//                    b.setTurnAttack("Butter Boomerang");
+                } else if (event.getCode() == KeyCode.D) {
+                    leftRight = 1;
+                }
+                for (int i = 0; i < attacks.getChildren().size(); i++) {
+                    if (attacks.getChildren().get(i).isFocused()) {
+
+                        int newRow = GridPane.getRowIndex(attacks.getChildren().get(i));
+                        int newCol = GridPane.getColumnIndex(attacks.getChildren().get(i));
+
+                        for (int j = 0; j < attacks.getChildren().size(); j++) {
+                            if (GridPane.getRowIndex(attacks.getChildren().get(j)) == newRow && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol + leftRight) {
+                                attacks.getChildren().get(j).requestFocus();
+                                b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
+                            }
+                        }
+                    }
+                }
+            }
+
+            private void moveupDown(KeyEvent event) {
+                int upDown = 0;
+                if (event.getCode() == KeyCode.W) {
+//                    b.setTurnAttack("Slash");
+                    upDown = -1;
+                } else if (event.getCode() == KeyCode.S) {
+                    upDown = 1;
+                }
+                for (int i = 0; i < attacks.getChildren().size(); i++) {
+                    if (attacks.getChildren().get(i).isFocused()) {
+
+                        int newRow = GridPane.getRowIndex(attacks.getChildren().get(i));
+                        int newCol = GridPane.getColumnIndex(attacks.getChildren().get(i));
+
+                        for (int j = 0; j < attacks.getChildren().size(); j++) {
+                            if (GridPane.getRowIndex(attacks.getChildren().get(j)) == (newRow + upDown) && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol) {
+                                attacks.getChildren().get(j).requestFocus();
+                                b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+        );
     }
 
     /**
@@ -193,9 +466,13 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             }
         });
         exitBtn.setOnKeyPressed(e -> {
-            if (e.getCode().equals(KeyCode.ENTER)) Platform.exit();
-            if (e.getCode().equals(KeyCode.W) ||
-                (e.getCode().equals(KeyCode.UP))) startBtn.requestFocus();
+            if (e.getCode().equals(KeyCode.ENTER)) {
+                Platform.exit();
+            }
+            if (e.getCode().equals(KeyCode.W)
+                    || (e.getCode().equals(KeyCode.UP))) {
+                startBtn.requestFocus();
+            }
         });
         startBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -207,8 +484,10 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             if (e.getCode().equals(KeyCode.ENTER)) {
                 window.setScene(game);
             }
-            if (e.getCode().equals(KeyCode.S) ||
-                (e.getCode().equals(KeyCode.DOWN))) exitBtn.requestFocus();
+            if (e.getCode().equals(KeyCode.S)
+                    || (e.getCode().equals(KeyCode.DOWN))) {
+                exitBtn.requestFocus();
+            }
         });
         return mainLayout;
     }
@@ -221,12 +500,16 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         VBox endContent = new VBox();
 
         endContent.setAlignment(Pos.CENTER);
-        endContent.setSpacing(GAP*2);
+        endContent.setSpacing(GAP * 2);
 
         // GO BACK AND CITE HOW I KNOW HOW TO DO SOME OF THIS STUFF
         Label userMsg = new Label();
-        if (win) userMsg.setText(WINMESSAGE);
-        if (!win) userMsg.setText(LOSEMESSAGE);
+        if (win) {
+            userMsg.setText(WINMESSAGE);
+        }
+        if (!win) {
+            userMsg.setText(LOSEMESSAGE);
+        }
         userMsg.setStyle(MSGSTYLE);
 
         Label prompt = new Label(RETURNMSG);
@@ -247,10 +530,18 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             startBtn.setText(START); // change the button text to say start in the main menu
             window.setScene(end); // go back to the main menu
         }
-        if (e.getCode().equals(KeyCode.W)) this.userMove = "up";
-        if (e.getCode().equals(KeyCode.S)) this.userMove = "down";
-        if (e.getCode().equals(KeyCode.A)) this.userMove = "left";
-        if (e.getCode().equals(KeyCode.D)) this.userMove = "right";
+        if (e.getCode().equals(KeyCode.W)) {
+            this.userMove = "up";
+        }
+        if (e.getCode().equals(KeyCode.S)) {
+            this.userMove = "down";
+        }
+        if (e.getCode().equals(KeyCode.A)) {
+            this.userMove = "left";
+        }
+        if (e.getCode().equals(KeyCode.D)) {
+            this.userMove = "right";
+        }
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
