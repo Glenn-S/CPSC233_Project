@@ -137,34 +137,32 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-
-
                 if (frameCounter++ % 30 == 0) { // adjust the frame rate speed to slow down the player
-                if (!userMove.equals("")) {
-                    if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
-                        gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
-                    } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
-                        Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
-                        battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
-                        battle.getStylesheets().add("textareafix.css");
-                        window.setScene(battle);
-                        battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
+                    if (!userMove.equals("")) {
+                        if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
+                            gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
+                        } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
+                            Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
+                            battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
+                            battle.getStylesheets().add("textareafix.css");
+                            window.setScene(battle);
+                            battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
 
+                        }
+                        root = gamePlay.drawState(gamePlay.getPlayer());
+
+                        game.setRoot(root); // refresh the page
+                        userMove = "";
                     }
-                    root = gamePlay.drawState(gamePlay.getPlayer());
 
-                    game.setRoot(root); // refresh the page
-                    userMove = "";
-                }
-
-                gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
-                if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
-                    boolean winLose = (gamePlay.checkWinState()) ? true : false;
-                    // exit menu
-                    end = new Scene(endSceneContent(winLose)); // set the scene for main
-                    window.setScene(end);
-                    //Platform.exit(); // add in exit message later
-                }
+                    gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
+                    if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
+                        boolean winLose = (gamePlay.checkWinState()) ? true : false;
+                        // exit menu
+                        end = new Scene(endSceneContent(winLose)); // set the scene for main
+                        window.setScene(end);
+                        //Platform.exit(); // add in exit message later
+                    }
 
                 }
 
