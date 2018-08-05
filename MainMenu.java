@@ -145,7 +145,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                         battle.getStylesheets().add("textareafix.css");
                         window.setScene(battle);
                         battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
-                        
+
                     }
                     root = gamePlay.drawState(gamePlay.getPlayer());
 
@@ -168,9 +168,8 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
 
         /**
          * 1. Fix when multiple type of one potion you have to wait a turn 2.
-         * Make attack and defense relevant
-         *
-         *
+         * Make attack and defense relevant 3. make boss battle work 4. make
+         * boss background 5. battle animations
          */
         // add battle scene setups here
         // send the scene to the window to be displayed
@@ -295,7 +294,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                             player.setHealth(100);
                             if (e.getKey()) {
                                 player.setKeyCount(player.getKeyCount() + 1);
-                                gamePlay.getPlayer().setKeyCount(player.getKeyCount()); 
+                                gamePlay.setPlayer(player);
                                 log.appendText("\nYou have obtained a key from defeating this enemy!");
                                 e.setKey(false);
                             }
@@ -348,6 +347,16 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                                 monte.setRotate(90);
                                 attacks.setVisible(false);
                                 playerHealth.setVisible(false);
+                                end = new Scene(endSceneContent(false)); // set the scene for main
+                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                    // need to reset the game parameters
+                                    gamePlay = new GameLoop();
+                                    gamePlay.initialize();
+                                    //redraw the state
+                                    root = gamePlay.drawState(gamePlay.getPlayer());
+                                    game.setRoot(root); // refresh the page
+                                    window.setScene(main);
+                                });
                                 window.setScene(end);
                             }
                             if (b.getBBCounter() == 1) {
