@@ -341,6 +341,7 @@ public class BattleLoop extends GameLoop {
             if (temp.get(i) instanceof Potion) {
                 player.updateHealth((Potion) temp.get(i));
                 System.out.println("Health has been boosted by " + ((Potion) temp.get(i)).getHealthBoost() + "HP");
+                System.out.print(player.getHealth());
                 player.removeItem(temp.get(i));
                 System.out.println("Removed");
             }
@@ -352,7 +353,7 @@ public class BattleLoop extends GameLoop {
         ArrayList<Sprite> temp = player.getItems();
         for (int i = 0; i < player.getItems().size(); i++) {
             if (temp.get(i) instanceof Potion) {
-                if (player.getHealth() < 100 - ((Potion) temp.get(i)).getHealthBoost()) {
+                if (player.getHealth() <= 100 - ((Potion) temp.get(i)).getHealthBoost()) {
                     validP = new Potion((Potion) temp.get(i));
 
                 }
