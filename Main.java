@@ -189,7 +189,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     }
 
     /**
-     * Purpose:
+     * Purpose: To create the contents that the window will be filled with when
+     * the battle is taking place.
+     *
+     * @param player an instance of the player for the current game
      */
     public StackPane battleSceneContent(Player player) {
         this.b = new BattleLoop();
@@ -256,7 +259,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     }
 
     /**
-     * Purpose:
+     * Purpose: To run through the battle sequence and update the view whenever
+     * the player makes a choice in the battle.
+     *
+     * @param player an instance of the current player playing the game
+     * @param enemy a list containing all of the enemies in the game
+     * @param terrain a list containing all of the terrain elements in the game
+     * @param battle a reference to the battle scene to modify when the state
+     * changes
      */
     public void battle(Player player, Enemy e, ArrayList<Enemy> enemy, ArrayList<Sprite> terrain, Scene battle) {
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -451,7 +461,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     }
 
     /**
-     * Purpose:
+     * Purpose: To create the content for the window of the main menu for the
+     * game.
+     *
+     * @return a copy of the window contents to be displayed
      */
     public VBox mainSceneContent() {
         // mainMenu Layout
@@ -459,7 +472,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         mainLayout.setAlignment(Pos.CENTER);
         mainLayout.setStyle("-fx-background-color: #FFFF20; ");
         mainLayout.setSpacing(GAP);
-        // GO BACK AND CITE HOW I KNOW HOW TO DO SOME OF THIS STUFF
+        // java 8 documentation used for javafx choices
         // setting up buttons and labels for scene layout
         startBtn = new Button(START);
         exitBtn = new Button(STOP);
@@ -479,6 +492,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         title.setFont(TITLESTYLE);
         // add lagels and buttons to the layout
         mainLayout.getChildren().addAll(title, synopsis, startBtn, exitBtn);
+
         // all actions associated with this scene
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -514,7 +528,11 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     }
 
     /**
-     * Purpose:
+     * Purpose: To create the content for the end screen when the user either
+     * wins or loses the game.
+     *
+     * @param win a boolean value for determining whether to display the win
+     * screen or the lose screen.
      */
     public VBox endSceneContent(boolean win) {
         // depending on the state change the text
@@ -522,8 +540,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
         endContent.setAlignment(Pos.CENTER);
         endContent.setSpacing(GAP * 2);
-
-        // GO BACK AND CITE HOW I KNOW HOW TO DO SOME OF THIS STUFF
+        // inspiration borrowed from javafx documentation from Oracle
         Label userMsg = new Label();
         if (win) {
             userMsg.setText(WINMESSAGE);
@@ -542,17 +559,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     }
 
     /**
-     * Purpsoe:
+     * Purpsoe: An event handler for keys being pressed during the main content
+     * of the game
+     *
+     * @param e an event interrupt
      */
     @Override
     public void handle(KeyEvent e) {
         userMove = "";
-/* backdoor for testing
-        if (e.getCode().equals(KeyCode.Q)) {
-            startBtn.setText(START); // change the button text to say start in the main menu
-            window.setScene(end); // go back to the main menu
-        }
-*/
+
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
         }
@@ -569,12 +584,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
         }
-
-        System.out.println(this.userMove); // for test purposes
+        //System.out.println(this.userMove); // for test purposes
     }
 
     /**
-     * Purpose:
+     * Purpose: To determine which version of the game to play (either GUI or
+     * the terminal version) and execute accordingly.
      */
     public static void main(String[] args) {
         if (args.length == 1 && args[0].equals("terminal")) {
