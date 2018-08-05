@@ -174,7 +174,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         System.out.println(gamePlay.getPlayer());
 
         /**
-         * 1. Fix when multiple type of one potion you have to wait a turn 2.
+         *  2.
          * Make attack and defense relevant 3. make boss battle work 4. make
          * boss background 5. battle animations
          */
@@ -278,7 +278,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                             log.appendText("\nBoomerang Fired!");
                             damage = 40;
                             int eH = e.getHealth();
-                            b.damageCalc(damage, e);
+                            b.damageCalc(damage, e,player);
                             if (b.getEnemyUsedParry()) {
                                 if (e.getHealth() == eH) {
                                     log.appendText("\nEnemy Parry Success!");
@@ -333,7 +333,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                             } else if (b.getMMCounter() == 2) {
                                 damage = 40;
                                 int pH = player.getHealth();
-                                b.damageCalc(damage, player);
+                                b.damageCalc(damage, player,e);
                                 log.appendText("\nMissile Fired!");
                                 if (b.getUsedParry()) {
                                     if (player.getHealth() == pH) {

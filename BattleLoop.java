@@ -17,7 +17,8 @@ public class BattleLoop extends GameLoop {
     private int mmCounter; // counter for Margarine Missile
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
-
+private double pModifier;
+private double eModifier;
     String turnAttack = ""; // attack used during the current turn
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
@@ -212,8 +213,11 @@ public class BattleLoop extends GameLoop {
      *
      * @param damage - integer value of damage received
      * @param e - enemy who is taking the damage
+     * @param player - player who is attacking
      */
-    public void damageCalc(int damage, Enemy e) {
+    public void damageCalc(int damage, Enemy e, Player player) {
+        this.pModifier = ((double)player.getAttack())/e.getDefence();
+        damage *= this.pModifier;
         if (this.enemyUsedParry) {
             if (Math.random() >= 0.5) {
                 System.out.println("Parry success!");
@@ -222,6 +226,7 @@ public class BattleLoop extends GameLoop {
                 e.setHealth(e.getHealth() - damage);
             }
         } else {
+                    System.out.println(damage);
             e.setHealth(e.getHealth() - damage);
         }
         if (e.getHealth() < 0) {
@@ -236,7 +241,10 @@ public class BattleLoop extends GameLoop {
      * @param damage - integer value of damage received
      * @param player - player who is taking the damage
      */
-    public void damageCalc(int damage, Player player) {
+    public void damageCalc(int damage, Player player, Enemy e) {
+        this.eModifier = ((double)e.getAttack())/player.getDefence();
+        damage *= this.eModifier;
+        System.out.println(damage);
         if (this.usedParry) {
             if (Math.random() >= 0.5) {
                 System.out.println("Parry success!");
@@ -276,7 +284,7 @@ public class BattleLoop extends GameLoop {
         switch (eAttack) {
             case "Slash":
                 int damage = 15;
-                this.damageCalc(damage, player);
+                this.damageCalc(damage, player,e);
                 System.out.println("Enemy used " + eAttack);
                 break;
             case "Margarine Missile":
@@ -303,10 +311,11 @@ public class BattleLoop extends GameLoop {
      * @param e - enemy who is being attacked.
      */
     public void attackExecute(String attack, Player player, Enemy e) {
+        
         switch (attack) {
             case "Slash":
                 int damage = 15;
-                this.damageCalc(damage, e);
+                this.damageCalc(damage, e,player);
                 System.out.println("You used " + attack);
                 break;
             case "Butter Boomerang":
@@ -398,109 +407,109 @@ public class BattleLoop extends GameLoop {
      * @param args
      */
     public static void main(String[] args) {
-        BattleLoop b = new BattleLoop();
-        int i = 0;
-        Player player = new Player();
-        String attacks[] = {"Slash", "Butter Boomerang", "Parry", "Potion"};
-        player.setMoves(attacks);
-        player.setHealth(100);
-        Enemy e = new Enemy();
-        String eAttacks[] = {"Slash", "Margarine Missile", "Parry", "Potion"};
-        e.setHealth(100);
-        e.setMoves(eAttacks);
-        ArrayList<Potion> arrayList = new ArrayList<>();
-        Potion p = new Potion();
-        Potion q = new Potion();
-        q.setHealthBoost(25);
-        ArrayList<Sprite> pl = new ArrayList<>();
-        pl.add(q);
-        player.setItems(pl);
-        p.setHealthBoost(25);
-        arrayList.add(p);
-        e.setPotions(arrayList);
-        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
-        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
-        int damage;
-        while (i == 0) {
-            if (bbCounter == 0) {
-                String attack = b.playerInput(player);
-                switch (attack) {
-                    case "Slash":
-                        damage = 15;
-                        b.damageCalc(damage, e);
-                        break;
-                    case "Butter Boomerang":
-                        bbCounter = 1;
-                        break;
-                    case "Parry":
-                        b.setUsedParry(true);
-                        break;
-                    case "Potion":
-                        b.usePotion(player);
-                        break;
-                }
-            } else if (bbCounter == 2) {
-                damage = 40;
-                b.damageCalc(damage, e);
-                bbCounter = 0;
-            }
-            if (b.getEnemyUsedParry()) {
-                b.setEnemyUsedParry(false);
-            }
-            if (b.checkWinState(e) == true) {
-                b.drawState(player, e);
-                System.out.println("You Win!");
-                break;
-            }
-            if (mmCounter == 1) {
-                mmCounter = 2;
-//                if (b.getUsedParry()) {
-//                    b.setUsedParry(false);
+//        BattleLoop b = new BattleLoop();
+//        int i = 0;
+//        Player player = new Player();
+//        String attacks[] = {"Slash", "Butter Boomerang", "Parry", "Potion"};
+//        player.setMoves(attacks);
+//        player.setHealth(100);
+//        Enemy e = new Enemy();
+//        String eAttacks[] = {"Slash", "Margarine Missile", "Parry", "Potion"};
+//        e.setHealth(100);
+//        e.setMoves(eAttacks);
+//        ArrayList<Potion> arrayList = new ArrayList<>();
+//        Potion p = new Potion();
+//        Potion q = new Potion();
+//        q.setHealthBoost(25);
+//        ArrayList<Sprite> pl = new ArrayList<>();
+//        pl.add(q);
+//        player.setItems(pl);
+//        p.setHealthBoost(25);
+//        arrayList.add(p);
+//        e.setPotions(arrayList);
+//        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
+//        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
+//        int damage;
+//        while (i == 0) {
+//            if (bbCounter == 0) {
+//                String attack = b.playerInput(player);
+//                switch (attack) {
+//                    case "Slash":
+//                        damage = 15;
+//                        b.damageCalc(damage, e);
+//                        break;
+//                    case "Butter Boomerang":
+//                        bbCounter = 1;
+//                        break;
+//                    case "Parry":
+//                        b.setUsedParry(true);
+//                        break;
+//                    case "Potion":
+//                        b.usePotion(player);
+//                        break;
 //                }
-            }
-            //  b.drawState(player, e);
-            if (mmCounter == 0) {
-                String eAttack = e.attackLogic(player);
-                switch (eAttack) {
-                    case "Slash":
-                        damage = 15;
-                        b.damageCalc(damage, player);
-                        System.out.println("Enemy used " + eAttack);
-                        break;
-                    case "Margarine Missile":
-                        mmCounter = 1;
-                        System.out.println("Enemy used " + eAttack);
-                        break;
-                    case "Parry":
-                        b.setEnemyUsedParry(true);
-                        System.out.println("Enemy used " + eAttack);
-                        break;
-                    case "Potion":
-                        b.usePotion(e);
-                        System.out.println("Enemy used " + eAttack);
-                        break;
-                }
-            } else if (mmCounter == 2) {
-                damage = 40;
-                b.damageCalc(damage, player);
-                mmCounter = 0;
-            }
-            if (b.getUsedParry()) {
-                b.setUsedParry(false);
-            }
-            if (b.checkLoseState(player) == true) {
-                b.drawState(player, e);
-                System.out.println("You lose");
-                break;
-            }
-            if (bbCounter == 1) {
-                bbCounter = 2;
-//                if (b.getEnemyUsedParry()) {
-//                    b.setEnemyUsedParry(false);
+//            } else if (bbCounter == 2) {
+//                damage = 40;
+//                b.damageCalc(damage, e);
+//                bbCounter = 0;
+//            }
+//            if (b.getEnemyUsedParry()) {
+//                b.setEnemyUsedParry(false);
+//            }
+//            if (b.checkWinState(e) == true) {
+//                b.drawState(player, e);
+//                System.out.println("You Win!");
+//                break;
+//            }
+//            if (mmCounter == 1) {
+//                mmCounter = 2;
+////                if (b.getUsedParry()) {
+////                    b.setUsedParry(false);
+////                }
+//            }
+//            //  b.drawState(player, e);
+//            if (mmCounter == 0) {
+//                String eAttack = e.attackLogic(player);
+//                switch (eAttack) {
+//                    case "Slash":
+//                        damage = 15;
+//                        b.damageCalc(damage, player);
+//                        System.out.println("Enemy used " + eAttack);
+//                        break;
+//                    case "Margarine Missile":
+//                        mmCounter = 1;
+//                        System.out.println("Enemy used " + eAttack);
+//                        break;
+//                    case "Parry":
+//                        b.setEnemyUsedParry(true);
+//                        System.out.println("Enemy used " + eAttack);
+//                        break;
+//                    case "Potion":
+//                        b.usePotion(e);
+//                        System.out.println("Enemy used " + eAttack);
+//                        break;
 //                }
-            }
-            b.drawState(player, e);
-
-        }
+//            } else if (mmCounter == 2) {
+//                damage = 40;
+//                b.damageCalc(damage, player);
+//                mmCounter = 0;
+//            }
+//            if (b.getUsedParry()) {
+//                b.setUsedParry(false);
+//            }
+//            if (b.checkLoseState(player) == true) {
+//                b.drawState(player, e);
+//                System.out.println("You lose");
+//                break;
+//            }
+//            if (bbCounter == 1) {
+//                bbCounter = 2;
+////                if (b.getEnemyUsedParry()) {
+////                    b.setEnemyUsedParry(false);
+////                }
+//            }
+//            b.drawState(player, e);
+//
+//        }
     }
 }
