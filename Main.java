@@ -269,15 +269,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     }
 
     /**
-<<<<<<< HEAD
-     * Purpose:
-     *
-     * @param player
-     * @param e
-     * @param enemy
-     * @param terrain
-     * @param battle
-=======
      * Purpose: To run through the battle sequence and update the view whenever
      * the player makes a choice in the battle.
      *
@@ -286,7 +277,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * @param terrain a list containing all of the terrain elements in the game
      * @param battle a reference to the battle scene to modify when the state
      * changes
->>>>>>> master
      */
     public void battle(Player player, Enemy e, ArrayList<Enemy> enemy, ArrayList<Sprite> terrain, Scene battle) {
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -604,16 +594,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     @Override
     public void handle(KeyEvent e) {
         userMove = "";
-<<<<<<< HEAD
-        /* backdoor for testing
-        if (e.getCode().equals(KeyCode.Q)) {
-            startBtn.setText(START); // change the button text to say start in the main menu
-            window.setScene(end); // go back to the main menu
-        }
-         */
-=======
-
->>>>>>> master
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
         }
