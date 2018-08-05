@@ -878,7 +878,7 @@ public class GameLoop {
                 switch (attack) {
                     case "Slash":
                         damage = 15;
-                        b.damageCalc(damage, e);
+                        b.damageCalc(damage, e,player);
                         break;
                     case "Butter Boomerang":
                         bbCounter = 1;
@@ -893,7 +893,7 @@ public class GameLoop {
                 }
             } else if (bbCounter == 2) {
                 damage = 40;
-                b.damageCalc(damage, e);
+                b.damageCalc(damage, e,player);
                 bbCounter = 0;
             }
             if (b.getEnemyUsedParry()) {
@@ -925,7 +925,7 @@ public class GameLoop {
                 switch (eAttack) {
                     case "Slash":
                         damage = 15;
-                        b.damageCalc(damage, player);
+                        b.damageCalc(damage, player,e);
 
                         break;
                     case "Margarine Missile":
@@ -943,7 +943,7 @@ public class GameLoop {
                 }
             } else if (mmCounter == 2) {
                 damage = 40;
-                b.damageCalc(damage, player);
+                b.damageCalc(damage, player,e);
                 mmCounter = 0;
             }
             if (b.getUsedParry()) {
