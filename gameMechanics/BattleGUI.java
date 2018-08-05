@@ -141,7 +141,7 @@ public class BattleGUI {
                             log.appendText("\nBoomerang Fired!");
                             damage = 40;
                             int eH = e.getHealth();
-                            b.damageCalc(damage, e);
+                            b.damageCalc(damage, e,player);
                             if (b.getEnemyUsedParry()) {
                                 if (e.getHealth() == eH) {
                                     log.appendText("\nEnemy Parry Success!");
@@ -192,7 +192,7 @@ public class BattleGUI {
                             } else if (b.getMMCounter() == 2) {
                                 damage = 40;
                                 int pH = player.getHealth();
-                                b.damageCalc(damage, player);
+                                b.damageCalc(damage, player,e);
                                 log.appendText("\nMissile Fired!");
                                 if (b.getUsedParry()) {
                                     if (player.getHealth() == pH) {
