@@ -1,5 +1,7 @@
-//import java.util.Scanner;
-//import java.io.Console;
+package gameMechanics;
+
+import java.util.Scanner;
+import java.io.Console;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,7 +21,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Font;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Parent;
@@ -27,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import sprite.*;
 
 /**
  * Purpose: To create all of the map objects to be placed on the game board.

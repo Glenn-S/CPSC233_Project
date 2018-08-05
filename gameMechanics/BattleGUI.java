@@ -1,3 +1,4 @@
+package gameMechanics;
 
 import static java.awt.SystemColor.text;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import static javafx.scene.paint.Color.color;
 import javafx.stage.Stage;
+import sprite.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

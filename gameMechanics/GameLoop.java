@@ -1,3 +1,4 @@
+package gameMechanics;
 
 import java.util.Scanner;
 import java.io.Console;
@@ -20,7 +21,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Font;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Parent;
@@ -31,6 +31,7 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.FontPosture;
+import sprite.*;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -43,11 +44,12 @@ public class GameLoop {
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
-    //  private char[][] printArray = new char[boardHeight][boardLength]; //[40][80]
+    private char[][] printArray = new char[boardHeight][boardLength]; //[40][80]
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
     private Player player;
+    private boolean terminal;
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     /**
@@ -132,14 +134,6 @@ public class GameLoop {
     }
 
     /**
-     * @return the printArray
-     */
-    /*
-    public char[][] getPrintArray() {
-        return printArray;
-    }
-     */
-    /**
      * @return the player
      */
     public Player getPlayer() {
@@ -214,6 +208,29 @@ public class GameLoop {
         this.player = new Player(player);
     }
 
+    /**
+     * Purpose: to return the print array for the terminal version
+     * @return the printArray
+     */
+
+    public char[][] getPrintArray() {
+        return printArray;
+    }
+
+    /**
+     * Purpose: To return whether the terminal version is in use or not
+     */
+    public boolean getTerminal() {
+        return this.terminal;
+    }
+    /**
+     * Purpose: To set the terminal field for knowing if the terminal version is
+     * in use.
+     */
+    public void setTerminal(boolean value) {
+        this.terminal = value;
+    }
+
     /*------------------------------- METHODS --------------------------------*/
     /**
      * Purpose: To initialize all of the arrays that contain objects in the game
@@ -233,11 +250,15 @@ public class GameLoop {
         Weapon starterSword = new Weapon("Bronze Butterknife", null, new Image("file:Images/Bronze butterknife.png"), ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, new Image("file:Images/bronzeShield.png"), ' ', null, true, false, 50);
         Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), new Image("file:Images/Small potion.png"), ' ', null, true, false, 25);
+
         player.addItem(starterSword);
+        System.out.println("*** " + starterSword.getName() + " has been added to your pack ***");
         player.updateAttack(starterSword);
         player.addItem(starterShield);
+        System.out.println("*** " + starterShield.getName() + " has been added to your pack ***");
         player.updateDefence(starterShield);
         player.addItem(smallPotion);
+        System.out.println("*** " + smallPotion.getName() + " has been added to your pack ***");
     }
 
     /**
@@ -261,7 +282,9 @@ public class GameLoop {
                         if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-//                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            if (this.getTerminal() == true) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy for terminal version
+                            }
                             result = true;
                         }
                         break;
@@ -269,7 +292,9 @@ public class GameLoop {
                         if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-//                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            if (this.getTerminal() == true) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy for terminal version
+                            }
                             result = true;
                         }
                         break;
@@ -277,7 +302,9 @@ public class GameLoop {
                         if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-//                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            if (this.getTerminal() == true) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy for terminal version
+                            }
                             result = true;
                         }
                         break;
@@ -285,7 +312,9 @@ public class GameLoop {
                         if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-//                            engageBattle(player, enemy.get(i)); // begin battle against enemy
+                            if (this.getTerminal() == true) {
+                                engageBattle(player, enemy.get(i)); // begin battle against enemy for terminal version
+                            }
                             result = true;
                         }
                         break;
@@ -294,7 +323,7 @@ public class GameLoop {
         }
         return result;
     }
-    public Enemy checkEnemies(String move,Player player , ArrayList<Enemy> enemy) {
+    public Enemy checkEnemies(String move, Player player , ArrayList<Enemy> enemy) {
         if ((player != null) && (enemy != null)) { // this could be a try and except statement?
             for (int i = 0; i < enemy.size(); i++) {
                 if (!enemy.get(i).getExists()) {
@@ -430,10 +459,12 @@ public class GameLoop {
                 }
                 player.setItems(newItemList);
             }
-            //System.out.println("\n\n*** " + obj.get(i).getName() + " has been added to your pack ***\n");
+            System.out.println("\n\n*** " + obj.get(index).getName() + " has been added to your pack ***\n"); // for terminal version
+
             obj.remove(obj.get(index)); // remove the object from the array
             // open the chest after an item has been picked up
             obj.get(index).setSpriteImage(new Image("file:Smaller Images/chest2.png"));
+            System.out.println(player.getInventory(true)); // for testing
         }
     }
 
@@ -451,7 +482,7 @@ public class GameLoop {
         if (player != null) { // this could be a try and except statement?
             switch (move) {
                 case "up":
-                    if (player.getCoord().getUpperBoundary() - 1 == 0)  result = true;
+                    if (player.getCoord().getUpperBoundary() - 1 == 0) result = true;
                     break;
                 case "down":
                     if (player.getCoord().getLowerBoundary() + 1 == this.boardHeight - 1) result = true;
@@ -520,17 +551,6 @@ public class GameLoop {
         }
     }
 
-    /**
-     * Purpose: To run the battle mechanics for the game loop portion of the
-     * game.
-     *
-     * @param e - Enemy who is battling the player. should be found by the
-     * collision detection
-     */
-    public void engageBattle(Player player, Enemy e) {
-        BattleGUI b = new BattleGUI(player);
-        b.battle(player, e, enemy, terrain);
-    }
 
     /**
      * Purpose: This method adds the images from the terrain, items, and enemy
@@ -673,29 +693,6 @@ public class GameLoop {
         windowContainer.getChildren().addAll(scrollPane, playerStats, itemsStrip);
         root.getChildren().add(windowContainer); // used to be scrollPane
         return root;
-
-      /*
-        int colTemp;
-        int rowTemp;
-
-        colTemp = player.getCoord().getxCoord();
-        rowTemp = player.getCoord().getyCoord();
-        printArray[rowTemp][colTemp] = player.getSpriteChar();
-
-        // set the scene elements
-        for (int i = 0; i < printArray.length; i++) {
-            for (int j = 0; j < printArray[0].length; j++) {
-                System.out.print(printArray[i][j]);
-            }
-            System.out.print("\n");
-            */
-
-
-        // add the background (as refresh), all the elements from each array for
-        // printing and the player by using a GridPane view which automatically
-        // creates a grid for you. Lay the grid in to a FlowPane which will have
-        // the background image so it should hopefully print over top of it. pass
-        // this FlowPane as you return value.
     }
 
     /**
@@ -712,6 +709,27 @@ public class GameLoop {
         }
         return;
     }
+    /**
+     * Purpose: To check all possible collisions in the game and return true or
+     * false depending.
+     *
+     * @param player an instance of the player class
+     * @param move a string representation of the users input
+     * @return true if a collision was detected else false
+     */
+    public boolean checkCollisions(Player player, String move) {
+        // check all collisions and if any are false
+        // System.out.println("me:" + player.getCoord()); // for debugging purposes
+        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
+                || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**************************************************************************/
+    // TERMINAL METHODS
 
     /**
      * Purpose: To obtain the users input for moving around the game board
@@ -757,245 +775,43 @@ public class GameLoop {
     }
 
     /**
-     * Purpose: To check all possible collisions in the game and return true or
-     * false depending.
+     * Purpose: This method prints out the border to the screen for terminal
      *
-     * @param player an instance of the player class
-     * @param move a string representation of the users input
-     * @return true if a collision was detected else false
+     * @param player This is the player that is playing the game. Their char
+     * image has to be added to the print array before the array can be printed
+     *
+     * @param printArray This is the 2-D array of chars that will be printed out
+     * to the screen
      */
-    public boolean checkCollisions(Player player, String move) {
-        // check all collisions and if any are false
-        // System.out.println("me:" + player.getCoord()); // for debugging purposes
-        if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
-                || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
-            return true;
-        } else {
-            return false;
+    public void drawState(Player player, char[][] printArray) {
+        int colTemp;
+        int rowTemp;
+
+        colTemp = player.getCoord().getxCoord();
+        rowTemp = player.getCoord().getyCoord();
+        printArray[rowTemp][colTemp] = player.getSpriteChar();
+
+        for (int i = 0; i < printArray.length; i++) {
+            for (int j = 0; j < printArray[0].length; j++) {
+                System.out.print(printArray[i][j]);
+            }
+            System.out.print("\n");
         }
     }
 
-    /**
-     * Purpose: To print out a string representation of the class attributes
-     *
-     * @return a string with all the attributes
-     */
-    public String toString() {
-        return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
-                + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
-                + this.winState + ", Lose State: " + this.loseState;
-    }
-
-    /**
-     * Purpose: To allow the ability to test the various methods of the GameLoop
-     */
-    /*   public static void main(String[] args) {
-        // for testing methods
-
-        // check constructor
-        GameLoop gl = new GameLoop();
-        GameLoop gl2 = new GameLoop(new ArrayList<Sprite>(), new ArrayList<Sprite>(),
-                new ArrayList<Enemy>(), 3);
-        // print the toString representation of this object
-        System.out.println("\nGL: " + gl);
-        System.out.println("GL2: " + gl2);
-
-        String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
-        Player p1 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                null, true, false, 100, 50, 50, null);
-        Player p2 = new Player("Burro", new Location(39, 39, 0, 0), null, 'x',
-                null, true, false, 100, 50, 50, moves);
-        System.out.println("\nPlayer 1: " + p1);
-        System.out.println("Player 2: " + p2);
-        // check gate method
-        System.out.println("\nGate Check: " + gl.checkGate(p1));
-        // check update position
-        System.out.println("\nPlayer 2 coordinates before: " + p2.getCoord());
-        gl.updatePosition(p2, "up");
-        System.out.println("Player 2 coordinates after moving up: " + p2.getCoord());
-        gl.updatePosition(p2, "left");
-        System.out.println("Player 2 coordinates after moving left: " + p2.getCoord());
-        gl.updatePosition(p2, "down");
-        System.out.println("Player 2 coordinates after moving down: " + p2.getCoord());
-        gl.updatePosition(p2, "right");
-        System.out.println("Player 2 coordinates after moving right: " + p2.getCoord());
-
-        // check GETTERS
-        // check the getters for the arrays later
-        System.out.println("\nTotal keys in game: " + gl.getTotalKeys());
-        System.out.println("Check win state: " + gl.checkWinState());
-        System.out.println("Check lose state: " + gl.checkLoseState());
-
-        // check SETTERS
-        // add some testing?
-        // check playerInput
-        String input = gl.playerInput();
-        System.out.println("\nYou inputed: " + input);
-
-        // check the check border top left corner
-        System.out.println("\np2: " + p1.getCoord());
-        System.out.println("move up check    (0, 0): " + gl.checkEdges(p1, "up")); // I expect true
-        System.out.println("move left check  (0, 0): " + gl.checkEdges(p1, "left")); // I expect true
-        System.out.println("move down check  (0, 0): " + gl.checkEdges(p1, "down")); // I expect false
-        System.out.println("move right check (0, 0): " + gl.checkEdges(p1, "right")); // I expect false
-        // check the check border bottom right corner
-        System.out.println("\np2: " + p2.getCoord());
-        p2.setCoord(new Location(199, 39, 0, 0));
-        System.out.println("p2: " + p2.getCoord());
-        System.out.println("move up check    (39, 199): " + gl.checkEdges(p2, "up")); // I expect false
-        System.out.println("move left check  (39, 199): " + gl.checkEdges(p2, "left")); // I expect false
-        System.out.println("move down check  (39, 199): " + gl.checkEdges(p2, "down")); // I expect true
-        System.out.println("move right check (39, 199): " + gl.checkEdges(p2, "right")); // I expect true
-        // test with a width and height
-        System.out.println("\np2: " + p2.getCoord());
-        p2.setCoord(new Location(197, 36, 1, 2));
-        System.out.println("\np2: " + p2.getCoord());
-        System.out.println("move up check    (39, 199): " + gl.checkEdges(p2, "up")); // I expect false
-        System.out.println("move left check  (39, 199): " + gl.checkEdges(p2, "left")); // I expect false
-        System.out.println("move down check  (39, 199): " + gl.checkEdges(p2, "down")); // I expect false
-        System.out.println("move right check (39, 199): " + gl.checkEdges(p2, "right")); // I expect false
-        // test with a width and height
-        System.out.println("\np2: " + p2.getCoord());
-        p2.setCoord(new Location(198, 37, 1, 2));
-        System.out.println("p2: " + p2.getCoord());
-        System.out.println("move up check    (39, 199): " + gl.checkEdges(p2, "up")); // I expect false
-        System.out.println("move left check  (39, 199): " + gl.checkEdges(p2, "left")); // I expect false
-        System.out.println("move down check  (39, 199): " + gl.checkEdges(p2, "down")); // I expect true
-        System.out.println("move right check (39, 199): " + gl.checkEdges(p2, "right")); // I expect true
-
-        // check for player and obstacles
-        ArrayList<Enemy> eList = new ArrayList<Enemy>();
-        Enemy e1 = new Enemy("Enemy", new Location(2, 1, 0, 0), null, '*', null, true, false, 100, 100, 100, null, false, null);
-        Enemy e2 = new Enemy("Enemy2", new Location(1, 2, 0, 0), null, '*', null, false, false, 100, 100, 100, null, false, null);
-        p2.setCoord(new Location(1, 1, 0, 0));
-        System.out.println("\np2: " + p2.getCoord());
-        System.out.println("e1: " + e1.getCoord());
-        System.out.println("e1: " + e2.getCoord());
-        eList.add(e1);
-        eList.add(e2);
-        System.out.println("\nEnemy Tests");
-        System.out.println("move right check (1, 1): " + gl.checkEnemies(p2, "right", eList)); // I expect true
-        System.out.println("move down check (1, 1): " + gl.checkEnemies(p2, "down", eList)); // I expect false
-        // check the terrain list checking
-        ArrayList<Sprite> tList = new ArrayList<Sprite>();
-        Sprite t1 = new Sprite("Mountain", new Location(2, 1, 0, 0), null, '^', null, true, false);
-        Sprite t2 = new Sprite("River", new Location(2, 2, 0, 0), null, '^', null, true, false);
-        tList.add(t1);
-        tList.add(t2);
-        System.out.println("\nTerrain Tests");
-        System.out.println("move right check (1, 1): " + gl.checkSprites(p2, "right", tList)); // I expect true
-        System.out.println("move down check (1, 1): " + gl.checkSprites(p2, "down", tList)); // I expect false
-        // check the item list checking
-        ArrayList<Sprite> iList = new ArrayList<Sprite>();
-        Potion i1 = new Potion("Small Potion", new Location(3, 1, 0, 0), null, '^', null, true, false, 100);
-        Defence i2 = new Defence("Shield", new Location(2, 2, 0, 0), null, '^', null, true, false, 100);
-        Weapon i3 = new Weapon("Sword", new Location(1, 2, 0, 0), null, '^', null, true, false, 100);
-        iList.add(i1);
-        iList.add(i2);
-        iList.add(i3);
-
-        System.out.println("\nItems Tests");
-        for (int i = 0; i < iList.size(); i++) {
-            if (i == 0) {
-                System.out.print("(");
-            }
-            System.out.print(iList.get(i).getName());
-            if (i < iList.size() - 1) {
-                System.out.print(", ");
-            }
-            if (i == iList.size() - 1) {
-                System.out.print(")\n");
-            }
-        }
-        System.out.println("move right check (1, 1): " + gl.checkSprites(p2, "right", iList)); // I expect false
-        System.out.println("move down check (1, 1): " + gl.checkSprites(p2, "down", iList)); // I expect true
-
-        // check the check collisions methods
-        // setup the arrays to contain the elements
-        gl.setTerrain(tList);
-        gl.setItem(iList);
-        gl.setEnemy(eList);
-        // print enemies
-        System.out.println("\nPrint Enemies");
-        for (int i = 0; i < gl.getEnemy().size(); i++) {
-            if (i == 0) {
-                System.out.print("(");
-            }
-            System.out.print(gl.getEnemy().get(i).getName());
-            if (i < gl.getEnemy().size() - 1) {
-                System.out.print(", ");
-            }
-            if (i == gl.getEnemy().size() - 1) {
-                System.out.print(")\n");
-            }
-        }
-        // print terrain
-        System.out.println("\nPrint Terrain");
-        for (int i = 0; i < gl.getTerrain().size(); i++) {
-            if (i == 0) {
-                System.out.print("(");
-            }
-            System.out.print(gl.getTerrain().get(i).getName());
-            if (i < gl.getTerrain().size() - 1) {
-                System.out.print(", ");
-            }
-            if (i == gl.getTerrain().size() - 1) {
-                System.out.print(")\n");
-            }
-        }
-        // print items
-        System.out.println("\nPrint Items");
-        for (int i = 0; i < gl.getItem().size(); i++) {
-            if (i == 0) {
-                System.out.print("(");
-            }
-            System.out.print(gl.getItem().get(i).getName());
-            if (i < gl.getItem().size() - 1) {
-                System.out.print(", ");
-            }
-            if (i == gl.getItem().size() - 1) {
-                System.out.print(")\n");
-            }
-        }
-
-        p1.setCoord(new Location(3, 2, 0, 0));
-        System.out.println("\nCheck checkCollisions p1 (3, 2)");
-        System.out.println("p1 move left: " + gl.checkCollisions(p1, "left")); // should be true
-        System.out.println("p1 move up: " + gl.checkCollisions(p1, "up")); // should be true
-        System.out.println("p1 move down: " + gl.checkCollisions(p1, "down")); // should be false
-        System.out.println("p1 move right: " + gl.checkCollisions(p1, "right")); // should be false
-        p2.setCoord(new Location(3, 0, 0, 0));
-        System.out.println("\nCheck checkCollisions p2 (3, 0)");
-        System.out.println("p2 move left: " + gl.checkCollisions(p2, "left")); // should be false
-        System.out.println("p2 move up: " + gl.checkCollisions(p2, "up")); // should be true
-        System.out.println("p2 move down: " + gl.checkCollisions(p2, "down")); // should be true
-        System.out.println("p2 move right: " + gl.checkCollisions(p2, "right")); // should be false
-
-        Player p3 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                null, true, false, 100, 50, 50, null);
-        gl.pickUpItem(p3, i1);
-        gl.pickUpItem(p3, i3);
-        ArrayList<Sprite> playerItems = p3.getItems();
-        System.out.println("\nPlayer Item: " + playerItems.get(0).getName());
-
-        // drawState has been tested out in GameBoard
-    }*/
-}
-
-/*
     /**
      * Purpose: This method creates the 2-D array of characters, that will
      * then be printed out onto the screen. It finds the column and row of each
      * point in the terrain, enemy, and item array lists. Then puts the correct
      * character into the the corresponding column, and row in the 2-D array.
      * The 2-D array will not be filled completely because there are parts of the
-     * map that are empty.
+     * map that are empty. Used for the terminal version.
      *
      * @param items This is the item arraylist
      * @param enemy This is the enemy arrayList
      * @param terrain This is the enemy ArrayList
- */
- /*    public void refreshPrintArray() {
+     */
+     public void refreshPrintArray() {
         int rowTemp;
         int columnTemp;
 
@@ -1030,4 +846,122 @@ public class GameLoop {
             }
         }
     }
- */
+
+    /**
+     * Purpose: To print out a string representation of the class attributes
+     *
+     * @return a string with all the attributes
+     */
+    public String toString() {
+        return "Terrain: " + this.terrain + ", Items: " + this.items + ", Enemies: "
+                + this.enemy + ", Total Keys: " + this.totalKeys + ", Win State: "
+                + this.winState + ", Lose State: " + this.loseState;
+    }
+
+    /**
+     * Purpose: To run the battle mechanics for the game loop portion of the
+     * game.
+     *
+     * @param e - Enemy who is battling the player. should be found by the
+     * collision detection
+     */
+    public void engageBattle(Player player, Enemy e) {
+        BattleLoop b = new BattleLoop();
+        int i = 0;
+        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
+        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
+        int damage;
+        while (i == 0) {
+            if (bbCounter == 0) {
+                String attack = b.playerInput(this.player);
+                System.out.println("You used " + attack);
+                switch (attack) {
+                    case "Slash":
+                        damage = 15;
+                        b.damageCalc(damage, e);
+                        break;
+                    case "Butter Boomerang":
+                        bbCounter = 1;
+                        System.out.println("Powering up!");
+                        break;
+                    case "Parry":
+                        b.setUsedParry(true);
+                        break;
+                    case "Potion":
+                        b.usePotion(player);
+                        break;
+                }
+            } else if (bbCounter == 2) {
+                damage = 40;
+                b.damageCalc(damage, e);
+                bbCounter = 0;
+            }
+            if (b.getEnemyUsedParry()) {
+                b.setEnemyUsedParry(false);
+            }
+            if (b.checkWinState(e) == true) {
+                b.drawState(player, e);
+                System.out.println("You Win!");
+                player.setHealth(100);
+                if (e.getKey()) {
+                    player.setKeyCount(player.getKeyCount() + 1);
+                    System.out.println("You have obtained a key from defeating this enemy!");
+                    e.setKey(false);
+                }
+                System.out.println("Player key count: " + player.getKeyCount());
+                b.removeEnemy(e, enemy, terrain);
+                break;
+            }
+            if (mmCounter == 1) {
+                mmCounter = 2;
+    //                if (b.getUsedParry()) {
+    //                    b.setUsedParry(false);
+    //                }
+            }
+            b.drawState(player, e);
+            if (mmCounter == 0) {
+                String eAttack = e.attackLogic(player);
+                System.out.println("Enemy used " + eAttack);
+                switch (eAttack) {
+                    case "Slash":
+                        damage = 15;
+                        b.damageCalc(damage, player);
+
+                        break;
+                    case "Margarine Missile":
+                        mmCounter = 1;
+                        System.out.println("Powering up!");
+                        break;
+                    case "Parry":
+                        b.setEnemyUsedParry(true);
+
+                        break;
+                    case "Potion":
+                        b.usePotion(e);
+
+                        break;
+                }
+            } else if (mmCounter == 2) {
+                damage = 40;
+                b.damageCalc(damage, player);
+                mmCounter = 0;
+            }
+            if (b.getUsedParry()) {
+                b.setUsedParry(false);
+            }
+            if (b.checkLoseState(player) == true) {
+                b.drawState(player, e);
+                System.out.println("You lose");
+                this.setLoseState(true);
+                break;
+            }
+            if (bbCounter == 1) {
+                bbCounter = 2;
+    //                if (b.getEnemyUsedParry()) {
+    //                    b.setEnemyUsedParry(false);
+    //                }
+            }
+            b.drawState(player, e);
+        }
+    }
+}

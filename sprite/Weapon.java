@@ -1,91 +1,93 @@
+package sprite;
+
 import javafx.scene.image.Image;
 
 /**
- * Purpose: To represent a healing class of items for the user to own
+ * Purpose: To represent an offensive class of weapons for the user to own
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class Potion extends Sprite {
-    private int healthBoost; // associated strength of the potion
+public class Weapon extends Sprite {
+    private int weaponBoost; // associated strength of the weapon
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
 
     /**
-     * Purpose: default constructor
+     * Purpose: default constructor for Weapon
      */
-    public Potion() {
+    public Weapon() {
         super();
-        this.healthBoost = 0;
+        this.weaponBoost = 0;
     }
 
     /**
-     * Purpose: constructor for Potion
+     * Purpose: constructor for Weapon
      * sprite symbol will change to image later
      * @param coordinate the location for the sprite to exist in the game
      * @param title the name associated with the sprite
      * @param spriteImage the image to print representing the sprite
      * @param spriteSymbol the character symbol associated with the object
      * @param existence a value to determine whether the object exists or not
-     * @param healthValue the integer value associated with the health strength
+     * @param attackValue the integer value associated with the weapons strength
      * @param spriteMessages the list of messages that the sprite has for interactions
      */
-    public Potion(String title,
+    public Weapon(String title,
                   Location coordinate,
                   Image spriteImage,
                   char spriteSymbol, // will become the sprite image class later
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
-                  int healthValue) { // this might need to change to an ArrayList
+                  int attackValue) { // this might need to change to an ArrayList
         super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
-        this.healthBoost = healthValue;
+        this.weaponBoost = attackValue;
     }
     /**
-     * Purpose: constructor for Potion for terminal version
+     * Purpose: constructor for Weapon for the terminal version
      * sprite symbol will change to image later
      * @param coordinate the location for the sprite to exist in the game
      * @param title the name associated with the sprite
      * @param spriteSymbol the character symbol associated with the object
      * @param existence a value to determine whether the object exists or not
-     * @param healthValue the integer value associated with the health strength
+     * @param attackValue the integer value associated with the weapons strength
      * @param spriteMessages the list of messages that the sprite has for interactions
      */
-    public Potion(String title,
+    public Weapon(String title,
                   Location coordinate,
                   char spriteSymbol, // will become the sprite image class later
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
-                  int healthValue) { // this might need to change to an ArrayList
+                  int attackValue) { // this might need to change to an ArrayList
         super(title, coordinate, null, spriteSymbol, spriteMessages, existence, overlapsWith);
-        this.healthBoost = healthValue;
+        this.weaponBoost = attackValue;
     }
 
     /**
-     * Purpose: copy constructor
-     * @param potion an instance of the Potion class to copy
+     * Purpose: copy constructor for Weapon
+     * @param item an instance of the weapon class to copy
      */
-    public Potion(Potion potion) {
-        // call constructor of super(s)
-        super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
-            potion.getSpriteChar(), potion.getDialogue(), potion.getExists(), potion.getOverlapsWith());
-        this.healthBoost = potion.getHealthBoost();
+    public Weapon(Weapon item) {
+        // call supers constructor(s)
+        super(item.getName(), item.getCoord(), item.getSpriteImage(),
+            item.getSpriteChar(), item.getDialogue(), item.getExists(), item.getOverlapsWith());
+        this.weaponBoost = item.getWeaponBoost();
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/
     /**
-     * Purpose: To get the healing strenght of a potion.
-     * @return the healthBoost
+     * Purpose: To get the value associated with the weapons attack strenght
+     * @return the weaponBoost
      */
-    public int getHealthBoost() {
-    	return this.healthBoost;
+    public int getWeaponBoost() {
+    	return this.weaponBoost;
     }
 
     /**
-     * Purpose: To set the healing strenght of a potion
-     * @param healthBoost the healthBoost to set
+     * Purpose: To set the value of the weapons attack strength
+     * @param weaponBoost the weaponBoost to set
      */
-    public void setHealthBoost(int healthBoost) {
-    	this.healthBoost = healthBoost; // can be a positive or negative value for later expansion
+    public void setWeaponBoost(int weaponBoost) {
+    	this.weaponBoost = weaponBoost;
     }
 
     /*------------------------------ METHODS ---------------------------------*/
@@ -95,15 +97,16 @@ public class Potion extends Sprite {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Health Boost: " + this.getHealthBoost(); // for extension
+        return super.toString() + ", Weapon Boost: " + this.getWeaponBoost(); // for extension
     }
+
 
     /*------------------------------- TESTER ---------------------------------*/
     public static void main(String[] args) {
         // test
-        Potion p1 = new Potion(); //default constructor test
-        Potion p2 = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
-        System.out.println("p1: " + p1);
-        System.out.println("p2: " + p2);
+        Weapon w1 = new Weapon(); //default constructor test
+        Weapon w2 = new Weapon("Butter Knife", new Location(0,0,0,0), null, ' ', null, true, false, 200);
+        System.out.println("w1: " + w1);
+        System.out.println("w2: " + w2);
     }
 }

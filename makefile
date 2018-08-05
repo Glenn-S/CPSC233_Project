@@ -13,7 +13,7 @@ RESPONSE = Building the dependency
 #Build rules
 
 # ------------------------------ Build Avatar
-Avatar.class: Avatar.java Potion.java Defence.java Weapon.java
+Avatar.class: Avatar.java
 	$(ECHO) $(RESPONSE) $@
 	$(JCC) $(JFLAGS) Avatar.java
 
@@ -22,7 +22,7 @@ Avatar: Avatar.class
 	$(RUN) $@
 
 # ------------------------------ Build BattleLoop
-BattleLoop.class: BattleLoop.java GameLoop.java
+BattleLoop.class: BattleLoop.java
 	$(ECHO) $(RESPONSE) $@
 	$(JCC) $(JFLAGS) BattleLoop.java
 
@@ -75,14 +75,23 @@ Location: Location.class
 	$(ECHO) $(RESPONSE) $@
 	$(RUN) $@
 
-# ------------------------------ Build MainMenu
-MainMenu.class: MainMenu.java GameLoop.java
+# ------------------------------ Build Main
+Main.class: Main.java
 	$(ECHO) $(RESPONSE) $@
-	$(JCC) $(JFLAGS) MainMenu.java
+	$(JCC) $(JFLAGS) Main.java
 
-MainMenu: MainMenu.class
+Main: Main.class
 	$(ECHO) $(RESPONSE) $@
 	$(RUN) $@
+
+# ------------------------------ Build MainTerminal
+Main.class: Main.java
+	$(ECHO) $(RESPONSE) $@
+	$(JCC) $(JFLAGS) Main.java
+
+MainTerminal: Main.class
+	$(ECHO) $(RESPONSE) $@
+	$(RUN) Main terminal
 
 # ------------------------------ Build Player
 Player.class: Player.java
@@ -140,6 +149,6 @@ all: $(OBJ)
 
 clean:
 	$(ECHO) Destroying $(OBJ)
-	rm $(OBJ)
+	rm $(OBJ) */$(OBJ)
 
 .PHONY: depend clean

@@ -1,3 +1,5 @@
+package sprite;
+
 import java.util.*;
 import javafx.scene.image.Image;
 
@@ -186,22 +188,62 @@ public class Player extends Avatar {
 	public ArrayList<Image> getInventory() {
 		ArrayList<Image> itemInventoryImage = new ArrayList<Image>();
 
-		for(int index = 0; index < this.items.size(); index++)
-		{
+		for(int index = 0; index < this.items.size(); index++) {
 			itemInventoryImage.add(this.items.get(index).getSpriteImage());
 		}
 		return itemInventoryImage;
-		/*
-		String strRep = "";
-		for (int i = 0; i < this.items.size(); i++) {
-			if (i == this.items.size()-1) {
-				strRep = strRep + this.items.get(i).getName();
+	}
+
+	public String getInventory(boolean terminal) {
+		int potionCnt = 0;
+
+
+		if (terminal == true) {
+			String sword = "";
+			String shield = "";
+			String smallPotion = "Small Potion";
+			int smallPotionCnt = 0;
+			String mediumPotion = "Medium Potion";
+			int mediumPotionCnt = 0;
+			String largePotion = "Large Potion";
+			int largePotionCnt = 0;
+			String inventory;
+
+			for (int i = 0; i < this.items.size(); i++) {
+				if (this.items.get(i) instanceof Weapon) {
+					sword = this.items.get(i).getName();
+				}
+				if (this.items.get(i) instanceof Defence) {
+					shield = this.items.get(i).getName();
+				}
+				if (this.items.get(i) instanceof Potion) {
+					if (this.items.get(i).getName().equals("Small Potion")) {
+						smallPotionCnt++;
+					}
+					else if (this.items.get(i).getName().equals("Medium Potion")) {
+						mediumPotionCnt++;
+					}
+					else if (this.items.get(i).getName().equals("Large Potion")) {
+						largePotionCnt++;
+					}
+				}
 			}
-			else strRep = strRep + this.items.get(i).getName() + ", ";
+			inventory = sword + ", " + shield;
+			if (smallPotionCnt > 0) {
+				inventory = inventory + ", " + smallPotion + " x" + smallPotionCnt;
+			}
+			if (mediumPotionCnt > 0) {
+				inventory = inventory + ", " + mediumPotion + " x" + mediumPotionCnt;
+			}
+			if (largePotionCnt > 0) {
+				inventory = inventory + ", " + largePotion + " x" + largePotionCnt;
+			}
+			inventory = inventory + "\n" + "Number of keys: " + this.keyCount;
+
+			return inventory;
 		}
-		return strRep + "\n" + "Number of keys: " + this.keyCount;
-*/
-		}
+		else return "";
+	}
 
 	/**
 	 * Purpose: This method returns the calling players currency value

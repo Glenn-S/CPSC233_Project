@@ -28,6 +28,9 @@ import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import sprite.*;
+import gameMechanics.*;
+import terminal.*;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -37,11 +40,11 @@ import javafx.scene.image.ImageView;
  *
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class MainMenu extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
+public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
 
     private final String GAMETITLE = "The Adventures of Montequilla";
-    private final String SYNOPSIS
-            = "B-town is under attack by \"I can’t believe it\'s not butter\" boy and "
+    private final String SYNOPSIS =
+              "B-town is under attack by \"I can’t believe it\'s not butter\" boy and "
             + "his army of Margarine men. All sources of butter are destroyed in the town "
             + "except for one. Your best friend Butter Bob Brown has been in his lab developing "
             + "a new 0 sodium butter. Realizing the applications for his process of removing "
@@ -137,12 +140,13 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (frameCounter++ % 30 == 0) { // adjust the frame rate speed to slow down the player
+                if (frameCounter++ % 20 == 0) { // adjust the frame rate speed to slow down the player
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
+                            // battle scene setup
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
                             battle.getStylesheets().add("textareafix.css");
                             window.setScene(battle);
@@ -183,6 +187,9 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
 
     }
 
+    /**
+     * Purpose:
+     */
     public StackPane battleSceneContent(Player player) {
         this.b = new BattleLoop();
         this.bRoot = new StackPane();
@@ -247,6 +254,9 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         return bRoot;
     }
 
+    /**
+     * Purpose:
+     */
     public void battle(Player player, Enemy e, ArrayList<Enemy> enemy, ArrayList<Sprite> terrain, Scene battle) {
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
@@ -435,11 +445,8 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                         }
                     }
                 }
-
             }
-
-        }
-        );
+        });
     }
 
     /**
@@ -539,10 +546,12 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
     @Override
     public void handle(KeyEvent e) {
         userMove = "";
+/* backdoor for testing
         if (e.getCode().equals(KeyCode.Q)) {
             startBtn.setText(START); // change the button text to say start in the main menu
             window.setScene(end); // go back to the main menu
         }
+*/
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
         }
@@ -559,18 +568,31 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
         }
-        if (true) {
-            // check to see if enter was pressed near a chest
-        }
 
         System.out.println(this.userMove); // for test purposes
     }
 
     /**
-     *
+     * Purpose:
      */
     public static void main(String[] args) {
-        launch(args);
+        if (args.length == 1 && args[0].equals("terminal")) {
+            MainTerminal game = new MainTerminal();
+            boolean playGame = true;
+            String exitMsg = "Thanks for playing!";
+
+            while (playGame) { // loop until false is selected
+                playGame = game.mainMenu();
+                if (playGame == false) continue;
+                game.gameLoop(); // instantiates a new instance of the game
+            }
+            System.out.println(exitMsg); // exit splash screen
+            System.exit(0); // terminate the program
+        }
+        else if (args.length == 0) {
+            launch(args);
+        }
+
     }
 
 }

@@ -1,3 +1,5 @@
+package sprite;
+
 /**
  * Purpose: This is a class to get the location informations from the user
  * @version 20.41   19  July 2018

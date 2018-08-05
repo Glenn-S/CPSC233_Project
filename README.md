@@ -1,6 +1,21 @@
 # CPSC233_Project
 # Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
 
+
+How to run the Terminal Version:
+1.enter Terminal Version folder
+2.right click the mouse and choose open in terminal
+3.copy "javac Terminal/MainMenu.java" to terminal and press enter(compile)
+4.copy "java Terminal/MainMenu" to terminal and press enter(run)
+
+
+How to run the GUI Version:
+1.enter Project folder
+2.right click the mouse and choose open in terminal
+3.copy "javac GUI/MainMenu.java" to terminal and press enter(compile)
+4.copy "java GUI/MainMenu" to terminal and press enter(run)
+********************************************************************************
+
 Synopsis: B-town is under attack by “I can’t believe it’s not butter” boy and
 his army of Margarine men. All sources of butter are destroyed in the town
 except for one. Your best friend Butter Bob Brown has been in his lab developing
@@ -92,3 +107,6 @@ Margarine Men Attacks:
     Parry
     Margarine Missile x10
     Super Potion
+
+
+********************************************************************************

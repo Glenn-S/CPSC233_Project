@@ -1,7 +1,9 @@
+package gameMechanics;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.scene.image.Image;
+import sprite.*;
 
 /**
  * Purpose: Handles all actions regarding the battle system in the game. This
@@ -158,9 +160,10 @@ public class BattleLoop extends GameLoop {
      * @override
      */
     public String playerInput(Player player) {
+        String[] moves = player.getMoves(); // cannot access moves directly
         System.out.println("Please select an attack from the following options by entering the number beside the attack.");
         for (int i = 0; i < 4; i++) {
-            System.out.println(i + ". " + player.moves[i]);
+            System.out.println(i + ". " + moves[i]);
         }
 
         Scanner sc = new Scanner(System.in);
@@ -190,7 +193,7 @@ public class BattleLoop extends GameLoop {
             }
         }
         sc.close();
-        return player.moves[attack];
+        return moves[attack];
 
     }
 

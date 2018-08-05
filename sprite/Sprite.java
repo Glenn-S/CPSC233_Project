@@ -1,4 +1,5 @@
-//import java.awt.Image;
+package sprite;
+
 import javafx.scene.image.Image;
 /**
  * Purpose: It's the parent class of  Avator , Potion ,Weapon and Defence
