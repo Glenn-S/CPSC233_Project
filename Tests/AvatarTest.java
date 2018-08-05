@@ -1,5 +1,13 @@
+package Tests;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import Sprite.Location;
+import Sprite.Avatar;
+import Sprite.Defence;
+import Sprite.Potion;
+import Sprite.Weapon;
 
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
@@ -89,7 +97,7 @@ public class AvatarTest {
     	a.setAttack(150);
     	a.setDefence(130);
     	a.updateDefence(d);
-    	assertEquals("Name: Eva, Coord: ((20, 30), (X Size: 100, Y Size: 50)), Image: null, Char:  , Text: null, Exists: true, Health: 200, Attack: 150, Defence: 160", a.toString());
+    	assertEquals("Name: Eva, Coord: ((20, 30), (X Size: 100, Y Size: 50)), Image: null, Char:  , Text: null, Exists: true, Health: 200, Attack: 150, Defence: 160, Moves: null", a.toString());
     }
     
 }
