@@ -506,7 +506,7 @@ public class GameLoop {
      * @return a boolean value for if the player meets the condition to unlock
      */
     public boolean checkGate(Player player) {
-        boolean gateOpen = (player.getKeyCount() == totalKeys - 1) ? true : false;
+        boolean gateOpen = (player.getKeyCount() == 3) ? true : false;
         if (gateOpen) {
             updateGate(); // if it is open, delete the previous gate
         }

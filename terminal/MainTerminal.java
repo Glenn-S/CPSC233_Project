@@ -58,6 +58,7 @@ public class MainTerminal { // change this name to be the name of the game
     public boolean gameLoop() {
         boolean gameState = false;
         GameLoop gamePlay = new GameLoop();
+
         gamePlay.setTerminal(true); // to set the values to know terminal is in use
         // GameBoard gb = new GameBoard();
         String userMove;
@@ -78,7 +79,7 @@ public class MainTerminal { // change this name to be the name of the game
                 // pass the new x/y for the player
                 gamePlay.updatePosition(gamePlay.getPlayer(), userMove); // if collision is not detected update player position
             }
-            //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
+            gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
             if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
                 gameState = true; // this is to terminate the game loop
                 continue; // exit to the beginning of the loop to check this condition
