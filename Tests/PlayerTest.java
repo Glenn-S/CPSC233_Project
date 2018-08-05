@@ -34,7 +34,8 @@ public class PlayerTest {
 	    	s.setCoord(l);
 	    	s.setExists(true);
 	    	p.addItem(s);   	
-	        assertEquals("[Name: smallpotion, Coord: ((30, 20), (X Size: 0, Y Size: 0)), Image: null, Char:  , Text: null, Exists: true]",p.getItems());
+	        assertEquals("[Name: smallpotion, Coord: ((30, 20), (X Size: 0, Y Size: 0)), Image: null, Char:  , Text: null, Exists: true]",p.getCoord());
+	        
 	    } 
 	    
 	    @Test
