@@ -11,3 +11,5 @@ Location.java
 Sprite.java
 *.java
 !/BattleGUI.java
+*.class
+*.class
