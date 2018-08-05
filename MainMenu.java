@@ -145,6 +145,7 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                         battle.getStylesheets().add("textareafix.css");
                         window.setScene(battle);
                         battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
+                        
                     }
                     root = gamePlay.drawState(gamePlay.getPlayer());
 
@@ -166,8 +167,8 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
         System.out.println(gamePlay.getPlayer());
 
         /**
-         * 1. Fix when multiple type of one potion you have to wait a turn 
-         * 2. Make attack and defense relevant
+         * 1. Fix when multiple type of one potion you have to wait a turn 2.
+         * Make attack and defense relevant
          *
          *
          */
@@ -294,11 +295,14 @@ public class MainMenu extends Application implements EventHandler<KeyEvent> { //
                             player.setHealth(100);
                             if (e.getKey()) {
                                 player.setKeyCount(player.getKeyCount() + 1);
+                                gamePlay.getPlayer().setKeyCount(player.getKeyCount()); 
                                 log.appendText("\nYou have obtained a key from defeating this enemy!");
                                 e.setKey(false);
                             }
                             log.appendText("\nPlayer key count: " + player.getKeyCount());
                             b.removeEnemy(e, enemy, terrain);
+                            root = gamePlay.drawState(gamePlay.getPlayer());
+                            game.setRoot(root);
                             window.setScene(game);
 
                         } else {
