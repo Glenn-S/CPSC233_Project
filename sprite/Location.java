@@ -55,18 +55,19 @@ public class Location {
 	/*--------------------------- GETTER/SETTERS -----------------------------*/
 	/**
 	 * Purpose: To retrieve the x coordinate.
-	 * @return xCoord renew xCoordinate of the object    as a type of integer
+	 * @return xCoord renew xCoordinate of the object as a type of integer
 	 */
 	public int getxCoord() {
 		return this.xCoord;
 	}
+
 	/**
 	 * Purpose: to set the y coordinate value.
-	 * @param xCoord It's the x Coordinate information of the object  as a type
+	 * @param xCoord It's the x Coordinate information of the object as a type
 	 * of integer
 	 */
 	public void setxCoord(int xCoord) {
-		if (xCoord < 80 && xCoord >= 0) { // range of map is from 0-199 (200 in total)
+		if (xCoord < 80 && xCoord >= 0) {
 		this.xCoord = xCoord;
 		}
 		else this.xCoord = 0; // set default value
@@ -74,7 +75,7 @@ public class Location {
 
 	/**
 	 * Purpose: To retrieve the x coordinate.
-	 * @return yCoord renew yCoordinate of the object    as a type of integer
+	 * @return yCoord renew yCoordinate of the object as a type of integer
 	 */
 	public int getyCoord() {
 		return this.yCoord;
@@ -86,7 +87,7 @@ public class Location {
 	 * of integer
 	 */
 	public void setyCoord(int yCoord) {
-		if (yCoord >= 0 && yCoord < 40) { // range of map is from 0-39 (40 in total)
+		if (yCoord >= 0 && yCoord < 40) {
 			this.yCoord = yCoord;
 		}
 		else this.xCoord = 0; // set default value
@@ -94,17 +95,18 @@ public class Location {
 
 	/**
 	 * Purpose: To retrieve the x values dimension.
-	 * @return xSize renew the x Size of the object  as a type of integer
+	 * @return xSize renew the x Size of the object as a type of integer
 	 */
-	public int getxSize() {	//getter for xSize
+	public int getxSize() {
 		return this.xSize;
 	}
+
 	/**
 	 * Purpose: To set the x values dimension.
 	 * @param xSize it's the x Size information of the object  as a type of integer
 	 */
 	public void setxSize(int xSize) {
-		if (xSize >= 0) { // make sure the value is positive
+		if (xSize >= 0) {
 			this.xSize = xSize;
 		}
 
@@ -117,12 +119,13 @@ public class Location {
 	public int getySize() {
 		return this.ySize;
 	}
+
 	/**
 	* Purpose: To set the y values dimension.
 	 * @param ySize it's the y Size information of the object  as a type of integer
 	 */
 	public void setySize(int ySize) {
-		if (ySize >= 0) { // make sure the value is positive
+		if (ySize >= 0) {
 			this.ySize = ySize;
 		}
 	}
@@ -162,7 +165,8 @@ public class Location {
 	}
 
 	/**
-	 *
+	 * Purpose: To return the adjusted value for the pixel amount of x for the
+	 * GUI
 	 * @return return the pixel set for x
 	 */
 
@@ -171,7 +175,8 @@ public class Location {
 	}
 
 	/**
-	 *
+	 * Purpose: To return the adjusted value for the pixel amount of y for the
+	 * GUI
 	 * @return return the pixel set for y
 	 */
 	public int getPixelY(){
@@ -179,21 +184,23 @@ public class Location {
 	}
 
 	/**
+	 * Purpose: To return the adjusted value for the pixel amount of the
+	 * horizontal distance for the GUI.
 	 * @return return the pixel set for xsize
 	 */
 
 	public int getPixelXSize(){
 		return this.xSize * 50; // old size 100
 	}
+
 	/**
-	 *
+	 * Purpose: To return the adjusted value for the pixel amount of the
+	 * vertical distance for the GUI.
 	 * @return return the pixel set for ysize
 	 */
 	public int getPixelYSize(){
 		return this.ySize * 50; // old size 100
 	}
-
-
 
 	/**
 	 * Purpose: To print out a string representation of the class attributes
@@ -205,14 +212,4 @@ public class Location {
 			"), (X Size: " + this.xSize + ", Y Size: " + this.ySize + "))";
 	}
 
-	/**
-	 * Purpose: To test out various methods of the location class.
-	 */
-	public static void main(String[] args) {
-		// Tests
-		Location l1 = new Location(); // test the default constructor
-		Location l2 = new Location(199, 39, 1, 2);
-		System.out.println("l1: " + l1);
-		System.out.println("l2: " + l2);
-	}
 }

@@ -123,7 +123,6 @@ public class Player extends Avatar {
 		}
 	}
 
-
 	/**
 	 * Purpose: This method is to be called when wanting to edit, or change an item in the calling
 	 * players item array
@@ -194,9 +193,13 @@ public class Player extends Avatar {
 		return itemInventoryImage;
 	}
 
+	/**
+	 * Purpose: To crete a string representation of the players items.
+	 *
+	 * @param terminal a boolean value to determine if the gui version is in use
+	 */
 	public String getInventory(boolean terminal) {
 		int potionCnt = 0;
-
 
 		if (terminal == true) {
 			String sword = "";
@@ -274,15 +277,6 @@ public class Player extends Avatar {
 	public String toString() {
 		return super.toString() + ", Key Count: " + this.getKeyCount() +
 			", Items: " + this.getItems(); // for extension
-	}
-
-	public static void main(String[] args) {
-		Player p1 = new Player();
-		String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
-		Player p2 = new Player("Montequilla", new Location(0, 0, 0, 0), null, 'x',
-                                null, true, false, 100, 50, 50, moves);
-		System.out.println("p1: " + p1);
-		System.out.println("p2: " + p2);
 	}
 
 }

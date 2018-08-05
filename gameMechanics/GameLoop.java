@@ -40,7 +40,7 @@ import sprite.*;
  */
 public class GameLoop {
 
-    private int boardHeight = 40, boardLength = 80; // move these later
+    private int boardHeight = 40, boardLength = 80;
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
@@ -67,6 +67,11 @@ public class GameLoop {
     /**
      * Purpose: To create a constructor to allow the user to set the arrays and
      * the number of keys in the game.
+     *
+     * @param terrain a list of all the terrain elements
+     * @param items a list of all the items in the game
+     * @param enemy a list of all the enemies in the game
+     * @param totalKeys the total number of keys for the game
      */
     public GameLoop(ArrayList<Sprite> terrain, ArrayList<Sprite> items,
             ArrayList<Enemy> enemy, int totalKeys) {
@@ -85,7 +90,7 @@ public class GameLoop {
      * @return an array list containing the terrain objects
      */
     public ArrayList<Sprite> getTerrain() {
-        return this.terrain; //create copy of the list
+        return this.terrain; //create copy of the list, need to fix
     }
 
     /**
@@ -94,7 +99,7 @@ public class GameLoop {
      * @return an array list containing the item objects
      */
     public ArrayList<Sprite> getItem() {
-        return this.items; //create copy of the list
+        return this.items; //create copy of the list, need to fix
     }
 
     /**
@@ -103,7 +108,7 @@ public class GameLoop {
      * @return an array list containing the enemy objects
      */
     public ArrayList<Enemy> getEnemy() {
-        return this.enemy; //create copy of the list
+        return this.enemy; //create copy of the list, need to fix
     }
 
     /**
@@ -134,6 +139,8 @@ public class GameLoop {
     }
 
     /**
+     * Purpose: To return the player currently in the game
+     *
      * @return the player
      */
     public Player getPlayer() {
@@ -192,7 +199,7 @@ public class GameLoop {
     }
 
     /**
-     * Purpose:
+     * Purpose: To set the print array with a new array of elements to print
      *
      * @param printArray the printArray to set
      */
@@ -201,7 +208,10 @@ public class GameLoop {
         this.printArray = printArray;
     }
      */
+
     /**
+     * Purpose: to set the player for the current game.
+     *
      * @param player the player to set
      */
     public void setPlayer(Player player) {
@@ -210,6 +220,7 @@ public class GameLoop {
 
     /**
      * Purpose: to return the print array for the terminal version
+     *
      * @return the printArray
      */
 
@@ -219,6 +230,8 @@ public class GameLoop {
 
     /**
      * Purpose: To return whether the terminal version is in use or not
+     *
+     * @return the value of whether the terminal is in use for this game
      */
     public boolean getTerminal() {
         return this.terminal;
@@ -226,6 +239,8 @@ public class GameLoop {
     /**
      * Purpose: To set the terminal field for knowing if the terminal version is
      * in use.
+     *
+     * @param value a value to set for whether the terminal is in use or not
      */
     public void setTerminal(boolean value) {
         this.terminal = value;
@@ -323,6 +338,14 @@ public class GameLoop {
         }
         return result;
     }
+
+    /**
+     * Purpose: To To check and see if the players move will collide with an
+     * enemy on the map. This method overloads the original checkEnemies and
+     * instead returns an enemy.
+     *
+     * @return an enemy that was obtained from seraching the list
+     */
     public Enemy checkEnemies(String move, Player player , ArrayList<Enemy> enemy) {
         if ((player != null) && (enemy != null)) { // this could be a try and except statement?
             for (int i = 0; i < enemy.size(); i++) {
@@ -363,6 +386,7 @@ public class GameLoop {
         }
         return null;
     }
+
     /**
      * Purpose: To check and see if the players move will collide with a terrain
      * tile that cannot be crossed (ie. mountains).
@@ -419,6 +443,7 @@ public class GameLoop {
         }
         return result;
     }
+
     /**
      * Purpose: To determine if the item can be picked up and if so, if it is a
      * weapon or shield, remove the old one and replace it with the new. This
@@ -533,8 +558,6 @@ public class GameLoop {
      * @param move a string representation of the move being performed
      */
     public void updatePosition(Player player, String move) {
-        // move will only be up, down, left, and right
-        // assumes coordinates have been checked
         switch (move) {
             case "up":
                 player.updatePosition(player.getCoord().getxCoord(), player.getCoord().getyCoord() - 1);
@@ -559,10 +582,8 @@ public class GameLoop {
      *
      * @param player This is the player that is playing the game. Their image
      * has to be added to the grid pane, as they are not a part of any arraylist
-     *
-     * @return flow This is a flow pane that is is filled with the images from
-     * the terrain, items, and emeny arraylists. This flow pane is then
-     * returned, and is put onto the main stage
+     * @return a pane to set the window with for the games current state while
+     * in play
      */
     public Pane drawState(Player player) {
         //Scene scene = new Scene(new Group());
@@ -708,6 +729,7 @@ public class GameLoop {
         }
         return;
     }
+    
     /**
      * Purpose: To check all possible collisions in the game and return true or
      * false depending.
