@@ -904,7 +904,7 @@ public class GameLoop {
                 System.out.println("You Win!");
                 player.setHealth(100);
                 if (e.getKey()) {
-                    player.setKeyCount(player.getKeyCount() + 1);
+                    this.player.setKeyCount(player.getKeyCount() + 1);
                     System.out.println("You have obtained a key from defeating this enemy!");
                     e.setKey(false);
                 }

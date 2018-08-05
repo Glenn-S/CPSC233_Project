@@ -192,7 +192,7 @@ public class BattleLoop extends GameLoop {
                 }
             }
         }
-        sc.close();
+
         return moves[attack];
 
     }
