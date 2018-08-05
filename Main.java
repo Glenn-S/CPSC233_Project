@@ -82,6 +82,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private String userMove = "";
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
+    private final int VELOCITY = 15;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
@@ -140,7 +141,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (frameCounter++ % 20 == 0) { // adjust the frame rate speed to slow down the player
+                if (frameCounter++ % VELOCITY == 0) { // adjust the frame rate speed to slow down the player
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);

@@ -701,7 +701,6 @@ public class GameLoop {
      *
      * @param player an instance of the player class
      * @param item the item that the user will add to their inventory
-     * @throws ? not sure yet
      */
     public void pickUpItem(Player player, Sprite item) {
         if (player != null && item != null) {
