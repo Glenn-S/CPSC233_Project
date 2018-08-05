@@ -2,18 +2,15 @@
 # Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
 
 
-How to run the Terminal Version:
-1.enter Terminal Version folder
-2.right click the mouse and choose open in terminal
-3.copy "javac Terminal/MainMenu.java" to terminal and press enter(compile)
-4.copy "java Terminal/MainMenu" to terminal and press enter(run)
 
+How to run the Terminal Version:
+1.Type at the terminal "make MainTerminal" or "javac Main.java && java Main terminal"
 
 How to run the GUI Version:
-1.enter Project folder
-2.right click the mouse and choose open in terminal
-3.copy "javac GUI/MainMenu.java" to terminal and press enter(compile)
-4.copy "java GUI/MainMenu" to terminal and press enter(run)
+1.Type at the terminal "make Main" or "javac Main.java && java Main"
+
+To pause the game press escape.
+
 ********************************************************************************
 
 Synopsis: B-town is under attack by “I can’t believe it’s not butter” boy and
