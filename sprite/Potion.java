@@ -99,13 +99,4 @@ public class Potion extends Sprite {
     public String toString() {
         return super.toString() + ", Health Boost: " + this.getHealthBoost(); // for extension
     }
-
-    /*------------------------------- TESTER ---------------------------------*/
-    public static void main(String[] args) {
-        // test
-        Potion p1 = new Potion(); //default constructor test
-        Potion p2 = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
-        System.out.println("p1: " + p1);
-        System.out.println("p2: " + p2);
-    }
 }

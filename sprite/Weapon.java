@@ -33,7 +33,7 @@ public class Weapon extends Sprite {
     public Weapon(String title,
                   Location coordinate,
                   Image spriteImage,
-                  char spriteSymbol, // will become the sprite image class later
+                  char spriteSymbol,
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
@@ -53,7 +53,7 @@ public class Weapon extends Sprite {
      */
     public Weapon(String title,
                   Location coordinate,
-                  char spriteSymbol, // will become the sprite image class later
+                  char spriteSymbol,
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
@@ -98,15 +98,5 @@ public class Weapon extends Sprite {
     @Override
     public String toString() {
         return super.toString() + ", Weapon Boost: " + this.getWeaponBoost(); // for extension
-    }
-
-
-    /*------------------------------- TESTER ---------------------------------*/
-    public static void main(String[] args) {
-        // test
-        Weapon w1 = new Weapon(); //default constructor test
-        Weapon w2 = new Weapon("Butter Knife", new Location(0,0,0,0), null, ' ', null, true, false, 200);
-        System.out.println("w1: " + w1);
-        System.out.println("w2: " + w2);
     }
 }

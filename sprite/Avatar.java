@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Avatar extends Sprite {
-    private final int BASEHEALTH = 25;
+    private final int BASEHEALTH = 25; // players base health value without power-ups
     protected int health;   // health of the avatar as an integer
     protected int defence;  // defence stat of the avatar as an integer
     protected int attack;  // attack stat of the avatar as an integer
@@ -50,30 +50,10 @@ public class Avatar extends Sprite {
     /*--------------------------- GETTER/SETTERS -----------------------------*/
 
     /**
-     * @param input select the movement type of a avatar as a type of String
-     */
-    // this might need to also have an associated index value with it for the array
-/*	public void setMoves(String input){// input word to set movement type
-		if (input.toUpperCase() == "SLASH") {
-			move = "Slash";
-		}
-		else if (input.toUpperCase() == "PARRY") {
-			move = "Parry";
-		}
-		else if (input.toUpperCase()== "SWORD BOOMERANG" ) {
-			move = "Sword Boomerang";
-		}
-		else if (input.toUpperCase() == "POTION") {
-			move = "Potion";
-		}
-	}
-     */
-    /**
      * Purpose: Returns the array of the avatar's attacks
      * @return move get the movement type of the avatar as a type of String
      */
-    // this might need to also have an associated index value with it for the array
-    public String[] getMoves() {   		//get movement type
+    public String[] getMoves() {
         return this.moves;
     }
 
@@ -81,8 +61,7 @@ public class Avatar extends Sprite {
      * Purpose: set's avatar's move set to the desired attacks
      * @param moves - new move set for the avatar
      */
-    // this might need to also have an associated index value with it for the array
-    public void setMoves(String[] moves) {   		//get movement type
+    public void setMoves(String[] moves) {
         this.moves = moves;
     }
 
@@ -90,7 +69,7 @@ public class Avatar extends Sprite {
      * Purpose: Set's the health of the avatar to the desired health
      * @param health it's the health of an avatar as a type of integer
      */
-    public void setHealth(int health) {//set health for the avatar
+    public void setHealth(int health) {
         this.health = health;
     }
 
@@ -98,7 +77,7 @@ public class Avatar extends Sprite {
      * Purpose: Retrieves the current health of the avatar.
      * @return health renew the health state of the avatar as a type of integer
      */
-    public int getHealth() {			//get health
+    public int getHealth() {
         return this.health;
     }
 
@@ -115,7 +94,7 @@ public class Avatar extends Sprite {
      * Purpose: Changes defence of the avatar to the desired defence.
      * @param defence it's the defence of an avatar as a type of integer
      */
-    public void setDefence(int defence) {//set defence for the avatar
+    public void setDefence(int defence) {
         this.defence = defence;
     }
 
@@ -124,7 +103,7 @@ public class Avatar extends Sprite {
      * @return defence renew the defence value of the avatar as a type of
      * integer
      */
-    public int getDefence() {    		//get defence
+    public int getDefence() {
         return this.defence;
     }
 
@@ -133,7 +112,7 @@ public class Avatar extends Sprite {
      * value
      * @param attack it's the attack of an avatar as a type of integer
      */
-    public void setAttack(int attack) {//set attack for the avator
+    public void setAttack(int attack) {
         this.attack = attack;
     }
 
@@ -141,7 +120,7 @@ public class Avatar extends Sprite {
      * Purpose: Returns the current baseline attack value of the avatar
      * @return attack renew the attack value of the avatar as a type of integer
      */
-    public int getAttack() {			//get attack
+    public int getAttack() {
         return this.attack;
     }
 
@@ -151,7 +130,7 @@ public class Avatar extends Sprite {
      * @param healthBoost it's the  potion that will add health to the
      * avatar.
      */
-    public void updateHealth(Potion healthBoost) {//update health when using a potion
+    public void updateHealth(Potion healthBoost) {
         this.health += healthBoost.getHealthBoost();
     }
 
@@ -160,7 +139,7 @@ public class Avatar extends Sprite {
      * @param weaponStrength it's the attack value that a Weapon iteam will
      * added to the avatar as a type of integer
      */
-    public void updateAttack(Weapon weaponStrength) {//update attack when carring some weapons
+    public void updateAttack(Weapon weaponStrength) {
         this.attack = weaponStrength.getWeaponBoost() + BASEHEALTH;
     }
 
@@ -169,7 +148,7 @@ public class Avatar extends Sprite {
      * @param defenceBoost it's the defence value that a defence iteam will
      * added to the avatar as a type of integer
      */
-    public void updateDefence(Defence defenceBoost) {//update defence when carring some defence items.
+    public void updateDefence(Defence defenceBoost) {
         this.defence = defenceBoost.getDefenceBoost() + BASEHEALTH;
     }
 

@@ -84,21 +84,22 @@ public class Sprite {
 
 	/*------------------------SETTERS/GETTER----------------------------------*/
 	/**
+	 * Purpose: To set the sprites location
 	 * @param xCoord the xCoordinate of the sprite as a type of integer
 	 * @param yCoord the yCoordinate of the Sprite as a type of integer
 	 */
-	public void setCoord(Location location) { //set xCoord and yCoord
+	public void setCoord(Location location) {
 		if (location != null) {
 			this.coord = location;
 		}
 	}
 
 	/**
-	 *Purpose: This is the getter for the sprites location variable
+	 * Purpose: This is the getter for the sprites location variable
 	 *
 	 * @return coord 	it's the Location of the sprite as a type of integer
 	 */
-	public Location getCoord() {				//get xCoord and yCoord as a type Location
+	public Location getCoord() {
 		return this.coord;
 	}
 
@@ -107,7 +108,7 @@ public class Sprite {
 	 *
 	 * @param setname   the name of the sprite  as a type of String
 	 */
-	public void setName(String setName){		//set the name
+	public void setName(String setName) {
 		this.name = setName;
 	}
 
@@ -116,7 +117,7 @@ public class Sprite {
 	 *
 	 * @return name   the name of the sprite  as a type of String
 	 */
-	public String getName(){					//get the name
+	public String getName() {
 		return new String(this.name);
 	}
 
@@ -125,16 +126,16 @@ public class Sprite {
  	 *
  	 * @param  newSpriteImage  This is the new sprite Image
  	 */
-	public void setSpriteImage(Image newSpriteImage){				//set the image
+	public void setSpriteImage(Image newSpriteImage) {
 		this.spriteImage = newSpriteImage;
 	}
 
 	/**
-	 *Purpose: This is the getter for the sprites image
+	 * Purpose: This is the getter for the sprites image
 	 *
 	 * @return spriteImage - renew the spriteImage as a type of Image
 	 */
-	public Image getSpriteImage(){				//get the image
+	public Image getSpriteImage() {
 		return this.spriteImage;
 	}
 
@@ -144,17 +145,17 @@ public class Sprite {
 	 * @param exist the sate of iteams and enemis if they are exist
 	 * as a type of boolean
 	 */
-	public void setExists(boolean exist){		//set the exist state of iteams and enemies.
+	public void setExists(boolean exist) {
 		this.exists  = exist;
 	}
 
 	/**
-	 *Purpose: This is the getter for the sprites exists variable
+	 * Purpose: This is the getter for the sprites exists variable
 	 *
 	 * @return exists - renew the exist state of iteams and enemies
 	 * as a type of boolean
 	 */
-	public boolean getExists(){					//get the exist state
+	public boolean getExists() {
 		return this.exists;
 	}
 	/**
@@ -162,7 +163,7 @@ public class Sprite {
 	 *
 	 * @param dialog set dialogues as a type of String array
 	 */
-	public void setDialogue(String[] dialogue){	//set the dialogue
+	public void setDialogue(String[] dialogue) {
 		this.dialogue = dialogue;
 	}
 	/**
@@ -170,7 +171,7 @@ public class Sprite {
 	 *
 	 * @return dialogue	- renew the dialogue we need as a String array
 	 */
-	public String[] getDialogue(){				//get the dialogue
+	public String[] getDialogue(){
 		return this.dialogue;
 	}
 
@@ -200,7 +201,7 @@ public class Sprite {
 	 * @return overlapsWith - tell if the player is overlap with something or
 	 * not , as a type of boolean
 	 */
-	public boolean getOverlapsWith(){	//get the overlapsWith
+	public boolean getOverlapsWith() {	//get the overlapsWith
 		return this.overlapsWith;
 	} //(remove overlapswith for now.)
 
@@ -221,7 +222,9 @@ public class Sprite {
 		this.spriteChar = spriteChar;
 	}
 
-	/** Purpose: To print out a string representation of the class attributes
+	/**
+	 * Purpose: To print out a string representation of the class attributes
+	 *
 	 * @return a string with all the attributes
 	 */
 	public String toString() {
@@ -230,15 +233,5 @@ public class Sprite {
 			this.getSpriteChar() + ", Text: " + this.getDialogue() + ", Exists: " +
 			this.getExists() ;
 		return strRep;
-		}
-
-	/*--------------------------Testing---------------------------------------*/
-	public static void main(String[] args) {
-		// Tests
-		Sprite s1 = new Sprite();
-		Sprite s2 = new Sprite("Person", new Location(0,0,0,0), null, 'x', null, true, false);
-		System.out.println("s1: " + s1);
-		System.out.println("s2: " + s2);
 	}
-
 }

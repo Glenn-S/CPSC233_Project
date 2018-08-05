@@ -79,13 +79,4 @@ public class Defence extends Sprite {
     public String toString() {
         return super.toString() + ", Defence Boost: " + this.getDefenceBoost(); // for extension
     }
-
-    /*------------------------------- TESTER ---------------------------------*/
-    public static void main(String[] args) {
-        // test
-        Defence d1 = new Defence(); //default constructor test
-        Defence d2 = new Defence("Dinner Plate", new Location(0,0,0,0), null, ' ', null, true, false, 100);
-        System.out.println("d1: " + d1);
-        System.out.println("d2: " + d2);
-    }
 }
