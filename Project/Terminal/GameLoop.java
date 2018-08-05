@@ -19,12 +19,12 @@ import java.util.ArrayList;
  */
 public class GameLoop {
 
-    private int boardHeight = 40, boardLength = 200; // move these later
+    private int boardHeight = 40, boardLength = 80; // move these later
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
     private ArrayList<Sprite> gate;
-    private char[][] printArray = new char[boardHeight][boardLength]; //[40][200]
+    private char[][] printArray = new char[boardHeight][boardLength]; //[40][80]
     private int totalKeys; // total number of keys in the game
     private boolean winState;
     private boolean loseState;
@@ -86,11 +86,11 @@ public class GameLoop {
         return this.enemy; //create copy of the list
     }
 
-    
+
     public ArrayList<Sprite> getGate(){
     	return this.gate;
     }
-    
+
     /**
      * Purpose: To retrieve the number of keys in the game
      *
@@ -135,13 +135,13 @@ public class GameLoop {
             this.terrain = newTerrainList;
         }
     }
-    
+
     public void setGate(ArrayList<Sprite> newGateList) {
     	if (newGateList != null) {
     		this.gate = newGateList;
     	}
     }
-    
+
 
     /**
      * Purpose: To set a new item objects list for the current game
@@ -339,7 +339,7 @@ public class GameLoop {
         }
         return result;
     }
-    
+
 
     /**
      * Purpose: To check and see if the players move will collide with an edge
@@ -388,14 +388,14 @@ public class GameLoop {
      */
     public boolean checkGate(Player player) {
     	if (player.getKeyCount() == totalKeys - 1) { // also update images in the gui version
-    		
+
     		return  true ;
     	}
     		return false;
     }
-    
- 
- 
+
+
+
 
     /**
      * Purpose: To take the move entered by the user and, given that the move is
@@ -577,8 +577,8 @@ public class GameLoop {
                 this.printArray[rowTemp][columnTemp] = this.enemy.get(index).getSpriteChar();
             }
         }
-        
-        
+
+
         if (player.getKeyCount() < 3) {
         	for (int index = 0; index < this.gate.size(); index++) {
                 rowTemp = this.gate.get(index).getCoord().getyCoord();

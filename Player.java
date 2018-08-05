@@ -176,14 +176,14 @@ public class Player extends Avatar {
 	 * @return  itemInventoryImage  This is an array list of images, the images represent the
 	 * items which are in the calling players items array
 	 */
-	public ArrayList<Image> getInventory() {
-		ArrayList<Image> itemInventoryImage = new ArrayList<Image>();
+	public ArrayList<String> getInventory() {
+		ArrayList<String> itemInventoryName = new ArrayList<String>();
 
 		for(int index = 0; index < this.items.size(); index++)
 		{
-			itemInventoryImage.add(this.items.get(index).getSpriteImage());
+			itemInventoryName.add(this.items.get(index).getName());
 		}
-		return itemInventoryImage;
+		return itemInventoryName;
 		/*
 		String strRep = "";
 		for (int i = 0; i < this.items.size(); i++) {
