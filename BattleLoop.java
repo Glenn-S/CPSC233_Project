@@ -58,51 +58,63 @@ public class BattleLoop extends GameLoop {
     public boolean getEnemyUsedParry() {
         return this.enemyUsedParry;
     }
+
     /**
      * Purpose: Returns the number of turns that have passed since a use of the
      * Butter Boomerang attack.
+     *
      * @return - turn count between 0 and 2 (inclusive) after Butter Boomerang
      * has been selected as an attack
      */
     public int getBBCounter() {
         return this.bbCounter;
     }
+
     /**
      * Purpose: Updates the number of turns that have passed since a use of the
      * Butter Boomerang attack.
+     *
      * @param newCount - turns passed since last use of Butter Boomerang
      */
     public void setBBCounter(int newCount) {
         this.bbCounter = newCount;
 
     }
+
     /**
      * Purpose: Returns the number of turns that have passed since a use of the
      * Margarine Missile attack.
+     *
      * @return - turn count between 0 and 2 (inclusive) after Margarine Missile
      * has been selected as an attack
      */
     public int getMMCounter() {
         return this.mmCounter;
     }
+
     /**
      * Purpose: Updates the number of turns that have passed since a use of the
      * Margarine Missile attack.
+     *
      * @param newCount - turns passed since last use of Margarine Missile
      */
     public void setMMCounter(int newCount) {
         this.mmCounter = newCount;
 
     }
+
     /**
      * Purpose: Returns the selected attack of the player for the current turn
+     *
      * @return - attack the player wants to use as a String
      */
     public String getTurnAttack() {
         return this.turnAttack;
     }
+
     /**
      * Purpose: Sets the desired attack of the player for the current turn
+     *
      * @param newATK - attack to be used by the player this turn
      */
     public void setTurnAttack(String newATK) {
@@ -123,7 +135,7 @@ public class BattleLoop extends GameLoop {
      */
     public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Sprite> terrainList) {
         enemy.setExists(false);
-        terrainList.add(new Sprite("tombstone", enemy.getCoord(),new Image("file:Smaller Images/Tombstone.png"), 't', null, true, false));
+        terrainList.add(new Sprite("tombstone", enemy.getCoord(), new Image("file:Smaller Images/Tombstone.png"), 't', null, true, false));
         enemyList.remove(enemy);
     }
 
@@ -242,8 +254,9 @@ public class BattleLoop extends GameLoop {
     }
 
     /**
-     * Purpose: To update the player and enemy's health after each move
-     * For text version only.
+     * Purpose: To update the player and enemy's health after each move For text
+     * version only.
+     *
      * @param player - player involved in battle
      * @param e - enemy involved in battle
      */
@@ -337,13 +350,19 @@ public class BattleLoop extends GameLoop {
      */
     public void usePotion(Player player) {
         ArrayList<Sprite> temp = player.getItems();
+        Potion validPotion = this.validPotion(player);
+        int hpBoost = validPotion.getHealthBoost();
         for (int i = 0; i < player.getItems().size(); i++) {
-            if (temp.get(i) instanceof Potion) {
-                player.updateHealth((Potion) temp.get(i));
-                System.out.println("Health has been boosted by " + ((Potion) temp.get(i)).getHealthBoost() + "HP");
-                System.out.print(player.getHealth());
-                player.removeItem(temp.get(i));
-                System.out.println("Removed");
+            if ((temp.get(i) instanceof Potion)) {
+                if (((Potion) temp.get(i)).getHealthBoost() == hpBoost) {
+                    player.updateHealth((Potion) temp.get(i));
+                    System.out.println("Health has been boosted by " + ((Potion) temp.get(i)).getHealthBoost() + "HP");
+                    System.out.print(player.getHealth());
+                    player.removeItem(temp.get(i));
+                    System.out.println("Removed");
+                    break;
+                }
+
             }
         }
     }
