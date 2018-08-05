@@ -43,8 +43,8 @@ import terminal.*;
 public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
 
     private final String GAMETITLE = "The Adventures of Montequilla";
-    private final String SYNOPSIS =
-              "B-town is under attack by \"I can’t believe it\'s not butter\" boy and "
+    private final String SYNOPSIS
+            = "B-town is under attack by \"I can’t believe it\'s not butter\" boy and "
             + "his army of Margarine men. All sources of butter are destroyed in the town "
             + "except for one. Your best friend Butter Bob Brown has been in his lab developing "
             + "a new 0 sodium butter. Realizing the applications for his process of removing "
@@ -97,7 +97,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private StackPane bRoot;
     private GridPane attacks;
     private TextArea log;
-    private ImageView margM;
+    private ImageView enemyBG;
     private ImageView monte;
     private Button potion;
     // main scene elements
@@ -148,8 +148,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             // battle scene setup
-                            battle = new Scene(battleSceneContent(gamePlay.getPlayer()));
-                            battle.getStylesheets().add("textareafix.css");
+                            battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
+                            battle.getStylesheets().add("BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
 
@@ -177,8 +177,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         System.out.println(gamePlay.getPlayer());
 
         /**
-         *  2.
-         * Make attack and defense relevant 3. make boss battle work 4. make
+         * 2. Make attack and defense relevant 3. make boss battle work 4. make
          * boss background 5. battle animations
          */
         // add battle scene setups here
@@ -191,12 +190,17 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     /**
      * Purpose:
      */
-    public StackPane battleSceneContent(Player player) {
+    public StackPane battleSceneContent(Player player, Enemy e) {
         this.b = new BattleLoop();
         this.bRoot = new StackPane();
         Image bkgrnd = new Image("Images/Battle Background.png");
         ImageView i1 = new ImageView(bkgrnd);
-        this.margM = new ImageView("Images/Margarine Men_BG.png");
+        if (e.getName().equals("Boss")) {
+            this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
+        } else {
+            this.enemyBG = new ImageView("Images/Margarine Men_BG.png");
+        }
+
         this.monte = new ImageView("Images/Montequilla_BG.png");
         this.enemyHealth = new ProgressBar(1.0f);
         this.playerHealth = new ProgressBar(1.0f);
@@ -206,8 +210,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setVisible(true);
         i1.setFitHeight(960);
         i1.setFitWidth(1440);
-        margM.setFitHeight(400);
-        margM.setFitWidth(400);
+        enemyBG.setFitHeight(400);
+        enemyBG.setFitWidth(400);
         monte.setFitHeight(500);
         monte.setFitWidth(500);
         this.log = new TextArea("Select an attack to initiate battle!"
@@ -236,14 +240,20 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         }
         AnchorPane ap = new AnchorPane(this.enemyHealth, this.playerHealth, attacks);
         ap.getChildren().add(this.log);
-        ap.getChildren().add(this.margM);
+        ap.getChildren().add(this.enemyBG);
         ap.getChildren().add(this.monte);
-        AnchorPane.setLeftAnchor(this.margM, 150.0);
-        AnchorPane.setTopAnchor(this.margM, 150.0);
+        AnchorPane.setLeftAnchor(this.enemyBG, 150.0);
+        AnchorPane.setTopAnchor(this.enemyBG, 150.0);
         AnchorPane.setRightAnchor(this.monte, 250.0);
         AnchorPane.setBottomAnchor(this.monte, 40.0);
-        AnchorPane.setTopAnchor(this.enemyHealth, 165.0);
-        AnchorPane.setLeftAnchor(this.enemyHealth, 250.0);
+        if (e.getName().equals("Boss")) {
+            AnchorPane.setTopAnchor(this.enemyHealth, 275.0);
+            AnchorPane.setLeftAnchor(this.enemyHealth, 225.0);
+
+        } else {
+            AnchorPane.setTopAnchor(this.enemyHealth, 165.0);
+            AnchorPane.setLeftAnchor(this.enemyHealth, 250.0);
+        }
         AnchorPane.setTopAnchor(this.playerHealth, 250.0);
         AnchorPane.setRightAnchor(this.playerHealth, 300.0);
         AnchorPane.setBottomAnchor(this.attacks, 0.0);
@@ -257,6 +267,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
     /**
      * Purpose:
+     *
+     * @param player
+     * @param e
+     * @param enemy
+     * @param terrain
+     * @param battle
      */
     public void battle(Player player, Enemy e, ArrayList<Enemy> enemy, ArrayList<Sprite> terrain, Scene battle) {
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -287,7 +303,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             log.appendText("\nBoomerang Fired!");
                             damage = 40;
                             int eH = e.getHealth();
-                            b.damageCalc(damage, e,player);
+                            b.damageCalc(damage, e, player);
                             if (b.getEnemyUsedParry()) {
                                 if (e.getHealth() == eH) {
                                     log.appendText("\nEnemy Parry Success!");
@@ -304,7 +320,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         if (b.checkWinState(e) == true) {
                             this.drawState(player, e);
                             log.appendText("\nYou Win!");
-                            margM.setRotate(90);
+                            enemyBG.setRotate(90);
                             attacks.setVisible(false);
                             enemyHealth.setVisible(false);
                             player.setHealth(100);
@@ -314,11 +330,28 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                 log.appendText("\nYou have obtained a key from defeating this enemy!");
                                 e.setKey(false);
                             }
-                            log.appendText("\nPlayer key count: " + player.getKeyCount());
-                            b.removeEnemy(e, enemy, terrain);
-                            root = gamePlay.drawState(gamePlay.getPlayer());
-                            game.setRoot(root);
-                            window.setScene(game);
+
+                            if (e.getName().equals("Boss")) {
+                                end = new Scene(endSceneContent(true)); // set the scene for main
+                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                    // need to reset the game parameters
+                                    gamePlay = new GameLoop();
+                                    gamePlay.initialize();
+                                    //redraw the state
+                                    root = gamePlay.drawState(gamePlay.getPlayer());
+                                    game.setRoot(root); // refresh the page
+                                    window.setScene(main);
+                                });
+                                window.setScene(end);
+
+                            } else {
+                                log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                b.removeEnemy(e, enemy, terrain);
+                                root = gamePlay.drawState(gamePlay.getPlayer());
+                                game.setRoot(root);
+                                window.setScene(game);
+
+                            }
 
                         } else {
                             if (b.getMMCounter() == 1) {
@@ -342,7 +375,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             } else if (b.getMMCounter() == 2) {
                                 damage = 40;
                                 int pH = player.getHealth();
-                                b.damageCalc(damage, player,e);
+                                b.damageCalc(damage, player, e);
                                 log.appendText("\nMissile Fired!");
                                 if (b.getUsedParry()) {
                                     if (player.getHealth() == pH) {
@@ -547,12 +580,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     @Override
     public void handle(KeyEvent e) {
         userMove = "";
-/* backdoor for testing
+        /* backdoor for testing
         if (e.getCode().equals(KeyCode.Q)) {
             startBtn.setText(START); // change the button text to say start in the main menu
             window.setScene(end); // go back to the main menu
         }
-*/
+         */
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
         }
@@ -584,13 +617,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
             while (playGame) { // loop until false is selected
                 playGame = game.mainMenu();
-                if (playGame == false) continue;
+                if (playGame == false) {
+                    continue;
+                }
                 game.gameLoop(); // instantiates a new instance of the game
             }
             System.out.println(exitMsg); // exit splash screen
             System.exit(0); // terminate the program
-        }
-        else if (args.length == 0) {
+        } else if (args.length == 0) {
             launch(args);
         }
 
