@@ -423,7 +423,7 @@ public class GameBoard extends Application {
         for(int index = 58; index < 67; index++) {
             terrain.add(new Sprite("mountain", new Location(index, 11, 0, 0), middleMiddleMountain, 'm', null, true, false));
         }
-        terrain.add(new Sprite("mountain", new Location(67, 11, 0, 0), rightBottomMountain, 'm', null, true, false));
+        terrain.add(new Sprite("mountain", new Location(67, 11, 0, 0), rightBottomMountain, '/', null, true, false));
 
         terrain.add(new Sprite("mountain", new Location(70, 11, 0, 0), leftTopMountain, '/', null, true, false));
 
