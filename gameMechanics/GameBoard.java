@@ -470,7 +470,7 @@ public class GameBoard extends Application {
         }
 
         terrain.add(new Sprite("water", new Location(26, 13, 0, 0), rightBottomWater, '/', null, true, false));
-        terrain.add(new Sprite ("gate", new Location(60,13,0,0),gateZero , '=', null, true,false));
+        terrain.add(new Sprite ("gate", new Location(60, 13, 0, 0), gateZero , '=', null, true, false));
 
         terrain.add(new Sprite("mountain", new Location(69, 13, 0, 0), leftMiddleMountain, '|', null, true, false));
 
