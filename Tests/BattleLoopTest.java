@@ -69,4 +69,17 @@ public class BattleLoopTest {
 		p.setHealth(0);
 	assertEquals(true,b.checkLoseState(p));
 	}
+	
+	@Test
+	public void testHealth() {
+		BattleLoop b = new BattleLoop();
+		Player p = new Player();
+		Enemy e = new Enemy();
+		p.setHealth(100);
+		e.setHealth(50);
+		b.damageCalc(20, e);
+		b.damageCalc(10, p);
+	assertEquals(30,e.getHealth());
+	assertEquals(90,p.getHealth());
+	}
 }
