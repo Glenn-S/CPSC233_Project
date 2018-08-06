@@ -93,7 +93,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private final String WINMESSAGE = "CONGRATULATIONS! YOU ARE THE BEST AT NOT LOSING";
     private final String RETURNMSG = "Press any key to return to the main menu";
     private final String TEMPMSG = "Press any key to quit";
-    private final String MSGSTYLE = "-fx-font-size: 36; ";
+    private final String MSGSTYLE = "-fx-font-size: 48; ";
     private final String PROMPTSTYLE = "-fx-font-size: 24; ";
 
     // game play Constants
@@ -170,18 +170,26 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             // battle scene setup
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
-                            battle.getStylesheets().add("BattleGUI.css");
+                            battle.getStylesheets().add("gameMechanics/BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
+<<<<<<< HEAD
                             
+=======
+>>>>>>> master
                         }
+                        //gamePlay.checkGate(gamePlay.getPlayer());
                         root = gamePlay.drawState(gamePlay.getPlayer());
                         
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
+<<<<<<< HEAD
                     
                     gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
+=======
+
+>>>>>>> master
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
@@ -343,6 +351,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!(b.getTurnAttack().equals(""))) {
                         if (b.getBBCounter() == 0) {
                             log.appendText("\nYou used " + b.getTurnAttack());
+<<<<<<< HEAD
                             attackAnimText.setText(b.getTurnAttack() + "!");
                             attackAnimText.setFill(Color.RED);
                             attackAnim.play();
@@ -401,6 +410,89 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             
                                         }
                                         
+=======
+
+                            int eH = e.getHealth();
+                            b.attackExecute(b.getTurnAttack(), player, e);
+                            if (b.getEnemyUsedParry()) {
+                                if (e.getHealth() == eH) {
+                                    log.appendText("\nEnemy Parry Success!");
+                                } else {
+                                    log.appendText("\nEnemy Parry Failed!");
+                                }
+
+                            }
+                        } else if (b.getBBCounter() == 2) {
+                            log.appendText("\nBoomerang Fired!");
+                            damage = 40;
+                            int eH = e.getHealth();
+                            b.damageCalc(damage, e, player);
+                            if (b.getEnemyUsedParry()) {
+                                if (e.getHealth() == eH) {
+                                    log.appendText("\nEnemy Parry Success!");
+                                } else {
+                                    log.appendText("\nEnemy Parry Failed!");
+                                }
+
+                            }
+                            b.setBBCounter(0);
+                        }
+                        if (b.getEnemyUsedParry()) {
+                            b.setEnemyUsedParry(false);
+                        }
+                        if (b.checkWinState(e) == true) {
+                            this.drawState(player, e);
+                            log.appendText("\nYou Win!");
+                            enemyBG.setRotate(90);
+                            attacks.setVisible(false);
+                            enemyHealth.setVisible(false);
+                            player.setHealth(100);
+                            if (e.getKey()) {
+                                player.setKeyCount(player.getKeyCount() + 1);
+                                gamePlay.setPlayer(player);
+                                log.appendText("\nYou have obtained a key from defeating this enemy!");
+                                e.setKey(false);
+                            }
+
+                            if (e.getName().equals("Boss")) {
+                                end = new Scene(endSceneContent(true)); // set the scene for main
+                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                    // need to reset the game parameters
+                                    gamePlay = new GameLoop();
+                                    gamePlay.initialize();
+                                    //redraw the state
+                                    root = gamePlay.drawState(gamePlay.getPlayer());
+                                    game.setRoot(root); // refresh the page
+                                    window.setScene(main);
+                                });
+                                window.setScene(end);
+
+                            } else {
+                                log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                b.removeEnemy(e, enemy, terrain);
+                                // check to see if all the keys needed have been obtained and redraw accordingly
+                                gamePlay.checkGate(gamePlay.getPlayer());
+                                root = gamePlay.drawState(gamePlay.getPlayer());
+                                game.setRoot(root);
+                                window.setScene(game);
+
+                            }
+
+                        } else {
+                            if (b.getMMCounter() == 1) {
+                                log.appendText("\nMargarine Missile Powering Up!");
+                                b.setMMCounter(2);
+                            }
+                            this.drawState(player, e);
+                            if (b.getMMCounter() == 0) {
+                                String eAttack = e.attackLogic(player);
+                                log.appendText("\nEnemy used " + eAttack);
+                                int pH = player.getHealth();
+                                b.eAttackExecute(eAttack, player, e);
+                                if (b.getUsedParry()) {
+                                    if (player.getHealth() == pH) {
+                                        log.appendText("\nPlayer Parry Success!");
+>>>>>>> master
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -829,21 +921,28 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * @param win a boolean value for determining whether to display the win
      * screen or the lose screen.
      */
-    public VBox endSceneContent(boolean win) {
+    public StackPane endSceneContent(boolean win) {
         // depending on the state change the text
+        StackPane endScene = new StackPane();
+        ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
+
         VBox endContent = new VBox();
         
         endContent.setAlignment(Pos.CENTER);
         endContent.setSpacing(GAP * 2);
+
         // inspiration borrowed from javafx documentation from Oracle
         Label userMsg = new Label();
         if (win) {
             userMsg.setText(WINMESSAGE);
+            userMsg.setPadding(new Insets(0, 0, 70, 0));
         }
         if (!win) {
             userMsg.setText(LOSEMESSAGE);
+            userMsg.setPadding(new Insets(0, 0, 150, 0));
         }
         userMsg.setStyle(MSGSTYLE);
+<<<<<<< HEAD
         
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
@@ -851,6 +950,19 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         
         return endContent;
         
+=======
+        userMsg.setTextFill(Color.YELLOW);
+
+        Label prompt = new Label(RETURNMSG);
+        prompt.setStyle(PROMPTSTYLE);
+
+        ImageView bossKey = new ImageView(new Image("file:Images/bossKeyGreen.png"));
+        if (win) endContent.getChildren().addAll(userMsg, bossKey, prompt);
+        else endContent.getChildren().addAll(userMsg, prompt);
+
+        endScene.getChildren().addAll(backing, endContent);
+        return endScene;
+>>>>>>> master
     }
 
     /**
@@ -877,6 +989,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
+        }
+        // back door for testing
+        if (e.getCode().equals(KeyCode.Q)) {
+            window.setScene(end);
         }
         //System.out.println(this.userMove); // for test purposes
     }
