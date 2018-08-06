@@ -67,16 +67,15 @@ public class Enemy extends Avatar {
                  boolean key,
                  ArrayList<Potion> potions) {
         super(name,
-                coord,
-                spriteImage,
-                spriteChar, // will become the sprite image class later
-                dialogue,
-                exists,
-                overlapsWith,
-                health,
-                defence,
-                attack,
-                moves); // invokes Avatar constructor
+              coord,
+              spriteImage,
+              spriteChar, // will become the sprite image class later
+              dialogue,
+              exists,
+              overlapsWith,
+              health,
+              defence,                attack,
+              moves); // invokes Avatar constructor
         this.key = key;
         this.potions = potions;
     }

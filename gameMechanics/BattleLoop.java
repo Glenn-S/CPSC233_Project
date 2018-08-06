@@ -19,8 +19,8 @@ public class BattleLoop extends GameLoop {
     private int mmCounter; // counter for Margarine Missile
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
-private double pModifier;
-private double eModifier;
+    private double pModifier;
+    private double eModifier;
     String turnAttack = ""; // attack used during the current turn
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
