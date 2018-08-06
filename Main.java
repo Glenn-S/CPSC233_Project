@@ -149,7 +149,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             // battle scene setup
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
-                            battle.getStylesheets().add("BattleGUI.css");
+                            battle.getStylesheets().add("gameMechanics/BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
                         }

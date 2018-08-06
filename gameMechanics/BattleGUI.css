@@ -1,3 +1,4 @@
+
 /*
  * Purpose: This file controls all CSS elements for the battle screen.
  */
@@ -33,13 +34,13 @@
 
 .scroll-bar .increment-arrow,
 .scroll-bar .decrement-arrow{
-    -fx-shape : " ";    
+    -fx-shape : " ";
     -fx-padding :0.15em 0.0;
 }
 
 .scroll-bar:vertical .increment-arrow,
 .scroll-bar:vertical .decrement-arrow{
-    -fx-shape : " ";    
+    -fx-shape : " ";
     -fx-padding :0.0 0.15em;
 }
 .scroll-bar:horizontal, .scroll-bar:vertical{
@@ -78,6 +79,6 @@
 }
 
 
-.progress-bar{  
+.progress-bar{
     -fx-accent:red
 }
