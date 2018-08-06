@@ -78,7 +78,10 @@ public class MainTerminal { // change this name to be the name of the game
                 // pass the new x/y for the player
                 gamePlay.updatePosition(gamePlay.getPlayer(), userMove); // if collision is not detected update player position
             }
-            //gamePlay.checkGate(player); // checks if enough keys have been collected and updates image if needed?
+            gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
+            if (gamePlay.getPlayer().getKeyCount() == 4) {
+                gamePlay.setWinState(true); // set the win state if the player has obtained every key
+            }
             if (gamePlay.checkWinState() || gamePlay.checkLoseState()){
                 gameState = true; // this is to terminate the game loop
                 continue; // exit to the beginning of the loop to check this condition
@@ -125,7 +128,7 @@ public class MainTerminal { // change this name to be the name of the game
 		System.out.println("Diagonal Edge         /");
 		System.out.println("Mountain              m");
 		System.out.println("River                 ~");
-		System.out.println("Gate            = or ||");
+		System.out.println("Gate                  =");
         System.out.println("Tombstone             t");
 	}
 
