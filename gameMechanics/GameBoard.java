@@ -50,8 +50,8 @@ public class GameBoard extends Application {
         Potion mediumPotion = new Potion("Medium Potion", new Location(0, 0, 0, 0), null, ' ', null, true, false, 50);
         ArrayList<Potion> gruntPotions = new ArrayList<Potion>();
         ArrayList<Potion> bossPotions = new ArrayList<Potion>();
-        Image grunt = new Image("file:Smaller Images/Margarine Men.png");
-        Image boss = new Image("file:Smaller Images/I can\'t believe it\'s not butter boy.png");
+        Image grunt = new Image("file:Images/Margarine Men.png");
+        Image boss = new Image("file:Images/I can\'t believe it\'s not butter boy.png");
 
         gruntPotions.add(smallPotion);
         bossPotions.add(smallPotion);
@@ -75,35 +75,35 @@ public class GameBoard extends Application {
      */
     public void createTerrainArray(ArrayList<Sprite> terrain) {
         /*-----------------Middle mountain--------------------------------*/
-        Image rightMiddleMountain = new Image("file:Smaller Images/rightMountainTile.png");
-        Image leftMiddleMountain = new Image("file:Smaller Images/leftMountainTile.png");
-        Image middleMiddleMountain = new Image("file:Smaller Images/centerMountainTile.png");
+        Image rightMiddleMountain = new Image("file:Images/rightMountainTile.png");
+        Image leftMiddleMountain = new Image("file:Images/leftMountainTile.png");
+        Image middleMiddleMountain = new Image("file:Images/centerMountainTile.png");
         /*-----------------Top mountain-----------------------------------*/
-        Image rightTopMountain = new Image("file:Smaller Images/rightTopMountainTile.png");
-        Image leftTopMountain = new Image("file:Smaller Images/leftTopMountainTile.png");
-        Image middleTopMountain = new Image("file:Smaller Images/topMountainTile.png");
+        Image rightTopMountain = new Image("file:Images/rightTopMountainTile.png");
+        Image leftTopMountain = new Image("file:Images/leftTopMountainTile.png");
+        Image middleTopMountain = new Image("file:Images/topMountainTile.png");
         /*------------------Bottom mountain-------------------------------*/
-        Image rightBottomMountain = new Image("file:Smaller Images/bottomRightMountainTile.png");
-        Image leftBottomMountain = new Image("file:Smaller Images/bottomleftMountainTile.png");
-        Image middleBottomMountain = new Image("file:Smaller Images/bottomCenterMountainTile.png");
+        Image rightBottomMountain = new Image("file:Images/bottomRightMountainTile.png");
+        Image leftBottomMountain = new Image("file:Images/bottomleftMountainTile.png");
+        Image middleBottomMountain = new Image("file:Images/bottomCenterMountainTile.png");
         /*--------------------- Middle water------------------------------*/
-        Image rightMiddleWater = new Image("file:Smaller Images/middleRightWaterTile.png");
-        Image leftMiddleWater = new Image("file:Smaller Images/leftMiddleWaterTile.png");
-        Image middleMiddleWater = new Image("file:Smaller Images/middleMiddleWaterTile.png");
+        Image rightMiddleWater = new Image("file:Images/middleRightWaterTile.png");
+        Image leftMiddleWater = new Image("file:Images/leftMiddleWaterTile.png");
+        Image middleMiddleWater = new Image("file:Images/middleMiddleWaterTile.png");
         /*--------------------Top water-----------------------------------*/
-        Image rightTopWater = new Image("file:Smaller Images/topRightWaterTile.png");
-        Image leftTopWater = new Image("file:Smaller Images/topLeftWaterTile.png");
-        Image middleTopWater = new Image("file:Smaller Images/topMiddleWaterTile.png");
+        Image rightTopWater = new Image("file:Images/topRightWaterTile.png");
+        Image leftTopWater = new Image("file:Images/topLeftWaterTile.png");
+        Image middleTopWater = new Image("file:Images/topMiddleWaterTile.png");
         /*-------------------Bottom water------------------------------*/
-        Image rightBottomWater = new Image("file:Smaller Images/bottomRightWaterTile.png");
-        Image leftBottomWater = new Image("file:Smaller Images/bottomLeftWaterTile.png");
-        Image middleBottomWater = new Image("file:Smaller Images/bottomMiddleWaterTile.png");
+        Image rightBottomWater = new Image("file:Images/bottomRightWaterTile.png");
+        Image leftBottomWater = new Image("file:Images/bottomLeftWaterTile.png");
+        Image middleBottomWater = new Image("file:Images/bottomMiddleWaterTile.png");
         /*--------------------------Top Gate-----------------------------------*/
-        Image gateZero = new Image("file:Smaller Images/Gate0.png");
-        Image gateOne = new Image("file:Smaller Images/Gate1.png");
-        Image gateTwo = new Image("file:Smaller Images/Gate2.png");
+        Image gateZero = new Image("file:Images/Gate0.png");
+        Image gateOne = new Image("file:Images/Gate1.png");
+        Image gateTwo = new Image("file:Images/Gate2.png");
 
-        Image border = new Image("file:Smaller Images/border.png");
+        Image border = new Image("file:Images/border.png");
 
 
 
@@ -951,7 +951,7 @@ public class GameBoard extends Application {
      * @param items an array list to be populated with items for in the game.
      */
     public void createItemArray(ArrayList<Sprite> items) {
-        Image chest = new Image("file:Smaller Images/Chest1.png");
+        Image chest = new Image("file:Images/Chest1.png");
         Image smallPotion = new Image("file:Images/Small potion.png");
         Image mediumPotion = new Image("file:Images/Medium potion.png");
         Image intermediateSword = new Image("file:Images/Silver butterknife.png");
@@ -1023,7 +1023,7 @@ public class GameBoard extends Application {
         Canvas foreground = new Canvas(4000, 2000); // old sizing was 8000x4000
         GraphicsContext gc = foreground.getGraphicsContext2D();
 
-        ImageView backing = new ImageView(new Image("file:Smaller Images/background.png"));
+        ImageView backing = new ImageView(new Image("file:Images/background.png"));
         ScrollPane scrollPane = new ScrollPane();
 
         ArrayList<Enemy> enemy = gl.getEnemy();

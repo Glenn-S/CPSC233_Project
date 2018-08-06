@@ -138,7 +138,7 @@ private double eModifier;
      */
     public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Sprite> terrainList) {
         enemy.setExists(false);
-        terrainList.add(new Sprite("tombstone", enemy.getCoord(), new Image("file:Smaller Images/Tombstone.png"), 't', null, true, false));
+        terrainList.add(new Sprite("tombstone", enemy.getCoord(), new Image("file:Images/Tombstone.png"), 't', null, true, false));
         enemyList.remove(enemy);
     }
 
@@ -314,7 +314,7 @@ private double eModifier;
      * @param e - enemy who is being attacked.
      */
     public void attackExecute(String attack, Player player, Enemy e) {
-        
+
         switch (attack) {
             case "Slash":
                 int damage = 15;

@@ -260,7 +260,7 @@ public class GameLoop {
         // setup the player
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
         this.setPlayer(new Player("Montequilla", new Location(3, 38, 0, 0),
-                new Image("file:Smaller Images/Montequilla.png"), 'x', null, true,
+                new Image("file:Images/Montequilla.png"), 'x', null, true,
                 false, 100, 25, 25, moves));
         Weapon starterSword = new Weapon("Bronze Butterknife", null, new Image("file:Images/Bronze butterknife.png"), ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, new Image("file:Images/bronzeShield.png"), ' ', null, true, false, 50);
@@ -488,7 +488,7 @@ public class GameLoop {
 
             obj.remove(obj.get(index)); // remove the object from the array
             // open the chest after an item has been picked up
-            obj.get(index).setSpriteImage(new Image("file:Smaller Images/chest2.png"));
+            obj.get(index).setSpriteImage(new Image("file:Images/chest2.png"));
             System.out.println(player.getInventory(true)); // for testing
         }
     }
@@ -603,7 +603,7 @@ public class GameLoop {
         Canvas foreground = new Canvas(4000, 2000); // old values 8000x4000
         GraphicsContext gc = foreground.getGraphicsContext2D();
 
-        ImageView backing = new ImageView(new Image("file:Smaller Images/background.png"));
+        ImageView backing = new ImageView(new Image("file:Images/background.png"));
         ScrollPane scrollPane = new ScrollPane();
         // go through each list and draw the images to the scene
         for (int i = 0; i < getEnemy().size(); i++) {
