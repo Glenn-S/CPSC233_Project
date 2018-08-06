@@ -545,9 +545,20 @@ public class GameLoop {
     public void updateGate() {
         for (int i = 0; i < terrain.size(); i++) {
             if (terrain.get(i).getName().equals("gate")) {
+                //System.out.println("Gate, index " + i + " in the terrain array");
                 terrain.remove(i); // remove the element from the terrain list
+                i--;
+                //terrain.get(i).setExists(false);
+                //terrain.get(i).setSpriteChar(' ');
             }
         }
+        // silently get rid of the gate
+/*        for (int i = 0; i < terrain.size(); i++) {
+            if (terrain.get(i).getName().equals("gate")) {
+                System.out.println("Error, index " + i + " in the terrain array");
+            }
+        }
+*/
     }
 
     /**
@@ -729,7 +740,7 @@ public class GameLoop {
         }
         return;
     }
-    
+
     /**
      * Purpose: To check all possible collisions in the game and return true or
      * false depending.
@@ -929,15 +940,15 @@ public class GameLoop {
                     System.out.println("You have obtained a key from defeating this enemy!");
                     e.setKey(false);
                 }
-                System.out.println("Player key count: " + player.getKeyCount());
+//                System.out.println("Player key count: " + player.getKeyCount()); // for test purposes
                 b.removeEnemy(e, enemy, terrain);
                 break;
             }
             if (mmCounter == 1) {
                 mmCounter = 2;
-    //                if (b.getUsedParry()) {
-    //                    b.setUsedParry(false);
-    //                }
+//                        if (b.getUsedParry()) {
+//                        b.setUsedParry(false);
+//                  }
             }
             b.drawState(player, e);
             if (mmCounter == 0) {

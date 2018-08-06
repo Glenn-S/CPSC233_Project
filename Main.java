@@ -152,15 +152,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle.getStylesheets().add("BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
-
                         }
+                        //gamePlay.checkGate(gamePlay.getPlayer());
                         root = gamePlay.drawState(gamePlay.getPlayer());
 
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
 
-                    gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
@@ -351,6 +350,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
                                 b.removeEnemy(e, enemy, terrain);
+                                // check to see if all the keys needed have been obtained and redraw accordingly
+                                gamePlay.checkGate(gamePlay.getPlayer());
                                 root = gamePlay.drawState(gamePlay.getPlayer());
                                 game.setRoot(root);
                                 window.setScene(game);

@@ -484,12 +484,12 @@ public class GameBoard extends Application {
 
         terrain.add(new Sprite("border", new Location(0, 14, 0, 0), border, '|', null, true, false));
 
-        terrain.add(new Sprite ("gate", new Location(60,14,0,0), gateOne, '=', null, true,false));
+        terrain.add(new Sprite ("gate", new Location(60, 14, 0, 0), gateOne, '=', null, true, false)); // corner gate piece
 
-        for(int index = 61; index < 69; index++)
-        {
-          terrain.add(new Sprite ("gate", new Location(index,14,0,0), gateTwo,'=', null, true,false));
+        for(int index = 61; index < 69; index++) {
+            terrain.add(new Sprite ("gate", new Location(index, 14, 0, 0), gateTwo,'=', null, true, false));
         }
+
         terrain.add(new Sprite("mountain", new Location(69, 14, 0, 0), leftMiddleMountain, '|', null, true, false));
 
         for(int index = 70; index < 79; index++) {
@@ -1051,33 +1051,4 @@ public class GameBoard extends Application {
         window.show();
 
     }
-/*
-        GameLoop gl = new GameLoop();
-        GameBoard gb = new GameBoard();
-        //char[][] charArray = new char[40][80]; // initialize the array (200, 40)
-        String[] moves = {"Weak attack", "Strong attack", "Parry", "Potion"};
-        Player player =  new Player("Montequilla", new Location(5, 38, 0, 0), null, 'x',
-                                null, true, false, 100, 50, 50, null);
-
-        ArrayList<Sprite> items = new ArrayList<Sprite>();
-        ArrayList<Sprite> terrain = new ArrayList<Sprite>();
-        ArrayList<Enemy> enemy = new ArrayList<Enemy>();
-
-        gb.createItemArray(items);
-        gb.createTerrainArray(terrain);
-        gb.createEnemyArray(enemy);
-
-        System.out.println("Items array size: " + items.size()); // expect 4
-        System.out.println("Terrain array size: " + terrain.size()); // expect lots (949)
-        System.out.println("Enemy array size: " + enemy.size()); // expect 4
-*/
-        //System.out.println("\nComposite array size: " + charArray.length * charArray[0].length); // expect 8000
-
-        //gl.createPrintArray(charArray, items, terrain, enemy);
-
-        //g1.drawState(player);
-
-        //gl.drawState(player, charArray);
-    //}
-
 }
