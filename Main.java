@@ -75,7 +75,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private final String WINMESSAGE = "CONGRATULATIONS! YOU ARE THE BEST AT NOT LOSING";
     private final String RETURNMSG = "Press any key to return to the main menu";
     private final String TEMPMSG = "Press any key to quit";
-    private final String MSGSTYLE = "-fx-font-size: 36; ";
+    private final String MSGSTYLE = "-fx-font-size: 48; ";
     private final String PROMPTSTYLE = "-fx-font-size: 24; ";
 
     // game play Constants
@@ -562,28 +562,38 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * @param win a boolean value for determining whether to display the win
      * screen or the lose screen.
      */
-    public VBox endSceneContent(boolean win) {
+    public StackPane endSceneContent(boolean win) {
         // depending on the state change the text
+        StackPane endScene = new StackPane();
+        ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
+
         VBox endContent = new VBox();
 
         endContent.setAlignment(Pos.CENTER);
         endContent.setSpacing(GAP * 2);
+
         // inspiration borrowed from javafx documentation from Oracle
         Label userMsg = new Label();
         if (win) {
             userMsg.setText(WINMESSAGE);
+            userMsg.setPadding(new Insets(0, 0, 70, 0));
         }
         if (!win) {
             userMsg.setText(LOSEMESSAGE);
+            userMsg.setPadding(new Insets(0, 0, 150, 0));
         }
         userMsg.setStyle(MSGSTYLE);
+        userMsg.setTextFill(Color.YELLOW);
 
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
-        endContent.getChildren().addAll(userMsg, prompt);
 
-        return endContent;
+        ImageView bossKey = new ImageView(new Image("file:Images/bossKeyGreen.png"));
+        if (win) endContent.getChildren().addAll(userMsg, bossKey, prompt);
+        else endContent.getChildren().addAll(userMsg, prompt);
 
+        endScene.getChildren().addAll(backing, endContent);
+        return endScene;
     }
 
     /**
@@ -610,6 +620,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
+        }
+        // back door for testing
+        if (e.getCode().equals(KeyCode.Q)) {
+            window.setScene(end);
         }
         //System.out.println(this.userMove); // for test purposes
     }
