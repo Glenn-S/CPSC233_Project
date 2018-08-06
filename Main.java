@@ -30,6 +30,24 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import sprite.*;
 import gameMechanics.*;
+import java.io.File;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.PathTransition.OrientationType;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
+import javafx.beans.property.DoubleProperty;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.HLineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 import terminal.*;
 
 /**
@@ -100,6 +118,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private ImageView enemyBG;
     private ImageView monte;
     private Button potion;
+    private Text attackAnimText;
+    private ParallelTransition attackAnim;
+    private TranslateTransition injuryAnim;
     // main scene elements
 
     /**
@@ -137,7 +158,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         root = gamePlay.drawState(gamePlay.getPlayer()); // draw the initial game state
         game.setOnKeyPressed(this);
         game.setRoot(root);
-
+        
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -152,14 +173,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle.getStylesheets().add("BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
-
+                            
                         }
                         root = gamePlay.drawState(gamePlay.getPlayer());
-
+                        
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
-
+                    
                     gamePlay.checkGate(gamePlay.getPlayer()); // checks if enough keys have been collected and updates image if needed?
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
@@ -168,9 +189,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         window.setScene(end);
                         //Platform.exit(); // add in exit message later
                     }
-
+                    
                 }
-
+                
             }
         };
         timer.start();
@@ -184,7 +205,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         // send the scene to the window to be displayed
         window.setScene(main);
         window.show();
-
+        
     }
 
     /**
@@ -203,7 +224,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         } else {
             this.enemyBG = new ImageView("Images/Margarine Men_BG.png");
         }
-
+        
         this.monte = new ImageView("Images/Montequilla_BG.png");
         this.enemyHealth = new ProgressBar(1.0f);
         this.playerHealth = new ProgressBar(1.0f);
@@ -215,6 +236,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         i1.setFitWidth(1440);
         enemyBG.setFitHeight(400);
         enemyBG.setFitWidth(400);
+        this.injuryAnim = new TranslateTransition(Duration.millis(75), enemyBG);
+        this.injuryAnim.setByX(100f);
+        this.injuryAnim.setFromX(0);
+        this.injuryAnim.setToX(-100f);
+        this.injuryAnim.setCycleCount((int) 15f);
+        this.injuryAnim.setAutoReverse(true);
         monte.setFitHeight(500);
         monte.setFitWidth(500);
         this.log = new TextArea("Select an attack to initiate battle!"
@@ -229,7 +256,27 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Button bb = new Button("Butter Boomerang");
         Button parry = new Button("Parry");
         this.potion = new Button("Potion");
-
+        this.attackAnimText = new Text();
+        Font f = Font.loadFont(getClass().getResourceAsStream("KBZipaDeeDooDah.ttf"), 24);
+        this.attackAnimText.setFont(f);
+        this.attackAnimText.setFill(Color.RED);
+        
+        ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
+        
+        st.setFromX(attackAnimText.getX());
+        st.setFromY(attackAnimText.getY());
+        st.setByX(2.0f);
+        st.setByY(2.0f);
+        st.setCycleCount((int) 1f);
+        RotateTransition rt = new RotateTransition(Duration.millis(100), attackAnimText);
+        rt.setByAngle(30);
+        rt.setCycleCount(8);
+        rt.setAutoReverse(true);
+        FadeTransition ft = new FadeTransition(Duration.millis(1200));
+        ft.setFromValue(1.0f);
+        ft.setToValue(0.0f);
+        ft.setCycleCount((int) 1f);
+        this.attackAnim = new ParallelTransition(this.attackAnimText, rt, st, ft);
         slash.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
         bb.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
         parry.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
@@ -245,6 +292,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         ap.getChildren().add(this.log);
         ap.getChildren().add(this.enemyBG);
         ap.getChildren().add(this.monte);
+        ap.getChildren().add(attackAnimText);
+        AnchorPane.setRightAnchor(this.attackAnimText, 250.0);
+        AnchorPane.setBottomAnchor(this.attackAnimText, 150.0);
         AnchorPane.setLeftAnchor(this.enemyBG, 150.0);
         AnchorPane.setTopAnchor(this.enemyBG, 150.0);
         AnchorPane.setRightAnchor(this.monte, 250.0);
@@ -252,7 +302,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         if (e.getName().equals("Boss")) {
             AnchorPane.setTopAnchor(this.enemyHealth, 275.0);
             AnchorPane.setLeftAnchor(this.enemyHealth, 225.0);
-
+            
         } else {
             AnchorPane.setTopAnchor(this.enemyHealth, 165.0);
             AnchorPane.setLeftAnchor(this.enemyHealth, 250.0);
@@ -265,6 +315,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         AnchorPane.setLeftAnchor(this.log, 0.0);
         this.bRoot.getChildren().add(i1);
         this.bRoot.getChildren().add(ap);
+        
         return bRoot;
     }
 
@@ -282,7 +333,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-
+                
                 this.moveLeftRight(event);
                 this.moveupDown(event);
                 if (event.getCode() == KeyCode.ENTER) {
@@ -292,140 +343,357 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!(b.getTurnAttack().equals(""))) {
                         if (b.getBBCounter() == 0) {
                             log.appendText("\nYou used " + b.getTurnAttack());
-
-                            int eH = e.getHealth();
-                            b.attackExecute(b.getTurnAttack(), player, e);
-                            if (b.getEnemyUsedParry()) {
-                                if (e.getHealth() == eH) {
-                                    log.appendText("\nEnemy Parry Success!");
-                                } else {
-                                    log.appendText("\nEnemy Parry Failed!");
+                            attackAnimText.setText(b.getTurnAttack() + "!");
+                            attackAnimText.setFill(Color.RED);
+                            attackAnim.play();
+                            attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    int eH = e.getHealth();
+                                    b.attackExecute(b.getTurnAttack(), player, e);
+                                    
+                                    if (b.getEnemyUsedParry()) {
+                                        if (e.getHealth() == eH) {
+                                            log.appendText("\nEnemy Parry Success!");
+                                        } else {
+                                            log.appendText("\nEnemy Parry Failed!");
+                                            
+                                        }
+                                        
+                                    }
+                                    if (b.getEnemyUsedParry()) {
+                                        b.setEnemyUsedParry(false);
+                                    }
+                                    
+                                    if (b.checkWinState(e) == true) {
+                                        drawState(player, e);
+                                        log.appendText("\nYou Win!");
+                                        enemyBG.setRotate(90);
+                                        attacks.setVisible(false);
+                                        enemyHealth.setVisible(false);
+                                        player.setHealth(100);
+                                        if (e.getKey()) {
+                                            player.setKeyCount(player.getKeyCount() + 1);
+                                            gamePlay.setPlayer(player);
+                                            log.appendText("\nYou have obtained a key from defeating this enemy!");
+                                            e.setKey(false);
+                                        }
+                                        
+                                        if (e.getName().equals("Boss")) {
+                                            end = new Scene(endSceneContent(true)); // set the scene for main
+                                            end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                // need to reset the game parameters
+                                                gamePlay = new GameLoop();
+                                                gamePlay.initialize();
+                                                //redraw the state
+                                                root = gamePlay.drawState(gamePlay.getPlayer());
+                                                game.setRoot(root); // refresh the page
+                                                window.setScene(main);
+                                            });
+                                            window.setScene(end);
+                                            
+                                        } else {
+                                            log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                            b.removeEnemy(e, enemy, terrain);
+                                            root = gamePlay.drawState(gamePlay.getPlayer());
+                                            game.setRoot(root);
+                                            window.setScene(game);
+                                            
+                                        }
+                                        
+                                    } else {
+                                        injuryAnim.play();
+                                        injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                            @Override
+                                            public void handle(ActionEvent event) {
+                                                if (b.getMMCounter() == 1) {
+                                                    log.appendText("\nMargarine Missile Powering Up!");
+                                                    b.setMMCounter(2);
+                                                }
+                                                drawState(player, e);
+                                                if (b.getMMCounter() == 0) {
+                                                    String eAttack = e.attackLogic(player);
+                                                    attackAnimText.setText(eAttack + "!");
+                                                    attackAnimText.setFill(Color.BLACK);
+                                                    attackAnim.play();
+                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                                        @Override
+                                                        public void handle(ActionEvent event) {
+                                                            
+                                                            log.appendText("\nEnemy used " + eAttack);
+                                                            int pH = player.getHealth();
+                                                            b.eAttackExecute(eAttack, player, e);
+                                                            if (b.getUsedParry()) {
+                                                                if (player.getHealth() == pH) {
+                                                                    log.appendText("\nPlayer Parry Success!");
+                                                                } else {
+                                                                    log.appendText("\nPlayer Parry Failed!");
+                                                                }
+                                                                
+                                                            }
+                                                            if (b.getUsedParry()) {
+                                                                b.setUsedParry(false);
+                                                            }
+                                                            if (b.checkLoseState(player) == true) {
+                                                                drawState(player, e);
+                                                                log.appendText("\nYou Lose!");
+                                                                monte.setRotate(90);
+                                                                attacks.setVisible(false);
+                                                                playerHealth.setVisible(false);
+                                                                end = new Scene(endSceneContent(false)); // set the scene for main
+                                                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                                    // need to reset the game parameters
+                                                                    gamePlay = new GameLoop();
+                                                                    gamePlay.initialize();
+                                                                    //redraw the state
+                                                                    root = gamePlay.drawState(gamePlay.getPlayer());
+                                                                    game.setRoot(root); // refresh the page
+                                                                    window.setScene(main);
+                                                                });
+                                                                window.setScene(end);
+                                                            }
+                                                            if (b.getBBCounter() == 1) {
+                                                                log.appendText("\nButter Boomerang Powering Up!");
+                                                                log.appendText("\nPress ENTER to fire");
+                                                                b.setBBCounter(2);
+                                                            }
+                                                            drawState(player, e);
+                                                        }
+                                                    });
+                                                    
+                                                } else if (b.getMMCounter() == 2) {
+                                                    attackAnimText.setText("Missile Fired!");
+                                                    attackAnim.play();
+                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                                        @Override
+                                                        public void handle(ActionEvent event) {
+                                                            damage = 40;
+                                                            int pH = player.getHealth();
+                                                            log.appendText("\nMissile Fired!");
+                                                            b.damageCalc(damage, player, e);
+                                                            if (b.getUsedParry()) {
+                                                                if (player.getHealth() == pH) {
+                                                                    log.appendText("\nPlayer Parry Success!");
+                                                                } else {
+                                                                    log.appendText("\nPlayer Parry Failed!");
+                                                                }
+                                                                
+                                                            }
+                                                            b.setMMCounter(0);
+                                                            if (b.getUsedParry()) {
+                                                                b.setUsedParry(false);
+                                                            }
+                                                            if (b.checkLoseState(player) == true) {
+                                                                drawState(player, e);
+                                                                log.appendText("\nYou Lose!");
+                                                                monte.setRotate(90);
+                                                                attacks.setVisible(false);
+                                                                playerHealth.setVisible(false);
+                                                                end = new Scene(endSceneContent(false)); // set the scene for main
+                                                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                                    // need to reset the game parameters
+                                                                    gamePlay = new GameLoop();
+                                                                    gamePlay.initialize();
+                                                                    //redraw the state
+                                                                    root = gamePlay.drawState(gamePlay.getPlayer());
+                                                                    game.setRoot(root); // refresh the page
+                                                                    window.setScene(main);
+                                                                });
+                                                                window.setScene(end);
+                                                            }
+                                                            if (b.getBBCounter() == 1) {
+                                                                log.appendText("\nButter Boomerang Powering Up!");
+                                                                log.appendText("\nPress ENTER to fire");
+                                                                b.setBBCounter(2);
+                                                            }
+                                                            drawState(player, e);
+                                                        }
+                                                    });
+                                                    
+                                                }
+                                                
+                                            }
+                                        });
+                                        
+                                    }
                                 }
-
-                            }
+                            });
+                            
                         } else if (b.getBBCounter() == 2) {
-                            log.appendText("\nBoomerang Fired!");
-                            damage = 40;
-                            int eH = e.getHealth();
-                            b.damageCalc(damage, e, player);
-                            if (b.getEnemyUsedParry()) {
-                                if (e.getHealth() == eH) {
-                                    log.appendText("\nEnemy Parry Success!");
-                                } else {
-                                    log.appendText("\nEnemy Parry Failed!");
-                                }
-
-                            }
-                            b.setBBCounter(0);
-                        }
-                        if (b.getEnemyUsedParry()) {
-                            b.setEnemyUsedParry(false);
-                        }
-                        if (b.checkWinState(e) == true) {
-                            this.drawState(player, e);
-                            log.appendText("\nYou Win!");
-                            enemyBG.setRotate(90);
-                            attacks.setVisible(false);
-                            enemyHealth.setVisible(false);
-                            player.setHealth(100);
-                            if (e.getKey()) {
-                                player.setKeyCount(player.getKeyCount() + 1);
-                                gamePlay.setPlayer(player);
-                                log.appendText("\nYou have obtained a key from defeating this enemy!");
-                                e.setKey(false);
-                            }
-
-                            if (e.getName().equals("Boss")) {
-                                end = new Scene(endSceneContent(true)); // set the scene for main
-                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                    // need to reset the game parameters
-                                    gamePlay = new GameLoop();
-                                    gamePlay.initialize();
-                                    //redraw the state
-                                    root = gamePlay.drawState(gamePlay.getPlayer());
-                                    game.setRoot(root); // refresh the page
-                                    window.setScene(main);
-                                });
-                                window.setScene(end);
-
-                            } else {
-                                log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                b.removeEnemy(e, enemy, terrain);
-                                root = gamePlay.drawState(gamePlay.getPlayer());
-                                game.setRoot(root);
-                                window.setScene(game);
-
-                            }
-
-                        } else {
-                            if (b.getMMCounter() == 1) {
-                                log.appendText("\nMargarine Missile Powering Up!");
-                                b.setMMCounter(2);
-                            }
-                            this.drawState(player, e);
-                            if (b.getMMCounter() == 0) {
-                                String eAttack = e.attackLogic(player);
-                                log.appendText("\nEnemy used " + eAttack);
-                                int pH = player.getHealth();
-                                b.eAttackExecute(eAttack, player, e);
-                                if (b.getUsedParry()) {
-                                    if (player.getHealth() == pH) {
-                                        log.appendText("\nPlayer Parry Success!");
-                                    } else {
-                                        log.appendText("\nPlayer Parry Failed!");
+                            attackAnimText.setText("Boomerang Fired!");
+                            attackAnimText.setFill(Color.RED);
+                            attackAnim.play();
+                            attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    log.appendText("\nBoomerang Fired!");
+                                    damage = 40;
+                                    int eH = e.getHealth();
+                                    b.damageCalc(damage, e, player);
+                                    injuryAnim.play();
+                                    if (b.getEnemyUsedParry()) {
+                                        if (e.getHealth() == eH) {
+                                            log.appendText("\nEnemy Parry Success!");
+                                        } else {
+                                            log.appendText("\nEnemy Parry Failed!");
+                                        }
+                                        
                                     }
-
-                                }
-                            } else if (b.getMMCounter() == 2) {
-                                damage = 40;
-                                int pH = player.getHealth();
-                                b.damageCalc(damage, player, e);
-                                log.appendText("\nMissile Fired!");
-                                if (b.getUsedParry()) {
-                                    if (player.getHealth() == pH) {
-                                        log.appendText("\nPlayer Parry Success!");
-                                    } else {
-                                        log.appendText("\nPlayer Parry Failed!");
+                                    b.setBBCounter(0);
+                                    if (b.getEnemyUsedParry()) {
+                                        b.setEnemyUsedParry(false);
                                     }
-
+                                    if (b.checkWinState(e) == true) {
+                                        drawState(player, e);
+                                        log.appendText("\nYou Win!");
+                                        enemyBG.setRotate(90);
+                                        attacks.setVisible(false);
+                                        enemyHealth.setVisible(false);
+                                        player.setHealth(100);
+                                        if (e.getKey()) {
+                                            player.setKeyCount(player.getKeyCount() + 1);
+                                            gamePlay.setPlayer(player);
+                                            log.appendText("\nYou have obtained a key from defeating this enemy!");
+                                            e.setKey(false);
+                                        }
+                                        
+                                        if (e.getName().equals("Boss")) {
+                                            end = new Scene(endSceneContent(true)); // set the scene for main
+                                            end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                // need to reset the game parameters
+                                                gamePlay = new GameLoop();
+                                                gamePlay.initialize();
+                                                //redraw the state
+                                                root = gamePlay.drawState(gamePlay.getPlayer());
+                                                game.setRoot(root); // refresh the page
+                                                window.setScene(main);
+                                            });
+                                            window.setScene(end);
+                                            
+                                        } else {
+                                            log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                            b.removeEnemy(e, enemy, terrain);
+                                            root = gamePlay.drawState(gamePlay.getPlayer());
+                                            game.setRoot(root);
+                                            window.setScene(game);
+                                            
+                                        }
+                                        
+                                    } else {
+                                        injuryAnim.play();
+                                        injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                            @Override
+                                            public void handle(ActionEvent event) {
+                                                if (b.getMMCounter() == 1) {
+                                                    log.appendText("\nMargarine Missile Powering Up!");
+                                                    b.setMMCounter(2);
+                                                }
+                                                drawState(player, e);
+                                                if (b.getMMCounter() == 0) {
+                                                    String eAttack = e.attackLogic(player);
+                                                    attackAnimText.setText(eAttack + "!");
+                                                    attackAnimText.setFill(Color.BLACK);
+                                                    attackAnim.play();
+                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                                        @Override
+                                                        public void handle(ActionEvent event) {
+                                                            log.appendText("\nEnemy used " + eAttack);
+                                                            int pH = player.getHealth();
+                                                            b.eAttackExecute(eAttack, player, e);
+                                                            if (b.getUsedParry()) {
+                                                                if (player.getHealth() == pH) {
+                                                                    log.appendText("\nPlayer Parry Success!");
+                                                                } else {
+                                                                    log.appendText("\nPlayer Parry Failed!");
+                                                                }
+                                                                
+                                                            }
+                                                            if (b.getUsedParry()) {
+                                                                b.setUsedParry(false);
+                                                            }
+                                                            if (b.checkLoseState(player) == true) {
+                                                                drawState(player, e);
+                                                                log.appendText("\nYou Lose!");
+                                                                monte.setRotate(90);
+                                                                attacks.setVisible(false);
+                                                                playerHealth.setVisible(false);
+                                                                end = new Scene(endSceneContent(false)); // set the scene for main
+                                                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                                    // need to reset the game parameters
+                                                                    gamePlay = new GameLoop();
+                                                                    gamePlay.initialize();
+                                                                    //redraw the state
+                                                                    root = gamePlay.drawState(gamePlay.getPlayer());
+                                                                    game.setRoot(root); // refresh the page
+                                                                    window.setScene(main);
+                                                                });
+                                                                window.setScene(end);
+                                                            }
+                                                            drawState(player, e);
+                                                        }
+                                                    });
+                                                    
+                                                } else if (b.getMMCounter() == 2) {
+                                                    attackAnimText.setText("Missile Fired!");
+                                                    attackAnimText.setFill(Color.BLACK);
+                                                    attackAnim.play();
+                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                                        @Override
+                                                        public void handle(ActionEvent event) {
+                                                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                                        }
+                                                    });
+                                                    damage = 40;
+                                                    int pH = player.getHealth();
+                                                    b.damageCalc(damage, player, e);
+                                                    log.appendText("\nMissile Fired!");
+                                                    if (b.getUsedParry()) {
+                                                        if (player.getHealth() == pH) {
+                                                            log.appendText("\nPlayer Parry Success!");
+                                                        } else {
+                                                            log.appendText("\nPlayer Parry Failed!");
+                                                        }
+                                                        
+                                                    }
+                                                    b.setMMCounter(0);
+                                                    if (b.getUsedParry()) {
+                                                        b.setUsedParry(false);
+                                                    }
+                                                    if (b.checkLoseState(player) == true) {
+                                                        drawState(player, e);
+                                                        log.appendText("\nYou Lose!");
+                                                        monte.setRotate(90);
+                                                        attacks.setVisible(false);
+                                                        playerHealth.setVisible(false);
+                                                        end = new Scene(endSceneContent(false)); // set the scene for main
+                                                        end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                            // need to reset the game parameters
+                                                            gamePlay = new GameLoop();
+                                                            gamePlay.initialize();
+                                                            //redraw the state
+                                                            root = gamePlay.drawState(gamePlay.getPlayer());
+                                                            game.setRoot(root); // refresh the page
+                                                            window.setScene(main);
+                                                        });
+                                                        window.setScene(end);
+                                                    }
+                                                    drawState(player, e);
+                                                }
+                                                
+                                            }
+                                        });
+                                        
+                                    }
                                 }
-                                b.setMMCounter(0);
-                            }
-                            if (b.getUsedParry()) {
-                                b.setUsedParry(false);
-                            }
-                            if (b.checkLoseState(player) == true) {
-                                this.drawState(player, e);
-                                log.appendText("\nYou Lose!");
-                                monte.setRotate(90);
-                                attacks.setVisible(false);
-                                playerHealth.setVisible(false);
-                                end = new Scene(endSceneContent(false)); // set the scene for main
-                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                    // need to reset the game parameters
-                                    gamePlay = new GameLoop();
-                                    gamePlay.initialize();
-                                    //redraw the state
-                                    root = gamePlay.drawState(gamePlay.getPlayer());
-                                    game.setRoot(root); // refresh the page
-                                    window.setScene(main);
-                                });
-                                window.setScene(end);
-                            }
-                            if (b.getBBCounter() == 1) {
-                                log.appendText("\nButter Boomerang Powering Up!");
-                                log.appendText("\nPress ENTER to fire");
-                                b.setBBCounter(2);
-                            }
-                            this.drawState(player, e);
-
+                                
+                            });
                         }
+                        
                     }
-
+                    
                 }
-
             }
-
+            
             private void drawState(Player player, Enemy e) {
                 playerHealth.setProgress((double) player.getHealth() / 100);
                 enemyHealth.setProgress((double) e.getHealth() / 100);
@@ -436,7 +704,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     attacks.getChildren().get(0).requestFocus();
                 }
             }
-
+            
             private void moveLeftRight(KeyEvent event) {
                 int leftRight = 0; // if 1, move right if -1 move left
                 if (event.getCode() == KeyCode.A) {
@@ -447,10 +715,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
-
+                        
                         int newRow = GridPane.getRowIndex(attacks.getChildren().get(i));
                         int newCol = GridPane.getColumnIndex(attacks.getChildren().get(i));
-
+                        
                         for (int j = 0; j < attacks.getChildren().size(); j++) {
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == newRow && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol + leftRight) {
                                 attacks.getChildren().get(j).requestFocus();
@@ -460,7 +728,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     }
                 }
             }
-
+            
             private void moveupDown(KeyEvent event) {
                 int upDown = 0;
                 if (event.getCode() == KeyCode.W) {
@@ -471,10 +739,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
-
+                        
                         int newRow = GridPane.getRowIndex(attacks.getChildren().get(i));
                         int newCol = GridPane.getColumnIndex(attacks.getChildren().get(i));
-
+                        
                         for (int j = 0; j < attacks.getChildren().size(); j++) {
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == (newRow + upDown) && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol) {
                                 attacks.getChildren().get(j).requestFocus();
@@ -564,7 +832,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     public VBox endSceneContent(boolean win) {
         // depending on the state change the text
         VBox endContent = new VBox();
-
+        
         endContent.setAlignment(Pos.CENTER);
         endContent.setSpacing(GAP * 2);
         // inspiration borrowed from javafx documentation from Oracle
@@ -576,13 +844,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             userMsg.setText(LOSEMESSAGE);
         }
         userMsg.setStyle(MSGSTYLE);
-
+        
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
         endContent.getChildren().addAll(userMsg, prompt);
-
+        
         return endContent;
-
+        
     }
 
     /**
@@ -622,7 +890,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             MainTerminal game = new MainTerminal();
             boolean playGame = true;
             String exitMsg = "Thanks for playing!";
-
+            
             while (playGame) { // loop until false is selected
                 playGame = game.mainMenu();
                 if (playGame == false) {
@@ -635,7 +903,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         } else if (args.length == 0) {
             launch(args);
         }
-
+        
     }
-
+    
 }

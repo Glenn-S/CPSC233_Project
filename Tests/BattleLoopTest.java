@@ -1,9 +1,9 @@
 package Tests;
 
 import static org.junit.Assert.assertEquals;
-import Terminal.BattleLoop;
-import Sprite.Enemy;
-import Sprite.Player;
+import gameMechanics.BattleLoop;
+import sprite.Enemy;
+import sprite.Player;
 import org.junit.Test;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton

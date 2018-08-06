@@ -19,8 +19,8 @@ public class BattleLoop extends GameLoop {
     private int mmCounter; // counter for Margarine Missile
     private boolean usedParry = false; // keeps track if Parry was the attack
     private boolean enemyUsedParry = false; // keeps track if Parry was the attack
-private double pModifier;
-private double eModifier;
+    private double pModifier; // damage modifier for player attacks
+    private double eModifier; // damage modifier for enemy attacks
     String turnAttack = ""; // attack used during the current turn
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
@@ -219,7 +219,7 @@ private double eModifier;
      * @param player - player who is attacking
      */
     public void damageCalc(int damage, Enemy e, Player player) {
-        this.pModifier = ((double)player.getAttack())/e.getDefence();
+        this.pModifier = ((double) player.getAttack()) / e.getDefence();
         damage *= this.pModifier;
         if (this.enemyUsedParry) {
             if (Math.random() >= 0.5) {
@@ -229,7 +229,7 @@ private double eModifier;
                 e.setHealth(e.getHealth() - damage);
             }
         } else {
-                    System.out.println(damage);
+            System.out.println(damage);
             e.setHealth(e.getHealth() - damage);
         }
         if (e.getHealth() < 0) {
@@ -245,7 +245,7 @@ private double eModifier;
      * @param player - player who is taking the damage
      */
     public void damageCalc(int damage, Player player, Enemy e) {
-        this.eModifier = ((double)e.getAttack())/player.getDefence();
+        this.eModifier = ((double) e.getAttack()) / player.getDefence();
         damage *= this.eModifier;
         System.out.println(damage);
         if (this.usedParry) {
@@ -287,7 +287,7 @@ private double eModifier;
         switch (eAttack) {
             case "Slash":
                 int damage = 15;
-                this.damageCalc(damage, player,e);
+                this.damageCalc(damage, player, e);
                 System.out.println("Enemy used " + eAttack);
                 break;
             case "Margarine Missile":
@@ -314,11 +314,11 @@ private double eModifier;
      * @param e - enemy who is being attacked.
      */
     public void attackExecute(String attack, Player player, Enemy e) {
-        
+
         switch (attack) {
             case "Slash":
                 int damage = 15;
-                this.damageCalc(damage, e,player);
+                this.damageCalc(damage, e, player);
                 System.out.println("You used " + attack);
                 break;
             case "Butter Boomerang":
