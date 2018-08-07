@@ -175,8 +175,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
 
                         }
-                        gamePlay.checkGate(gamePlay.getPlayer()); // check to see if all the keys needed have been obtained and redraw accordingly
-                        
+
                         root = gamePlay.drawState(gamePlay.getPlayer());
 
                         game.setRoot(root); // refresh the page
@@ -396,6 +395,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         } else {
                                             log.appendText("\nPlayer key count: " + player.getKeyCount());
                                             b.removeEnemy(e, enemy, terrain);
+                                            // check to see if all the keys needed have been obtained and redraw accordingly
+                                            gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
                                             window.setScene(game);
@@ -574,6 +575,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         } else {
                                             log.appendText("\nPlayer key count: " + player.getKeyCount());
                                             b.removeEnemy(e, enemy, terrain);
+                                            // check to see if all the keys needed have been obtained and redraw accordingly
+                                            gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
                                             window.setScene(game);
