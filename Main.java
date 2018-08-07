@@ -159,6 +159,19 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         game.setOnKeyPressed(this);
         game.setRoot(root);
 
+        TimelineBuilder.create()
+            .keyFrames(
+                new KeyFrame(Duration.millis(100), e -> {
+                    root = gamePlay.drawState(gamePlay.getPlayer());
+                    game.setRoot(root); // refresh the page
+                }),
+                new KeyFrame(Duration.millis(200), e -> {
+                    root = gamePlay.drawState(gamePlay.getPlayer());
+                    game.setRoot(root); // refresh the page
+                })
+            );
+
+/*
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -175,9 +188,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
 
                         }
-
                         root = gamePlay.drawState(gamePlay.getPlayer());
-
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
@@ -196,7 +207,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         };
         timer.start();
         System.out.println(gamePlay.getPlayer());
-
+/*
         /**
          * 2. Make attack and defense relevant 3. make boss battle work 4. make
          * boss background 5. battle animations
@@ -257,7 +268,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Button parry = new Button("Parry");
         this.potion = new Button("Potion");
         this.attackAnimText = new Text();
-        Font f = Font.loadFont(getClass().getResourceAsStream("KBZipaDeeDooDah.ttf"), 24);
+        Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
 
