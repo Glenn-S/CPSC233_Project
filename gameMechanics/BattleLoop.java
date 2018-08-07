@@ -177,37 +177,27 @@ public class BattleLoop extends GameLoop {
         String[] moves = player.getMoves(); // cannot access moves directly
         System.out.println("Please select an attack from the following options by entering the number beside the attack.");
         for (int i = 0; i < 4; i++) {
-            System.out.println(i + ". " + moves[i]);
+            System.out.println(i + 1 + ". " + moves[i]);
         }
 
         Scanner sc = new Scanner(System.in);
-        int attack = -1;
+        int attack = 0;
         do {
             while (!sc.hasNextInt()) {
                 System.out.println("Please enter a valid number");
                 sc.next(); // this is important!
             }
             attack = sc.nextInt();
-        } while (attack < 0);
-
-        if (attack > 3 || attack < 0) {
+        } while (attack < 1);
+        if (attack > 4) {
             System.out.println("Error, invalid move entered. Please enter a valid move");
             attack = sc.nextInt();
-        } else if (attack == 3 && this.playerHasPotion(player) == false) {
-            System.out.println("Error, No potions available. Please enter a different move");
+        } if (attack == 4 && (this.playerHasPotion(player) == false || this.validPotion(player) == null)) {
+            System.out.println("Error, No potions available or Health is too high. Please enter a different move");
             attack = sc.nextInt();
         }
-        ArrayList<Sprite> temp = player.getItems();
-        for (int i = 0; i < player.getItems().size(); i++) {
-            if (temp.get(i) instanceof Potion) {
-                if (attack == 3 && player.getHealth() > 100 - ((Potion) temp.get(i)).getHealthBoost()) {
-                    System.out.println("Error, Health is too high for potion. Please enter a different move");
-                    attack = sc.nextInt();
-                }
-            }
-        }
 
-        return moves[attack];
+        return moves[attack - 1];
 
     }
 
@@ -230,7 +220,6 @@ public class BattleLoop extends GameLoop {
                 e.setHealth(e.getHealth() - damage);
             }
         } else {
-            System.out.println(damage);
             e.setHealth(e.getHealth() - damage);
         }
         if (e.getHealth() < 0) {
@@ -248,7 +237,6 @@ public class BattleLoop extends GameLoop {
     public void damageCalc(int damage, Player player, Enemy e) {
         this.eModifier = ((double) e.getAttack()) / player.getDefence();
         damage *= this.eModifier;
-        System.out.println(damage);
         if (this.usedParry) {
             if (Math.random() >= 0.5) {
                 System.out.println("Parry success!");
@@ -372,7 +360,6 @@ public class BattleLoop extends GameLoop {
                     System.out.println("Health has been boosted by " + ((Potion) temp.get(i)).getHealthBoost() + "HP");
                     System.out.print(player.getHealth());
                     player.removeItem(temp.get(i));
-                    System.out.println("Removed");
                     break;
                 }
 
@@ -387,7 +374,6 @@ public class BattleLoop extends GameLoop {
             if (temp.get(i) instanceof Potion) {
                 if (player.getHealth() <= 100 - ((Potion) temp.get(i)).getHealthBoost()) {
                     validP = new Potion((Potion) temp.get(i));
-
                 }
             }
         }

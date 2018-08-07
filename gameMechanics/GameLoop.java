@@ -905,7 +905,7 @@ public class GameLoop {
         int damage;
         while (i == 0) {
             if (bbCounter == 0) {
-                String attack = b.playerInput(this.player);
+                String attack = b.playerInput(player);
                 System.out.println("You used " + attack);
                 switch (attack) {
                     case "Slash":
@@ -940,7 +940,6 @@ public class GameLoop {
                     System.out.println("You have obtained a key from defeating this enemy!");
                     e.setKey(false);
                 }
-//                System.out.println("Player key count: " + player.getKeyCount()); // for test purposes
                 b.removeEnemy(e, enemy, terrain);
                 break;
             }
