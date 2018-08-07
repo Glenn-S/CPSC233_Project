@@ -1,10 +1,7 @@
 
-import java.util.Scanner;
-import java.io.Console;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -17,35 +14,19 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.Group;
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Font;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.Parent;
 import javafx.scene.image.Image;
-import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import sprite.*;
 import gameMechanics.*;
-import java.io.File;
-import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.PathTransition.OrientationType;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
-import javafx.beans.property.DoubleProperty;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.HLineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import terminal.*;
@@ -324,6 +305,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * the player makes a choice in the battle.
      *
      * @param player an instance of the current player playing the game
+     * @param e enemy being battled
      * @param enemy a list containing all of the enemies in the game
      * @param terrain a list containing all of the terrain elements in the game
      * @param battle a reference to the battle scene to modify when the state
