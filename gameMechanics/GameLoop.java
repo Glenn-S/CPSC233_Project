@@ -41,6 +41,7 @@ import sprite.*;
 public class GameLoop {
 
     private int boardHeight = 40, boardLength = 80;
+    private final int IMAGEWIDTH = 50;
     private ArrayList<Sprite> terrain;
     private ArrayList<Sprite> items;
     private ArrayList<Enemy> enemy;
@@ -621,6 +622,7 @@ public class GameLoop {
                 break;
         }
     }
+
 
 
     /**

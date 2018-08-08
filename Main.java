@@ -30,6 +30,8 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import terminal.*;
+import javafx.animation.TimelineBuilder;
+import javafx.animation.KeyFrame;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -73,7 +75,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private final String LOSEMESSAGE = "CONGRATULATIONS! YOU ARE THE WORST AT WINNING";
     private final String WINMESSAGE = "CONGRATULATIONS! YOU ARE THE BEST AT NOT LOSING";
     private final String RETURNMSG = "Press any key to return to the main menu";
-    private final String TEMPMSG = "Press any key to quit";
+    //private final String TEMPMSG = "Press any key to quit";
     private final String MSGSTYLE = "-fx-font-size: 48; ";
     private final String PROMPTSTYLE = "-fx-font-size: 24; ";
 
@@ -81,7 +83,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private String userMove = "";
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
-    private final int VELOCITY = 15;
+    private final int VELOCITY = 5;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
@@ -147,6 +149,21 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
+                            // animate the sprite
+                            // inspiration from https://www.codeproject.com/Tips/788527/Creating-Animation-from-Sequence-of-Images-in-Java
+                            TimelineBuilder.create()
+                                .keyFrames(
+                                    new KeyFrame(Duration.millis(150), e -> {
+                                        spriteRefresh("file:Images/montequillaWalkLeft.png");
+                                    }),
+                                    new KeyFrame(Duration.millis(300), e -> {
+                                        spriteRefresh("file:Images/montequillaWalkRight.png");
+                                    }),
+                                    new KeyFrame(Duration.millis(450), e -> {
+                                        spriteRefresh("file:Images/montequilla.png");
+                                    })
+                                )
+                                .build().play();
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             // battle scene setup
@@ -154,11 +171,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle.getStylesheets().add("gameMechanics/BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
-
                         }
 
                         root = gamePlay.drawState(gamePlay.getPlayer());
-
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
@@ -168,27 +183,30 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         // exit menu
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
-                        //Platform.exit(); // add in exit message later
                     }
-
                 }
 
             }
         };
         timer.start();
-        System.out.println(gamePlay.getPlayer());
-
-        /**
-         * 2. Make attack and defense relevant 3. make boss battle work 4. make
-         * boss background 5. battle animations
-         */
-        // add battle scene setups here
+        // System.out.println(gamePlay.getPlayer()); // for test purposes
         // send the scene to the window to be displayed
         window.setScene(main);
         window.show();
-
     }
 
+    /**
+     * Purpose: To refresh the sprite image for the animations using the image
+     * file being passed in.
+     * @param filename the name of the file to get the image from
+     */
+    private void spriteRefresh(String filename) {
+        Player playerCopy = gamePlay.getPlayer();
+        playerCopy.setSpriteImage(new Image(filename));
+        gamePlay.setPlayer(new Player(playerCopy));
+        root = gamePlay.drawState(gamePlay.getPlayer());
+        game.setRoot(root); // refresh the page
+    }
     /**
      * Purpose: To create the contents that the window will be filled with when
      * the battle is taking place.
@@ -238,9 +256,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Button parry = new Button("Parry");
         this.potion = new Button("Potion");
         this.attackAnimText = new Text();
-        // learned about loadFont from oracle documentation https://docs.oracle.com/javafx/2/api/javafx/scene/text/Font.html
-        //got getClass().getResourceAsStream from examples at https://www.programcreek.com/java-api-examples/?class=javafx.scene.text.Font&method=loadFont
-        Font f = Font.loadFont(getClass().getResourceAsStream("KBZipaDeeDooDah.ttf"), 24);
+        Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
 
