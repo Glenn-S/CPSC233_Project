@@ -48,9 +48,15 @@ public class Defence extends Sprite {
      * @param item an instance of the Defence class to copy
      */
     public Defence(Defence item) {
-        super(item.getName(), item.getCoord(), item.getSpriteImage(),
-            item.getSpriteChar(), item.getDialogue(), item.getExists(), item.getOverlapsWith());
-        this.defenceBoost = item.getDefenceBoost();
+        super(item.getName(),
+              item.getCoord(),
+              item.getSpriteImage(),
+              item.getSpriteChar(),
+              item.getDialogue(),
+              item.getExists(),
+              item.getOverlapsWith());
+
+       this.defenceBoost = item.getDefenceBoost();
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/

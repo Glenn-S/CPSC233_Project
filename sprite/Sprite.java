@@ -40,12 +40,12 @@ public class Sprite {
 	* sprite is overlapping with another object
 	*/
 	public Sprite(String name,
-                  Location coord,
-                  Image spriteImage,
-                  char spriteChar, // will become the sprite image class later
-                  String[] dialogue,
-                  boolean exists,
-                  boolean overlapsWith) {
+                Location coord,
+                Image spriteImage,
+                char spriteChar, // will become the sprite image class later
+                String[] dialogue,
+                boolean exists,
+                boolean overlapsWith) {
 		this.name = name;
 		this.coord= coord;
 		this.spriteImage = spriteImage;
@@ -75,11 +75,11 @@ public class Sprite {
 	public Sprite(Sprite copySprite) {
 		this.name = new String(copySprite.getName());
 		this.coord = new Location(copySprite.getCoord());
-	    this.spriteImage = copySprite.getSpriteImage(); // figure out how to protect image
-	    this.spriteChar = copySprite.getSpriteChar(); // will become the sprite image class later
-	    this.dialogue = copySprite.getDialogue();
-	    this.exists = copySprite.getExists();
-	    this.overlapsWith = copySprite.getOverlapsWith();
+	  	this.spriteImage = copySprite.getSpriteImage(); // figure out how to protect image
+	  	this.spriteChar = copySprite.getSpriteChar(); // will become the sprite image class later
+    	this.dialogue = copySprite.getDialogue();
+	  	this.exists = copySprite.getExists();
+	  	this.overlapsWith = copySprite.getOverlapsWith();
 	}
 
 	/*------------------------SETTERS/GETTER----------------------------------*/
@@ -96,10 +96,12 @@ public class Sprite {
 
 	/**
 	 * Purpose: This is the getter for the sprites location variable
+	 * Throws exception in main if trying to pass a copy of the location
 	 *
-	 * @return coord 	it's the Location of the sprite as a type of integer
+	 *  @return coord 	it's the Location of the sprite as a type of integer
 	 */
 	public Location getCoord() {
+		//return new Location(this.coord);
 		return this.coord;
 	}
 
