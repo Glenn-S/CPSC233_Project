@@ -81,7 +81,7 @@ public class Enemy extends Avatar {
     }
         /**
      * Purpose: Copy Constructor for the class, 
-     * sets all fields of the new enemy to those of the parameter enemy
+     * sets all fields of the new enemy to those of the existing enemy
      * @param fromCopy - Enemy to get information from 
      */
         public Enemy(Enemy fromCopy) {
