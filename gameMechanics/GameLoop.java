@@ -387,8 +387,8 @@ public class GameLoop {
                         if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                                  //return enemy.get(i);
-                                  return new Enemy(enemy.get(i));
+                                  return enemy.get(i);
+                                //return new Enemy(enemy.get(i));
                                   /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
@@ -396,8 +396,8 @@ public class GameLoop {
                         if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                            //return enemy.get(i);
-                            return new Enemy(enemy.get(i));
+                            return enemy.get(i);
+                            //return new Enemy(enemy.get(i));
                             /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
@@ -405,8 +405,8 @@ public class GameLoop {
                         if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            //return enemy.get(i);
-                            return new Enemy(enemy.get(i));
+                            return enemy.get(i);
+                          //  return new Enemy(enemy.get(i));
                             /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
@@ -414,8 +414,8 @@ public class GameLoop {
                         if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            //return enemy.get(i);
-                            return new Enemy(enemy.get(i));
+                            return enemy.get(i);
+                            //return new Enemy(enemy.get(i));
                             /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
