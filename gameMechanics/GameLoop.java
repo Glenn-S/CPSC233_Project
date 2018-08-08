@@ -963,6 +963,7 @@ public class GameLoop {
                         break;
                 }
             } else if (bbCounter == 2) {
+                System.out.println("Boomerang Fired!");
                 damage = 40;
                 b.damageCalc(damage, e,player);
                 bbCounter = 0;
@@ -1012,6 +1013,7 @@ public class GameLoop {
                         break;
                 }
             } else if (mmCounter == 2) {
+                System.out.println("Missile Fired!");
                 damage = 40;
                 b.damageCalc(damage, player,e);
                 mmCounter = 0;
