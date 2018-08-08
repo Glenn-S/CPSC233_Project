@@ -22,7 +22,7 @@ public class BattleLoop extends GameLoop {
 
     private double pModifier; // damage modifier for player attacks
     private double eModifier; // damage modifier for enemy attacks
-    String turnAttack = ""; // attack used during the current turn
+    private String turnAttack = ""; // attack used during the current turn
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**

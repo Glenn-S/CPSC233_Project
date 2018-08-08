@@ -75,11 +75,11 @@ public class Sprite {
 	public Sprite(Sprite copySprite) {
 		this.name = new String(copySprite.getName());
 		this.coord = new Location(copySprite.getCoord());
-	  this.spriteImage = copySprite.getSpriteImage(); // figure out how to protect image
-	  this.spriteChar = copySprite.getSpriteChar(); // will become the sprite image class later
-    this.dialogue = copySprite.getDialogue();
-	  this.exists = copySprite.getExists();
-	  this.overlapsWith = copySprite.getOverlapsWith();
+	  	this.spriteImage = copySprite.getSpriteImage(); // figure out how to protect image
+	  	this.spriteChar = copySprite.getSpriteChar(); // will become the sprite image class later
+    	this.dialogue = copySprite.getDialogue();
+	  	this.exists = copySprite.getExists();
+	  	this.overlapsWith = copySprite.getOverlapsWith();
 	}
 
 	/*------------------------SETTERS/GETTER----------------------------------*/

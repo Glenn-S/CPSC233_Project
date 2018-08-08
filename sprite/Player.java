@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
 	private ArrayList<Sprite> items; //arraylist of items player is holding currently
-	private final int velocity = 5; // move at five pixels a time
+	//private final int velocity = 5; // move at five pixels a time
 	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
