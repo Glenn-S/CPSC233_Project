@@ -102,7 +102,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private String userMove = "";
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
-    private final int VELOCITY = 15;
+    private final int VELOCITY = 10;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
@@ -158,7 +158,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         //System.out.println(this.player.getCoord()); // for test purposes
         game = new Scene(root); // set up the game state scene
         root = gamePlay.drawState(gamePlay.getPlayer()); // draw the initial game state
-        game.setOnKeyReleased(this);
+        game.setOnKeyPressed(this);
         game.setRoot(root);
 
         AnimationTimer timer = new AnimationTimer() {
@@ -168,6 +168,32 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
+                            TimelineBuilder.create()
+                                .keyFrames(
+                                    new KeyFrame(Duration.millis(150), e -> {
+                                        Player playerCopy = gamePlay.getPlayer();
+                                        playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkLeft.png"));
+                                        gamePlay.setPlayer(new Player(playerCopy));
+                                        root = gamePlay.drawState(gamePlay.getPlayer());
+                                        game.setRoot(root); // refresh the page
+                                    }),
+
+                                    new KeyFrame(Duration.millis(300), e -> {
+                                        Player playerCopy = gamePlay.getPlayer();
+                                        playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkRight.png"));
+                                        gamePlay.setPlayer(new Player(playerCopy));
+                                        root = gamePlay.drawState(gamePlay.getPlayer());
+                                        game.setRoot(root); // refresh the page
+                                    }),
+                                    new KeyFrame(Duration.millis(450), e -> {
+                                        Player playerCopy = gamePlay.getPlayer();
+                                        playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
+                                        gamePlay.setPlayer(new Player(playerCopy));
+                                        root = gamePlay.drawState(gamePlay.getPlayer());
+                                        game.setRoot(root); // refresh the page
+                                    })
+                                )
+                                .build().play();
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             // battle scene setup
@@ -882,20 +908,20 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         userMove = "";
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
-            animateSprite();
+            //animateSprite();
 
         }
         if (e.getCode().equals(KeyCode.S)) {
             this.userMove = "down";
-            animateSprite();
+            //animateSprite();
         }
         if (e.getCode().equals(KeyCode.A)) {
             this.userMove = "left";
-            animateSprite();
+            //animateSprite();
         }
         if (e.getCode().equals(KeyCode.D)) {
             this.userMove = "right";
-            animateSprite();
+            //animateSprite();
         }
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
@@ -913,26 +939,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             .keyFrames(
                 new KeyFrame(Duration.millis(200), e -> {
                     Player playerCopy = gamePlay.getPlayer();
-                    playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkLeft.png"));
-                    gamePlay.setPlayer(new Player(playerCopy));
-                    root = gamePlay.drawState(gamePlay.getPlayer());
-                    game.setRoot(root); // refresh the page
-                }),
-                new KeyFrame(Duration.millis(400), e -> {
-                    Player playerCopy = gamePlay.getPlayer();
-                    playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
-                    gamePlay.setPlayer(new Player(playerCopy));
-                    root = gamePlay.drawState(gamePlay.getPlayer());
-                    game.setRoot(root); // refresh the page
-                }),
-                new KeyFrame(Duration.millis(600), e -> {
-                    Player playerCopy = gamePlay.getPlayer();
                     playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkRight.png"));
                     gamePlay.setPlayer(new Player(playerCopy));
                     root = gamePlay.drawState(gamePlay.getPlayer());
                     game.setRoot(root); // refresh the page
                 }),
-                new KeyFrame(Duration.millis(800), e -> {
+                new KeyFrame(Duration.millis(400), e -> {
                     Player playerCopy = gamePlay.getPlayer();
                     playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
                     gamePlay.setPlayer(new Player(playerCopy));
