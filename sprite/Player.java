@@ -39,10 +39,28 @@ public class Player extends Avatar {
 	 * @param  exists  This is a boolean value, stating whether or not the player exists
 	 * @param  dialogue  This is a string array holding the different dialogue options for the player
 	 */
-	public Player(String name, Location coordinates, Image spriteImage, char spriteChar,
-			String[] dialogue, boolean exists, boolean overlapsWith, int health,
-			int defence, int attack, String[] moves) {
-		super(name, coordinates, spriteImage, spriteChar, dialogue, exists, overlapsWith, health, defence, attack, moves);
+	public Player(String name,
+	 							Location coordinates,
+								Image spriteImage,
+							 	char spriteChar,
+								String[] dialogue,
+							 	boolean exists,
+							 	boolean overlapsWith,
+							 	int health,
+								int defence,
+							 	int attack,
+							 	String[] moves) {
+		super(name,
+		 			coordinates,
+					spriteImage,
+					spriteChar,
+				 	dialogue,
+				 	exists,
+					overlapsWith,
+				 	health,
+				 	defence,
+					attack,
+					moves);
 		this.keyCount = 0;
 		this.items = new ArrayList<Sprite>();
 		//this.currency = 0; // for later expansion
@@ -55,8 +73,17 @@ public class Player extends Avatar {
 	 * @param  p  This is a player object, its values are then copied to the calling object
 	 */
 	public Player(Player p) {
-		super(p.getName(), p.getCoord(), p.spriteImage, p.getSpriteChar(), p.getDialogue(),
-			p.getExists(), p.getOverlapsWith(), p.getHealth(), p.getDefence(), p.getAttack(), p.getMoves()); // I believe this works for copying an class
+		super(p.getName(),
+		 			p.getCoord(),
+				 	p.getSpriteImage(),
+					p.getSpriteChar(),
+					p.getDialogue(),
+					p.getExists(),
+					p.getOverlapsWith(),
+					p.getHealth(),
+					p.getDefence(),
+					p.getAttack(),
+					p.getMoves()); // I believe this works for copying an class
 		this.keyCount = p.getKeyCount();
 		this.items = p.getItems();
 		//this.currency = 0;
@@ -158,11 +185,13 @@ public class Player extends Avatar {
 
 	/**
 	 * Purpose: This method returns the calling players item array
+	 * commented out the copy of the arraylist, exception is thrown
+	 * in main if a copy of the arraylist is returned
 	 *
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles
 	 */
 	public ArrayList<Sprite> getItems() {
-		/*ArrayList<Sprite> copyList = new ArrayList<Sprite>();
+	/*	ArrayList<Sprite> copyList = new ArrayList<Sprite>();
 		for (int i = 0; i < this.items.size(); i++) {
 			copyList.set(i, new Sprite(this.items.get(i)));
 		}*/

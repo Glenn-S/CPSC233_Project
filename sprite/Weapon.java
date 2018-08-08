@@ -38,7 +38,13 @@ public class Weapon extends Sprite {
                   boolean existence,
                   boolean overlapsWith,
                   int attackValue) { // this might need to change to an ArrayList
-        super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
+        super(title,
+              coordinate,
+              spriteImage,
+              spriteSymbol,
+              spriteMessages,
+              existence,
+              overlapsWith);
         this.weaponBoost = attackValue;
     }
     /**
@@ -58,7 +64,13 @@ public class Weapon extends Sprite {
                   boolean existence,
                   boolean overlapsWith,
                   int attackValue) { // this might need to change to an ArrayList
-        super(title, coordinate, null, spriteSymbol, spriteMessages, existence, overlapsWith);
+        super(title,
+              coordinate,
+              null,
+              spriteSymbol,
+              spriteMessages,
+              existence,
+              overlapsWith);
         this.weaponBoost = attackValue;
     }
 
@@ -68,8 +80,13 @@ public class Weapon extends Sprite {
      */
     public Weapon(Weapon item) {
         // call supers constructor(s)
-        super(item.getName(), item.getCoord(), item.getSpriteImage(),
-            item.getSpriteChar(), item.getDialogue(), item.getExists(), item.getOverlapsWith());
+        super(item.getName(),
+              item.getCoord(),
+              item.getSpriteImage(),
+              item.getSpriteChar(),
+              item.getDialogue(),
+              item.getExists(),
+              item.getOverlapsWith());
         this.weaponBoost = item.getWeaponBoost();
     }
 

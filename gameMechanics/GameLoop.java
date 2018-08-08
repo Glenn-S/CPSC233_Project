@@ -95,33 +95,32 @@ public class GameLoop {
      */
     public ArrayList<Sprite> getTerrain() {
 
-    /*  ArrayList<Sprite> terrainArrayListClone = new ArrayList<Sprite>();
-
-      for(int index = 0; index < this.terrain.size(); index++)
-      {
-          terrainArrayListClone.add(this.terrain.get(index));
-      }
-        return terrainArrayListClone;
+    /* ArrayList<Sprite> copyList = new ArrayList<Sprite>();
+  		for (int i = 0; i < this.terrain.size(); i++) {
+  			copyList.set(i, new Sprite(this.terrain.get(i)));
+  		}
+      return copyList;
         */
         return this.terrain;
     }
 
     /**
      * Purpose: To retrieve the array list for the item objects
-     * Now creates a new arraylist, this arraylist is filled with the
-     * same elements as the private items array list in the game loop
+     *  commented out the copy of the arraylist, exception is thrown
+  	 * in main if a copy of the arraylist is returned
      *
      * @return an array list containing the item objects
      */
     public ArrayList<Sprite> getItem() {
-      ArrayList<Sprite> itemsArrayListClone = new ArrayList<Sprite>();
-
-      for(int index = 0; index < this.items.size(); index++)
-      {
-        itemsArrayListClone.add(this.items.get(index));
-      }
-        return itemsArrayListClone;
-    }
+      /*
+    ArrayList<Sprite> copyList = new ArrayList<Sprite>();
+    		for (int i = 0; i < this.items.size(); i++) {
+    			copyList.set(i, new Sprite(this.items.get(i)));
+    		}
+    return copyList;
+    */
+    return this.items;
+  }
 
     /**
      * Purpose: To retrieve the array list for the enemy objects
@@ -132,15 +131,13 @@ public class GameLoop {
      */
     public ArrayList<Enemy> getEnemy() {
 
-    /*  ArrayList<Enemy> enemyArrayListClone = new ArrayList<Enemy>();
-
-      for(int index = 0; index < this.enemy.size(); index++)
-      {
-        enemyArrayListClone.add(this.enemy.get(index));
-      }
-        return enemyArrayListClone; //create copy of the list, need to fix
-        */
-        return this.enemy;
+    /*  ArrayList<Enemy> copyList = new ArrayList<Enemy>();
+    		for (int i = 0; i < this.enemy.size(); i++) {
+    			copyList.set(i, new Enemy(this.enemy.get(i)));
+    		}
+        return copyList;
+*/
+  return this.enemy;
     }
 
     /**
@@ -389,8 +386,8 @@ public class GameLoop {
                         if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                                  return enemy.get(i);
-                                  //return new Enemy(enemy.get(i));
+                                  //return enemy.get(i);
+                                  return new Enemy(enemy.get(i));
                                   /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
@@ -398,8 +395,8 @@ public class GameLoop {
                         if (player.getCoord().getLowerBoundary() + 1 == enemy.get(i).getCoord().getUpperBoundary()
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                            return enemy.get(i);
-                            //return new Enemy(enemy.get(i));
+                            //return enemy.get(i);
+                            return new Enemy(enemy.get(i));
                             /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
@@ -407,8 +404,8 @@ public class GameLoop {
                         if (player.getCoord().getLeftBoundary() - 1 == enemy.get(i).getCoord().getRightBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            return enemy.get(i);
-                            //return new Enemy(enemy.get(i));
+                            //return enemy.get(i);
+                            return new Enemy(enemy.get(i));
                             /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
@@ -416,8 +413,8 @@ public class GameLoop {
                         if (player.getCoord().getRightBoundary() + 1 == enemy.get(i).getCoord().getLeftBoundary()
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
-                            return enemy.get(i);
-                            //return new Enemy(enemy.get(i));
+                            //return enemy.get(i);
+                            return new Enemy(enemy.get(i));
                             /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;

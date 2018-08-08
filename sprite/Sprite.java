@@ -96,10 +96,12 @@ public class Sprite {
 
 	/**
 	 * Purpose: This is the getter for the sprites location variable
+	 * Throws exception in main if trying to pass a copy of the location
 	 *
-	 * @return coord 	it's the Location of the sprite as a type of integer
+	 *  @return coord 	it's the Location of the sprite as a type of integer
 	 */
 	public Location getCoord() {
+		//return new Location(this.coord);
 		return this.coord;
 	}
 

@@ -38,7 +38,13 @@ public class Potion extends Sprite {
                   boolean existence,
                   boolean overlapsWith,
                   int healthValue) { // this might need to change to an ArrayList
-        super(title, coordinate, spriteImage, spriteSymbol, spriteMessages, existence, overlapsWith);
+        super(title,
+              coordinate,
+              spriteImage,
+              spriteSymbol,
+              spriteMessages,
+              existence,
+              overlapsWith);
         this.healthBoost = healthValue;
     }
     /**
@@ -68,8 +74,13 @@ public class Potion extends Sprite {
      */
     public Potion(Potion potion) {
         // call constructor of super(s)
-        super(potion.getName(), potion.getCoord(), potion.getSpriteImage(),
-            potion.getSpriteChar(), potion.getDialogue(), potion.getExists(), potion.getOverlapsWith());
+        super(potion.getName(),
+              potion.getCoord(),
+              potion.getSpriteImage(),
+              potion.getSpriteChar(),
+              potion.getDialogue(),
+              potion.getExists(),
+              potion.getOverlapsWith());
         this.healthBoost = potion.getHealthBoost();
     }
 

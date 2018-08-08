@@ -80,23 +80,23 @@ public class Enemy extends Avatar {
         this.potions = potions;
     }
         /**
-     * Purpose: Copy Constructor for the class, 
+     * Purpose: Copy Constructor for the class,
      * sets all fields of the new enemy to those of the existing enemy
-     * @param fromCopy - Enemy to get information from 
+     * @param fromCopy - Enemy to get information from
      */
         public Enemy(Enemy fromCopy) {
-        super(fromCopy.name,
-              fromCopy.coord,
-              fromCopy.spriteImage,
-              fromCopy.spriteChar, // will become the sprite image class later
-              fromCopy.dialogue,
-              fromCopy.exists,
-              fromCopy.overlapsWith,
-              fromCopy.health,
-              fromCopy.defence,                fromCopy.attack,
-              fromCopy.moves); // invokes Avatar constructor
-        this.key = fromCopy.key;
-        this.potions = fromCopy.potions;
+        super(fromCopy.getName(),
+              fromCopy.getCoord(),
+              fromCopy.getSpriteImage(),
+              fromCopy.getSpriteChar(), // will become the sprite image class later
+              fromCopy.getDialogue(),
+              fromCopy.getExists(),
+              fromCopy.getOverlapsWith(),
+              fromCopy.getHealth(),
+              fromCopy.getDefence(),                fromCopy.attack,
+              fromCopy.getMoves()); // invokes Avatar constructor
+        this.key = fromCopy.getKey();
+        this.potions = fromCopy.getPotions();
     }
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
@@ -119,7 +119,7 @@ public class Enemy extends Avatar {
      * @return - true if enemy possesses potions, false otherwise
      */
     public boolean hasPotion() {
-        if(this.potions.isEmpty() ==true)
+        if(this.potions.isEmpty())
             return false;
         return true ;
     }
