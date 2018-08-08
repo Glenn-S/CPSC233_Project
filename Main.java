@@ -102,7 +102,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private String userMove = "";
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
-    private final int VELOCITY = 10;
+    private final int VELOCITY = 5;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
