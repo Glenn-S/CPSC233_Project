@@ -898,9 +898,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             window.setScene(main); // go back to the main menu
         }
         // back door for testing
-        if (e.getCode().equals(KeyCode.Q)) {
+/*        if (e.getCode().equals(KeyCode.Q)) {
             window.setScene(end);
         }
+*/
         //System.out.println(this.userMove); // for test purposes
     }
 
