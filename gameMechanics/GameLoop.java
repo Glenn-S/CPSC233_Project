@@ -86,29 +86,61 @@ public class GameLoop {
     /*--------------------------- GETTER/SETTERS -----------------------------*/
     /**
      * Purpose: To retrieve the array list for the terrain objects
+     * Can not create a new arraylist to be returned because then we
+     * are not able to place the tombstone image onto the map, after an
+     * enemy has been defeated
+     *
      *
      * @return an array list containing the terrain objects
      */
     public ArrayList<Sprite> getTerrain() {
-        return this.terrain; //create copy of the list, need to fix
+
+    /*  ArrayList<Sprite> terrainArrayListClone = new ArrayList<Sprite>();
+
+      for(int index = 0; index < this.terrain.size(); index++)
+      {
+          terrainArrayListClone.add(this.terrain.get(index));
+      }
+        return terrainArrayListClone;
+        */
+        return this.terrain;
     }
 
     /**
      * Purpose: To retrieve the array list for the item objects
+     * Now creates a new arraylist, this arraylist is filled with the
+     * same elements as the private items array list in the game loop
      *
      * @return an array list containing the item objects
      */
     public ArrayList<Sprite> getItem() {
-        return this.items; //create copy of the list, need to fix
+      ArrayList<Sprite> itemsArrayListClone = new ArrayList<Sprite>();
+
+      for(int index = 0; index < this.items.size(); index++)
+      {
+        itemsArrayListClone.add(this.items.get(index));
+      }
+        return itemsArrayListClone;
     }
 
     /**
      * Purpose: To retrieve the array list for the enemy objects
-     *
+     * If a new arrayList is created, and returned then we are not
+     * able to remove the enemies image off the map when a battle
+     * is finished
      * @return an array list containing the enemy objects
      */
     public ArrayList<Enemy> getEnemy() {
-        return this.enemy; //create copy of the list, need to fix
+
+    /*  ArrayList<Enemy> enemyArrayListClone = new ArrayList<Enemy>();
+
+      for(int index = 0; index < this.enemy.size(); index++)
+      {
+        enemyArrayListClone.add(this.enemy.get(index));
+      }
+        return enemyArrayListClone; //create copy of the list, need to fix
+        */
+        return this.enemy;
     }
 
     /**
@@ -357,7 +389,9 @@ public class GameLoop {
                         if ((player.getCoord().getUpperBoundary() - 1 == enemy.get(i).getCoord().getLowerBoundary())
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
-                            return enemy.get(i);
+                                  return enemy.get(i);
+                                  //return new Enemy(enemy.get(i));
+                                  /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                     case "down":
@@ -365,6 +399,8 @@ public class GameLoop {
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
                             return enemy.get(i);
+                            //return new Enemy(enemy.get(i));
+                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                     case "left":
@@ -372,6 +408,8 @@ public class GameLoop {
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
                             return enemy.get(i);
+                            //return new Enemy(enemy.get(i));
+                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                     case "right":
@@ -379,6 +417,8 @@ public class GameLoop {
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
                             return enemy.get(i);
+                            //return new Enemy(enemy.get(i));
+                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                 }

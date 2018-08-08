@@ -55,10 +55,10 @@ public class Player extends Avatar {
 	 * @param  p  This is a player object, its values are then copied to the calling object
 	 */
 	public Player(Player p) {
-		super(p.name, p.coord, p.spriteImage, p.spriteChar, p.dialogue,
-			p.exists, p.overlapsWith, p.health, p.defence, p.attack, p.moves); // I believe this works for copying an class
-		this.keyCount = p.keyCount;
-		this.items = p.items;
+		super(p.getName(), p.getCoord(), p.spriteImage, p.getSpriteChar(), p.getDialogue(),
+			p.getExists(), p.getOverlapsWith(), p.getHealth(), p.getDefence(), p.getAttack(), p.getMoves()); // I believe this works for copying an class
+		this.keyCount = p.getKeyCount();
+		this.items = p.getItems();
 		//this.currency = 0;
 	}
 
