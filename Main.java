@@ -94,7 +94,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private final String LOSEMESSAGE = "CONGRATULATIONS! YOU ARE THE WORST AT WINNING";
     private final String WINMESSAGE = "CONGRATULATIONS! YOU ARE THE BEST AT NOT LOSING";
     private final String RETURNMSG = "Press any key to return to the main menu";
-    private final String TEMPMSG = "Press any key to quit";
+    //private final String TEMPMSG = "Press any key to quit";
     private final String MSGSTYLE = "-fx-font-size: 48; ";
     private final String PROMPTSTYLE = "-fx-font-size: 24; ";
 
@@ -168,29 +168,18 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
+                            // animate the sprite
+                            // inspiration from https://www.codeproject.com/Tips/788527/Creating-Animation-from-Sequence-of-Images-in-Java
                             TimelineBuilder.create()
                                 .keyFrames(
                                     new KeyFrame(Duration.millis(150), e -> {
-                                        Player playerCopy = gamePlay.getPlayer();
-                                        playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkLeft.png"));
-                                        gamePlay.setPlayer(new Player(playerCopy));
-                                        root = gamePlay.drawState(gamePlay.getPlayer());
-                                        game.setRoot(root); // refresh the page
+                                        spriteRefresh("file:Images/montequillaWalkLeft.png");
                                     }),
-
                                     new KeyFrame(Duration.millis(300), e -> {
-                                        Player playerCopy = gamePlay.getPlayer();
-                                        playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkRight.png"));
-                                        gamePlay.setPlayer(new Player(playerCopy));
-                                        root = gamePlay.drawState(gamePlay.getPlayer());
-                                        game.setRoot(root); // refresh the page
+                                        spriteRefresh("file:Images/montequillaWalkRight.png");
                                     }),
                                     new KeyFrame(Duration.millis(450), e -> {
-                                        Player playerCopy = gamePlay.getPlayer();
-                                        playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
-                                        gamePlay.setPlayer(new Player(playerCopy));
-                                        root = gamePlay.drawState(gamePlay.getPlayer());
-                                        game.setRoot(root); // refresh the page
+                                        spriteRefresh("file:Images/montequilla.png");
                                     })
                                 )
                                 .build().play();
@@ -201,7 +190,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle.getStylesheets().add("gameMechanics/BattleGUI.css");
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
-
                         }
 
                         root = gamePlay.drawState(gamePlay.getPlayer());
@@ -214,26 +202,30 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         // exit menu
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
-                        //Platform.exit(); // add in exit message later
                     }
                 }
 
             }
         };
         timer.start();
-        System.out.println(gamePlay.getPlayer());
-
-        /**
-         * 2. Make attack and defense relevant 3. make boss battle work 4. make
-         * boss background 5. battle animations
-         */
-        // add battle scene setups here
+        // System.out.println(gamePlay.getPlayer()); // for test purposes
         // send the scene to the window to be displayed
         window.setScene(main);
         window.show();
-
     }
 
+    /**
+     * Purpose: To refresh the sprite image for the animations using the image
+     * file being passed in.
+     * @param filename the name of the file to get the image from
+     */
+    private void spriteRefresh(String filename) {
+        Player playerCopy = gamePlay.getPlayer();
+        playerCopy.setSpriteImage(new Image(filename));
+        gamePlay.setPlayer(new Player(playerCopy));
+        root = gamePlay.drawState(gamePlay.getPlayer());
+        game.setRoot(root); // refresh the page
+    }
     /**
      * Purpose: To create the contents that the window will be filled with when
      * the battle is taking place.
@@ -908,20 +900,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         userMove = "";
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
-            //animateSprite();
-
         }
         if (e.getCode().equals(KeyCode.S)) {
             this.userMove = "down";
-            //animateSprite();
         }
         if (e.getCode().equals(KeyCode.A)) {
             this.userMove = "left";
-            //animateSprite();
         }
         if (e.getCode().equals(KeyCode.D)) {
             this.userMove = "right";
-            //animateSprite();
         }
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
@@ -932,27 +919,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             window.setScene(end);
         }
         //System.out.println(this.userMove); // for test purposes
-    }
-
-    private void animateSprite() {
-        TimelineBuilder.create()
-            .keyFrames(
-                new KeyFrame(Duration.millis(200), e -> {
-                    Player playerCopy = gamePlay.getPlayer();
-                    playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkRight.png"));
-                    gamePlay.setPlayer(new Player(playerCopy));
-                    root = gamePlay.drawState(gamePlay.getPlayer());
-                    game.setRoot(root); // refresh the page
-                }),
-                new KeyFrame(Duration.millis(400), e -> {
-                    Player playerCopy = gamePlay.getPlayer();
-                    playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
-                    gamePlay.setPlayer(new Player(playerCopy));
-                    root = gamePlay.drawState(gamePlay.getPlayer());
-                    game.setRoot(root); // refresh the page
-                })
-            )
-            .build().play();
     }
 
     /**
