@@ -115,6 +115,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     @Override
     public void start(Stage mainStage) throws Exception {
         window = mainStage; // keep the reference so that window may be accessed globally
+        window.setTitle(GAMETITLE);
         window.setWidth(WINWIDTH);
         window.setHeight(WINHEIGHT);
         //window.setMaximized(true);
