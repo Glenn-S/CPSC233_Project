@@ -79,6 +79,25 @@ public class Enemy extends Avatar {
         this.key = key;
         this.potions = potions;
     }
+        /**
+     * Purpose: Copy Constructor for the class, 
+     * sets all fields of the new enemy to those of the existing enemy
+     * @param fromCopy - Enemy to get information from 
+     */
+        public Enemy(Enemy fromCopy) {
+        super(fromCopy.name,
+              fromCopy.coord,
+              fromCopy.spriteImage,
+              fromCopy.spriteChar, // will become the sprite image class later
+              fromCopy.dialogue,
+              fromCopy.exists,
+              fromCopy.overlapsWith,
+              fromCopy.health,
+              fromCopy.defence,                fromCopy.attack,
+              fromCopy.moves); // invokes Avatar constructor
+        this.key = fromCopy.key;
+        this.potions = fromCopy.potions;
+    }
 
     /*-------------------------- GETTERS/SETTERS -----------------------------*/
     /**
