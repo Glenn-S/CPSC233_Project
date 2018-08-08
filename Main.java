@@ -49,6 +49,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import terminal.*;
+import javafx.animation.TimelineBuilder;
+import javafx.animation.KeyFrame;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -156,22 +158,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         //System.out.println(this.player.getCoord()); // for test purposes
         game = new Scene(root); // set up the game state scene
         root = gamePlay.drawState(gamePlay.getPlayer()); // draw the initial game state
-        game.setOnKeyPressed(this);
+        game.setOnKeyReleased(this);
         game.setRoot(root);
 
-        TimelineBuilder.create()
-            .keyFrames(
-                new KeyFrame(Duration.millis(100), e -> {
-                    root = gamePlay.drawState(gamePlay.getPlayer());
-                    game.setRoot(root); // refresh the page
-                }),
-                new KeyFrame(Duration.millis(200), e -> {
-                    root = gamePlay.drawState(gamePlay.getPlayer());
-                    game.setRoot(root); // refresh the page
-                })
-            );
-
-/*
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -188,8 +177,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
 
                         }
-                        root = gamePlay.drawState(gamePlay.getPlayer());
-                        game.setRoot(root); // refresh the page
+
+                        //root = gamePlay.drawState(gamePlay.getPlayer());
+                        //game.setRoot(root); // refresh the page
                         userMove = "";
                     }
 
@@ -200,14 +190,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         window.setScene(end);
                         //Platform.exit(); // add in exit message later
                     }
-
                 }
 
             }
         };
         timer.start();
         System.out.println(gamePlay.getPlayer());
-/*
+
         /**
          * 2. Make attack and defense relevant 3. make boss battle work 4. make
          * boss background 5. battle animations
@@ -893,15 +882,20 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         userMove = "";
         if (e.getCode().equals(KeyCode.W)) {
             this.userMove = "up";
+            animateSprite();
+
         }
         if (e.getCode().equals(KeyCode.S)) {
             this.userMove = "down";
+            animateSprite();
         }
         if (e.getCode().equals(KeyCode.A)) {
             this.userMove = "left";
+            animateSprite();
         }
         if (e.getCode().equals(KeyCode.D)) {
             this.userMove = "right";
+            animateSprite();
         }
         if (e.getCode().equals(KeyCode.ESCAPE)) {
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
@@ -912,6 +906,41 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             window.setScene(end);
         }
         //System.out.println(this.userMove); // for test purposes
+    }
+
+    private void animateSprite() {
+        TimelineBuilder.create()
+            .keyFrames(
+                new KeyFrame(Duration.millis(200), e -> {
+                    Player playerCopy = gamePlay.getPlayer();
+                    playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkLeft.png"));
+                    gamePlay.setPlayer(new Player(playerCopy));
+                    root = gamePlay.drawState(gamePlay.getPlayer());
+                    game.setRoot(root); // refresh the page
+                }),
+                new KeyFrame(Duration.millis(400), e -> {
+                    Player playerCopy = gamePlay.getPlayer();
+                    playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
+                    gamePlay.setPlayer(new Player(playerCopy));
+                    root = gamePlay.drawState(gamePlay.getPlayer());
+                    game.setRoot(root); // refresh the page
+                }),
+                new KeyFrame(Duration.millis(600), e -> {
+                    Player playerCopy = gamePlay.getPlayer();
+                    playerCopy.setSpriteImage(new Image("file:Images/montequillaWalkRight.png"));
+                    gamePlay.setPlayer(new Player(playerCopy));
+                    root = gamePlay.drawState(gamePlay.getPlayer());
+                    game.setRoot(root); // refresh the page
+                }),
+                new KeyFrame(Duration.millis(800), e -> {
+                    Player playerCopy = gamePlay.getPlayer();
+                    playerCopy.setSpriteImage(new Image("file:Images/montequilla.png"));
+                    gamePlay.setPlayer(new Player(playerCopy));
+                    root = gamePlay.drawState(gamePlay.getPlayer());
+                    game.setRoot(root); // refresh the page
+                })
+            )
+            .build().play();
     }
 
     /**
