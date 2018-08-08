@@ -238,6 +238,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Button parry = new Button("Parry");
         this.potion = new Button("Potion");
         this.attackAnimText = new Text();
+        // learned about loadFont from oracle documentation https://docs.oracle.com/javafx/2/api/javafx/scene/text/Font.html
+        //got getClass().getResourceAsStream from examples at https://www.programcreek.com/java-api-examples/?class=javafx.scene.text.Font&method=loadFont
         Font f = Font.loadFont(getClass().getResourceAsStream("KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
@@ -324,13 +326,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     }
                     if (!(b.getTurnAttack().equals(""))) {
                         if (b.getBBCounter() == 0) {
-                            log.appendText("\nYou used " + b.getTurnAttack());
+
                             attackAnimText.setText(b.getTurnAttack() + "!");
                             attackAnimText.setFill(Color.RED);
                             attackAnim.play();
                             attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
+                                    log.appendText("\nYou used " + b.getTurnAttack());
                                     int eH = e.getHealth();
                                     b.attackExecute(b.getTurnAttack(), player, e);
 
