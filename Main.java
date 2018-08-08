@@ -204,8 +204,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
                         }
 
-                        //root = gamePlay.drawState(gamePlay.getPlayer());
-                        //game.setRoot(root); // refresh the page
+                        root = gamePlay.drawState(gamePlay.getPlayer());
+                        game.setRoot(root); // refresh the page
                         userMove = "";
                     }
 
