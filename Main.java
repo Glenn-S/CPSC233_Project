@@ -32,13 +32,17 @@ import javafx.util.Duration;
 import terminal.*;
 import javafx.animation.TimelineBuilder;
 import javafx.animation.KeyFrame;
+import javafx.scene.media.*;
+import java.io.File;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
  * game. inspiration borrowed from:
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
- *
+ * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
+ * sound effect clips from
+ * https://bassgorilla.com/video-game-sound-effects/
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
@@ -84,6 +88,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
     private final int VELOCITY = 5;
+    private String gamePlaySoundTrack = "Sounds/Root.mp3";
+    MediaPlayer mediaPlayer;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
@@ -143,6 +149,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         game.setOnKeyPressed(this);
         game.setRoot(root);
 
+        // try to play the sound file
+        try {
+            mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
+            mediaPlayer.play();
+        } catch (Exception e) {
+            System.err.println("Sound file error");
+        }
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -167,6 +182,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                 .build().play();
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
+                            mediaPlayer.pause();
                             // battle scene setup
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
                             battle.getStylesheets().add("gameMechanics/BattleGUI.css");
@@ -401,6 +417,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
+                                            mediaPlayer.play(); // turn the main music back on for main gameplay
                                             window.setScene(game);
 
                                         }
@@ -581,6 +598,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
+                                            mediaPlayer.play(); // turn the main music back on for main gameplay
                                             window.setScene(game);
 
                                         }
