@@ -43,6 +43,7 @@ import java.io.File;
  * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
  * sound effect clips from
  * https://bassgorilla.com/video-game-sound-effects/
+ * http://soundbible.com/1623-Dun-Dun-Dun.html
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
@@ -89,7 +90,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private int frameCounter = 0;
     private final int VELOCITY = 5;
     private String gamePlaySoundTrack = "Sounds/Root.mp3";
-    MediaPlayer mediaPlayer;
+    private String loseSceneSound = "Sounds/dun_dun_dun-Delsym-719755295.mp3";
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer endPlayer;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
@@ -139,6 +142,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             //redraw the state
             root = gamePlay.drawState(gamePlay.getPlayer());
             game.setRoot(root); // refresh the page
+            mediaPlayer.play();
             window.setScene(main);
         });
 
@@ -148,15 +152,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         root = gamePlay.drawState(gamePlay.getPlayer()); // draw the initial game state
         game.setOnKeyPressed(this);
         game.setRoot(root);
-
-        // try to play the sound file
-        try {
-            mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
-            mediaPlayer.play();
-        } catch (Exception e) {
-            System.err.println("Sound file error");
-        }
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -198,6 +193,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
+                        mediaPlayer.stop();
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
                     }
@@ -812,6 +808,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         // add lagels and buttons to the layout
         mainLayout.getChildren().addAll(title, synopsis, startBtn, exitBtn);
 
+
         // all actions associated with this scene
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -831,11 +828,25 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         startBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent ae) {
+                try {
+                    mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
+                } catch (Exception error) {
+                    System.err.println("Sound file error");
+                }
+                mediaPlayer.play();
                 window.setScene(game);
             }
         });
         startBtn.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
+                try {
+                    mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
+                } catch (Exception error) {
+                    System.err.println("Sound file error");
+                }
+                mediaPlayer.play();
                 window.setScene(game);
             }
             if (e.getCode().equals(KeyCode.S)
@@ -843,6 +854,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 exitBtn.requestFocus();
             }
         });
+
+
         return mainLayout;
     }
 
@@ -872,6 +885,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         if (!win) {
             userMsg.setText(LOSEMESSAGE);
             userMsg.setPadding(new Insets(0, 0, 150, 0));
+            try {
+                endPlayer = new MediaPlayer(new Media(new File(loseSceneSound).toURI().toString()));
+                endPlayer.play();
+            } catch (Exception e) {
+                System.err.println("Sound file not found");
+            }
+
+
         }
         userMsg.setStyle(MSGSTYLE);
 

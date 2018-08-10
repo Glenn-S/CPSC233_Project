@@ -58,7 +58,7 @@ public class GameBoard extends Application {
         bossPotions.add(mediumPotion);
 
         // maybe adjust the enemies range 6, 10
-        enemy.add(new Enemy("Grunt", new Location(10,6,0,0), grunt, '+', null, true, false, 100, 60, 65, moves, true, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(10,6,0,0), grunt, '+', null, true, false, 100, 500, 500, moves, true, gruntPotions));
         // 55, 8
         enemy.add(new Enemy("Grunt", new Location(64,8,0,0), grunt, '+', null, true, false, 100, 85, 90, moves, true, gruntPotions));
         // 50, 30
