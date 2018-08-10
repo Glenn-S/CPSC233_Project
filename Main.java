@@ -22,6 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import sprite.*;
 import gameMechanics.*;
+import java.io.File;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -92,7 +93,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private final int VELOCITY = 5;
     private String gamePlaySoundTrack = "Sounds/Root.mp3";
     private String loseSceneSound = "Sounds/dun_dun_dun-Delsym-719755295.mp3";
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer soundtrackPlayer;
     private MediaPlayer endPlayer;
     // set up player
 
@@ -114,6 +115,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private Text attackAnimText;
     private ParallelTransition attackAnim;
     private TranslateTransition injuryAnim;
+    private AudioClip select; // audio from https://www.sounds-resource.com/gamecube/customrobo/
+    private AudioClip attack; // audio from https://www.sounds-resource.com/nintendo_64/supersmashbros/sound/2587/
+    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
     // main scene elements
 
     /**
@@ -143,7 +147,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             //redraw the state
             root = gamePlay.drawState(gamePlay.getPlayer());
             game.setRoot(root); // refresh the page
-            mediaPlayer.play();
+            soundtrackPlayer.play();
             window.setScene(main);
         });
 
@@ -164,21 +168,21 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             // animate the sprite
                             // inspiration from https://www.codeproject.com/Tips/788527/Creating-Animation-from-Sequence-of-Images-in-Java
                             TimelineBuilder.create()
-                                .keyFrames(
-                                    new KeyFrame(Duration.millis(150), e -> {
-                                        spriteRefresh("file:Images/montequillaWalkLeft.png");
-                                    }),
-                                    new KeyFrame(Duration.millis(300), e -> {
-                                        spriteRefresh("file:Images/montequillaWalkRight.png");
-                                    }),
-                                    new KeyFrame(Duration.millis(450), e -> {
-                                        spriteRefresh("file:Images/montequilla.png");
-                                    })
-                                )
-                                .build().play();
+                                    .keyFrames(
+                                            new KeyFrame(Duration.millis(150), e -> {
+                                                spriteRefresh("file:Images/montequillaWalkLeft.png");
+                                            }),
+                                            new KeyFrame(Duration.millis(300), e -> {
+                                                spriteRefresh("file:Images/montequillaWalkRight.png");
+                                            }),
+                                            new KeyFrame(Duration.millis(450), e -> {
+                                                spriteRefresh("file:Images/montequilla.png");
+                                            })
+                                    )
+                                    .build().play();
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
-                            mediaPlayer.pause();
+                            soundtrackPlayer.pause();
                             // battle scene setup
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
                             battle.getStylesheets().add("gameMechanics/BattleGUI.css");
@@ -194,7 +198,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
-                        mediaPlayer.stop(); // stop playing the music if game won or lost
+                        soundtrackPlayer.stop(); // stop playing the music if game won or lost
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
                     }
@@ -212,6 +216,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     /**
      * Purpose: To refresh the sprite image for the animations using the image
      * file being passed in.
+     *
      * @param filename the name of the file to get the image from
      */
     private void spriteRefresh(String filename) {
@@ -221,6 +226,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         root = gamePlay.drawState(gamePlay.getPlayer());
         game.setRoot(root); // refresh the page
     }
+
     /**
      * Purpose: To create the contents that the window will be filled with when
      * the battle is taking place.
@@ -245,6 +251,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setPrefSize(225, 25);
         this.playerHealth.setVisible(true);
         this.enemyHealth.setVisible(true);
+        this.select = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
+        this.attack = new AudioClip(getClass().getResource("Completion.wav").toString());
         i1.setFitHeight(960);
         i1.setFitWidth(1440);
         enemyBG.setFitHeight(400);
@@ -273,9 +281,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
-
+        this.mediaPlayer.play();
         ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
-
         st.setFromX(attackAnimText.getX());
         st.setFromY(attackAnimText.getY());
         st.setByX(2.0f);
@@ -351,6 +358,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 this.moveLeftRight(event);
                 this.moveupDown(event);
                 if (event.getCode() == KeyCode.ENTER) {
+                    attack.play();
                     if (b.checkLoseState(player) || b.checkWinState(e)) {
                         b.setTurnAttack("");
                     }
@@ -395,6 +403,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         }
 
                                         if (e.getName().equals("Boss")) {
+                                            soundtrackPlayer.stop();
                                             end = new Scene(endSceneContent(true)); // set the scene for main
                                             end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                 // need to reset the game parameters
@@ -414,8 +423,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
-                                            mediaPlayer.play(); // turn the main music back on for main gameplay
+                                            soundtrackPlayer.play(); // turn the main music back on for main gameplay
                                             window.setScene(game);
+                                            mediaPlayer.stop();
 
                                         }
 
@@ -595,7 +605,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
-                                            mediaPlayer.play(); // turn the main music back on for main gameplay
+                                            soundtrackPlayer.play(); // turn the main music back on for main gameplay
                                             window.setScene(game);
 
                                         }
@@ -727,12 +737,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             }
 
             private void moveLeftRight(KeyEvent event) {
+
                 int leftRight = 0; // if 1, move right if -1 move left
                 if (event.getCode() == KeyCode.A) {
                     leftRight = -1;
+                    select.play();
 //                    b.setTurnAttack("Butter Boomerang");
                 } else if (event.getCode() == KeyCode.D) {
                     leftRight = 1;
+                    select.play();
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
@@ -744,6 +757,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == newRow && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol + leftRight) {
                                 attacks.getChildren().get(j).requestFocus();
                                 b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
+
                             }
                         }
                     }
@@ -755,8 +769,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 if (event.getCode() == KeyCode.W) {
 //                    b.setTurnAttack("Slash");
                     upDown = -1;
+                    select.play();
                 } else if (event.getCode() == KeyCode.S) {
                     upDown = 1;
+                    select.play();
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
@@ -768,6 +784,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == (newRow + upDown) && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol) {
                                 attacks.getChildren().get(j).requestFocus();
                                 b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
+
                             }
                         }
                     }
@@ -850,14 +867,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
     private void playSoundtrack() {
         try {
-            mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
+            soundtrackPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+            soundtrackPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
         } catch (Exception error) {
             System.err.println("Sound file error");
         }
-        mediaPlayer.setVolume(0.2); // lower the volume
-        System.out.println(mediaPlayer.getVolume());
-        mediaPlayer.play();
+        soundtrackPlayer.setVolume(0.2); // lower the volume
+        System.out.println(soundtrackPlayer.getVolume());
+        soundtrackPlayer.play();
     }
 
     /**
@@ -942,7 +959,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 /*        if (e.getCode().equals(KeyCode.Q)) {
             window.setScene(end);
         }
-*/
+         */
         //System.out.println(this.userMove); // for test purposes
     }
 
