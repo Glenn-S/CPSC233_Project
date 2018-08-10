@@ -22,6 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import sprite.*;
 import gameMechanics.*;
+import java.io.File;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -32,6 +33,8 @@ import javafx.util.Duration;
 import terminal.*;
 import javafx.animation.TimelineBuilder;
 import javafx.animation.KeyFrame;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -153,18 +156,18 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             // animate the sprite
                             // inspiration from https://www.codeproject.com/Tips/788527/Creating-Animation-from-Sequence-of-Images-in-Java
                             TimelineBuilder.create()
-                                .keyFrames(
-                                    new KeyFrame(Duration.millis(150), e -> {
-                                        spriteRefresh("file:Images/montequillaWalkLeft.png");
-                                    }),
-                                    new KeyFrame(Duration.millis(300), e -> {
-                                        spriteRefresh("file:Images/montequillaWalkRight.png");
-                                    }),
-                                    new KeyFrame(Duration.millis(450), e -> {
-                                        spriteRefresh("file:Images/montequilla.png");
-                                    })
-                                )
-                                .build().play();
+                                    .keyFrames(
+                                            new KeyFrame(Duration.millis(150), e -> {
+                                                spriteRefresh("file:Images/montequillaWalkLeft.png");
+                                            }),
+                                            new KeyFrame(Duration.millis(300), e -> {
+                                                spriteRefresh("file:Images/montequillaWalkRight.png");
+                                            }),
+                                            new KeyFrame(Duration.millis(450), e -> {
+                                                spriteRefresh("file:Images/montequilla.png");
+                                            })
+                                    )
+                                    .build().play();
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             // battle scene setup
@@ -199,6 +202,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     /**
      * Purpose: To refresh the sprite image for the animations using the image
      * file being passed in.
+     *
      * @param filename the name of the file to get the image from
      */
     private void spriteRefresh(String filename) {
@@ -208,6 +212,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         root = gamePlay.drawState(gamePlay.getPlayer());
         game.setRoot(root); // refresh the page
     }
+
     /**
      * Purpose: To create the contents that the window will be filled with when
      * the battle is taking place.
@@ -260,6 +265,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
+        String musicFile = "Battle_Music.wav";     
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
 
         ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
 
@@ -902,7 +911,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 /*        if (e.getCode().equals(KeyCode.Q)) {
             window.setScene(end);
         }
-*/
+         */
         //System.out.println(this.userMove); // for test purposes
     }
 
