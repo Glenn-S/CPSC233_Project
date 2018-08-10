@@ -34,6 +34,7 @@ import javafx.scene.text.FontPosture;
 import sprite.*;
 import java.io.File;
 import javafx.scene.media.*;
+import javafx.scene.input.ScrollEvent;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -669,10 +670,13 @@ public class GameLoop {
         // draw the player
         gc.drawImage(player.getSpriteImage(), player.getCoord().getPixelX(), player.getCoord().getPixelY());
         group.getChildren().addAll(backing, foreground);
-        // turn off the scroll bars so that they aren't visible
 
+        // turn off the scroll bars so that they aren't visible
         scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+        // help with disabling scrolling: https://stackoverflow.com/questions/27461643/javafx-disable-scrolling-by-mousewheel-in-scrollpane
+        scrollPane.addEventFilter(ScrollEvent.SCROLL, e -> {e.consume();}); // disable the user from scrolling
+
         scrollPane.setContent(group);
         // set the scroll to follow the player as they move relative to the viewable area
         if (player.getCoord().getxCoord() < 15) scrollPane.setHvalue(0.0);
