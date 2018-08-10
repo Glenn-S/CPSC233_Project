@@ -33,6 +33,8 @@ import javafx.util.Duration;
 import terminal.*;
 import javafx.animation.TimelineBuilder;
 import javafx.animation.KeyFrame;
+import static javafx.scene.input.DataFormat.URL;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -107,6 +109,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private Text attackAnimText;
     private ParallelTransition attackAnim;
     private TranslateTransition injuryAnim;
+    private AudioClip clip;
+    private AudioClip attack;
+    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Battle_Music.wav").toURI().toString()));
     // main scene elements
 
     /**
@@ -237,6 +242,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setPrefSize(225, 25);
         this.playerHealth.setVisible(true);
         this.enemyHealth.setVisible(true);
+        this.clip = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
+        this.attack = new AudioClip(getClass().getResource("Completion.wav").toString());
         i1.setFitHeight(960);
         i1.setFitWidth(1440);
         enemyBG.setFitHeight(400);
@@ -265,13 +272,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
-        String musicFile = "Battle_Music.wav";     
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
-
+        this.mediaPlayer.play();
         ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
-
         st.setFromX(attackAnimText.getX());
         st.setFromY(attackAnimText.getY());
         st.setByX(2.0f);
@@ -347,6 +349,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 this.moveLeftRight(event);
                 this.moveupDown(event);
                 if (event.getCode() == KeyCode.ENTER) {
+                    attack.play();
                     if (b.checkLoseState(player) || b.checkWinState(e)) {
                         b.setTurnAttack("");
                     }
@@ -391,6 +394,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         }
 
                                         if (e.getName().equals("Boss")) {
+                                            mediaPlayer.stop();
                                             end = new Scene(endSceneContent(true)); // set the scene for main
                                             end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                 // need to reset the game parameters
@@ -411,6 +415,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
                                             window.setScene(game);
+                                            mediaPlayer.stop();
 
                                         }
 
@@ -721,12 +726,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             }
 
             private void moveLeftRight(KeyEvent event) {
+
                 int leftRight = 0; // if 1, move right if -1 move left
                 if (event.getCode() == KeyCode.A) {
                     leftRight = -1;
+                    clip.play();
 //                    b.setTurnAttack("Butter Boomerang");
                 } else if (event.getCode() == KeyCode.D) {
                     leftRight = 1;
+                    clip.play();
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
@@ -738,6 +746,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == newRow && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol + leftRight) {
                                 attacks.getChildren().get(j).requestFocus();
                                 b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
+
                             }
                         }
                     }
@@ -749,8 +758,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 if (event.getCode() == KeyCode.W) {
 //                    b.setTurnAttack("Slash");
                     upDown = -1;
+                    clip.play();
                 } else if (event.getCode() == KeyCode.S) {
                     upDown = 1;
+                    clip.play();
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
@@ -762,6 +773,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == (newRow + upDown) && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol) {
                                 attacks.getChildren().get(j).requestFocus();
                                 b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
+
                             }
                         }
                     }
