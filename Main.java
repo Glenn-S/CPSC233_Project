@@ -42,8 +42,9 @@ import java.io.File;
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
  * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
  * sound effect clips from
- * https://bassgorilla.com/video-game-sound-effects/
- * http://soundbible.com/1623-Dun-Dun-Dun.html
+ * Theme music: https://bassgorilla.com/video-game-sound-effects/
+ * losing sound: http://soundbible.com/1623-Dun-Dun-Dun.html
+ * Treasure chest sound: http://soundbible.com/1354-Opening-Casket.html
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
@@ -830,10 +831,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             public void handle(ActionEvent ae) {
                 try {
                     mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+
                     mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
                 } catch (Exception error) {
                     System.err.println("Sound file error");
                 }
+                mediaPlayer.setVolume(0.1);
                 mediaPlayer.play();
                 window.setScene(game);
             }

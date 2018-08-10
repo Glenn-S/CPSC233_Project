@@ -32,6 +32,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.FontPosture;
 import sprite.*;
+import java.io.File;
+import javafx.scene.media.*;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -51,6 +53,7 @@ public class GameLoop {
     private boolean loseState;
     private Player player;
     private boolean terminal;
+    private String chestOpeningSound = "Sounds/Opening Casket-SoundBible.com-1012554358.mp3"; // chest sound
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     /**
@@ -526,6 +529,13 @@ public class GameLoop {
 
             obj.remove(obj.get(index)); // remove the object from the array
             // open the chest after an item has been picked up
+            try {
+                MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(chestOpeningSound).toURI().toString()));
+                mediaPlayer.setVolume(2.0);
+                mediaPlayer.play();
+            } catch (Exception e) {
+                System.err.println("Sound file not found");
+            }
             obj.get(index).setSpriteImage(new Image("file:Images/chest2.png"));
             System.out.println(player.getInventory(true)); // for testing
         }
