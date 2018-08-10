@@ -32,6 +32,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import terminal.*;
 import javafx.animation.TimelineBuilder;
+import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogEvent;
@@ -171,7 +172,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
                             // animate the sprite
                             // inspiration from https://www.codeproject.com/Tips/788527/Creating-Animation-from-Sequence-of-Images-in-Java
-                            TimelineBuilder.create()
+                            /*Timeline.create() // deprecated version
                                     .keyFrames(
                                             new KeyFrame(Duration.millis(150), e -> {
                                                 spriteRefresh("file:Images/montequillaWalkLeft.png");
@@ -183,7 +184,21 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                 spriteRefresh("file:Images/montequilla.png");
                                             })
                                     )
-                                    .build().play();
+                                    .build().play();*/
+                            // inspiration from: https://www.programcreek.com/java-api-examples/?api=javafx.animation.Timeline
+                            Timeline timeline = new Timeline();
+                            KeyFrame leftWalk = new KeyFrame(Duration.millis(150), e -> {
+                                spriteRefresh("file:Images/montequillaWalkLeft.png");
+                            });
+                            KeyFrame rightWalk = new KeyFrame(Duration.millis(300), e -> {
+                                spriteRefresh("file:Images/montequillaWalkRight.png");
+                            });
+                            KeyFrame centerWalk = new KeyFrame(Duration.millis(450), e -> {
+                                spriteRefresh("file:Images/montequilla.png");
+                            });
+                            timeline.getKeyFrames().addAll(leftWalk, rightWalk, centerWalk);
+                            timeline.play();
+
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             soundtrackPlayer.pause();
