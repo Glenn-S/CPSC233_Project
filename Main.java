@@ -109,9 +109,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private Text attackAnimText;
     private ParallelTransition attackAnim;
     private TranslateTransition injuryAnim;
-    private AudioClip clip;
-    private AudioClip attack;
-    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Battle_Music.wav").toURI().toString()));
+    private AudioClip select; // audio from https://www.sounds-resource.com/gamecube/customrobo/
+    private AudioClip attack; // audio from https://www.sounds-resource.com/nintendo_64/supersmashbros/sound/2587/
+    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
     // main scene elements
 
     /**
@@ -242,7 +242,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setPrefSize(225, 25);
         this.playerHealth.setVisible(true);
         this.enemyHealth.setVisible(true);
-        this.clip = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
+        this.select = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
         this.attack = new AudioClip(getClass().getResource("Completion.wav").toString());
         i1.setFitHeight(960);
         i1.setFitWidth(1440);
@@ -730,11 +730,11 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 int leftRight = 0; // if 1, move right if -1 move left
                 if (event.getCode() == KeyCode.A) {
                     leftRight = -1;
-                    clip.play();
+                    select.play();
 //                    b.setTurnAttack("Butter Boomerang");
                 } else if (event.getCode() == KeyCode.D) {
                     leftRight = 1;
-                    clip.play();
+                    select.play();
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
@@ -758,10 +758,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 if (event.getCode() == KeyCode.W) {
 //                    b.setTurnAttack("Slash");
                     upDown = -1;
-                    clip.play();
+                    select.play();
                 } else if (event.getCode() == KeyCode.S) {
                     upDown = 1;
-                    clip.play();
+                    select.play();
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
