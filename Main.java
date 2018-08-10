@@ -124,6 +124,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private AudioClip select; // audio from https://www.sounds-resource.com/gamecube/customrobo/
     private AudioClip attack; // audio from https://www.sounds-resource.com/nintendo_64/supersmashbros/sound/2587/
     MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
+    Alert battleWinAlert = new Alert(Alert.AlertType.INFORMATION);
     // main scene elements
 
     /**
@@ -409,12 +410,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     }
 
                                     if (b.checkWinState(e) == true) {
-                                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                        alert.setHeaderText("You Win!");
-                                        alert.setContentText("Click OK to return to game");
+                                        battleWinAlert.setHeaderText("You Win!");
+                                        battleWinAlert.setContentText("Click OK to return to game");
+                                        drawState(player, e);
+                                        battleWinAlert.show();
 
-                                        alert.show();
-                                        alert.setOnHidden(new EventHandler<DialogEvent>() {
+                                        battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
                                             @Override
                                             public void handle(DialogEvent event) {
                                                 if (e.getName().equals("Boss")) {
@@ -439,52 +440,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                     root = gamePlay.drawState(gamePlay.getPlayer());
                                                     game.setRoot(root);
                                                     mediaPlayer.stop();
+                                                    soundtrackPlayer.play(); // turn the main music back on for main gameplay
                                                     window.setScene(game);
 
                                                 }
                                             }
                                         });
-
-                                        drawState(player, e);
-                                        log.appendText("\nYou Win!");
-                                        enemyBG.setRotate(90);
-                                        attacks.setVisible(false);
-                                        enemyHealth.setVisible(false);
-                                        player.setHealth(100);
-                                        if (e.getKey()) {
-                                            player.setKeyCount(player.getKeyCount() + 1);
-                                            gamePlay.setPlayer(player);
-                                            log.appendText("\nYou have obtained a key from defeating this enemy!");
-                                            e.setKey(false);
-                                        }
-
-                                        if (e.getName().equals("Boss")) {
-                                            soundtrackPlayer.stop();
-                                            end = new Scene(endSceneContent(true)); // set the scene for main
-                                            end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                // need to reset the game parameters
-                                                gamePlay = new GameLoop();
-                                                gamePlay.initialize();
-                                                //redraw the state
-                                                root = gamePlay.drawState(gamePlay.getPlayer());
-                                                game.setRoot(root); // refresh the page
-                                                window.setScene(main);
-                                            });
-                                            window.setScene(end);
-
-                                        } else {
-                                            log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                            b.removeEnemy(e, enemy, terrain);
-                                            // check to see if all the keys needed have been obtained and redraw accordingly
-                                            gamePlay.checkGate(gamePlay.getPlayer());
-                                            root = gamePlay.drawState(gamePlay.getPlayer());
-                                            game.setRoot(root);
-                                            soundtrackPlayer.play(); // turn the main music back on for main gameplay
-                                            window.setScene(game);
-                                            mediaPlayer.stop();
-
-                                        }
-
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -649,12 +610,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     if (b.getEnemyUsedParry()) {
                                         b.setEnemyUsedParry(false);
                                     }
-                                    if (b.checkWinState(e) == true) {
-                                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                        alert.setHeaderText("You Win!");
-                                        alert.setContentText("Click OK to return to game");
-                                        alert.show();
-                                        alert.setOnHidden(new EventHandler<DialogEvent>() {
+                                if (b.checkWinState(e) == true) {
+                                        battleWinAlert.setHeaderText("You Win!");
+                                        battleWinAlert.setContentText("Click OK to return to game");
+                                        drawState(player, e);
+                                        battleWinAlert.show();
+
+                                        battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
                                             @Override
                                             public void handle(DialogEvent event) {
                                                 if (e.getName().equals("Boss")) {
@@ -679,51 +641,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                     root = gamePlay.drawState(gamePlay.getPlayer());
                                                     game.setRoot(root);
                                                     mediaPlayer.stop();
+                                                    soundtrackPlayer.play(); // turn the main music back on for main gameplay
                                                     window.setScene(game);
 
                                                 }
                                             }
                                         });
-
-
-                                        drawState(player, e);
-                                        log.appendText("\nYou Win!");
-                                        enemyBG.setRotate(90);
-                                        attacks.setVisible(false);
-                                        enemyHealth.setVisible(false);
-                                        player.setHealth(100);
-                                        if (e.getKey()) {
-                                            player.setKeyCount(player.getKeyCount() + 1);
-                                            gamePlay.setPlayer(player);
-                                            log.appendText("\nYou have obtained a key from defeating this enemy!");
-                                            e.setKey(false);
-                                        }
-
-                                        if (e.getName().equals("Boss")) {
-                                            end = new Scene(endSceneContent(true)); // set the scene for main
-                                            end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                // need to reset the game parameters
-                                                gamePlay = new GameLoop();
-                                                gamePlay.initialize();
-                                                //redraw the state
-                                                root = gamePlay.drawState(gamePlay.getPlayer());
-                                                game.setRoot(root); // refresh the page
-                                                window.setScene(main);
-                                            });
-                                            window.setScene(end);
-
-                                        } else {
-                                            log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                            b.removeEnemy(e, enemy, terrain);
-                                            // check to see if all the keys needed have been obtained and redraw accordingly
-                                            gamePlay.checkGate(gamePlay.getPlayer());
-                                            root = gamePlay.drawState(gamePlay.getPlayer());
-                                            game.setRoot(root);
-                                            soundtrackPlayer.play(); // turn the main music back on for main gameplay
-                                            window.setScene(game);
-
-                                        }
-
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
