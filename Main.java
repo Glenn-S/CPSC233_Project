@@ -193,7 +193,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
-                        mediaPlayer.stop();
+                        mediaPlayer.stop(); // stop playing the music if game won or lost
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
                     }
