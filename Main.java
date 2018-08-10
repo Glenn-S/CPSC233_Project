@@ -45,7 +45,11 @@ import javafx.scene.media.MediaPlayer;
  * game. inspiration borrowed from:
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
- *
+ * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
+ * sound effect clips from
+ * Theme music: https://bassgorilla.com/video-game-sound-effects/
+ * losing sound: http://soundbible.com/1623-Dun-Dun-Dun.html
+ * Treasure chest sound: http://soundbible.com/1354-Opening-Casket.html
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
@@ -91,6 +95,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
     private final int VELOCITY = 5;
+    private String gamePlaySoundTrack = "Sounds/Root.mp3";
+    private String loseSceneSound = "Sounds/dun_dun_dun-Delsym-719755295.mp3";
+    private MediaPlayer soundtrackPlayer;
+    private MediaPlayer endPlayer;
     // set up player
 
     private Pane root = new Pane(); // for game play scenes
@@ -143,6 +151,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             //redraw the state
             root = gamePlay.drawState(gamePlay.getPlayer());
             game.setRoot(root); // refresh the page
+            soundtrackPlayer.play();
             window.setScene(main);
         });
 
@@ -177,6 +186,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     .build().play();
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
+                            soundtrackPlayer.pause();
                             // battle scene setup
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
                             battle.getStylesheets().add("gameMechanics/BattleGUI.css");
@@ -192,6 +202,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
+                        soundtrackPlayer.stop(); // stop playing the music if game won or lost
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
                     }
@@ -431,6 +442,33 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             e.setKey(false);
                                         }
 
+                                        if (e.getName().equals("Boss")) {
+                                            soundtrackPlayer.stop();
+                                            end = new Scene(endSceneContent(true)); // set the scene for main
+                                            end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                // need to reset the game parameters
+                                                gamePlay = new GameLoop();
+                                                gamePlay.initialize();
+                                                //redraw the state
+                                                root = gamePlay.drawState(gamePlay.getPlayer());
+                                                game.setRoot(root); // refresh the page
+                                                window.setScene(main);
+                                            });
+                                            window.setScene(end);
+
+                                        } else {
+                                            log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                            b.removeEnemy(e, enemy, terrain);
+                                            // check to see if all the keys needed have been obtained and redraw accordingly
+                                            gamePlay.checkGate(gamePlay.getPlayer());
+                                            root = gamePlay.drawState(gamePlay.getPlayer());
+                                            game.setRoot(root);
+                                            soundtrackPlayer.play(); // turn the main music back on for main gameplay
+                                            window.setScene(game);
+                                            mediaPlayer.stop();
+
+                                        }
+
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -643,6 +681,31 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             gamePlay.setPlayer(player);
                                             log.appendText("\nYou have obtained a key from defeating this enemy!");
                                             e.setKey(false);
+                                        }
+
+                                        if (e.getName().equals("Boss")) {
+                                            end = new Scene(endSceneContent(true)); // set the scene for main
+                                            end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
+                                                // need to reset the game parameters
+                                                gamePlay = new GameLoop();
+                                                gamePlay.initialize();
+                                                //redraw the state
+                                                root = gamePlay.drawState(gamePlay.getPlayer());
+                                                game.setRoot(root); // refresh the page
+                                                window.setScene(main);
+                                            });
+                                            window.setScene(end);
+
+                                        } else {
+                                            log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                            b.removeEnemy(e, enemy, terrain);
+                                            // check to see if all the keys needed have been obtained and redraw accordingly
+                                            gamePlay.checkGate(gamePlay.getPlayer());
+                                            root = gamePlay.drawState(gamePlay.getPlayer());
+                                            game.setRoot(root);
+                                            soundtrackPlayer.play(); // turn the main music back on for main gameplay
+                                            window.setScene(game);
+
                                         }
 
                                     } else {
@@ -883,6 +946,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         // add lagels and buttons to the layout
         mainLayout.getChildren().addAll(title, synopsis, startBtn, exitBtn);
 
+
         // all actions associated with this scene
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -902,11 +966,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         startBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent ae) {
+                playSoundtrack();
                 window.setScene(game);
             }
         });
         startBtn.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
+                playSoundtrack();
                 window.setScene(game);
             }
             if (e.getCode().equals(KeyCode.S)
@@ -914,7 +980,21 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 exitBtn.requestFocus();
             }
         });
+
+
         return mainLayout;
+    }
+
+    private void playSoundtrack() {
+        try {
+            soundtrackPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+            soundtrackPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
+        } catch (Exception error) {
+            System.err.println("Sound file error");
+        }
+        soundtrackPlayer.setVolume(0.2); // lower the volume
+        System.out.println(soundtrackPlayer.getVolume());
+        soundtrackPlayer.play();
     }
 
     /**
@@ -943,6 +1023,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         if (!win) {
             userMsg.setText(LOSEMESSAGE);
             userMsg.setPadding(new Insets(0, 0, 150, 0));
+            try {
+                endPlayer = new MediaPlayer(new Media(new File(loseSceneSound).toURI().toString()));
+                endPlayer.play();
+            } catch (Exception e) {
+                System.err.println("Sound file not found");
+            }
+
+
         }
         userMsg.setStyle(MSGSTYLE);
 

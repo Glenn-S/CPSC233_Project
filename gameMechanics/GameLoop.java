@@ -32,6 +32,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.FontPosture;
 import sprite.*;
+import java.io.File;
+import javafx.scene.media.*;
+import javafx.scene.input.ScrollEvent;
 
 /**
  * Purpose: to run the underlying mechanics of the game loop.
@@ -51,6 +54,7 @@ public class GameLoop {
     private boolean loseState;
     private Player player;
     private boolean terminal;
+    private String chestOpeningSound = "Sounds/Opening Casket-SoundBible.com-1012554358.mp3"; // chest sound
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     /**
@@ -286,6 +290,7 @@ public class GameLoop {
         gb.createItemArray(this.items);
         gb.createTerrainArray(this.terrain);
         gb.createEnemyArray(this.enemy);
+        randomizeKeys();
 
         // setup the player
         String[] moves = {"Slash", "Butter Boomerang", "Parry", "Potion"};
@@ -304,6 +309,30 @@ public class GameLoop {
         player.updateDefence(starterShield);
         player.addItem(smallPotion);
         System.out.println("*** " + smallPotion.getName() + " has been added to your pack ***");
+    }
+
+    /**
+     *
+     */
+    private void randomizeKeys() {
+        int tempKeyCount = totalKeys - 1;
+        int enemyDivKeys = (enemy.size() - 1)/(totalKeys - 1); // remove 1 for the final boss and the final boss key
+        System.out.println(enemyDivKeys);// should be 1 right now
+        int indexForKey;
+
+        for (int i = 0; i < enemy.size()-1; i+=enemyDivKeys) {
+            if (tempKeyCount-- != 0) {
+                indexForKey = (int)(Math.random() * (double)enemyDivKeys);
+                //System.out.println("Random num: " + indexForKey + ", index: " + i + ", Random index = " + (indexForKey+i));
+                enemy.get(indexForKey+i).setKey(true);
+            }
+            else break; // temporary solution but the last grunt never gets the key
+        }
+        // for testing
+        for (int i = 0; i < enemy.size(); i++) {
+            System.out.println(enemy.get(i).getName() + " key: " + enemy.get(i).getKey());
+        }
+
     }
 
     /**
@@ -526,6 +555,13 @@ public class GameLoop {
 
             obj.remove(obj.get(index)); // remove the object from the array
             // open the chest after an item has been picked up
+            try {
+                MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(chestOpeningSound).toURI().toString()));
+                mediaPlayer.setVolume(0.8); // set the volume of the chest opening
+                mediaPlayer.play();
+            } catch (Exception e) {
+                System.err.println("Sound file not found");
+            }
             obj.get(index).setSpriteImage(new Image("file:Images/chest2.png"));
             System.out.println(player.getInventory(true)); // for testing
         }
@@ -659,10 +695,15 @@ public class GameLoop {
         // draw the player
         gc.drawImage(player.getSpriteImage(), player.getCoord().getPixelX(), player.getCoord().getPixelY());
         group.getChildren().addAll(backing, foreground);
-        // turn off the scroll bars so that they aren't visible
 
+        // turn off the scroll bars so that they aren't visible
         scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+        // help with disabling scrolling: https://stackoverflow.com/questions/27461643/javafx-disable-scrolling-by-mousewheel-in-scrollpane
+        scrollPane.addEventFilter(ScrollEvent.SCROLL, e -> {
+            e.consume();
+        }); // disable the user from scrolling
+
         scrollPane.setContent(group);
         // set the scroll to follow the player as they move relative to the viewable area
         if (player.getCoord().getxCoord() < 15) scrollPane.setHvalue(0.0);
