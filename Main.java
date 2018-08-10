@@ -58,11 +58,11 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
     private final String GAMETITLE = "The Adventures of Montequilla";
     private final String SYNOPSIS
-            = "B-town is under attack by \"I can’t believe it\'s not butter\" boy and "
+            = "B-town is under attack by \"I can\'t believe it\'s not butter\" boy and "
             + "his army of Margarine men. All sources of butter are destroyed in the town "
             + "except for one. Your best friend Butter Bob Brown has been in his lab developing "
             + "a new 0 sodium butter. Realizing the applications for his process of removing "
-            + "sodium, \"I can’t believe it’s not butter\" boy abducts him to his lair of oil. "
+            + "sodium, \"I can’t believe it\'s not butter\" boy abducts him to his lair of oil. "
             + "After remembering something the town oracle spoke of in the past you see the "
             + "ancient scriptures in the town describing a hero of legend who would save the "
             + "Butter Industry from its competitors. Here you acquire the bronze butter knife "
