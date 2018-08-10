@@ -139,7 +139,10 @@ public class BattleLoop extends GameLoop {
      */
     public void removeEnemy(Enemy enemy, ArrayList<Enemy> enemyList, ArrayList<Sprite> terrainList) {
         enemy.setExists(false);
-        terrainList.add(new Sprite("tombstone", enemy.getCoord(), new Image("file:Images/Tombstone.png"), 't', null, true, false));
+        Location tombCoord = enemy.getCoord();
+        tombCoord.setxSize(0);
+        tombCoord.setySize(0);
+        terrainList.add(new Sprite("tombstone", tombCoord, new Image("file:Images/Tombstone.png"), 't', null, true, false));
         enemyList.remove(enemy);
     }
 
