@@ -65,7 +65,7 @@ public class GameBoard extends Application {
         enemy.add(new Enemy("Grunt", new Location(70,35,0,0), grunt, '+', null, true, false, 100, 100, 90, moves, false, gruntPotions));
         // 77, 3
         // tester enemies
-        enemy.add(new Enemy("Grunt", new Location(20,30,0,0), grunt, '+', null, true, false, 100, 65, 50, moves,false, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(20,30,4,4), grunt, '+', null, true, false, 100, 65, 50, moves,false, gruntPotions));
         // 55, 8
         enemy.add(new Enemy("Grunt", new Location(55,8,0,0), grunt, '+', null, true, false, 100, 85, 90, moves, false, gruntPotions));
         // 50, 30
