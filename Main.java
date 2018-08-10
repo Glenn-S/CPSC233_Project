@@ -46,10 +46,11 @@ import javafx.scene.media.MediaPlayer;
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
  * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
- * sound effect clips from
- * Theme music: https://bassgorilla.com/video-game-sound-effects/
- * losing sound: http://soundbible.com/1623-Dun-Dun-Dun.html
- * Treasure chest sound: http://soundbible.com/1354-Opening-Casket.html
+ * sound effect clips from Theme music:
+ * https://bassgorilla.com/video-game-sound-effects/ losing sound:
+ * http://soundbible.com/1623-Dun-Dun-Dun.html Treasure chest sound:
+ * http://soundbible.com/1354-Opening-Casket.html
+ *
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
@@ -397,6 +398,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         alert.setHeaderText("You Win!");
                                         alert.setContentText("Click OK to return to game");
 
+                                        alert.show();
                                         alert.setOnHidden(new EventHandler<DialogEvent>() {
                                             @Override
                                             public void handle(DialogEvent event) {
@@ -428,7 +430,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             }
                                         });
 
-                                        alert.show();
                                         drawState(player, e);
                                         log.appendText("\nYou Win!");
                                         enemyBG.setRotate(90);
@@ -637,7 +638,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                         alert.setHeaderText("You Win!");
                                         alert.setContentText("Click OK to return to game");
-
+                                        alert.show();
                                         alert.setOnHidden(new EventHandler<DialogEvent>() {
                                             @Override
                                             public void handle(DialogEvent event) {
@@ -669,7 +670,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             }
                                         });
 
-                                        alert.show();
+
                                         drawState(player, e);
                                         log.appendText("\nYou Win!");
                                         enemyBG.setRotate(90);
@@ -946,7 +947,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         // add lagels and buttons to the layout
         mainLayout.getChildren().addAll(title, synopsis, startBtn, exitBtn);
 
-
         // all actions associated with this scene
         exitBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -980,7 +980,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 exitBtn.requestFocus();
             }
         });
-
 
         return mainLayout;
     }
@@ -1029,7 +1028,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             } catch (Exception e) {
                 System.err.println("Sound file not found");
             }
-
 
         }
         userMsg.setStyle(MSGSTYLE);
