@@ -414,8 +414,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                             gamePlay.checkGate(gamePlay.getPlayer());
                                             root = gamePlay.drawState(gamePlay.getPlayer());
                                             game.setRoot(root);
-                                            window.setScene(game);
                                             mediaPlayer.stop();
+                                            window.setScene(game);
 
                                         }
 
