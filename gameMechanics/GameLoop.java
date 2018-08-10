@@ -531,7 +531,7 @@ public class GameLoop {
             // open the chest after an item has been picked up
             try {
                 MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(chestOpeningSound).toURI().toString()));
-                mediaPlayer.setVolume(2.0);
+                mediaPlayer.setVolume(0.8); // set the volume of the chest opening
                 mediaPlayer.play();
             } catch (Exception e) {
                 System.err.println("Sound file not found");

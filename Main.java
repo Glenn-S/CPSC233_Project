@@ -829,27 +829,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         startBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent ae) {
-                try {
-                    mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
-
-                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
-                } catch (Exception error) {
-                    System.err.println("Sound file error");
-                }
-                mediaPlayer.setVolume(0.1);
-                mediaPlayer.play();
+                playSoundtrack();
                 window.setScene(game);
             }
         });
         startBtn.setOnKeyPressed(e -> {
             if (e.getCode().equals(KeyCode.ENTER)) {
-                try {
-                    mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
-                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
-                } catch (Exception error) {
-                    System.err.println("Sound file error");
-                }
-                mediaPlayer.play();
+                playSoundtrack();
                 window.setScene(game);
             }
             if (e.getCode().equals(KeyCode.S)
@@ -860,6 +846,18 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
 
         return mainLayout;
+    }
+
+    private void playSoundtrack() {
+        try {
+            mediaPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // play until told to stop
+        } catch (Exception error) {
+            System.err.println("Sound file error");
+        }
+        mediaPlayer.setVolume(0.2); // lower the volume
+        System.out.println(mediaPlayer.getVolume());
+        mediaPlayer.play();
     }
 
     /**
