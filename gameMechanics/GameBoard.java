@@ -111,9 +111,13 @@ public class GameBoard extends Application {
         Image gateZero = new Image("file:Images/Gate0.png");
         Image gateOne = new Image("file:Images/Gate1.png");
         Image gateTwo = new Image("file:Images/Gate2.png");
-
+        /*--------------------Border-------------------------------------------*/
         Image border = new Image("file:Images/border.png");
-
+        /*---------------------House-------------------------------------------*/
+        Image rightTopHouse = new Image("file:Images/topRightHouse.png");
+        Image leftTopHouse = new Image("file:Images/topLeftHouse.png");
+        Image rightBottomHouse = new Image("file:Images/bottomRightHouse.png");
+        Image leftBottomHouse = new Image("file:Images/bottomLeftHouse.png");
 
 
         /*------------------------ROW 0-------------------------------------------*/
@@ -618,6 +622,9 @@ public class GameBoard extends Application {
 
         terrain.add(new Sprite("water", new Location(17, 22, 0, 0), rightBottomWater, '/', null, true, false));
 
+        terrain.add(new Sprite("house", new Location(28,22,0,0), leftTopHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(29,22,0,0), rightTopHouse, 'H', null, true, false));
+
         terrain.add(new Sprite ("mountain", new Location(59,22,0,0), leftTopMountain, '/', null, true,false));
 
         for(int index = 60; index < 66; index++) {
@@ -637,6 +644,15 @@ public class GameBoard extends Application {
         }
 
         terrain.add(new Sprite("water", new Location(16, 23, 0, 0), rightBottomWater, '/', null, true, false));
+
+        terrain.add(new Sprite("house", new Location(25,23,0,0), leftTopHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(26,23,0,0), rightTopHouse, 'H', null, true, false));
+
+        terrain.add(new Sprite("house", new Location(28,23,0,0), leftBottomHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(29,23,0,0), rightBottomHouse, 'H', null, true, false));
+
+        terrain.add(new Sprite("house", new Location(31,23,0,0), leftTopHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(32,23,0,0), rightTopHouse, 'H', null, true, false));
 
         terrain.add(new Sprite ("mountain", new Location(58,23,0,0), leftTopMountain, '/', null, true,false));
 
@@ -660,6 +676,12 @@ public class GameBoard extends Application {
         }
 
         terrain.add(new Sprite("water", new Location(15, 24, 0, 0), rightBottomWater, '/', null, true, false));
+
+        terrain.add(new Sprite("house", new Location(25,24,0,0), leftBottomHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(26,24,0,0), rightBottomHouse, 'H', null, true, false));
+
+        terrain.add(new Sprite("house", new Location(31,24,0,0), leftBottomHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(32,24,0,0), rightBottomHouse, 'H', null, true, false));
 
         terrain.add(new Sprite ("mountain", new Location(57,24,0,0), leftTopMountain, '/', null, true,false));
 
