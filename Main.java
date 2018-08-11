@@ -251,6 +251,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.bRoot = new StackPane();
         Image bkgrnd = new Image("Images/Battle Background.png");
         ImageView i1 = new ImageView(bkgrnd);
+        //i1.setFitHeight(960);
+        //i1.setFitWidth(1440);
         i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
         i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
 
@@ -269,8 +271,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setVisible(true);
         this.select = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
         this.attack = new AudioClip(getClass().getResource("Completion.wav").toString());
-        //i1.setFitHeight(960);
-        //i1.setFitWidth(1440);
         enemyBG.setFitHeight(400);
         enemyBG.setFitWidth(400);
         this.injuryAnim = new TranslateTransition(Duration.millis(75), enemyBG);
