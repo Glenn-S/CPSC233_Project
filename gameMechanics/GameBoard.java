@@ -680,8 +680,8 @@ public class GameBoard extends Application {
 
         terrain.add(new Sprite("border", new Location(0, 19, 0, 0), border, '|', null, true, false));
 
-        terrain.add(new Sprite("house", new Location(21,19,0,0), leftBottomHouse, 'H', null, true, false));
-        terrain.add(new Sprite("house", new Location(20,19,0,0), rightBottomHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(20,19,0,0), leftBottomHouse, 'H', null, true, false));
+        terrain.add(new Sprite("house", new Location(21,19,0,0), rightBottomHouse, 'H', null, true, false));
 
         terrain.add(new Sprite("house", new Location(23,19,0,0), leftBottomHouse, 'H', null, true, false));
         terrain.add(new Sprite("house", new Location(24,19,0,0), rightBottomHouse, 'H', null, true, false));
