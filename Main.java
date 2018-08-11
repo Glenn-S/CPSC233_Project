@@ -977,7 +977,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         HBox endFriendsContainer = new HBox();
         endFriendsContainer.getChildren().addAll(mont ,friend);
         if (win) {
-            endContent.getChildren().addAll(userMsg, endFriendsContainer, prompt);
+            endContent.getChildren().addAll(userMsg, mont, prompt);
         } else {
             endContent.getChildren().addAll(userMsg, prompt);
         }
