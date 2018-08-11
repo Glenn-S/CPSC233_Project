@@ -40,6 +40,7 @@ import static javafx.scene.input.DataFormat.URL;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Screen;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -250,6 +251,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.bRoot = new StackPane();
         Image bkgrnd = new Image("Images/Battle Background.png");
         ImageView i1 = new ImageView(bkgrnd);
+        i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
+        i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
         } else {
@@ -265,8 +269,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setVisible(true);
         this.select = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
         this.attack = new AudioClip(getClass().getResource("Completion.wav").toString());
-        i1.setFitHeight(960);
-        i1.setFitWidth(1440);
+        //i1.setFitHeight(960);
+        //i1.setFitWidth(1440);
         enemyBG.setFitHeight(400);
         enemyBG.setFitWidth(400);
         this.injuryAnim = new TranslateTransition(Duration.millis(75), enemyBG);
@@ -943,7 +947,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
 
         VBox endContent = new VBox();
-
         endContent.setAlignment(Pos.CENTER);
         endContent.setSpacing(GAP * 2);
 
@@ -962,12 +965,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             } catch (Exception e) {
                 System.err.println("Sound file not found");
             }
-
         }
         userMsg.setStyle(MSGSTYLE);
-
         userMsg.setTextFill(Color.YELLOW);
-
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
 
