@@ -937,6 +937,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * screen or the lose screen.
      */
     public StackPane endSceneContent(boolean win) {
+        win = true;
         // depending on the state change the text
         StackPane endScene = new StackPane();
         ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
@@ -972,9 +973,11 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
         // need to fix
         ImageView mont = new ImageView(new Image("file:Images/Montequilla.png"));
-        ImageView friend = new ImageView(new Image("file:Images/bossKeyGreen.png"));
+        ImageView friend = new ImageView(new Image("file:Images/buttterBobBrown.png"));
+        HBox endFriendsContainer = new HBox();
+        endFriendsContainer.getChildren().addAll(mont ,friend);
         if (win) {
-            endContent.getChildren().addAll(userMsg, mont ,friend, prompt);
+            endContent.getChildren().addAll(userMsg, endFriendsContainer, prompt);
         } else {
             endContent.getChildren().addAll(userMsg, prompt);
         }
