@@ -975,9 +975,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
 
-        ImageView bossKey = new ImageView(new Image("file:Images/bossKeyGreen.png"));
+        ImageView mont = new ImageView(new Image("file:Images/Montequilla.png"));
+        ImageView friend = new ImageView(new Image("file:Images/bossKeyGreen.png"));
         if (win) {
-            endContent.getChildren().addAll(userMsg, bossKey, prompt);
+            endContent.getChildren().addAll(userMsg, mont ,friend, prompt);
         } else {
             endContent.getChildren().addAll(userMsg, prompt);
         }
