@@ -138,7 +138,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     @Override
     public void start(Stage mainStage) throws Exception {
         window = mainStage; // keep the reference so that window may be accessed globally
-        window.resizableProperty().setValue(false);
+        window.resizableProperty().setValue(false); // remove being able to maximize the window
         window.setTitle(GAMETITLE);
         window.setWidth(WINWIDTH);
         window.setHeight(WINHEIGHT);
