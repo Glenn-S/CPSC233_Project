@@ -942,6 +942,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * screen or the lose screen.
      */
     public StackPane endSceneContent(boolean win) {
+        win = true;
         // depending on the state change the text
         StackPane endScene = new StackPane();
         ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
@@ -1013,10 +1014,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             window.setScene(main); // go back to the main menu
         }
         // back door for testing
-/*        if (e.getCode().equals(KeyCode.Q)) {
+        if (e.getCode().equals(KeyCode.Q)) {
             window.setScene(end);
         }
-         */
+
         //System.out.println(this.userMove); // for test purposes
     }
 
