@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import sprite.*;
 import gameMechanics.*;
 import java.io.File;
+import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -375,12 +376,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
                 this.moveLeftRight(event);
                 this.moveupDown(event);
-                if (event.getCode() == KeyCode.ENTER) {
-                    attack.play();
+                if (event.getCode() == KeyCode.ENTER && !attackAnim.getStatus().equals(Animation.Status.RUNNING) && !injuryAnim.getStatus().equals(attackAnim.getStatus().equals(Animation.Status.RUNNING))) {
                     if (b.checkLoseState(player) || b.checkWinState(e)) {
                         b.setTurnAttack("");
                     }
                     if (!(b.getTurnAttack().equals(""))) {
+                        attack.play();
                         if (b.getBBCounter() == 0) {
 
                             attackAnimText.setText(b.getTurnAttack() + "!");
@@ -407,7 +408,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     }
 
                                     if (b.checkWinState(e) == true) {
-
                                         endBattle(e, player);
                                     } else {
                                         injuryAnim.play();
@@ -512,7 +512,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     damage = 40;
                                     int eH = e.getHealth();
                                     b.damageCalc(damage, e, player);
-                                    injuryAnim.play();
                                     if (b.getEnemyUsedParry()) {
                                         if (e.getHealth() == eH) {
                                             log.appendText("\nEnemy Parry Success!");
@@ -744,6 +743,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 if (b.checkWinState(e) == true) {
                     battleWinAlert.setHeaderText("You Win!");
                     battleWinAlert.setContentText("Click OK to return to game");
+                    enemyBG.setRotate(90);
                     drawState(player, e);
                     battleWinAlert.show();
 
@@ -766,7 +766,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                player.setKeyCount(player.getKeyCount() +1);
+                                player.setKeyCount(player.getKeyCount() + 1);
                                 player.setHealth(100);
                                 gamePlay.setPlayer(player);
                                 b.removeEnemy(e, enemy, terrain);
