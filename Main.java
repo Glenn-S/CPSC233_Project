@@ -972,8 +972,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         prompt.setStyle(PROMPTSTYLE);
 
         // need to fix
-        ImageView mont = new ImageView(new Image("file:Images/Montequilla.png"));
-        ImageView friend = new ImageView(new Image("file:Images/buttterBobBrown.png"));
+        ImageView mont = new ImageView(new Image("file:Images/MontequillaEndScene.png"));
+        ImageView friend = new ImageView(new Image("file:Images/buttterBobBrownEndScene.png"));
         HBox endFriendsContainer = new HBox();
         endFriendsContainer.getChildren().addAll(mont ,friend);
         if (win) {
