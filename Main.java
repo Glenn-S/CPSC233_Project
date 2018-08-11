@@ -972,12 +972,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         prompt.setStyle(PROMPTSTYLE);
 
         // need to fix
-        ImageView mont = new ImageView(new Image("file:Images/MontequillaEndScene.png"));
-        ImageView friend = new ImageView(new Image("file:Images/buttterBobBrownEndScene.png"));
+        ImageView montequillaEnd = new ImageView(new Image("file:Images/MontequillaEndScene.png"));
+        ImageView butterBobBrown = new ImageView(new Image("file:Images/butterBobBrownEndScene.png"));
         HBox endFriendsContainer = new HBox();
-        endFriendsContainer.getChildren().addAll(mont ,friend);
+        endFriendsContainer.getChildren().addAll(montequillaEnd, butterBobBrown);
+        endFriendsContainer.setAlignment(Pos.CENTER);
         if (win) {
-            endContent.getChildren().addAll(userMsg, mont, prompt);
+            endContent.getChildren().addAll(userMsg, endFriendsContainer, prompt);
         } else {
             endContent.getChildren().addAll(userMsg, prompt);
         }
