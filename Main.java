@@ -41,6 +41,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Screen;
+import javafx.stage.StageStyle;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
@@ -137,6 +138,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     @Override
     public void start(Stage mainStage) throws Exception {
         window = mainStage; // keep the reference so that window may be accessed globally
+        window.resizableProperty().setValue(false);
         window.setTitle(GAMETITLE);
         window.setWidth(WINWIDTH);
         window.setHeight(WINHEIGHT);
