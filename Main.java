@@ -147,16 +147,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
         // end screen
         end = new Scene(endSceneContent(true));
-        end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-            // need to reset the game parameters
-            gamePlay = new GameLoop();
-            gamePlay.initialize();
-            //redraw the state
-            root = gamePlay.drawState(gamePlay.getPlayer());
-            game.setRoot(root); // refresh the page
-            soundtrackPlayer.play();
-            window.setScene(main);
-        });
 
         // game Scene
         //System.out.println(this.player.getCoord()); // for test purposes
@@ -215,7 +205,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
-
+/* not needed since the battle does all of the checking now
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
@@ -223,6 +213,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
                     }
+*/
                 }
 
             }
@@ -418,8 +409,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
                                             @Override
                                             public void handle(DialogEvent event) {
+                                                mediaPlayer.stop();
                                                 if (e.getName().equals("Boss")) {
-                                                    mediaPlayer.stop();
                                                     end = new Scene(endSceneContent(true)); // set the scene for main
                                                     end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                         // need to reset the game parameters
@@ -493,6 +484,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 alert.setOnHidden(new EventHandler<DialogEvent>() {
                                                                     @Override
                                                                     public void handle(DialogEvent event) {
+                                                                        mediaPlayer.stop();
                                                                         end = new Scene(endSceneContent(false)); // set the scene for main
                                                                         end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                                             // need to reset the game parameters
@@ -553,6 +545,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 alert.setOnHidden(new EventHandler<DialogEvent>() {
                                                                     @Override
                                                                     public void handle(DialogEvent event) {
+                                                                        mediaPlayer.stop();
                                                                         end = new Scene(endSceneContent(false)); // set the scene for main
                                                                         end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                                             // need to reset the game parameters
@@ -619,8 +612,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
                                             @Override
                                             public void handle(DialogEvent event) {
+                                                mediaPlayer.stop();
                                                 if (e.getName().equals("Boss")) {
-                                                    mediaPlayer.stop();
                                                     end = new Scene(endSceneContent(true)); // set the scene for main
                                                     end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                         // need to reset the game parameters
@@ -693,6 +686,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 alert.setOnHidden(new EventHandler<DialogEvent>() {
                                                                     @Override
                                                                     public void handle(DialogEvent event) {
+                                                                        mediaPlayer.stop();
                                                                         end = new Scene(endSceneContent(false)); // set the scene for main
                                                                         end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                                             // need to reset the game parameters
@@ -752,6 +746,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                         alert.setOnHidden(new EventHandler<DialogEvent>() {
                                                             @Override
                                                             public void handle(DialogEvent event) {
+                                                                mediaPlayer.stop();
                                                                 end = new Scene(endSceneContent(false)); // set the scene for main
                                                                 end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
                                                                     // need to reset the game parameters
@@ -975,9 +970,11 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
 
-        ImageView bossKey = new ImageView(new Image("file:Images/bossKeyGreen.png"));
+        // need to fix
+        ImageView mont = new ImageView(new Image("file:Images/Montequilla.png"));
+        ImageView friend = new ImageView(new Image("file:Images/bossKeyGreen.png"));
         if (win) {
-            endContent.getChildren().addAll(userMsg, bossKey, prompt);
+            endContent.getChildren().addAll(userMsg, mont ,friend, prompt);
         } else {
             endContent.getChildren().addAll(userMsg, prompt);
         }
@@ -1011,12 +1008,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
         }
-        // back door for testing
-/*        if (e.getCode().equals(KeyCode.Q)) {
-            window.setScene(end);
-        }
-         */
-        //System.out.println(this.userMove); // for test purposes
     }
 
     /**
