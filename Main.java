@@ -125,7 +125,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private TranslateTransition injuryAnim;
     private AudioClip select; // audio from https://www.sounds-resource.com/gamecube/customrobo/
     private AudioClip attack; // audio from https://www.sounds-resource.com/nintendo_64/supersmashbros/sound/2587/
-    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
+    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Sounds/Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
     Alert battleWinAlert = new Alert(Alert.AlertType.INFORMATION);
     // main scene elements
 
@@ -208,7 +208,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         game.setRoot(root); // refresh the page
                         userMove = "";
                     }
-/* not needed since the battle does all of the checking now
+                    /* not needed since the battle does all of the checking now
                     if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
                         boolean winLose = (gamePlay.checkWinState()) ? true : false;
                         // exit menu
@@ -216,7 +216,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         end = new Scene(endSceneContent(winLose)); // set the scene for main
                         window.setScene(end);
                     }
-*/
+                     */
                 }
 
             }
@@ -271,8 +271,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.enemyHealth.setPrefSize(225, 25);
         this.playerHealth.setVisible(true);
         this.enemyHealth.setVisible(true);
-        this.select = new AudioClip(getClass().getResource("Attack_Select.wav").toString());
-        this.attack = new AudioClip(getClass().getResource("Completion.wav").toString());
+        this.select = new AudioClip(getClass().getResource("Sounds/Attack_Select.wav").toString());
+        this.attack = new AudioClip(getClass().getResource("Sounds/Completion.wav").toString());
         enemyBG.setFitHeight(400);
         enemyBG.setFitWidth(400);
         this.injuryAnim = new TranslateTransition(Duration.millis(75), enemyBG);
@@ -407,46 +407,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     }
 
                                     if (b.checkWinState(e) == true) {
-<<<<<<< HEAD
+
                                         endBattle(e, player);
-=======
-                                        battleWinAlert.setHeaderText("You Win!");
-                                        battleWinAlert.setContentText("Click OK to return to game");
-                                        drawState(player, e);
-                                        battleWinAlert.show();
-
-                                        battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
-                                            @Override
-                                            public void handle(DialogEvent event) {
-                                                mediaPlayer.stop();
-                                                if (e.getName().equals("Boss")) {
-                                                    end = new Scene(endSceneContent(true)); // set the scene for main
-                                                    end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                        // need to reset the game parameters
-                                                        gamePlay = new GameLoop();
-                                                        gamePlay.initialize();
-                                                        //redraw the state
-                                                        root = gamePlay.drawState(gamePlay.getPlayer());
-                                                        game.setRoot(root); // refresh the page
-                                                        window.setScene(main);
-                                                    });
-                                                    window.setScene(end);
-
-                                                } else {
-                                                    log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                                    b.removeEnemy(e, enemy, terrain);
-                                                    // check to see if all the keys needed have been obtained and redraw accordingly
-                                                    gamePlay.checkGate(gamePlay.getPlayer());
-                                                    root = gamePlay.drawState(gamePlay.getPlayer());
-                                                    game.setRoot(root);
-                                                    mediaPlayer.stop();
-                                                    soundtrackPlayer.play(); // turn the main music back on for main gameplay
-                                                    window.setScene(game);
-
-                                                }
-                                            }
-                                        });
->>>>>>> master
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -481,38 +443,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 b.setUsedParry(false);
                                                             }
                                                             if (b.checkLoseState(player) == true) {
-<<<<<<< HEAD
+
                                                                 endBattle(e, player);
-=======
 
-                                                                drawState(player, e);
-                                                                log.appendText("\nYou Lose!");
-                                                                monte.setRotate(90);
-                                                                attacks.setVisible(false);
-                                                                playerHealth.setVisible(false);
-                                                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                                                alert.setHeaderText("You Lost!");
-                                                                alert.setContentText("Click OK to end Battle");
-
-                                                                alert.setOnHidden(new EventHandler<DialogEvent>() {
-                                                                    @Override
-                                                                    public void handle(DialogEvent event) {
-                                                                        mediaPlayer.stop();
-                                                                        end = new Scene(endSceneContent(false)); // set the scene for main
-                                                                        end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                                            // need to reset the game parameters
-                                                                            gamePlay = new GameLoop();
-                                                                            gamePlay.initialize();
-                                                                            //redraw the state
-                                                                            root = gamePlay.drawState(gamePlay.getPlayer());
-                                                                            game.setRoot(root); // refresh the page
-                                                                            window.setScene(main);
-                                                                        });
-                                                                        window.setScene(end);
-                                                                    }
-                                                                });
-                                                                alert.show();
->>>>>>> master
                                                             }
                                                             if (b.getBBCounter() == 1) {
                                                                 log.appendText("\nButter Boomerang Powering Up!");
@@ -546,38 +479,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 b.setUsedParry(false);
                                                             }
                                                             if (b.checkLoseState(player) == true) {
-<<<<<<< HEAD
+
                                                                 endBattle(e, player);
-=======
 
-                                                                drawState(player, e);
-                                                                log.appendText("\nYou Lose!");
-                                                                monte.setRotate(90);
-                                                                attacks.setVisible(false);
-                                                                playerHealth.setVisible(false);
-                                                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                                                alert.setHeaderText("You Lost!");
-                                                                alert.setContentText("Click OK to end Battle");
-
-                                                                alert.setOnHidden(new EventHandler<DialogEvent>() {
-                                                                    @Override
-                                                                    public void handle(DialogEvent event) {
-                                                                        mediaPlayer.stop();
-                                                                        end = new Scene(endSceneContent(false)); // set the scene for main
-                                                                        end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                                            // need to reset the game parameters
-                                                                            gamePlay = new GameLoop();
-                                                                            gamePlay.initialize();
-                                                                            //redraw the state
-                                                                            root = gamePlay.drawState(gamePlay.getPlayer());
-                                                                            game.setRoot(root); // refresh the page
-                                                                            window.setScene(main);
-                                                                        });
-                                                                        window.setScene(end);
-                                                                    }
-                                                                });
-                                                                alert.show();
->>>>>>> master
                                                             }
                                                             if (b.getBBCounter() == 1) {
                                                                 log.appendText("\nButter Boomerang Powering Up!");
@@ -621,48 +525,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     if (b.getEnemyUsedParry()) {
                                         b.setEnemyUsedParry(false);
                                     }
-<<<<<<< HEAD
+
                                     if (b.checkWinState(e) == true) {
                                         endBattle(e, player);
-=======
-                                if (b.checkWinState(e) == true) {
-                                        battleWinAlert.setHeaderText("You Win!");
-                                        battleWinAlert.setContentText("Click OK to return to game");
-                                        drawState(player, e);
-                                        battleWinAlert.show();
 
-                                        battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
-                                            @Override
-                                            public void handle(DialogEvent event) {
-                                                mediaPlayer.stop();
-                                                if (e.getName().equals("Boss")) {
-                                                    end = new Scene(endSceneContent(true)); // set the scene for main
-                                                    end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                        // need to reset the game parameters
-                                                        gamePlay = new GameLoop();
-                                                        gamePlay.initialize();
-                                                        //redraw the state
-                                                        root = gamePlay.drawState(gamePlay.getPlayer());
-                                                        game.setRoot(root); // refresh the page
-                                                        window.setScene(main);
-                                                    });
-                                                    window.setScene(end);
-
-                                                } else {
-                                                    log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                                    b.removeEnemy(e, enemy, terrain);
-                                                    // check to see if all the keys needed have been obtained and redraw accordingly
-                                                    gamePlay.checkGate(gamePlay.getPlayer());
-                                                    root = gamePlay.drawState(gamePlay.getPlayer());
-                                                    game.setRoot(root);
-                                                    mediaPlayer.stop();
-                                                    soundtrackPlayer.play(); // turn the main music back on for main gameplay
-                                                    window.setScene(game);
-
-                                                }
-                                            }
-                                        });
->>>>>>> master
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -696,38 +562,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 b.setUsedParry(false);
                                                             }
                                                             if (b.checkLoseState(player) == true) {
-<<<<<<< HEAD
+
                                                                 endBattle(e, player);
-=======
 
-                                                                drawState(player, e);
-                                                                log.appendText("\nYou Lose!");
-                                                                monte.setRotate(90);
-                                                                attacks.setVisible(false);
-                                                                playerHealth.setVisible(false);
-                                                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                                                alert.setHeaderText("You Lost!");
-                                                                alert.setContentText("Click OK to end Battle");
-
-                                                                alert.setOnHidden(new EventHandler<DialogEvent>() {
-                                                                    @Override
-                                                                    public void handle(DialogEvent event) {
-                                                                        mediaPlayer.stop();
-                                                                        end = new Scene(endSceneContent(false)); // set the scene for main
-                                                                        end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                                            // need to reset the game parameters
-                                                                            gamePlay = new GameLoop();
-                                                                            gamePlay.initialize();
-                                                                            //redraw the state
-                                                                            root = gamePlay.drawState(gamePlay.getPlayer());
-                                                                            game.setRoot(root); // refresh the page
-                                                                            window.setScene(main);
-                                                                        });
-                                                                        window.setScene(end);
-                                                                    }
-                                                                });
-                                                                alert.show();
->>>>>>> master
                                                             }
                                                             drawState(player, e);
                                                         }
@@ -760,38 +597,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                         b.setUsedParry(false);
                                                     }
                                                     if (b.checkLoseState(player) == true) {
-<<<<<<< HEAD
+
                                                         endBattle(e, player);
-=======
 
-                                                        drawState(player, e);
-                                                        log.appendText("\nYou Lose!");
-                                                        monte.setRotate(90);
-                                                        attacks.setVisible(false);
-                                                        playerHealth.setVisible(false);
-                                                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                                        alert.setHeaderText("You Lost!");
-                                                        alert.setContentText("Click OK to end Battle");
-
-                                                        alert.setOnHidden(new EventHandler<DialogEvent>() {
-                                                            @Override
-                                                            public void handle(DialogEvent event) {
-                                                                mediaPlayer.stop();
-                                                                end = new Scene(endSceneContent(false)); // set the scene for main
-                                                                end.setOnKeyTyped(e -> { // set key listener for any button to be pressed
-                                                                    // need to reset the game parameters
-                                                                    gamePlay = new GameLoop();
-                                                                    gamePlay.initialize();
-                                                                    //redraw the state
-                                                                    root = gamePlay.drawState(gamePlay.getPlayer());
-                                                                    game.setRoot(root); // refresh the page
-                                                                    window.setScene(main);
-                                                                });
-                                                                window.setScene(end);
-                                                            }
-                                                        });
-                                                        alert.show();
->>>>>>> master
                                                     }
                                                     drawState(player, e);
                                                 }
@@ -802,7 +610,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     }
                                 }
 
-                            });
+                            }
+                            );
                         }
 
                     }
@@ -957,6 +766,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
+                                player.setKeyCount(player.getKeyCount() +1);
+                                player.setHealth(100);
+                                gamePlay.setPlayer(player);
                                 b.removeEnemy(e, enemy, terrain);
                                 // check to see if all the keys needed have been obtained and redraw accordingly
                                 gamePlay.checkGate(gamePlay.getPlayer());
@@ -1159,7 +971,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * screen or the lose screen.
      */
     public StackPane endSceneContent(boolean win) {
-        win = true;
         // depending on the state change the text
         StackPane endScene = new StackPane();
         ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
