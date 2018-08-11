@@ -22,7 +22,6 @@ public class Player extends Avatar {
 		super();
  		this.keyCount = 0;
 		this.items = new ArrayList<Sprite>();
-		//this.currency = 0;
 	}
 
 	/**
@@ -63,7 +62,6 @@ public class Player extends Avatar {
 					moves);
 		this.keyCount = 0;
 		this.items = new ArrayList<Sprite>();
-		//this.currency = 0; // for later expansion
 	}
 
 	/**
@@ -86,7 +84,6 @@ public class Player extends Avatar {
 					p.getMoves()); // I believe this works for copying an class
 		this.keyCount = p.getKeyCount();
 		this.items = p.getItems();
-		//this.currency = 0;
 	}
 
 
@@ -108,20 +105,6 @@ public class Player extends Avatar {
 
 		// *** in order for this to work, the coordinates need to be in pixel values now ***
 	}
-
-	/*
-	/**
-	 * Purpose: This function sets the new value of currency, if the player were to lose or gain some currency.
-	 * If the player loses currency then a negative amount of loseOrGainOfCurrency must be passed in the parameter
-	 *
-	 * @param  loseOrGainOfCurrency  This is the amount of currency that the calling player, ether loses or gains.
-	 * If the calling player loses currency, then this variable must be a negative integer.
-	 */
-	 /*
-	public void updateCurrency(int loseOrGainOfCurrency) {
-		this.currency =  this.currency	+ loseOrGainOfCurrency;
-	}
-	*/
 
 	/**
 	 * Purpose: This method adds a new item to the calling players item array
@@ -276,27 +259,6 @@ public class Player extends Avatar {
 		}
 		else return "";
 	}
-
-	/**
-	 * Purpose: This method returns the calling players currency value
-	 *
-	 * @return  this.currency  This is the calling players currency value, it is of the intger type
-	 */
-	/*
-	public int getCurrency() {
-		return this.currency;
-	}
-
-	/**
-	 * Purpose: This method is used to set the currency value of the calling player
-	 *
-	 * @param  newCurrency  This paramter is the new currency amount that will replace the calling players current currency variable
-	 */
-	/*
-	public void setCurrency(int newCurrency) {
-		this.currency = newCurrency;
-	}
-	*/
 
 	/**
 	 * Purpose: To print out a string representation of the class attributes
