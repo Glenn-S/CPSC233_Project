@@ -158,7 +158,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         root = gamePlay.drawState(gamePlay.getPlayer()); // draw the initial game state
         game.setOnKeyPressed(this);
         game.setRoot(root);
-
+        
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -194,7 +194,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             });
                             timeline.getKeyFrames().addAll(leftWalk, rightWalk, centerWalk);
                             timeline.play();
-
+                            
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             soundtrackPlayer.pause();
@@ -204,7 +204,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
                         }
-
+                        
                         root = gamePlay.drawState(gamePlay.getPlayer());
                         game.setRoot(root); // refresh the page
                         userMove = "";
@@ -219,7 +219,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     }
                      */
                 }
-
+                
             }
         };
         timer.start();
@@ -258,13 +258,13 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         //i1.setFitWidth(1440);
         i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
         i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-
+        
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
         } else {
             this.enemyBG = new ImageView("Images/Margarine Men_BG.png");
         }
-
+        
         this.monte = new ImageView("Images/Montequilla_BG.png");
         this.enemyHealth = new ProgressBar(1.0f);
         this.playerHealth = new ProgressBar(1.0f);
@@ -300,6 +300,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
+        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.setVolume(0.6);
         this.mediaPlayer.play();
         ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
         st.setFromX(attackAnimText.getX());
@@ -341,7 +343,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         if (e.getName().equals("Boss")) {
             AnchorPane.setTopAnchor(this.enemyHealth, 275.0);
             AnchorPane.setLeftAnchor(this.enemyHealth, 225.0);
-
+            
         } else {
             AnchorPane.setTopAnchor(this.enemyHealth, 165.0);
             AnchorPane.setLeftAnchor(this.enemyHealth, 250.0);
@@ -354,7 +356,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         AnchorPane.setLeftAnchor(this.log, 0.0);
         this.bRoot.getChildren().add(i1);
         this.bRoot.getChildren().add(ap);
-
+        
         return bRoot;
     }
 
@@ -373,7 +375,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-
+                
                 this.moveLeftRight(event);
                 this.moveupDown(event);
                 if (event.getCode() == KeyCode.ENTER && !attackAnim.getStatus().equals(Animation.Status.RUNNING) && !injuryAnim.getStatus().equals(attackAnim.getStatus().equals(Animation.Status.RUNNING))) {
@@ -383,7 +385,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!(b.getTurnAttack().equals(""))) {
                         attack.play();
                         if (b.getBBCounter() == 0) {
-
+                            
                             attackAnimText.setText(b.getTurnAttack() + "!");
                             attackAnimText.setFill(Color.RED);
                             attackAnim.play();
@@ -393,20 +395,20 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     log.appendText("\nYou used " + b.getTurnAttack());
                                     int eH = e.getHealth();
                                     b.attackExecute(b.getTurnAttack(), player, e);
-
+                                    
                                     if (b.getEnemyUsedParry()) {
                                         if (e.getHealth() == eH) {
                                             log.appendText("\nEnemy Parry Success!");
                                         } else {
                                             log.appendText("\nEnemy Parry Failed!");
-
+                                            
                                         }
-
+                                        
                                     }
                                     if (b.getEnemyUsedParry()) {
                                         b.setEnemyUsedParry(false);
                                     }
-
+                                    
                                     if (b.checkWinState(e) == true) {
                                         endBattle(e, player);
                                     } else {
@@ -427,7 +429,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                     attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
                                                         @Override
                                                         public void handle(ActionEvent event) {
-
+                                                            
                                                             log.appendText("\nEnemy used " + eAttack);
                                                             int pH = player.getHealth();
                                                             b.eAttackExecute(eAttack, player, e);
@@ -437,15 +439,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 } else {
                                                                     log.appendText("\nPlayer Parry Failed!");
                                                                 }
-
+                                                                
                                                             }
                                                             if (b.getUsedParry()) {
                                                                 b.setUsedParry(false);
                                                             }
                                                             if (b.checkLoseState(player) == true) {
-
+                                                                
                                                                 endBattle(e, player);
-
+                                                                
                                                             }
                                                             if (b.getBBCounter() == 1) {
                                                                 log.appendText("\nButter Boomerang Powering Up!");
@@ -455,7 +457,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                             drawState(player, e);
                                                         }
                                                     });
-
+                                                    
                                                 } else if (b.getMMCounter() == 2) {
                                                     attackAnimText.setText("Missile Fired!");
                                                     attackAnim.play();
@@ -472,16 +474,16 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 } else {
                                                                     log.appendText("\nPlayer Parry Failed!");
                                                                 }
-
+                                                                
                                                             }
                                                             b.setMMCounter(0);
                                                             if (b.getUsedParry()) {
                                                                 b.setUsedParry(false);
                                                             }
                                                             if (b.checkLoseState(player) == true) {
-
+                                                                
                                                                 endBattle(e, player);
-
+                                                                
                                                             }
                                                             if (b.getBBCounter() == 1) {
                                                                 log.appendText("\nButter Boomerang Powering Up!");
@@ -491,16 +493,16 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                             drawState(player, e);
                                                         }
                                                     });
-
+                                                    
                                                 }
-
+                                                
                                             }
                                         });
-
+                                        
                                     }
                                 }
                             });
-
+                            
                         } else if (b.getBBCounter() == 2) {
                             attackAnimText.setText("Boomerang Fired!");
                             attackAnimText.setFill(Color.RED);
@@ -518,16 +520,16 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         } else {
                                             log.appendText("\nEnemy Parry Failed!");
                                         }
-
+                                        
                                     }
                                     b.setBBCounter(0);
                                     if (b.getEnemyUsedParry()) {
                                         b.setEnemyUsedParry(false);
                                     }
-
+                                    
                                     if (b.checkWinState(e) == true) {
                                         endBattle(e, player);
-
+                                        
                                     } else {
                                         injuryAnim.play();
                                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -555,20 +557,20 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                                 } else {
                                                                     log.appendText("\nPlayer Parry Failed!");
                                                                 }
-
+                                                                
                                                             }
                                                             if (b.getUsedParry()) {
                                                                 b.setUsedParry(false);
                                                             }
                                                             if (b.checkLoseState(player) == true) {
-
+                                                                
                                                                 endBattle(e, player);
-
+                                                                
                                                             }
                                                             drawState(player, e);
                                                         }
                                                     });
-
+                                                    
                                                 } else if (b.getMMCounter() == 2) {
                                                     attackAnimText.setText("Missile Fired!");
                                                     attackAnimText.setFill(Color.BLACK);
@@ -589,35 +591,35 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                                         } else {
                                                             log.appendText("\nPlayer Parry Failed!");
                                                         }
-
+                                                        
                                                     }
                                                     b.setMMCounter(0);
                                                     if (b.getUsedParry()) {
                                                         b.setUsedParry(false);
                                                     }
                                                     if (b.checkLoseState(player) == true) {
-
+                                                        
                                                         endBattle(e, player);
-
+                                                        
                                                     }
                                                     drawState(player, e);
                                                 }
-
+                                                
                                             }
                                         });
-
+                                        
                                     }
                                 }
-
+                                
                             }
                             );
                         }
-
+                        
                     }
-
+                    
                 }
             }
-
+            
             private void playerTurn(KeyEvent event, Player player, Enemy e) {
                 this.moveLeftRight(event);
                 this.moveupDown(event);
@@ -653,7 +655,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             }
                         });
                     }
-
+                    
                     if (e.getHealth() == eH && b.getEnemyUsedParry()) {
                         log.appendText("\nEnemy Parry Success!");
                     } else {
@@ -663,7 +665,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-
+                                
                                 if (b.getEnemyUsedParry()) {
                                     b.setEnemyUsedParry(false);
                                 }
@@ -673,14 +675,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                 }
                             }
                         });
-
+                        
                     }
                     drawState(player, e);
                     b.setTurnAttack("");
                 }
-
+                
             }
-
+            
             private void enemyTurn(KeyEvent event, Player player, Enemy e) {
                 String eAttack = e.attackLogic(player);
                 attackAnimText.setText(eAttack + "!");
@@ -696,14 +698,14 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             log.appendText("\nEnemy used " + eAttack);
                             int pH = player.getHealth();
                             b.eAttackExecute(eAttack, player, e);
-
+                            
                         }
                     });
                 } else if (b.getBBCounter() == 2) {
                     attackAnimText.setText("Boomerang Fired");
                     attackAnim.play();
                     attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-
+                        
                         @Override
                         public void handle(ActionEvent event) {
                             log.appendText("\nBoomerang Fired!");
@@ -722,7 +724,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-
+                            
                             if (b.getUsedParry()) {
                                 b.setUsedParry(false);
                             }
@@ -736,9 +738,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     });
                 }
                 drawState(player, e);
-
+                
             }
-
+            
             private void endBattle(Enemy e, Player player) {
                 if (b.checkWinState(e) == true) {
                     battleWinAlert.setHeaderText("You Win!");
@@ -746,7 +748,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     enemyBG.setRotate(90);
                     drawState(player, e);
                     battleWinAlert.show();
-
+                    
                     battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
                         @Override
                         public void handle(DialogEvent event) {
@@ -763,7 +765,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     window.setScene(main);
                                 });
                                 window.setScene(end);
-
+                                
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
                                 if (e.getKey()) {
@@ -779,12 +781,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                 mediaPlayer.stop();
                                 soundtrackPlayer.play(); // turn the main music back on for main gameplay
                                 window.setScene(game);
-
+                                
                             }
                         }
                     });
                 } else if (b.checkLoseState(player) == true) {
-
+                    
                     drawState(player, e);
                     log.appendText("\nYou Lose!");
                     monte.setRotate(90);
@@ -793,7 +795,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("You Lost!");
                     alert.setContentText("Click OK to end Battle");
-
+                    
                     alert.setOnHidden(new EventHandler<DialogEvent>() {
                         @Override
                         public void handle(DialogEvent event) {
@@ -814,7 +816,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     alert.show();
                 }
             }
-
+            
             private void drawState(Player player, Enemy e) {
                 playerHealth.setProgress((double) player.getHealth() / 100);
                 enemyHealth.setProgress((double) e.getHealth() / 100);
@@ -825,9 +827,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     attacks.getChildren().get(0).requestFocus();
                 }
             }
-
+            
             private void moveLeftRight(KeyEvent event) {
-
+                
                 int leftRight = 0; // if 1, move right if -1 move left
                 if (event.getCode() == KeyCode.A) {
                     leftRight = -1;
@@ -839,21 +841,21 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
-
+                        
                         int newRow = GridPane.getRowIndex(attacks.getChildren().get(i));
                         int newCol = GridPane.getColumnIndex(attacks.getChildren().get(i));
-
+                        
                         for (int j = 0; j < attacks.getChildren().size(); j++) {
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == newRow && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol + leftRight) {
                                 attacks.getChildren().get(j).requestFocus();
                                 b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
-
+                                
                             }
                         }
                     }
                 }
             }
-
+            
             private void moveupDown(KeyEvent event) {
                 int upDown = 0;
                 if (event.getCode() == KeyCode.W) {
@@ -866,15 +868,15 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 }
                 for (int i = 0; i < attacks.getChildren().size(); i++) {
                     if (attacks.getChildren().get(i).isFocused()) {
-
+                        
                         int newRow = GridPane.getRowIndex(attacks.getChildren().get(i));
                         int newCol = GridPane.getColumnIndex(attacks.getChildren().get(i));
-
+                        
                         for (int j = 0; j < attacks.getChildren().size(); j++) {
                             if (GridPane.getRowIndex(attacks.getChildren().get(j)) == (newRow + upDown) && GridPane.getColumnIndex(attacks.getChildren().get(j)) == newCol) {
                                 attacks.getChildren().get(j).requestFocus();
                                 b.setTurnAttack(((Button) attacks.getChildren().get(j)).getText());
-
+                                
                             }
                         }
                     }
@@ -949,10 +951,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 exitBtn.requestFocus();
             }
         });
-
+        
         return mainLayout;
     }
-
+    
     private void playSoundtrack() {
         try {
             soundtrackPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
@@ -976,7 +978,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         // depending on the state change the text
         StackPane endScene = new StackPane();
         ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
-
+        
         VBox endContent = new VBox();
         endContent.setAlignment(Pos.CENTER);
         endContent.setSpacing(GAP * 2);
@@ -1013,7 +1015,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         } else {
             endContent.getChildren().addAll(userMsg, prompt);
         }
-
+        
         endScene.getChildren().addAll(backing, endContent);
         return endScene;
     }
@@ -1054,7 +1056,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
             MainTerminal game = new MainTerminal();
             boolean playGame = true;
             String exitMsg = "Thanks for playing!";
-
+            
             while (playGame) { // loop until false is selected
                 playGame = game.mainMenu();
                 if (playGame == false) {
@@ -1067,7 +1069,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         } else if (args.length == 0) {
             launch(args);
         }
-
+        
     }
-
+    
 }
