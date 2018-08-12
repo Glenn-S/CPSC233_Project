@@ -300,6 +300,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
+        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.setVolume(0.6);
         this.mediaPlayer.play();
         ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
         st.setFromX(attackAnimText.getX());
@@ -766,7 +768,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                player.setKeyCount(player.getKeyCount() + 1);
+                                if (e.getKey()) {
+                                    player.setKeyCount(player.getKeyCount() + 1);
+                                }
                                 player.setHealth(100);
                                 gamePlay.setPlayer(player);
                                 b.removeEnemy(e, enemy, terrain);
