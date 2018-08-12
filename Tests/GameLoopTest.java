@@ -33,7 +33,29 @@ public class GameLoopTest {
     	l2.setySize(10);
     	e.setCoord(l2);
     	String[] move = {"Left","Right","Up","Down"};
-		 assertEquals(true,g.checkCollisions(p,move[0]));
+		assertEquals(true,g.checkCollisions(p,move[0]));
+    }
+
+    @Test
+    public void testcheckenemyLeftFalse() {
+    	GameLoop g = new GameLoop();
+    	Enemy e = new Enemy();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	e.setExists(true);
+    	l1.setxCoord(0);
+    	l1.setxSize(10);
+    	l1.setyCoord(30);
+    	l1.setySize(10);
+    	p.setCoord(l1);
+    	l2.setxCoord(35);
+    	l2.setxSize(10);
+    	l2.setyCoord(30);
+    	l2.setySize(10);
+    	e.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+		assertEquals(false,g.checkCollisions(p,move[0]));
     }
 
     @Test
@@ -59,6 +81,28 @@ public class GameLoopTest {
     }
 
     @Test
+    public void testcheckenemyRightFalse() {
+    	GameLoop g = new GameLoop();
+    	Enemy e = new Enemy();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	e.setExists(true);
+    	l1.setxCoord(80);
+    	l1.setxSize(10);
+    	l1.setyCoord(30);
+    	l1.setySize(10);
+    	p.setCoord(l1);
+    	l2.setxCoord(10);
+    	l2.setxSize(10);
+    	l2.setyCoord(30);
+    	l2.setySize(10);
+    	e.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+		assertEquals(false,g.checkCollisions(p,move[1]));
+    }
+
+    @Test
     public void testcheckenemyUp() {
     	GameLoop g = new GameLoop();
     	Enemy e = new Enemy();
@@ -81,7 +125,7 @@ public class GameLoopTest {
     }
 
     @Test
-    public void testcheckenemyDown() {
+    public void testcheckenemyUpFalse() {
     	GameLoop g = new GameLoop();
     	Enemy e = new Enemy();
     	Player p  = new Player();
@@ -89,7 +133,7 @@ public class GameLoopTest {
     	Location l2 = new Location();
     	e.setExists(true);
     	l1.setxCoord(20);
-    	l1.setxSize(10);
+    	l1.setxSize(0);
     	l1.setyCoord(30);
     	l1.setySize(10);
     	p.setCoord(l1);
@@ -99,9 +143,230 @@ public class GameLoopTest {
     	l2.setySize(10);
     	e.setCoord(l2);
     	String[] move = {"Left","Right","Up","Down"};
+	  	assertEquals(false,g.checkCollisions(p,move[2]));
+    }
+
+    @Test
+    public void testcheckenemyDown() {
+    	GameLoop g = new GameLoop();
+    	Enemy e = new Enemy();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	e.setExists(true);
+    	l1.setxCoord(35);
+    	l1.setxSize(10);
+    	l1.setyCoord(30);
+    	l1.setySize(10);
+    	p.setCoord(l1);
+    	l2.setxCoord(20);
+    	l2.setxSize(10);
+    	l2.setyCoord(5);
+    	l2.setySize(10);
+    	e.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+	  	assertEquals(false,g.checkCollisions(p,move[3]));
+    }
+
+    @Test
+    public void testcheckenemyDownFalse() {
+    	GameLoop g = new GameLoop();
+    	Enemy e = new Enemy();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	e.setExists(true);
+    	l1.setxCoord(35);
+    	l1.setxSize(10);
+    	l1.setyCoord(30);
+    	l1.setySize(10);
+    	p.setCoord(l1);
+    	l2.setxCoord(35);
+    	l2.setxSize(35);
+    	l2.setyCoord(5);
+    	l2.setySize(10);
+    	e.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+	  	assertEquals(false,g.checkCollisions(p,move[3]));
+    }
+
+    @Test
+    public void testcheckspriteLeft() {
+    	GameLoop g = new GameLoop();
+        Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(10);
+    	l1.setyCoord(30);
+    	l1.setySize(10);
+    	p.setCoord(l1);
+    	l2.setxCoord(19);
+    	l2.setxSize(0);
+    	l2.setyCoord(30);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+		assertEquals(true,g.checkCollisions(p,move[0]));
+    }
+
+    @Test
+    public void testcheckspriteLeftFalse() {
+    	GameLoop g = new GameLoop();
+        Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(15);
+    	l2.setxSize(0);
+    	l2.setyCoord(30);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+    	assertEquals(false,g.checkCollisions(p,move[0]));
+    }
+
+    @Test
+    public void testcheckspriteRight() {
+    	GameLoop g = new GameLoop();
+        Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(21);
+    	l2.setxSize(0);
+    	l2.setyCoord(30);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+		assertEquals(true,g.checkCollisions(p,move[1]));
+    }
+
+    @Test
+    public void testcheckspriteRightFalse() {
+    	GameLoop g = new GameLoop();
+        Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(25);
+    	l2.setxSize(0);
+    	l2.setyCoord(30);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+		assertEquals(false,g.checkCollisions(p,move[1]));
+    }
+
+    @Test
+    public void testcheckspriteUp() {
+    	GameLoop g = new GameLoop();
+        Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(20);
+    	l2.setxSize(0);
+    	l2.setyCoord(31);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+	  	assertEquals(true,g.checkCollisions(p,move[2]));
+    }
+
+    @Test
+    public void testcheckspriteUpFalse() {
+    	GameLoop g = new GameLoop();
+        Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(20);
+    	l2.setxSize(0);
+    	l2.setyCoord(35);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+	  	assertEquals(false,g.checkCollisions(p,move[2]));
+    }
+
+    @Test
+    public void testcheckspriteDown() {
+    	GameLoop g = new GameLoop();
+    	Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(20);
+    	l2.setxSize(0);
+    	l2.setyCoord(29);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
 	  	assertEquals(true,g.checkCollisions(p,move[3]));
     }
-    
+
+    @Test
+    public void testcheckspriteDown() {
+    	GameLoop g = new GameLoop();
+    	Sprite s = new Sprite();
+    	Player p  = new Player();
+    	Location l1 = new Location();
+    	Location l2 = new Location();
+    	s.setExists(true);
+    	l1.setxCoord(20);
+    	l1.setxSize(0);
+    	l1.setyCoord(30);
+    	l1.setySize(0);
+    	p.setCoord(l1);
+    	l2.setxCoord(20);
+    	l2.setxSize(0);
+    	l2.setyCoord(25);
+    	l2.setySize(0);
+    	s.setCoord(l2);
+    	String[] move = {"Left","Right","Up","Down"};
+	  	assertEquals(false,g.checkCollisions(p,move[3]));
+    }
+
+
     @Test
     public void testgate3Keys(){
     	GameLoop g = new GameLoop();
