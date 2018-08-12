@@ -195,7 +195,8 @@ public class BattleLoop extends GameLoop {
         if (attack > 4) {
             System.out.println("Error, invalid move entered. Please enter a valid move");
             attack = sc.nextInt();
-        } if (attack == 4 && (this.playerHasPotion(player) == false || this.validPotion(player) == null)) {
+        }
+        if (attack == 4 && (this.playerHasPotion(player) == false || this.validPotion(player) == null)) {
             System.out.println("Error, No potions available or Health is too high. Please enter a different move");
             attack = sc.nextInt();
         }
@@ -392,6 +393,28 @@ public class BattleLoop extends GameLoop {
         e.setHealth(e.getHealth() + e.getPotions().get(0).getHealthBoost());
         e.getPotions().remove(0);
 
+    }
+
+    /**
+     * Purpose: Decides what attack the enemy will use. This is accomplished by
+     * deciding the most efficient way to reduce player health to 0 while
+     * keeping the enemy's health as high as possible.
+     *
+     * @param player - Player playing the game
+     * @return moves[] - the attack the enemy decides to use
+     */
+    public String attackLogic(Player player, Enemy e) {
+        if (player.getHealth() <= 15 * this.eModifier) {
+            return e.getMoves()[0];
+        } else if (player.getHealth() <= 40 * this.eModifier && e.getHealth() > 40 * this.pModifier) {
+            return e.getMoves()[1];
+        } else if (this.getBBCounter() == 1) {
+            return e.getMoves()[2];
+        } else if (e.getHealth() <= 50 && e.hasPotion() == true) {
+            return e.getMoves()[3];
+        } else {
+            return e.getMoves()[0];
+        }
     }
 
     /**

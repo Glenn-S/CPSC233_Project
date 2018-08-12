@@ -140,26 +140,7 @@ public class Enemy extends Avatar {
     }
 
     /*------------------------------- METHODS --------------------------------*/
-    /**
-     * Purpose: Decides what attack the enemy will use. This is accomplished by deciding
-     * the most efficient way to reduce player health to 0 while keeping the
-     * enemy's health as high as possible.
-     * @param player - Player playing the game
-     * @return moves[] - the attack the enemy decides to use
-     */
-    public String attackLogic(Player player) {
-        if (player.getHealth() <= 15) {
-            return this.moves[0];
-        } else if (player.getHealth() <= 40 && this.getHealth() > 30) {
-            return this.moves[1];
-        } else if (this.getHealth() <= 50 && this.hasPotion() == true) {
-            return this.moves[3];
-        } else if (this.getHealth() <= 40 && this.hasPotion() == false) {
-            return this.moves[2];
-        } else {
-            return this.moves[0];
-        }
-    }
+
 
     /**
      * Purpose: To print out a string representation of the class attributes
@@ -181,7 +162,7 @@ public class Enemy extends Avatar {
         e1.setHealth(10);
         System.out.print(e1.hasPotion());
         Enemy e2 = new Enemy();
-        System.out.println(e1.attackLogic(p));
+        //System.out.println(e1.attackLogic(p));
         System.out.println(e2);
     }
 }
