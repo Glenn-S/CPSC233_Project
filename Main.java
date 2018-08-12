@@ -254,10 +254,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.bRoot = new StackPane();
         Image bkgrnd = new Image("Images/Battle Background.png");
         ImageView i1 = new ImageView(bkgrnd);
-        //i1.setFitHeight(960);
-        //i1.setFitWidth(1440);
-        i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
-        i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        i1.setFitHeight(960);
+        i1.setFitWidth(1440);
+        //i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
+        //i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
 
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
@@ -354,7 +354,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         AnchorPane.setLeftAnchor(this.log, 0.0);
         this.bRoot.getChildren().add(i1);
         this.bRoot.getChildren().add(ap);
-        
+
         return bRoot;
     }
 
