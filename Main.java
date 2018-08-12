@@ -354,7 +354,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         AnchorPane.setLeftAnchor(this.log, 0.0);
         this.bRoot.getChildren().add(i1);
         this.bRoot.getChildren().add(ap);
-        
+
         return bRoot;
     }
 
@@ -766,7 +766,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
 
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                player.setKeyCount(player.getKeyCount() + 1);
+                                if (e.getKey()) {
+                                    player.setKeyCount(player.getKeyCount() + 1);
+                                }
                                 player.setHealth(100);
                                 gamePlay.setPlayer(player);
                                 b.removeEnemy(e, enemy, terrain);
