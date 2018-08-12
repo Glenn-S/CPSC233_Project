@@ -254,11 +254,19 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.bRoot = new StackPane();
         Image bkgrnd = new Image("Images/Battle Background.png");
         ImageView i1 = new ImageView(bkgrnd);
+<<<<<<< HEAD
         //i1.setFitHeight(960);
         //i1.setFitWidth(1440);
         i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
         i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
         
+=======
+        i1.setFitHeight(960);
+        i1.setFitWidth(1440);
+        //i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
+        //i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+
+>>>>>>> master
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
         } else {
@@ -300,6 +308,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
+        this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        this.mediaPlayer.setVolume(0.6);
         this.mediaPlayer.play();
         ScaleTransition st = new ScaleTransition(Duration.millis(1200), attackAnimText);
         st.setFromX(attackAnimText.getX());
@@ -766,7 +776,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                 
                             } else {
                                 log.appendText("\nPlayer key count: " + player.getKeyCount());
-                                player.setKeyCount(player.getKeyCount() + 1);
+                                if (e.getKey()) {
+                                    player.setKeyCount(player.getKeyCount() + 1);
+                                }
                                 player.setHealth(100);
                                 gamePlay.setPlayer(player);
                                 b.removeEnemy(e, enemy, terrain);

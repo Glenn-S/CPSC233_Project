@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
-import Sprite.Defence;
-import Sprite.Location;
+import sprite.Defence;
+import sprite.Location;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -15,16 +15,16 @@ public class DefenseTest {
     public void testName() {
     	Defence d = new Defence();
     	d.setName("smallpotion");
-        assertEquals("smallpotion", d.getName());
+    	assertEquals("smallpotion", d.getName());
     }
-    
+
     @Test
     public void testDef() {
     	Defence d = new Defence();
     	d.setDefenceBoost(20);
-        assertEquals(20, d.getDefenceBoost());
+    	assertEquals(20, d.getDefenceBoost());
     }
-    
+
     @Test
     public void test_toString() {
     	Defence d = new Defence();
@@ -39,5 +39,5 @@ public class DefenseTest {
     	d.setDefenceBoost(20);
     	assertEquals("Name: smallpotion, Coord: ((20, 30), (X Size: 0, Y Size: 0)), Image: null, Char:  , Text: null, Exists: true, Defence Boost: 20",d.toString());
     }
-    
+
 }
