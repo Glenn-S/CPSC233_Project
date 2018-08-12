@@ -3,8 +3,8 @@ package Tests;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import Sprite.Location;
-import Sprite.Potion;
+import sprite.Location;
+import sprite.Potion;
 
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
@@ -17,14 +17,14 @@ public class PotionTest {
     	p.setName("smallpotion");
         assertEquals("smallpotion", p.getName());
     }
-    
+
     @Test
     public void testDef() {
     	Potion p = new Potion();
     	p.setHealthBoost(40);
         assertEquals(40, p.getHealthBoost());
     }
-    
+
     @Test
     public void test_toString() {
     	Potion p = new Potion();

@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Sprite.Location;
-import Sprite.Sprite;
+import sprite.Location;
+import sprite.Sprite;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -15,7 +15,7 @@ public class SpriteTest {
     public void test_setName() {
     	Sprite s = new Sprite();
     	s.setName("Chris");
-      assertEquals("Chris",s.getName());
+    	assertEquals("Chris",s.getName());
     }
 
     @Test
@@ -27,21 +27,21 @@ public class SpriteTest {
     	l.setxSize(100);
     	l.setySize(50);
     	s.setCoord(l);
-      assertEquals("((20, 30), (X Size: 100, Y Size: 50))",s.getCoord().toString());
+    	assertEquals("((20, 30), (X Size: 100, Y Size: 50))",s.getCoord().toString());
     }
 
     @Test
     public void test_setExistfalse() {
     	Sprite s = new Sprite();
     	s.setExists(false);
-      assertEquals(false,s.getExists());
+    	assertEquals(false,s.getExists());
     }
 
     @Test
     public void test_setExisttrue() {
     	Sprite s = new Sprite();
     	s.setExists(true);
-      assertEquals(true,s.getExists());
+    	assertEquals(true,s.getExists());
     }
 
     @Test
@@ -55,6 +55,6 @@ public class SpriteTest {
     	l.setySize(50);
     	s.setCoord(l);
     	s.setExists(true);
-      assertEquals("Name: Eva, Coord: ((20, 30), (X Size: 100, Y Size: 50)), Image: null, Char:  , Text: null, Exists: true",s.toString());
+    	assertEquals("Name: Eva, Coord: ((20, 30), (X Size: 100, Y Size: 50)), Image: null, Char:  , Text: null, Exists: true",s.toString());
     }
 }
