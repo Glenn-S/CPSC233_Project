@@ -923,6 +923,9 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         return mainLayout;
     }
 
+    /**
+     * Purpose: To set up the sound track for the game and play it
+     */
     private void playSoundtrack() {
         try {
             soundtrackPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
