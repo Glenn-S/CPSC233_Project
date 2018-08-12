@@ -354,7 +354,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         AnchorPane.setLeftAnchor(this.log, 0.0);
         this.bRoot.getChildren().add(i1);
         this.bRoot.getChildren().add(ap);
-
+        
         return bRoot;
     }
 
