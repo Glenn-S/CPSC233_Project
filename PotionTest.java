@@ -8,14 +8,14 @@ import sprite.*;
 public class PotionTest {
 
 	@Test
-    public void testName() {
+    public void test_name() {
     	Potion p = new Potion();
     	p.setName("smallpotion");
         assertEquals("smallpotion", p.getName());
     }
 
     @Test
-    public void testDef() {
+    public void test_def() {
     	Potion p = new Potion();
     	p.setHealthBoost(40);
         assertEquals(40, p.getHealthBoost());
