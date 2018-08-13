@@ -297,7 +297,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Button parry = new Button("Parry");
         this.potion = new Button("Potion");
         this.attackAnimText = new Text();
-        Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24);
+        Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24); // font from http://www.fontspace.com/khryskreations/kbzipadeedoodah
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
         this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
