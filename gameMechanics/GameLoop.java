@@ -312,7 +312,7 @@ public class GameLoop {
     }
 
     /**
-     *
+     * Purpose:
      */
     private void randomizeKeys() {
         int tempKeyCount = totalKeys - 1;
@@ -711,7 +711,6 @@ public class GameLoop {
         // set for vertical view following
         if (player.getCoord().getyCoord() > 39-6) scrollPane.setVvalue(1.0);
         else scrollPane.setVvalue(((double)player.getCoord().getyCoord() - 6)/28);
-
 
         HBox itemsStrip = new HBox();
         VBox itemContainer;

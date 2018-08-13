@@ -51,9 +51,9 @@ import javafx.stage.StageStyle;
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
  * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
  * sound effect clips from Theme music:
- * https://bassgorilla.com/video-game-sound-effects/ losing sound:
- * http://soundbible.com/1623-Dun-Dun-Dun.html Treasure chest sound:
- * http://soundbible.com/1354-Opening-Casket.html
+ * https://bassgorilla.com/video-game-sound-effects/ background sound
+ * http://soundbible.com/1623-Dun-Dun-Dun.html losing sound
+ * http://soundbible.com/1354-Opening-Casket.html Treasure chest sound
  *
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -254,10 +254,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         this.bRoot = new StackPane();
         Image bkgrnd = new Image("Images/Battle Background.png");
         ImageView i1 = new ImageView(bkgrnd);
-        i1.setFitHeight(960);
-        i1.setFitWidth(1440);
-        //i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
-        //i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
+        //i1.setFitHeight(960);
+        //i1.setFitWidth(1440);
+        i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
+        i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
 
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
@@ -809,7 +809,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
 
-        // need to fix
         ImageView montequillaEnd = new ImageView(new Image("file:Images/MontequillaEndScenev2.png"));
         ImageView butterBobBrown = new ImageView(new Image("file:Images/butterBobBrownEndScenev2.png"));
         HBox endFriendsContainer = new HBox();
