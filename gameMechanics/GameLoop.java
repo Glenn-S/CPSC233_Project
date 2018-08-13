@@ -978,21 +978,19 @@ public class GameLoop {
      */
     public void engageBattle(Player player, Enemy e) {
         BattleLoop b = new BattleLoop();
-        int i = 0;
-        int bbCounter = 0;  // keeps track of turns for Butter boomerang attack
-        int mmCounter = 0;  // keeps track of turns for Margarine missile attack
+        int i = 0;  // generic loop condition variable
         int damage;
         while (i == 0) {
-            if (bbCounter == 0) {
+            if (b.getBBCounter() == 0) {
                 String attack = b.playerInput(player);
                 System.out.println("You used " + attack);
                 switch (attack) {
                     case "Slash":
                         damage = 15;
-                        b.damageCalc(damage, e,player);
+                        b.damageCalc(damage, e, player);
                         break;
                     case "Butter Boomerang":
-                        bbCounter = 1;
+                        b.setBBCounter(1);
                         System.out.println("Powering up!");
                         break;
                     case "Parry":
@@ -1002,11 +1000,11 @@ public class GameLoop {
                         b.usePotion(player);
                         break;
                 }
-            } else if (bbCounter == 2) {
+            } else if (b.getBBCounter() == 2) {
                 System.out.println("Boomerang Fired!");
                 damage = 40;
-                b.damageCalc(damage, e,player);
-                bbCounter = 0;
+                b.damageCalc(damage, e, player);
+                b.setBBCounter(0);
             }
             if (b.getEnemyUsedParry()) {
                 b.setEnemyUsedParry(false);
@@ -1023,24 +1021,24 @@ public class GameLoop {
                 b.removeEnemy(e, enemy, terrain);
                 break;
             }
-            if (mmCounter == 1) {
-                mmCounter = 2;
+            if (b.getMMCounter() == 1) {
+                b.setMMCounter(2);
 //                        if (b.getUsedParry()) {
 //                        b.setUsedParry(false);
 //                  }
             }
             b.drawState(player, e);
-            if (mmCounter == 0) {
-                String eAttack = b.attackLogic(player,e);
+            if (b.getMMCounter() == 0) {
+                String eAttack = b.attackLogic(player, e);
                 System.out.println("Enemy used " + eAttack);
                 switch (eAttack) {
                     case "Slash":
                         damage = 15;
-                        b.damageCalc(damage, player,e);
+                        b.damageCalc(damage, player, e);
 
                         break;
                     case "Margarine Missile":
-                        mmCounter = 1;
+                        b.setMMCounter(1);
                         System.out.println("Powering up!");
                         break;
                     case "Parry":
@@ -1052,11 +1050,11 @@ public class GameLoop {
 
                         break;
                 }
-            } else if (mmCounter == 2) {
+            } else if (b.getMMCounter() == 2) {
                 System.out.println("Missile Fired!");
                 damage = 40;
-                b.damageCalc(damage, player,e);
-                mmCounter = 0;
+                b.damageCalc(damage, player, e);
+                b.setMMCounter(0);
             }
             if (b.getUsedParry()) {
                 b.setUsedParry(false);
@@ -1067,11 +1065,11 @@ public class GameLoop {
                 this.setLoseState(true);
                 break;
             }
-            if (bbCounter == 1) {
-                bbCounter = 2;
-    //                if (b.getEnemyUsedParry()) {
-    //                    b.setEnemyUsedParry(false);
-    //                }
+            if (b.getBBCounter() == 1) {
+                b.setBBCounter(2);
+                //                if (b.getEnemyUsedParry()) {
+                //                    b.setEnemyUsedParry(false);
+                //                }
             }
             b.drawState(player, e);
         }
