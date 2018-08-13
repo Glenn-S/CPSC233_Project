@@ -248,6 +248,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
      * the battle is taking place.
      *
      * @param player an instance of the player for the current game
+     * @param e an instance of the enemy to be battled
+     * @return Pane to be used by the primary stage
      */
     public StackPane battleSceneContent(Player player, Enemy e) {
         this.b = new BattleLoop();
@@ -545,7 +547,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 });
 
             }
-
+/**
+ * Purpose: Handles the appropriate end of battle events by returning the game
+ *  to the correct state.
+ * @param e - an instance of the enemy being battled
+ * @param player - an instance of the player class representing the current player
+ */
             private void endBattle(Enemy e, Player player) {
                 if (b.checkWinState(e) == true) {
                     battleWinAlert.setHeaderText("You Win!");
@@ -621,7 +628,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     alert.show();
                 }
             }
-
+/**
+ * Purpose: Redraws the health bars and whether or not the potion attack is 
+ * available for use.
+ * @param player - an instance of the player class representing the current player
+ * @param e - the enemy being battled
+ */
             private void drawState(Player player, Enemy e) {
                 playerHealth.setProgress((double) player.getHealth() / 100);
                 enemyHealth.setProgress((double) e.getHealth() / 100);
@@ -632,7 +644,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     attacks.getChildren().get(0).requestFocus();
                 }
             }
-
+/**
+ * Purpose: To control left and right movement of the player.
+ * @param event - the event of the button being pressed that controls movement
+ */
             private void moveLeftRight(KeyEvent event) {
 
                 int leftRight = 0; // if 1, move right if -1 move left
@@ -660,7 +675,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     }
                 }
             }
-
+/**
+ * Purpose: To control up and down movement of the player.
+ * @param event - the event of the button being pressed that controls movement
+ */
             private void moveupDown(KeyEvent event) {
                 int upDown = 0;
                 if (event.getCode() == KeyCode.W) {
