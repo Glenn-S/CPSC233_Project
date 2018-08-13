@@ -70,10 +70,7 @@ public class Avatar extends Sprite {
      * @param health it's the health of an avatar as a type of integer
      */
     public void setHealth(int health) {
-      if(health >= 0)
-      {
         this.health = health;
-      }
     }
 
     /**
