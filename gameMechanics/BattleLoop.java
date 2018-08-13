@@ -236,6 +236,7 @@ public class BattleLoop extends GameLoop {
      *
      * @param damage - integer value of damage received
      * @param player - player who is taking the damage
+     * @param e - enemy involved in battle
      */
     public void damageCalc(int damage, Player player, Enemy e) {
         this.eModifier = ((double) e.getAttack()) / player.getDefence();
