@@ -9,44 +9,42 @@ public class PlayerTest {
 	 */
 
 	@Test
-	public void testKey() {
+	public void test_key() {
 		Player p = new Player();
 		p.setKeyCount(2);
 		assertEquals(2,p.getKeyCount());
 	}
 
 	@Test
-	public void testKeytomany() {
+	public void test_keyToMany() {
 		Player p = new Player();
-		p.setKeyCount(4);
-		assertEquals(null,p.getKeyCount());
+
+		p.setKeyCount(10);
+		assertEquals(0,p.getKeyCount());
 	}
 
 	@Test
-	public void testKeyNegative() {
+	public void test_KeyNegative() {
 		Player p = new Player();
 		p.setKeyCount(-1);
-		assertEquals(null,p.getKeyCount());
+		assertEquals(0,p.getKeyCount());
 	}
 
 	@Test
-    public void testArrayItems() {
+    public void test_ArrayItems() {
 		Player p = new Player();
-	   	Sprite s = new Sprite();
-	   	Location l = new Location();
-	   	s.setName("smallpotion");
-	   	l.setxCoord(30);
-    	l.setyCoord(20);
-		l.setxSize(0);
-	   	l.setySize(0);
-	   	s.setCoord(l);
-	   	s.setExists(true);
-	   	p.addItem(s);
-	   	assertEquals("[Name: smallpotion, Coord: ((30, 20), (X Size: 0, Y Size: 0)), Image: null, Char:  , Text: null, Exists: true]",p.getCoord());
+		Sprite n = new Sprite();
+
+		 	ArrayList<Sprite> list = new ArrayList<Sprite>();
+
+			list.add(n);
+			p.setItems(list);
+
+	   	assertEquals(list,p.getItems());
     }
 
 	@Test
-    public void testtoString() {
+    public void test_toString() {
 		Player p = new Player();
 	   	Sprite s= new Sprite();
 	   	Location l = new Location();

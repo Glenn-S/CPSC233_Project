@@ -163,7 +163,14 @@ public class Player extends Avatar {
 	 * @param  newKeyCount  This paramter is the new key count that will replace the calling players key count
 	 */
 	public void setKeyCount(int newKeyCount) {
+		if(newKeyCount <= 4 && newKeyCount >= 0)
+		{
 		this.keyCount = newKeyCount;
+		}
+		else
+		{
+			this.keyCount = 0;
+		}
 	}
 
 	/**

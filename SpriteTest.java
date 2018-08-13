@@ -27,14 +27,14 @@ public class SpriteTest {
     }
 
     @Test
-    public void test_setExistfalse() {
+    public void test_setExistFalse() {
     	Sprite s = new Sprite();
     	s.setExists(false);
     	assertEquals(false,s.getExists());
     }
 
     @Test
-    public void test_setExisttrue() {
+    public void test_setExistTrue() {
     	Sprite s = new Sprite();
     	s.setExists(true);
     	assertEquals(true,s.getExists());
