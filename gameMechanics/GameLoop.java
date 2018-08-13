@@ -124,8 +124,8 @@ public class GameLoop {
     		}
     return copyList;
     */
-    return this.items;
-  }
+        return this.items;
+    }
 
     /**
      * Purpose: To retrieve the array list for the enemy objects
@@ -142,7 +142,7 @@ public class GameLoop {
     		}
         return copyList;
 */
-  return this.enemy;
+        return this.enemy;
     }
 
     /**
@@ -314,7 +314,7 @@ public class GameLoop {
     /**
      * Purpose:
      */
-    private void randomizeKeys() {
+    public void randomizeKeys() {
         int tempKeyCount = totalKeys - 1;
         int enemyDivKeys = (enemy.size() - 1)/(totalKeys - 1); // remove 1 for the final boss and the final boss key
         System.out.println(enemyDivKeys);// should be 1 right now
@@ -329,10 +329,10 @@ public class GameLoop {
             else break; // temporary solution but the last grunt never gets the key
         }
         // for testing
-        for (int i = 0; i < enemy.size(); i++) {
+/*        for (int i = 0; i < enemy.size(); i++) {
             System.out.println(enemy.get(i).getName() + " key: " + enemy.get(i).getKey());
         }
-
+*/
     }
 
     /**
@@ -575,7 +575,7 @@ public class GameLoop {
      * @param move the desired direction that the player would like to move
      * @return true if there is a collision with an edge of the map
      */
-    private boolean checkEdges(Player player, String move) {
+    public boolean checkEdges(Player player, String move) {
         boolean result = false;
 
         if (player != null) { // this could be a try and except statement?
@@ -616,7 +616,7 @@ public class GameLoop {
      * Purpose: To update all of the gate images if needed. For now it will just
      * remove the gates from the terrain list.
      */
-    public void updateGate() {
+    private void updateGate() {
         for (int i = 0; i < terrain.size(); i++) {
             if (terrain.get(i).getName().equals("gate")) {
                 //System.out.println("Gate, index " + i + " in the terrain array");
