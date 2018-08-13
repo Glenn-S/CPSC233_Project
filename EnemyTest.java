@@ -1,8 +1,7 @@
-package Tests;
-
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import sprite.Enemy;
+import sprite.*;
+
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */

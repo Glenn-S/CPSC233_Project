@@ -1,20 +1,15 @@
-package Tests;
-
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.io.Console;
-
-import sprite.Player;
-import sprite.Enemy;
-import org.junit.Test;
-import sprite.Sprite;
+import sprite.*;
 import Main.*;
-import terminal.GameLoop;
+import terminal.*;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class MainTest {
-	@Test
+/*	@Test
 	public void testgetKeyT(){
 		Player p = new Player();
 		Enemy e = new Enemy();
@@ -27,8 +22,8 @@ public class MainTest {
 		}
 		assertEquals(2,p.getKeyCount());
 	}
-
-	public void testgetKeyF(){
+*/
+/*	public void testgetKeyF(){
 		Player p = new Player();
 		Enemy e = new Enemy();
 		Main m = new Main();
@@ -40,7 +35,7 @@ public class MainTest {
 		}
 		assertEquals(1,p.getKeyCount());
 	}
-
+*/
 	@Test
 	public void testmainmenuY() {
 		MainMenu g = new MainMenu() ;

@@ -1,14 +1,8 @@
-package Tests;
-
 import static org.junit.Assert.*;
-
-
 import org.junit.Test;
-
-import sprite.Enemy;
-import sprite.Player;
-import sprite.Location;
+import sprite.*;
 import gameMechanics.GameLoop;
+
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */

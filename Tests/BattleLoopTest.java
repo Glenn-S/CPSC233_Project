@@ -1,10 +1,10 @@
-package Tests;
-
 import static org.junit.Assert.assertEquals;
-import gameMechanics.BattleLoop;
-import sprite.Enemy;
-import sprite.Player;
 import org.junit.Test;
+import java.util.Scanner;
+import java.io.Console;
+import gameMechanics.BattleLoop;
+import sprite.*;
+
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -101,7 +101,7 @@ public class BattleLoopTest {
 	}
 
 	@Test
-	public void testPlayerinputSmall() {
+	public void testPlayerinputOtherSmall() {
 		BattleLoop b = new BattleLoop();
 		Player p = new Player();
 		Scanner sc = new Scanner(System.in);

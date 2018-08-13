@@ -1,11 +1,7 @@
-package Tests;
-
 import static org.junit.Assert.*;
 import org.junit.Test;
+import sprite.*;
 
-
-import sprite.Defence;
-import sprite.Location;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */

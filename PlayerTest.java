@@ -1,15 +1,7 @@
-package Tests;
-
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
 import java.util.ArrayList;
-
 import org.junit.Test;
-
-import sprite.Enemy;
-import sprite.Player;
-import sprite.Sprite;
-import sprite.Location;
+import sprite.*;
 
 public class PlayerTest {
 	/**

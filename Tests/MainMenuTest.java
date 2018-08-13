@@ -1,12 +1,9 @@
-package Tests;
-
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.io.Console;
+import terminal.*;
 
-import org.junit.Test;
-import Terminal.MainMenu;
-import Terminal.GameLoop;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -20,7 +17,7 @@ public class MainMenuTest {
 	input = "y";
 	assertEquals(true,g.mainMenu());
 	}
-	
+
 	@Test
 	public void testmainmenuN() {
 	MainMenu g = new MainMenu() ;
@@ -30,7 +27,7 @@ public class MainMenuTest {
 	input = "n";
 	assertEquals(false,g.mainMenu());
 	}
-	
+
 	@Test
 	public void testmainmenuinvalid() {
 	MainMenu g = new MainMenu() ;
@@ -41,7 +38,7 @@ public class MainMenuTest {
 	input = "s";
 	assertEquals(error,g.mainMenu());
 	}
-	
+
 	@Test
 	public void testgameloop() {
 	MainMenu m = new MainMenu() ;
