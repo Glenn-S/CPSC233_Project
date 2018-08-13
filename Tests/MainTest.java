@@ -8,7 +8,7 @@ import sprite.Player;
 import sprite.Enemy;
 import org.junit.Test;
 import sprite.Sprite;
-import Main;
+import Main.*;
 import terminal.GameLoop;
 /**
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton

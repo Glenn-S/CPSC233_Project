@@ -428,7 +428,7 @@ public class GameLoopTest {
       GameLoop g = new GameLoop();
       Console console = System.console();
       String input;
-      console == null
+      console = null;
       input = "q";
       assertEquals(null,g.playerInput());
     }
@@ -438,7 +438,7 @@ public class GameLoopTest {
       GameLoop g = new GameLoop();
       Console console = System.console();
       String input;
-      console == null
+      console = null;
       input = "W";
       assertEquals("w",g.playerInput());
     }
@@ -448,7 +448,7 @@ public class GameLoopTest {
       GameLoop g = new GameLoop();
       Console console = System.console();
       String input;
-      console == null
+      console = null;
       input = "a";
       assertEquals("a",g.playerInput());
     }
@@ -458,7 +458,7 @@ public class GameLoopTest {
       GameLoop g = new GameLoop();
       Console console = System.console();
       String input;
-      console == null
+      console = null;
       input = "S";
       assertEquals("s",g.playerInput());
     }
@@ -468,7 +468,7 @@ public class GameLoopTest {
       GameLoop g = new GameLoop();
       Console console = System.console();
       String input;
-      console == null
+      console = null;
       input = "d";
       assertEquals("d",g.playerInput());
     }
