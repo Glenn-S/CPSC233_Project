@@ -8,14 +8,14 @@ import sprite.*;
 public class WeaponTest {
 
 	@Test
-	public void testName() {
+	public void test_name() {
 	   	Weapon w = new Weapon();
 	   	w.setName("silversword");
 	   	assertEquals("silversword", w.getName());
 	}
 
 	@Test
-	public void testDef() {
+	public void test_def() {
 		Weapon w = new Weapon();
 	   	w.setWeaponBoost(40);
 	   	assertEquals(40, w.getWeaponBoost());
