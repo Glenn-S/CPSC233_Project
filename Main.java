@@ -375,7 +375,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-
                 this.moveLeftRight(event);
                 this.moveupDown(event);
                 if (event.getCode() == KeyCode.ENTER && !attackAnim.getStatus().equals(Animation.Status.RUNNING) && !injuryAnim.getStatus().equals(attackAnim.getStatus().equals(Animation.Status.RUNNING))) {
@@ -385,7 +384,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!(b.getTurnAttack().equals(""))) {
                         attack.play();
                         if (b.getBBCounter() == 0) {
-
                             attackAnimText.setText(b.getTurnAttack() + "!");
                             attackAnimText.setFill(Color.RED);
                             attackAnim.play();
@@ -412,93 +410,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                     if (b.checkWinState(e) == true) {
                                         endBattle(e, player);
                                     } else {
-                                        injuryAnim.play();
-                                        injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                                            @Override
-                                            public void handle(ActionEvent event) {
-                                                if (b.getMMCounter() == 1) {
-                                                    log.appendText("\nMargarine Missile Powering Up!");
-                                                    b.setMMCounter(2);
-                                                }
-                                                drawState(player, e);
-                                                if (b.getMMCounter() == 0) {
-                                                    String eAttack = e.attackLogic(player);
-                                                    attackAnimText.setText(eAttack + "!");
-                                                    attackAnimText.setFill(Color.BLACK);
-                                                    attackAnim.play();
-                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                                                        @Override
-                                                        public void handle(ActionEvent event) {
-
-                                                            log.appendText("\nEnemy used " + eAttack);
-                                                            int pH = player.getHealth();
-                                                            b.eAttackExecute(eAttack, player, e);
-                                                            if (b.getUsedParry()) {
-                                                                if (player.getHealth() == pH) {
-                                                                    log.appendText("\nPlayer Parry Success!");
-                                                                } else {
-                                                                    log.appendText("\nPlayer Parry Failed!");
-                                                                }
-
-                                                            }
-                                                            if (b.getUsedParry()) {
-                                                                b.setUsedParry(false);
-                                                            }
-                                                            if (b.checkLoseState(player) == true) {
-
-                                                                endBattle(e, player);
-
-                                                            }
-                                                            if (b.getBBCounter() == 1) {
-                                                                log.appendText("\nButter Boomerang Powering Up!");
-                                                                log.appendText("\nPress ENTER to fire");
-                                                                b.setBBCounter(2);
-                                                            }
-                                                            drawState(player, e);
-                                                        }
-                                                    });
-
-                                                } else if (b.getMMCounter() == 2) {
-                                                    attackAnimText.setText("Missile Fired!");
-                                                    attackAnim.play();
-                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                                                        @Override
-                                                        public void handle(ActionEvent event) {
-                                                            damage = 40;
-                                                            int pH = player.getHealth();
-                                                            log.appendText("\nMissile Fired!");
-                                                            b.damageCalc(damage, player, e);
-                                                            if (b.getUsedParry()) {
-                                                                if (player.getHealth() == pH) {
-                                                                    log.appendText("\nPlayer Parry Success!");
-                                                                } else {
-                                                                    log.appendText("\nPlayer Parry Failed!");
-                                                                }
-
-                                                            }
-                                                            b.setMMCounter(0);
-                                                            if (b.getUsedParry()) {
-                                                                b.setUsedParry(false);
-                                                            }
-                                                            if (b.checkLoseState(player) == true) {
-
-                                                                endBattle(e, player);
-
-                                                            }
-                                                            if (b.getBBCounter() == 1) {
-                                                                log.appendText("\nButter Boomerang Powering Up!");
-                                                                log.appendText("\nPress ENTER to fire");
-                                                                b.setBBCounter(2);
-                                                            }
-                                                            drawState(player, e);
-                                                        }
-                                                    });
-
-                                                }
-
-                                            }
-                                        });
-
+                                        enemyTurn();
                                     }
                                 }
                             });
@@ -531,83 +443,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                                         endBattle(e, player);
 
                                     } else {
-                                        injuryAnim.play();
-                                        injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                                            @Override
-                                            public void handle(ActionEvent event) {
-                                                if (b.getMMCounter() == 1) {
-                                                    log.appendText("\nMargarine Missile Powering Up!");
-                                                    b.setMMCounter(2);
-                                                }
-                                                drawState(player, e);
-                                                if (b.getMMCounter() == 0) {
-                                                    String eAttack = e.attackLogic(player);
-                                                    attackAnimText.setText(eAttack + "!");
-                                                    attackAnimText.setFill(Color.BLACK);
-                                                    attackAnim.play();
-                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                                                        @Override
-                                                        public void handle(ActionEvent event) {
-                                                            log.appendText("\nEnemy used " + eAttack);
-                                                            int pH = player.getHealth();
-                                                            b.eAttackExecute(eAttack, player, e);
-                                                            if (b.getUsedParry()) {
-                                                                if (player.getHealth() == pH) {
-                                                                    log.appendText("\nPlayer Parry Success!");
-                                                                } else {
-                                                                    log.appendText("\nPlayer Parry Failed!");
-                                                                }
-
-                                                            }
-                                                            if (b.getUsedParry()) {
-                                                                b.setUsedParry(false);
-                                                            }
-                                                            if (b.checkLoseState(player) == true) {
-
-                                                                endBattle(e, player);
-
-                                                            }
-                                                            drawState(player, e);
-                                                        }
-                                                    });
-
-                                                } else if (b.getMMCounter() == 2) {
-                                                    attackAnimText.setText("Missile Fired!");
-                                                    attackAnimText.setFill(Color.BLACK);
-                                                    attackAnim.play();
-                                                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                                                        @Override
-                                                        public void handle(ActionEvent event) {
-                                                            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                                                        }
-                                                    });
-                                                    damage = 40;
-                                                    int pH = player.getHealth();
-                                                    b.damageCalc(damage, player, e);
-                                                    log.appendText("\nMissile Fired!");
-                                                    if (b.getUsedParry()) {
-                                                        if (player.getHealth() == pH) {
-                                                            log.appendText("\nPlayer Parry Success!");
-                                                        } else {
-                                                            log.appendText("\nPlayer Parry Failed!");
-                                                        }
-
-                                                    }
-                                                    b.setMMCounter(0);
-                                                    if (b.getUsedParry()) {
-                                                        b.setUsedParry(false);
-                                                    }
-                                                    if (b.checkLoseState(player) == true) {
-
-                                                        endBattle(e, player);
-
-                                                    }
-                                                    drawState(player, e);
-                                                }
-
-                                            }
-                                        });
-
+                                        enemyTurn();
                                     }
                                 }
 
@@ -620,124 +456,93 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 }
             }
 
-            private void playerTurn(KeyEvent event, Player player, Enemy e) {
-                this.moveLeftRight(event);
-                this.moveupDown(event);
-                if (event.getCode() == KeyCode.ENTER) {
-                    attack.play();
-                    if (b.checkLoseState(player) || b.checkWinState(e)) {
-                        b.setTurnAttack("");
-                    }
-                }
-                if (!(b.getTurnAttack().equals(""))) {
-                    attackAnimText.setFill(Color.RED);
-                    int eH = e.getHealth();
-                    if (b.getBBCounter() == 0) {
-                        attackAnimText.setText(b.getTurnAttack() + "!");
-                        attackAnim.play();
-                        attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                log.appendText("\nYou used " + b.getTurnAttack());
-                                b.attackExecute(b.getTurnAttack(), player, e);
-                            }
-                        });
-                    } else if (b.getBBCounter() == 2) {
-                        attackAnimText.setText("Boomerang Fired");
-                        attackAnim.play();
-                        attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                log.appendText("\nBoomerang Fired!");
-                                damage = 40;
-                                b.damageCalc(damage, e, player);
-                                b.setBBCounter(0);
-                            }
-                        });
-                    }
+            private void enemyTurn() {
+                injuryAnim.play();
+                injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (b.getMMCounter() == 1) {
+                            log.appendText("\nMargarine Missile Powering Up!");
+                            b.setMMCounter(2);
+                        }
+                        drawState(player, e);
+                        if (b.getMMCounter() == 0) {
+                            String eAttack = e.attackLogic(player);
+                            attackAnimText.setText(eAttack + "!");
+                            attackAnimText.setFill(Color.BLACK);
+                            attackAnim.play();
+                            attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
 
-                    if (e.getHealth() == eH && b.getEnemyUsedParry()) {
-                        log.appendText("\nEnemy Parry Success!");
-                    } else {
-                        log.appendText("\nEnemy Parry Failed!");
-                        injuryAnim.setNode(enemyBG);
-                        injuryAnim.play();
-                        injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
+                                    log.appendText("\nEnemy used " + eAttack);
+                                    int pH = player.getHealth();
+                                    b.eAttackExecute(eAttack, player, e);
+                                    if (b.getUsedParry()) {
+                                        if (player.getHealth() == pH) {
+                                            log.appendText("\nPlayer Parry Success!");
+                                        } else {
+                                            log.appendText("\nPlayer Parry Failed!");
+                                        }
 
-                                if (b.getEnemyUsedParry()) {
-                                    b.setEnemyUsedParry(false);
+                                    }
+                                    if (b.getUsedParry()) {
+                                        b.setUsedParry(false);
+                                    }
+                                    if (b.checkLoseState(player) == true) {
+
+                                        endBattle(e, player);
+
+                                    }
+                                    if (b.getBBCounter() == 1) {
+                                        log.appendText("\nButter Boomerang Powering Up!");
+                                        log.appendText("\nPress ENTER to fire");
+                                        b.setBBCounter(2);
+                                    }
+                                    drawState(player, e);
                                 }
-                                if (b.getMMCounter() == 1) {
-                                    log.appendText("\nMargarine Missile Powering Up!");
-                                    b.setMMCounter(2);
+                            });
+
+                        } else if (b.getMMCounter() == 2) {
+                            attackAnimText.setText("Missile Fired!");
+                            attackAnim.play();
+                            attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    damage = 40;
+                                    int pH = player.getHealth();
+                                    log.appendText("\nMissile Fired!");
+                                    b.damageCalc(damage, player, e);
+                                    if (b.getUsedParry()) {
+                                        if (player.getHealth() == pH) {
+                                            log.appendText("\nPlayer Parry Success!");
+                                        } else {
+                                            log.appendText("\nPlayer Parry Failed!");
+                                        }
+
+                                    }
+                                    b.setMMCounter(0);
+                                    if (b.getUsedParry()) {
+                                        b.setUsedParry(false);
+                                    }
+                                    if (b.checkLoseState(player) == true) {
+
+                                        endBattle(e, player);
+
+                                    }
+                                    if (b.getBBCounter() == 1) {
+                                        log.appendText("\nButter Boomerang Powering Up!");
+                                        log.appendText("\nPress ENTER to fire");
+                                        b.setBBCounter(2);
+                                    }
+                                    drawState(player, e);
                                 }
-                            }
-                        });
+                            });
+
+                        }
 
                     }
-                    drawState(player, e);
-                    b.setTurnAttack("");
-                }
-
-            }
-
-            private void enemyTurn(KeyEvent event, Player player, Enemy e) {
-                String eAttack = e.attackLogic(player);
-                attackAnimText.setText(eAttack + "!");
-                attackAnimText.setFill(Color.BLACK);
-                attackAnim.play();
-                int pH = player.getHealth();
-                if (b.getBBCounter() == 0) {
-                    attackAnimText.setText(b.getTurnAttack() + "!");
-                    attackAnim.play();
-                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            log.appendText("\nEnemy used " + eAttack);
-                            int pH = player.getHealth();
-                            b.eAttackExecute(eAttack, player, e);
-
-                        }
-                    });
-                } else if (b.getBBCounter() == 2) {
-                    attackAnimText.setText("Boomerang Fired");
-                    attackAnim.play();
-                    attackAnim.setOnFinished(new EventHandler<ActionEvent>() {
-
-                        @Override
-                        public void handle(ActionEvent event) {
-                            log.appendText("\nBoomerang Fired!");
-                            damage = 40;
-                            b.damageCalc(damage, e, player);
-                            b.setBBCounter(0);
-                        }
-                    });
-                }
-                if (player.getHealth() == pH && b.getUsedParry()) {
-                    log.appendText("\nPlayer Parry Success!");
-                } else {
-                    log.appendText("\nPlayer Parry Failed!");
-                    injuryAnim.setNode(monte);
-                    injuryAnim.play();
-                    injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-
-                            if (b.getUsedParry()) {
-                                b.setUsedParry(false);
-                            }
-                            if (b.getBBCounter() == 1) {
-                                log.appendText("\nButter Boomerang Powering Up!");
-                                log.appendText("\nPress ENTER to fire");
-                                b.setBBCounter(2);
-                                b.setBBCounter(2);
-                            }
-                        }
-                    });
-                }
-                drawState(player, e);
+                });
 
             }
 
