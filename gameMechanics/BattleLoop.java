@@ -394,6 +394,19 @@ public class BattleLoop extends GameLoop {
         e.getPotions().remove(0);
 
     }
+        public String attackLogic(Player player, Enemy e) {
+        if (player.getHealth() <= 15 * this.eModifier) {
+            return e.getMoves()[0];
+        } else if (player.getHealth() <= 40 * this.eModifier && e.getHealth() > 40 * this.pModifier) {
+            return e.getMoves()[1];
+        } else if (this.getBBCounter() == 1) {
+            return e.getMoves()[2];
+        } else if (e.getHealth() <= 50 && e.hasPotion() == true) {
+            return e.getMoves()[3];
+        } else {
+            return e.getMoves()[0];
+        }
+    }
 
     /**
      * Purpose: To test engage Battle and this class for text version only

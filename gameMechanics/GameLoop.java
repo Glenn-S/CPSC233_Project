@@ -1031,7 +1031,7 @@ public class GameLoop {
             }
             b.drawState(player, e);
             if (mmCounter == 0) {
-                String eAttack = e.attackLogic(player);
+                String eAttack = b.attackLogic(player,e);
                 System.out.println("Enemy used " + eAttack);
                 switch (eAttack) {
                     case "Slash":

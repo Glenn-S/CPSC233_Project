@@ -469,7 +469,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                         }
                         drawState(player, e);
                         if (b.getMMCounter() == 0) {
-                            String eAttack = e.attackLogic(player);
+                            String eAttack = b.attackLogic(player,e);
                             attackAnimText.setText(eAttack + "!");
                             attackAnimText.setFill(Color.BLACK);
                             attackAnim.play();
