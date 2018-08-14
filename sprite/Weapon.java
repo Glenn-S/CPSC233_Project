@@ -37,7 +37,7 @@ public class Weapon extends Sprite {
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
-                  int attackValue) { // this might need to change to an ArrayList
+                  int attackValue) {
         super(title,
               coordinate,
               spriteImage,
@@ -47,6 +47,7 @@ public class Weapon extends Sprite {
               overlapsWith);
         this.weaponBoost = attackValue;
     }
+
     /**
      * Purpose: constructor for Weapon for the terminal version
      * sprite symbol will change to image later
@@ -66,7 +67,7 @@ public class Weapon extends Sprite {
                   int attackValue) { // this might need to change to an ArrayList
         super(title,
               coordinate,
-              null,
+              null, // null since no need for an image other than the char symbol
               spriteSymbol,
               spriteMessages,
               existence,
@@ -79,7 +80,6 @@ public class Weapon extends Sprite {
      * @param item an instance of the weapon class to copy
      */
     public Weapon(Weapon item) {
-        // call supers constructor(s)
         super(item.getName(),
               item.getCoord(),
               item.getSpriteImage(),

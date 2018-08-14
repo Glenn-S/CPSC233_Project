@@ -33,11 +33,11 @@ public class Potion extends Sprite {
     public Potion(String title,
                   Location coordinate,
                   Image spriteImage,
-                  char spriteSymbol, // will become the sprite image class later
+                  char spriteSymbol,
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
-                  int healthValue) { // this might need to change to an ArrayList
+                  int healthValue) {
         super(title,
               coordinate,
               spriteImage,
@@ -59,11 +59,11 @@ public class Potion extends Sprite {
      */
     public Potion(String title,
                   Location coordinate,
-                  char spriteSymbol, // will become the sprite image class later
+                  char spriteSymbol,
                   String[] spriteMessages,
                   boolean existence,
                   boolean overlapsWith,
-                  int healthValue) { // this might need to change to an ArrayList
+                  int healthValue) {
         super(title, coordinate, null, spriteSymbol, spriteMessages, existence, overlapsWith);
         this.healthBoost = healthValue;
     }
@@ -73,7 +73,6 @@ public class Potion extends Sprite {
      * @param potion an instance of the Potion class to copy
      */
     public Potion(Potion potion) {
-        // call constructor of super(s)
         super(potion.getName(),
               potion.getCoord(),
               potion.getSpriteImage(),

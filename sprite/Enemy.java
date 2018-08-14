@@ -19,10 +19,8 @@ import java.util.ArrayList;
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Enemy extends Avatar {
-
     private boolean key; // if true, enemy has a key. false if they do not have a key
     private ArrayList<Potion> potions; // list of potions the enemy has
-
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     /**
@@ -74,12 +72,14 @@ public class Enemy extends Avatar {
               exists,
               overlapsWith,
               health,
-              defence,                attack,
+              defence,
+              attack,
               moves); // invokes Avatar constructor
         this.key = key;
         this.potions = potions;
     }
-        /**
+
+    /**
      * Purpose: Copy Constructor for the class,
      * sets all fields of the new enemy to those of the existing enemy
      * @param fromCopy - Enemy to get information from
@@ -88,12 +88,13 @@ public class Enemy extends Avatar {
         super(fromCopy.getName(),
               fromCopy.getCoord(),
               fromCopy.getSpriteImage(),
-              fromCopy.getSpriteChar(), // will become the sprite image class later
+              fromCopy.getSpriteChar(),
               fromCopy.getDialogue(),
               fromCopy.getExists(),
               fromCopy.getOverlapsWith(),
               fromCopy.getHealth(),
-              fromCopy.getDefence(),                fromCopy.attack,
+              fromCopy.getDefence(),
+              fromCopy.getAttack(),
               fromCopy.getMoves()); // invokes Avatar constructor
         this.key = fromCopy.getKey();
         this.potions = fromCopy.getPotions();
@@ -107,6 +108,7 @@ public class Enemy extends Avatar {
     public boolean getKey() {
         return this.key;
     }
+
     /**
      * Purpose: Changes if the enemy has a key or not
      * @param key - new state of the enemy's key
@@ -114,6 +116,7 @@ public class Enemy extends Avatar {
     public void setKey(boolean key) {
         this.key = key;
     }
+
     /**
      * Purpose: Returns if the enemy has potions
      * @return - true if enemy possesses potions, false otherwise
@@ -123,12 +126,13 @@ public class Enemy extends Avatar {
             return false;
         return true ;
     }
+
     /**
      * Purpose: Returns the enemy's potions
      * @return - the list of potions the enemy currently in possession of
      */
     public ArrayList<Potion> getPotions() {
-        return this.potions; //fix privacy leaks
+        return this.potions;
     }
 
     /**
@@ -136,7 +140,7 @@ public class Enemy extends Avatar {
      * @param p - new potion list to be set to
      */
     public void setPotions(ArrayList<Potion> p) {
-        this.potions = p; //fix privacy leaks
+        this.potions = p;
     }
 
     /*------------------------------- METHODS --------------------------------*/
@@ -171,6 +175,7 @@ public class Enemy extends Avatar {
         return info;
     }
 
+    /* ------------------------------ TESTER ---------------------------------*/
     public static void main() {
         // Tests
         Player p = new Player();

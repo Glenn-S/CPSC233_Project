@@ -55,8 +55,7 @@ public class Defence extends Sprite {
               item.getDialogue(),
               item.getExists(),
               item.getOverlapsWith());
-
-       this.defenceBoost = item.getDefenceBoost();
+        this.defenceBoost = item.getDefenceBoost();
     }
 
     /*--------------------------- GETTER/SETTERS -----------------------------*/

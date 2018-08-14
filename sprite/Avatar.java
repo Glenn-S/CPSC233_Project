@@ -95,10 +95,9 @@ public class Avatar extends Sprite {
      * @param defence it's the defence of an avatar as a type of integer
      */
     public void setDefence(int defence) {
-      if(defence >= 0)
-      {
-        this.defence = defence;
-      }
+        if(defence >= 0) {
+            this.defence = defence;
+        }
     }
 
     /**
@@ -116,10 +115,9 @@ public class Avatar extends Sprite {
      * @param attack it's the attack of an avatar as a type of integer
      */
     public void setAttack(int attack) {
-      if(attack >= 0)
-      {
-        this.attack = attack;
-      }
+        if(attack >= 0) {
+            this.attack = attack;
+        }
     }
 
     /**

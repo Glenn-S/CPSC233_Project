@@ -10,8 +10,6 @@ import javafx.scene.image.Image;
 public class Player extends Avatar {
 	private int keyCount; //Initialized to zero in the constructor, player is supposed to start with no keys
 	private ArrayList<Sprite> items; //arraylist of items player is holding currently
-	//private final int velocity = 5; // move at five pixels a time
-	//private int currency = 0; //Currency is currrently commented out for version one. Initialized to zero as player doesn't start with any money
 
 	/*---------------------------- CONSTRUCTORS ------------------------------*/
 
@@ -39,27 +37,27 @@ public class Player extends Avatar {
 	 * @param  dialogue  This is a string array holding the different dialogue options for the player
 	 */
 	public Player(String name,
-	 							Location coordinates,
-								Image spriteImage,
-							 	char spriteChar,
-								String[] dialogue,
-							 	boolean exists,
-							 	boolean overlapsWith,
-							 	int health,
-								int defence,
-							 	int attack,
-							 	String[] moves) {
+	 			  Location coordinates,
+				  Image spriteImage,
+				  char spriteChar,
+				  String[] dialogue,
+				  boolean exists,
+				  boolean overlapsWith,
+				  int health,
+				  int defence,
+				  int attack,
+				  String[] moves) {
 		super(name,
-		 			coordinates,
-					spriteImage,
-					spriteChar,
-				 	dialogue,
-				 	exists,
-					overlapsWith,
-				 	health,
-				 	defence,
-					attack,
-					moves);
+		 	  coordinates,
+			  spriteImage,
+			  spriteChar,
+		  	  dialogue,
+			  exists,
+			  overlapsWith,
+			  health,
+			  defence,
+			  attack,
+			  moves);
 		this.keyCount = 0;
 		this.items = new ArrayList<Sprite>();
 	}
@@ -72,16 +70,16 @@ public class Player extends Avatar {
 	 */
 	public Player(Player p) {
 		super(p.getName(),
-		 			p.getCoord(),
-				 	p.getSpriteImage(),
-					p.getSpriteChar(),
-					p.getDialogue(),
-					p.getExists(),
-					p.getOverlapsWith(),
-					p.getHealth(),
-					p.getDefence(),
-					p.getAttack(),
-					p.getMoves()); // I believe this works for copying an class
+		 	  p.getCoord(),
+			  p.getSpriteImage(),
+			  p.getSpriteChar(),
+			  p.getDialogue(),
+			  p.getExists(),
+			  p.getOverlapsWith(),
+			  p.getHealth(),
+			  p.getDefence(),
+			  p.getAttack(),
+			  p.getMoves());
 		this.keyCount = p.getKeyCount();
 		this.items = p.getItems();
 	}
@@ -97,13 +95,9 @@ public class Player extends Avatar {
 	 * @param  x  This variable is the new x coordinate that the calling player will be moved to.
 	 * @param  y  This variable is the new y coordinate that the calling player will be moved to.
 	 */
-
-	// *** perhaps this should move into Sprite since it could be used for all ***
 	public void updatePosition(int x, int y) {
 		this.coord.setxCoord(x);
 		this.coord.setyCoord(y);
-
-		// *** in order for this to work, the coordinates need to be in pixel values now ***
 	}
 
 	/**
@@ -112,7 +106,7 @@ public class Player extends Avatar {
 	 * @param  newItem  This is a new item that is going to be added to the players item array
 	 */
 	public void addItem(Sprite newItem) {
-		this.items.add(newItem); // can add any thing of parent class type Sprite
+		this.items.add(newItem);
 	}
 
 	/**
@@ -123,28 +117,12 @@ public class Player extends Avatar {
 	 */
 	public void removeItem(Sprite itemToRemove) {
 		int index = 0;
-
-		while(index < this.items.size())
-		{
+		while(index < this.items.size()) {
 			if(this.items.get(index) == itemToRemove)
 				this.items.remove(index);
-
 			index++;
 		}
 	}
-
-	/**
-	 * Purpose: This method is to be called when wanting to edit, or change an item in the calling
-	 * players item array
-	 *
-	 * @param  itemToEdit  This parameter is used to distinguish which item in the calling players item array
-	 *is needing to be edited
-	 */
-	/*
-	public void editItem(Sprite itemToEdit) {
-
-	}
-	*/
 
 	/*-------------------------- GETTERS/SETTERS -----------------------------*/
 
@@ -180,10 +158,6 @@ public class Player extends Avatar {
 	 * @return  this.items[]  This is the calling players item array, it is an array of collectibles
 	 */
 	public ArrayList<Sprite> getItems() {
-	/*	ArrayList<Sprite> copyList = new ArrayList<Sprite>();
-		for (int i = 0; i < this.items.size(); i++) {
-			copyList.set(i, new Sprite(this.items.get(i)));
-		}*/
 		return this.items;
 	}
 
@@ -229,7 +203,7 @@ public class Player extends Avatar {
 			String largePotion = "Large Potion";
 			int largePotionCnt = 0;
 			String inventory;
-
+			// determine what the item is and the amount and give the appropriate numbering to it
 			for (int i = 0; i < this.items.size(); i++) {
 				if (this.items.get(i) instanceof Weapon) {
 					sword = this.items.get(i).getName();

@@ -19,30 +19,31 @@ public class Sprite {
 	protected String name;
     protected Location coord;
     protected Image spriteImage;
-    protected char spriteChar; // will become the sprite image class later
+    protected char spriteChar;
     protected String[] dialogue;
     protected boolean exists;
     protected boolean overlapsWith;
 	/*-------------------------Constructors---------------------------------------*/
+
 	/**
-	* Purpose: This is constructor initializes all the diferent instance Variables
-	*
-	* @param  name  This is a string, of the sprites name
-	* @param  coord  This is a location object
-	* @param  spriteImage  This will be used in version two. It is the image of a Sprite
-	* @param  spriteChar  This is the char variable used to identify the sprite when
-	* printed to the Terminal
-	* @param  dialogue  This is a string array, filled with all the dialogue of the
-	* Sprite
-	* @param  exists  This is the boolean value, indicating whether or not the sprite
-	* Exists
-	* @param  overlapsWith  This is a boolean value, that indicates whther or not the
-	* sprite is overlapping with another object
-	*/
+	 * Purpose: This is constructor initializes all the diferent instance Variables
+	 *
+	 * @param  name  This is a string, of the sprites name
+	 * @param  coord  This is a location object
+	 * @param  spriteImage  This will be used in version two. It is the image of a Sprite
+	 * @param  spriteChar  This is the char variable used to identify the sprite when
+	 * printed to the Terminal
+	 * @param  dialogue  This is a string array, filled with all the dialogue of the
+	 * Sprite
+	 * @param  exists  This is the boolean value, indicating whether or not the sprite
+	 * Exists
+	 * @param  overlapsWith  This is a boolean value, that indicates whther or not the
+	 * sprite is overlapping with another object
+	 */
 	public Sprite(String name,
                 Location coord,
                 Image spriteImage,
-                char spriteChar, // will become the sprite image class later
+                char spriteChar,
                 String[] dialogue,
                 boolean exists,
                 boolean overlapsWith) {
@@ -54,11 +55,12 @@ public class Sprite {
 		this.dialogue = dialogue;
 		this.overlapsWith = overlapsWith;
 	}
+
 	/**
-	* Purpose: This is the default constructor for the sprite class. If a
-	* sprite object is instantiated, without being passed any variables.
-	* Then this is the method that is to be caled.
-	*/
+	 * Purpose: This is the default constructor for the sprite class. If a
+	 * sprite object is instantiated, without being passed any variables.
+	 * Then this is the method that is to be caled.
+	 */
 	public Sprite() {
 		this.name = "";
 	    this.coord = new Location();
@@ -75,8 +77,8 @@ public class Sprite {
 	public Sprite(Sprite copySprite) {
 		this.name = new String(copySprite.getName());
 		this.coord = new Location(copySprite.getCoord());
-	  	this.spriteImage = copySprite.getSpriteImage(); // figure out how to protect image
-	  	this.spriteChar = copySprite.getSpriteChar(); // will become the sprite image class later
+	  	this.spriteImage = copySprite.getSpriteImage();
+	  	this.spriteChar = copySprite.getSpriteChar();
     	this.dialogue = copySprite.getDialogue();
 	  	this.exists = copySprite.getExists();
 	  	this.overlapsWith = copySprite.getOverlapsWith();
@@ -101,7 +103,6 @@ public class Sprite {
 	 *  @return coord 	it's the Location of the sprite as a type of integer
 	 */
 	public Location getCoord() {
-		//return new Location(this.coord);
 		return this.coord;
 	}
 
@@ -178,26 +179,6 @@ public class Sprite {
 	}
 
 	/**
-	 * @param overlapsWith true if the player is overlaps with an enemy, an
-	 * item, an edge, or terrain as a type of boolean.
-	 */
-/*	public void setOverlapsWith(Sprite sprite){//set if player is overlapswith enemy , terrain ,potions or edges
-		if (sprite.xCoord <= Enemy.xCoord + Enemy.xSize && sprite.xCoord >= Enemy.xCoord - Enemy.xSize && sprite.yCoord <= Enemy.yCoord + Enemy.ySize && sprtie.yCoord >= Enemy.yCoord - Enemy.ySize){
-			overlapsWith = true;//it returns true if the player is in an area of rectangle with x range [xcood - xsize, xccord + xsize] and y range [ycoord - ysize , ycoord + ysize]
-		}
-		else if(sprite.xCoord == Terrain.xCoord && sprite.yCoord == Terrain.yCoord ) {
-			overlapsWith = true;//it returns true if the player is ate the same position of a terrain
-		}
-		else if(sprite.xCoord == Edges.xCoord && sprite.yCoord == Edges.yCoord) {
-			overlapsWith = true;//it returns true if the player is ate the same position of the edge
-		}
-		else if (sprite.Location == Iteam.Location && sprite.yCoord == Item.yCoord ) {
-			overlapsWith = true;//it returns true if the player is ate the same position of an iteam
-		}
-		overlapsWith = false;
-		}//it returns false if none of above is true
-*/
-	/**
 	 * Purpose: This is the getter for the sprites overlap varibale
 	 *
 	 * @return overlapsWith - tell if the player is overlap with something or
@@ -205,7 +186,7 @@ public class Sprite {
 	 */
 	public boolean getOverlapsWith() {	//get the overlapsWith
 		return this.overlapsWith;
-	} //(remove overlapswith for now.)
+	}
 
 	/**
 	 * Purpose: This is the getter for the sprites character varibale
@@ -215,6 +196,7 @@ public class Sprite {
 	public char getSpriteChar() {
 		return this.spriteChar;
 	}
+	
 	/**
 	 * Purpose: This is the setter for the sprites character variable
 	 *

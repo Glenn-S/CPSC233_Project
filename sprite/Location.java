@@ -5,14 +5,13 @@ package sprite;
  * @version 20.41   19  July 2018
  *
  * Instance variables
- * xCoord the xCoordinate of an object on map   as a type of integer
- * yCoord	the yCoordinate of an object on map   as a type of integer
- * xSize the xSize of an object on map   as a type of integer
- * ySzie the ySize of an object on map   as a type of integer
+ * xCoord the xCoordinate of an object on map
+ * yCoord	the yCoordinate of an object on map
+ * xSize the xSize of an object on map
+ * ySzie the ySize of an object on map
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
 public class Location {
-
 	private int xCoord;
 	private int yCoord;
 	private int xSize;
@@ -68,7 +67,7 @@ public class Location {
 	 */
 	public void setxCoord(int xCoord) {
 		if (xCoord < 80 && xCoord >= 0) {
-		this.xCoord = xCoord;
+			this.xCoord = xCoord;
 		}
 		else this.xCoord = 0; // set default value
 	}
@@ -109,7 +108,6 @@ public class Location {
 		if (xSize >= 0) {
 			this.xSize = xSize;
 		}
-
 	}
 
 	/**
