@@ -52,7 +52,7 @@ public class GameBoard extends Application {
         ArrayList<Potion> bossPotions = new ArrayList<Potion>();
         Image grunt = new Image("file:Images/Margarine Men.png");
         Image boss = new Image("file:Images/I can\'t believe it\'s not butter boy.png");
-
+        // set up the enemies attack and defense and health values
         int lowAttack = 50;
         int mediumAttack = 75;
         int highAttack = 90;
@@ -69,27 +69,21 @@ public class GameBoard extends Application {
         bossPotions.add(smallPotion);
         bossPotions.add(mediumPotion);
 
-
+        // populate the enemies array
         enemy.add(new Enemy("Grunt", new Location(10,6,4,4), grunt, '+', null, true, false, health, lowDefense, lowAttack, moves,false, gruntPotions));
-
         enemy.add(new Enemy("Grunt", new Location(64,8,1,1), grunt, '+', null, true, false, health, mediumDefense, mediumAttack, moves, false, gruntPotions));
-
         enemy.add(new Enemy("Grunt", new Location(70,35,5,5), grunt, '+', null, true, false, health, highDefense, highAttack, moves, false, gruntPotions));
-
         enemy.add(new Enemy("Grunt", new Location(20,30,5,5), grunt, '+', null, true, false, health, highDefense, highAttack, moves,false, gruntPotions));
-
         enemy.add(new Enemy("Grunt", new Location(55,8,2,2), grunt, '+', null, true, false, health, mediumDefense, mediumAttack, moves, false, gruntPotions));
-
         enemy.add(new Enemy("Grunt", new Location(50,30,2,2), grunt, '+', null, true, false, health, mediumDefense, highAttack, moves, false, gruntPotions));
-
         enemy.add(new Enemy("Grunt", new Location(38,19,3,3), grunt, '+', null, true, false, health, lowDefense, lowAttack, moves,false, gruntPotions));
-
         enemy.add(new Enemy("Boss", new Location(77,3,1,1), boss, '+', null, true, false, health, bossDefense, bossAttack, moves, true, bossPotions));
     }
 
     /**
      * Purpose: To populate the terrain array with any object in the game that
      * represents a natural obsticle.
+     *
      * @param terrain a list to be populated with all of the terrain sprites in
      * the game.
      */
@@ -1128,7 +1122,6 @@ public class GameBoard extends Application {
         Image bestSword = new Image("file:Images/Gold butterknife.png");
         Image bestShield = new Image("file:Images/goldShield.png");
 
-        // *** made the number of items to get less so that not every chest has something ***
         // need to move the locations of items to make the game more challenging
         items.add(new Potion("Small Potion", new Location(7,18,0,0), smallPotion,' ', null, true, true, 25));
         items.add(new Sprite("Chest", new Location(7,18,0,0), chest, '#', null, true, true));
