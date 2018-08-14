@@ -47,6 +47,7 @@ import javafx.stage.StageStyle;
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
  * game. inspiration borrowed from:
+ *
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
  * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
@@ -57,7 +58,7 @@ import javafx.stage.StageStyle;
  *
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
-public class Main extends Application implements EventHandler<KeyEvent> { // change this name to be the name of the game
+public class Main extends Application implements EventHandler<KeyEvent> {
 
     private final String GAMETITLE = "The Adventures of Montequilla";
     private final String SYNOPSIS
@@ -91,11 +92,10 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private final String LOSEMESSAGE = "CONGRATULATIONS! YOU ARE THE WORST AT WINNING";
     private final String WINMESSAGE = "CONGRATULATIONS! YOU ARE THE BEST AT NOT LOSING";
     private final String RETURNMSG = "Press any key to return to the main menu";
-    //private final String TEMPMSG = "Press any key to quit";
     private final String MSGSTYLE = "-fx-font-size: 48; ";
     private final String PROMPTSTYLE = "-fx-font-size: 24; ";
 
-    // game play Constants
+    // game play
     private String userMove = "";
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
@@ -104,8 +104,6 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private String loseSceneSound = "Sounds/dun_dun_dun-Delsym-719755295.mp3";
     private MediaPlayer soundtrackPlayer;
     private MediaPlayer endPlayer;
-    // set up player
-
     private Pane root = new Pane(); // for game play scenes
     private Stage window;
     private Scene main, game, end, battle; // store scenes for each state
@@ -126,9 +124,8 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
     private TranslateTransition injuryAnim;
     private AudioClip select; // audio from https://www.sounds-resource.com/gamecube/customrobo/
     private AudioClip attack; // audio from https://www.sounds-resource.com/nintendo_64/supersmashbros/sound/2587/
-    MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Sounds/Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
-    Alert battleWinAlert = new Alert(Alert.AlertType.INFORMATION);
-    // main scene elements
+    protected MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Sounds/Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
+    protected Alert battleWinAlert = new Alert(Alert.AlertType.INFORMATION);
 
     /**
      * Purpose: The main game driver for The Adventures of Montequilla. this
@@ -166,21 +163,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
-                            // animate the sprite
-                            // inspiration from https://www.codeproject.com/Tips/788527/Creating-Animation-from-Sequence-of-Images-in-Java
-                            /*Timeline.create() // deprecated version
-                                    .keyFrames(
-                                            new KeyFrame(Duration.millis(150), e -> {
-                                                spriteRefresh("file:Images/montequillaWalkLeft.png");
-                                            }),
-                                            new KeyFrame(Duration.millis(300), e -> {
-                                                spriteRefresh("file:Images/montequillaWalkRight.png");
-                                            }),
-                                            new KeyFrame(Duration.millis(450), e -> {
-                                                spriteRefresh("file:Images/montequilla.png");
-                                            })
-                                    )
-                                    .build().play();*/
+                            // animate the sprite's waddle
                             // inspiration from: https://www.programcreek.com/java-api-examples/?api=javafx.animation.Timeline
                             Timeline timeline = new Timeline();
                             KeyFrame leftWalk = new KeyFrame(Duration.millis(150), e -> {
@@ -194,7 +177,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             });
                             timeline.getKeyFrames().addAll(leftWalk, rightWalk, centerWalk);
                             timeline.play();
-
+                        // check for collisions with enemy specifically
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             soundtrackPlayer.pause();
@@ -204,22 +187,12 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                             window.setScene(battle);
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
                         }
-
+                        // refresh the page
                         root = gamePlay.drawState(gamePlay.getPlayer());
-                        game.setRoot(root); // refresh the page
+                        game.setRoot(root);
                         userMove = "";
                     }
-                    /* not needed since the battle does all of the checking now
-                    if (gamePlay.checkWinState() || gamePlay.checkLoseState()) {
-                        boolean winLose = (gamePlay.checkWinState()) ? true : false;
-                        // exit menu
-                        soundtrackPlayer.stop(); // stop playing the music if game won or lost
-                        end = new Scene(endSceneContent(winLose)); // set the scene for main
-                        window.setScene(end);
-                    }
-                     */
                 }
-
             }
         };
         timer.start();
