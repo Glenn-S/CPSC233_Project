@@ -119,9 +119,9 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     private ImageView enemyBG;
     private ImageView monte;
     private Button potion;
-    private Text attackAnimText;
-    private ParallelTransition attackAnim;
-    private TranslateTransition injuryAnim;
+    private Text attackAnimText; // attack text for player and enemy
+    private ParallelTransition attackAnim; // attack animation for player and enemy
+    private TranslateTransition injuryAnim; //enemy injury animatino
     private AudioClip select; // audio from https://www.sounds-resource.com/gamecube/customrobo/
     private AudioClip attack; // audio from https://www.sounds-resource.com/nintendo_64/supersmashbros/sound/2587/
     protected MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("Sounds/Battle_Music.wav").toURI().toString())); // audio from https://www.youtube.com/watch?v=rv1eDAiNL4c&frags=pl%2Cwn
@@ -177,7 +177,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                             });
                             timeline.getKeyFrames().addAll(leftWalk, rightWalk, centerWalk);
                             timeline.play();
-                        // check for collisions with enemy specifically
+                            // check for collisions with enemy specifically
                         } else if (gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy()) != null) {
                             Enemy collidedEnemy = gamePlay.checkEnemies(userMove, gamePlay.getPlayer(), gamePlay.getEnemy());
                             soundtrackPlayer.pause();
@@ -233,7 +233,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         //i1.setFitWidth(1440);
         i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
         i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-
+// use appropriate enemy image
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
         } else {
@@ -247,32 +247,19 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         this.enemyHealth.setPrefSize(225, 25);
         this.playerHealth.setVisible(true);
         this.enemyHealth.setVisible(true);
+        Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24); // font from http://www.fontspace.com/khryskreations/kbzipadeedoodah
         this.select = new AudioClip(getClass().getResource("Sounds/Attack_Select.wav").toString());
         this.attack = new AudioClip(getClass().getResource("Sounds/Completion.wav").toString());
         enemyBG.setFitHeight(400);
         enemyBG.setFitWidth(400);
+        // creates injury animation
         this.injuryAnim = new TranslateTransition(Duration.millis(75), enemyBG);
         this.injuryAnim.setByX(100f);
         this.injuryAnim.setFromX(0);
         this.injuryAnim.setToX(-100f);
         this.injuryAnim.setCycleCount((int) 15f);
         this.injuryAnim.setAutoReverse(true);
-        monte.setFitHeight(500);
-        monte.setFitWidth(500);
-        this.log = new TextArea("Select an attack to initiate battle!"
-                + "\n(W)(A)(S)(D) = up/down/left/right"
-                + "\n(ENTER) = Use highlighted attack");
-        log.setPrefSize(300, 240);
-        log.setEditable(false);
-        this.attacks = new GridPane();
-        attacks.setPrefWidth(150);
-        attacks.setPrefHeight(120);
-        Button slash = new Button("Slash");
-        Button bb = new Button("Butter Boomerang");
-        Button parry = new Button("Parry");
-        this.potion = new Button("Potion");
         this.attackAnimText = new Text();
-        Font f = Font.loadFont(getClass().getResourceAsStream("gameMechanics/KBZipaDeeDooDah.ttf"), 24); // font from http://www.fontspace.com/khryskreations/kbzipadeedoodah
         this.attackAnimText.setFont(f);
         this.attackAnimText.setFill(Color.RED);
         this.mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -293,10 +280,25 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         ft.setToValue(0.0f);
         ft.setCycleCount((int) 1f);
         this.attackAnim = new ParallelTransition(this.attackAnimText, rt, st, ft);
+        monte.setFitHeight(500);
+        monte.setFitWidth(500);
+        this.log = new TextArea("Select an attack to initiate battle!"
+                + "\n(W)(A)(S)(D) = up/down/left/right"
+                + "\n(ENTER) = Use highlighted attack");
+        log.setPrefSize(300, 240);
+        log.setEditable(false);
+        this.attacks = new GridPane();
+        attacks.setPrefWidth(150);
+        attacks.setPrefHeight(120);
+        Button slash = new Button("Slash");
+        Button bb = new Button("Butter Boomerang");
+        Button parry = new Button("Parry");
+        this.potion = new Button("Potion");
         slash.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
         bb.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
         parry.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
         this.potion.setMinSize(attacks.getPrefWidth(), attacks.getPrefHeight());
+        // add all components to appropriate container and set location
         this.attacks.add(slash, 0, 0);
         this.attacks.add(bb, 1, 0);
         this.attacks.add(parry, 0, 1);
@@ -352,12 +354,14 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
                 this.moveLeftRight(event);
                 this.moveupDown(event);
+                //if statement to make sure attacks don't happen after winning/losing or while an animation is playing
                 if (event.getCode() == KeyCode.ENTER && !attackAnim.getStatus().equals(Animation.Status.RUNNING) && !injuryAnim.getStatus().equals(attackAnim.getStatus().equals(Animation.Status.RUNNING))) {
                     if (b.checkLoseState(player) || b.checkWinState(e)) {
                         b.setTurnAttack("");
                     }
                     if (!(b.getTurnAttack().equals(""))) {
                         attack.play();
+                        // Player turn route if they have not committed to Butter Boomerang
                         if (b.getBBCounter() == 0) {
                             attackAnimText.setText(b.getTurnAttack() + "!");
                             attackAnimText.setFill(Color.RED);
@@ -389,7 +393,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                                     }
                                 }
                             });
-
+// Player turn route if they have committed to Butter Boomerang (not allowed to choose attack)
                         } else if (b.getBBCounter() == 2) {
                             attackAnimText.setText("Boomerang Fired!");
                             attackAnimText.setFill(Color.RED);
@@ -413,7 +417,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                                     if (b.getEnemyUsedParry()) {
                                         b.setEnemyUsedParry(false);
                                     }
-
+// After player's turn the win state is checked. Lose state checked in enemyTurn method
                                     if (b.checkWinState(e) == true) {
                                         endBattle(e, player);
 
@@ -431,6 +435,12 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 }
             }
 
+            /**
+             * Purpose: Handles all actions that take place during the enemy
+             * turn. This includes damage calculation, attack selection and
+             * adjusting counters.
+             *
+             */
             private void enemyTurn() {
                 injuryAnim.play();
                 injuryAnim.setOnFinished(new EventHandler<ActionEvent>() {
@@ -441,6 +451,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                             b.setMMCounter(2);
                         }
                         drawState(player, e);
+                        // Enemy route if they did not use Margarine Missile last turn
                         if (b.getMMCounter() == 0) {
                             String eAttack = e.attackLogic(player);
                             attackAnimText.setText(eAttack + "!");
@@ -477,7 +488,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                                     drawState(player, e);
                                 }
                             });
-
+// Enemy route if they did use Margarine Missile last turn
                         } else if (b.getMMCounter() == 2) {
                             attackAnimText.setText("Missile Fired!");
                             attackAnim.play();
@@ -520,12 +531,15 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                 });
 
             }
-/**
- * Purpose: Handles the appropriate end of battle events by returning the game
- *  to the correct state.
- * @param e - an instance of the enemy being battled
- * @param player - an instance of the player class representing the current player
- */
+
+            /**
+             * Purpose: Handles the appropriate end of battle events by
+             * returning the game to the correct state.
+             *
+             * @param e - an instance of the enemy being battled
+             * @param player - an instance of the player class representing the
+             * current player
+             */
             private void endBattle(Enemy e, Player player) {
                 if (b.checkWinState(e) == true) {
                     battleWinAlert.setHeaderText("You Win!");
@@ -533,7 +547,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                     enemyBG.setRotate(90);
                     drawState(player, e);
                     battleWinAlert.show();
-
+// screen change depends on whether the enemy beaten was the final boss or not
                     battleWinAlert.setOnHidden(new EventHandler<DialogEvent>() {
                         @Override
                         public void handle(DialogEvent event) {
@@ -601,12 +615,15 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                     alert.show();
                 }
             }
-/**
- * Purpose: Redraws the health bars and whether or not the potion attack is
- * available for use.
- * @param player - an instance of the player class representing the current player
- * @param e - the enemy being battled
- */
+
+            /**
+             * Purpose: Redraws the health bars and whether or not the potion
+             * attack is available for use.
+             *
+             * @param player - an instance of the player class representing the
+             * current player
+             * @param e - the enemy being battled
+             */
             private void drawState(Player player, Enemy e) {
                 playerHealth.setProgress((double) player.getHealth() / 100);
                 enemyHealth.setProgress((double) e.getHealth() / 100);
@@ -617,10 +634,13 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                     attacks.getChildren().get(0).requestFocus();
                 }
             }
-/**
- * Purpose: To control left and right movement of the player.
- * @param event - the event of the button being pressed that controls movement
- */
+
+            /**
+             * Purpose: To control left and right movement of the player.
+             *
+             * @param event - the event of the button being pressed that
+             * controls movement
+             */
             private void moveLeftRight(KeyEvent event) {
 
                 int leftRight = 0; // if 1, move right if -1 move left
@@ -648,10 +668,13 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                     }
                 }
             }
-/**
- * Purpose: To control up and down movement of the player.
- * @param event - the event of the button being pressed that controls movement
- */
+
+            /**
+             * Purpose: To control up and down movement of the player.
+             *
+             * @param event - the event of the button being pressed that
+             * controls movement
+             */
             private void moveupDown(KeyEvent event) {
                 int upDown = 0;
                 if (event.getCode() == KeyCode.W) {
