@@ -51,10 +51,6 @@ import javafx.stage.StageStyle;
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * http://www.java-gaming.org/topics/getting-started-with-javafx-game-programming-for-java-programmers/37201/view.html
  * https://stackoverflow.com/questions/23202272/how-to-play-sounds-with-javafx
- * sound effect clips from Theme music:
- * https://bassgorilla.com/video-game-sound-effects/ background sound
- * http://soundbible.com/1623-Dun-Dun-Dun.html losing sound
- * http://soundbible.com/1354-Opening-Casket.html Treasure chest sound
  *
  * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
  */
@@ -100,8 +96,8 @@ public class Main extends Application implements EventHandler<KeyEvent> {
     private GameLoop gamePlay = new GameLoop();
     private int frameCounter = 0;
     private final int VELOCITY = 5;
-    private String gamePlaySoundTrack = "Sounds/Root.mp3";
-    private String loseSceneSound = "Sounds/dun_dun_dun-Delsym-719755295.mp3";
+    private final String gamePlaySoundTrack = "Sounds/Root.mp3"; //https://bassgorilla.com/video-game-sound-effects/ background sound
+    private final String loseSceneSound = "Sounds/dun_dun_dun-Delsym-719755295.mp3"; // http://soundbible.com/1623-Dun-Dun-Dun.html losing sound
     private MediaPlayer soundtrackPlayer;
     private MediaPlayer endPlayer;
     private Pane root = new Pane(); // for game play scenes
@@ -140,11 +136,10 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         window.setTitle(GAMETITLE);
         window.setWidth(WINWIDTH);
         window.setHeight(WINHEIGHT);
-        //window.setMaximized(true);
 
         // main Scene
         main = new Scene(mainSceneContent()); // set the scene for main
-        gamePlay.initialize(); // maybe pass player into initialize to add items
+        gamePlay.initialize(); // set up the game parameters
 
         // end screen
         end = new Scene(endSceneContent(true));
@@ -163,7 +158,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                     if (!userMove.equals("")) {
                         if (!gamePlay.checkCollisions(gamePlay.getPlayer(), userMove)) { // if check collisions comes back false, move the player
                             gamePlay.updatePosition(gamePlay.getPlayer(), userMove);
-                            // animate the sprite's waddle
+                            // animate the sprite waddle
                             // inspiration from: https://www.programcreek.com/java-api-examples/?api=javafx.animation.Timeline
                             Timeline timeline = new Timeline();
                             KeyFrame leftWalk = new KeyFrame(Duration.millis(150), e -> {
@@ -185,6 +180,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                             battle = new Scene(battleSceneContent(gamePlay.getPlayer(), collidedEnemy));
                             battle.getStylesheets().add("gameMechanics/BattleGUI.css");
                             window.setScene(battle);
+                            // run the battle with the enemy
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
                         }
                         // refresh the page
@@ -233,13 +229,12 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         //i1.setFitWidth(1440);
         i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
         i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-
+        // set the battle scenes content
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
         } else {
             this.enemyBG = new ImageView("Images/Margarine Men_BG.png");
         }
-
         this.monte = new ImageView("Images/Montequilla_BG.png");
         this.enemyHealth = new ProgressBar(1.0f);
         this.playerHealth = new ProgressBar(1.0f);
@@ -318,7 +313,6 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         if (e.getName().equals("Boss")) {
             AnchorPane.setTopAnchor(this.enemyHealth, 275.0);
             AnchorPane.setLeftAnchor(this.enemyHealth, 225.0);
-
         } else {
             AnchorPane.setTopAnchor(this.enemyHealth, 165.0);
             AnchorPane.setLeftAnchor(this.enemyHealth, 250.0);
@@ -751,6 +745,9 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         return mainLayout;
     }
 
+    /**
+     * Purpose: To play the main theme music throughout the game on a repeat.
+     */
     private void playSoundtrack() {
         try {
             soundtrackPlayer = new MediaPlayer(new Media(new File(gamePlaySoundTrack).toURI().toString()));
@@ -799,19 +796,18 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         userMsg.setTextFill(Color.YELLOW);
         Label prompt = new Label(RETURNMSG);
         prompt.setStyle(PROMPTSTYLE);
-
         ImageView montequillaEnd = new ImageView(new Image("file:Images/MontequillaEndScenev2.png"));
         ImageView butterBobBrown = new ImageView(new Image("file:Images/butterBobBrownEndScenev2.png"));
         HBox endFriendsContainer = new HBox();
         endFriendsContainer.getChildren().addAll(montequillaEnd, butterBobBrown);
         endFriendsContainer.setAlignment(Pos.CENTER);
         if (win) {
-            endContent.getChildren().addAll(userMsg, endFriendsContainer, prompt);
+            endContent.getChildren().addAll(userMsg, endFriendsContainer, prompt); // if won display monte and his friend
         } else {
-            endContent.getChildren().addAll(userMsg, prompt);
+            endContent.getChildren().addAll(userMsg, prompt); // if lost just plain
         }
-
         endScene.getChildren().addAll(backing, endContent);
+
         return endScene;
     }
 
@@ -864,7 +860,5 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         } else if (args.length == 0) {
             launch(args);
         }
-
     }
-
 }
