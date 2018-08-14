@@ -370,7 +370,12 @@ public class BattleLoop extends GameLoop {
             }
         }
     }
-
+    /**
+     * Purpose: Checks to see if a player has a valid potion. Returns the next 
+     * potion to be used otherwise returns null to signify that no potion is valid.
+     * @param player - player who is using the potion
+     * @return  validP - potion to be used or null 
+     */
     public Potion validPotion(Player player) {
         Potion validP = null;
         ArrayList<Sprite> temp = player.getItems();

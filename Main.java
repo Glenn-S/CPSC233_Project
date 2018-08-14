@@ -247,7 +247,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         this.attack = new AudioClip(getClass().getResource("Sounds/Completion.wav").toString());
         enemyBG.setFitHeight(400);
         enemyBG.setFitWidth(400);
-        // creates injury animation
+        // creates injury and attack animation
         this.injuryAnim = new TranslateTransition(Duration.millis(75), enemyBG);
         this.injuryAnim.setByX(100f);
         this.injuryAnim.setFromX(0);
