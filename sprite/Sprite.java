@@ -1,6 +1,7 @@
 package sprite;
 
 import javafx.scene.image.Image;
+
 /**
  * Purpose: It's the parent class of  Avator , Potion ,Weapon and Defence
  *
@@ -196,7 +197,7 @@ public class Sprite {
 	public char getSpriteChar() {
 		return this.spriteChar;
 	}
-	
+
 	/**
 	 * Purpose: This is the setter for the sprites character variable
 	 *

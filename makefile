@@ -13,18 +13,18 @@ RESPONSE = Building the dependency
 #Build rules
 
 # ------------------------------ Build Main
-Main.class: main/Main.java
+Main.class: Main.java
 	$(ECHO) $(RESPONSE) $@
-	$(JCC) $(JFLAGS) main/Main.java
+	$(JCC) $(JFLAGS) Main.java
 
 Main: Main.class
 	$(ECHO) $(RESPONSE) $@
-	$(RUN) $@
+	$(RUN) Main
 	make clean
 # ------------------------------ Build MainTerminal
-MainTerminal: main/Main.class
+MainTerminal: Main.class
 	$(ECHO) $(RESPONSE) $@
-	$(RUN) main/Main terminal
+	$(RUN) Main terminal
 	make clean
 
 clean:

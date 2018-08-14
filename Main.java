@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,8 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import sprite.*;
-import gameMechanics.*;
 import java.io.File;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -31,7 +28,6 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import terminal.*;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.scene.control.Alert;
@@ -42,6 +38,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
+import sprite.*;
+import gameMechanics.*;
+import terminal.*;
 
 /**
  * Purpose: To drive the main game mechanics and prompt the user to start the
