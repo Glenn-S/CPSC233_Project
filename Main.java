@@ -629,7 +629,7 @@ public class Main extends Application implements EventHandler<KeyEvent> { // cha
                 }
             }
 /**
- * Purpose: Redraws the health bars and whether or not the potion attack is 
+ * Purpose: Redraws the health bars and whether or not the potion attack is
  * available for use.
  * @param player - an instance of the player class representing the current player
  * @param e - the enemy being battled
