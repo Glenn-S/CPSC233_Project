@@ -180,6 +180,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
                             window.setScene(battle);
                             // run the battle with the enemy
                             battle(gamePlay.getPlayer(), collidedEnemy, gamePlay.getEnemy(), gamePlay.getTerrain(), battle);
+                            window.resizableProperty().setValue(false);
                         }
                         // refresh the page
                         root = gamePlay.drawState(gamePlay.getPlayer());
@@ -780,7 +781,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             System.err.println("Sound file error");
         }
         soundtrackPlayer.setVolume(0.2); // lower the volume
-        System.out.println(soundtrackPlayer.getVolume());
+        //System.out.println(soundtrackPlayer.getVolume()); // for test purposes
         soundtrackPlayer.play();
     }
 
@@ -795,6 +796,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         // depending on the state change the text
         StackPane endScene = new StackPane();
         ImageView backing = new ImageView(new Image("file:Images/Battle Background.png"));
+        startBtn.setText(START); // make the start button text say start again
 
         VBox endContent = new VBox();
         endContent.setAlignment(Pos.CENTER);

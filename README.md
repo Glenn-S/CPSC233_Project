@@ -10,6 +10,8 @@ How to run the GUI Version:
 1.Type at the terminal "make Main" or "javac Main.java && java Main"
 
 To pause the game press escape.
+
+To move around in the game you use WASD.
 ********************************************************************************
 
 This game has been written to be of the mindset of a child's imagination. As
