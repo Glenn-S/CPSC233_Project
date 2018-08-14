@@ -52,6 +52,7 @@ public class MainTerminal { // change this name to be the name of the game
 
     /**
      * Purpose: To drive the main game loop of the game.
+     *
      * @return true or false depending on whether they would or would not like
      * play again.
      */
@@ -101,6 +102,7 @@ public class MainTerminal { // change this name to be the name of the game
     /**
      * Purpose: To prompt the user about whether they would like to play the
      * game again.
+     *
      * @return true if they do want to play again else false
      */
     private boolean returnMain() {
