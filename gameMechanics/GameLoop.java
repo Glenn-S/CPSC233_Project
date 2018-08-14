@@ -392,8 +392,6 @@ public class GameLoop {
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
                             return enemy.get(i);
-                            //return new Enemy(enemy.get(i));
-                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                     case "down":
@@ -401,8 +399,6 @@ public class GameLoop {
                                 && (player.getCoord().getLeftBoundary() >= enemy.get(i).getCoord().getLeftBoundary())
                                 && (player.getCoord().getRightBoundary() <= enemy.get(i).getCoord().getRightBoundary())) {
                             return enemy.get(i);
-                            //return new Enemy(enemy.get(i));
-                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                     case "left":
@@ -410,8 +406,6 @@ public class GameLoop {
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
                             return enemy.get(i);
-                            //  return new Enemy(enemy.get(i));
-                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                     case "right":
@@ -419,7 +413,6 @@ public class GameLoop {
                                 && (player.getCoord().getUpperBoundary() >= enemy.get(i).getCoord().getUpperBoundary())
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
                             return enemy.get(i);
-                            //return new Enemy(enemy.get(i));
                         }
                         break;
                 }
