@@ -4,12 +4,10 @@ import gameMechanics.*;
 import sprite.*;
 import java.util.ArrayList;
 
+/**
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
+ */
 public class GameLoopTest {
-
-    @Test
-    public void testInitializer() {
-        // can't test because it has a graphics component attached to it
-    }
 
     @Test
     public void testCheckCollisions() {
@@ -64,7 +62,7 @@ public class GameLoopTest {
     }
 
     @Test
-    public void testKeyRandomizer() { // can't test initialize because it requires graphics to be initialized
+    public void testKeyRandomizer() { 
         GameLoop g = new GameLoop();
         ArrayList<Enemy> eList = g.getEnemy();
 
@@ -91,8 +89,7 @@ public class GameLoopTest {
 
     @Test
     public void testCheckItemType() {
-        // can't properly test because of graphics component
-        
+
         GameLoop g = new GameLoop();
         ArrayList<Sprite> iList = g.getItem();
 
@@ -102,11 +99,6 @@ public class GameLoopTest {
         g.setItem(iList);
 
         assertEquals(3, g.getItem().size());
-
-        /*g.checkItemType(iList, 0);
-        assertEquals(2, g.getItem().size());
-        assertEquals(2, g.getPlayer().getItems().size());
-        */
     }
 
     @Test
@@ -199,16 +191,6 @@ public class GameLoopTest {
 
         g.pickUpItem(p, new Weapon("Gold Butterknife", new Location(78,8,0,0), null, ' ', null, true, false, 100));
         assertEquals(3, p.getItems().size());
-    }
-
-    @Test
-    public void testPlayerInput() {
-        // is there much point in testing this?
-    }
-
-    @Test
-    public void testDrawStateTerminal() {
-        // is there much point in testing this?
     }
 
 }

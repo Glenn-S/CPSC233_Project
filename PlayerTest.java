@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import org.junit.Test;
 import sprite.*;
 
+/**
+ * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
+ */
 public class PlayerTest {
-	/**
-	 * @author Nathan Bhandari, Chris Yan, Zachary Udoumoren, Glenn Skelton
-	 */
+
 
 	@Test
 	public void test_key() {
