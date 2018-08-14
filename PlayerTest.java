@@ -16,14 +16,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void test_keyToMany() {
-		Player p = new Player();
-
-		p.setKeyCount(10);
-		assertEquals(0,p.getKeyCount());
-	}
-
-	@Test
 	public void test_KeyNegative() {
 		Player p = new Player();
 		p.setKeyCount(-1);
