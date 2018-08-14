@@ -229,11 +229,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
         //i1.setFitWidth(1440);
         i1.setFitWidth(Screen.getPrimary().getVisualBounds().getWidth()); // make the images fit the window size, whether full screen or normal
         i1.setFitHeight(Screen.getPrimary().getVisualBounds().getHeight());
-<<<<<<< HEAD
 // use appropriate enemy image
-=======
-        // set the battle scenes content
->>>>>>> 7be1ae4202a1f853304337a10daef8bf3c77733d
         if (e.getName().equals("Boss")) {
             this.enemyBG = new ImageView("Images/I can't believe it's not butter boy_BG.png");
         } else {
