@@ -10,6 +10,11 @@ How to run the GUI Version:
 1.Type at the terminal "make Main" or "javac Main.java && java Main"
 
 To pause the game press escape.
+********************************************************************************
+
+This game has been written to be of the mindset of a child's imagination. As
+such the drawings and animation have been designed to reflect the child like
+nature of this game.
 
 ********************************************************************************
 
