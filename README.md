@@ -19,6 +19,8 @@ To pause the game press escape.
 
 To move around in the game you use WASD.
 
+To use an attack in the battles highlight it with WASD and then press ENTER.
+
 ********************************************************************************
 
 This game has been written to be of the mindset of a child's imagination. As
