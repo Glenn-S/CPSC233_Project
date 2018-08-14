@@ -95,18 +95,10 @@ public class GameLoop {
      * are not able to place the tombstone image onto the map, after an
      * enemy has been defeated
      *
-     *
      * @return an array list containing the terrain objects
      */
     public ArrayList<Sprite> getTerrain() {
-
-    /* ArrayList<Sprite> copyList = new ArrayList<Sprite>();
-  		for (int i = 0; i < this.terrain.size(); i++) {
-  			copyList.set(i, new Sprite(this.terrain.get(i)));
-  		}
-      return copyList;
-        */
-        return this.terrain;
+        return this.terrain; // needs to be direct reference for manipulating
     }
 
     /**
@@ -117,14 +109,7 @@ public class GameLoop {
      * @return an array list containing the item objects
      */
     public ArrayList<Sprite> getItem() {
-      /*
-    ArrayList<Sprite> copyList = new ArrayList<Sprite>();
-    		for (int i = 0; i < this.items.size(); i++) {
-    			copyList.set(i, new Sprite(this.items.get(i)));
-    		}
-    return copyList;
-    */
-        return this.items;
+        return this.items; // needs to be direct reference for manipulating
     }
 
     /**
@@ -135,14 +120,7 @@ public class GameLoop {
      * @return an array list containing the enemy objects
      */
     public ArrayList<Enemy> getEnemy() {
-
-    /*  ArrayList<Enemy> copyList = new ArrayList<Enemy>();
-    		for (int i = 0; i < this.enemy.size(); i++) {
-    			copyList.set(i, new Enemy(this.enemy.get(i)));
-    		}
-        return copyList;
-*/
-        return this.enemy;
+        return this.enemy; // needs to be direct reference for manipulating
     }
 
     /**
@@ -237,11 +215,9 @@ public class GameLoop {
      *
      * @param printArray the printArray to set
      */
-    /*
     public void setPrintArray(char[][] printArray) {
         this.printArray = printArray;
     }
-     */
 
     /**
      * Purpose: to set the player for the current game.
@@ -257,7 +233,6 @@ public class GameLoop {
      *
      * @return the printArray
      */
-
     public char[][] getPrintArray() {
         return printArray;
     }
@@ -300,7 +275,7 @@ public class GameLoop {
         Weapon starterSword = new Weapon("Bronze Butterknife", null, new Image("file:Images/Bronze butterknife.png"), ' ', null, true, false, 50);
         Defence starterShield = new Defence("Styrofoam Plate Shield", null, new Image("file:Images/bronzeShield.png"), ' ', null, true, false, 50);
         Potion smallPotion = new Potion("Small Potion", new Location(0, 0, 0, 0), new Image("file:Images/Small potion.png"), ' ', null, true, false, 25);
-
+        // give the player their starter items
         player.addItem(starterSword);
         System.out.println("*** " + starterSword.getName() + " has been added to your pack ***");
         player.updateAttack(starterSword);
@@ -312,7 +287,7 @@ public class GameLoop {
     }
 
     /**
-     * Purpose:
+     * Purpose: To randomize who gets a key in the enemy array
      */
     public void randomizeKeys() {
         int tempKeyCount = totalKeys - 1;
@@ -323,10 +298,9 @@ public class GameLoop {
         for (int i = 0; i < enemy.size()-1; i+=enemyDivKeys) {
             if (tempKeyCount-- != 0) {
                 indexForKey = (int)(Math.random() * (double)enemyDivKeys);
-                //System.out.println("Random num: " + indexForKey + ", index: " + i + ", Random index = " + (indexForKey+i));
                 enemy.get(indexForKey+i).setKey(true);
             }
-            else break; // temporary solution but the last grunt never gets the key
+            else break;
         }
         // for testing
 /*        for (int i = 0; i < enemy.size(); i++) {
@@ -445,7 +419,6 @@ public class GameLoop {
                                 && (player.getCoord().getLowerBoundary() <= enemy.get(i).getCoord().getLowerBoundary())) {
                             return enemy.get(i);
                             //return new Enemy(enemy.get(i));
-                            /*No enemy copy constructor as of yet, can not test*/
                         }
                         break;
                 }
@@ -476,7 +449,7 @@ public class GameLoop {
                             if ((player.getCoord().getUpperBoundary() - 1 == obj.get(i).getCoord().getLowerBoundary())
                                     && (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary())
                                     && (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                                this.checkItemType(obj, i);
+                                this.checkItemType(obj, i); // give the player the item if valid
                                 result = true;
                             }
                             break;
@@ -485,7 +458,7 @@ public class GameLoop {
                         if (player.getCoord().getLowerBoundary() + 1 == obj.get(i).getCoord().getUpperBoundary() &&
                                 (player.getCoord().getLeftBoundary() >= obj.get(i).getCoord().getLeftBoundary()) &&
                                 (player.getCoord().getRightBoundary() <= obj.get(i).getCoord().getRightBoundary())) {
-                            this.checkItemType(obj, i);
+                            this.checkItemType(obj, i); // give the player the item if valid
                             result = true;
                         }
                         break;
@@ -493,7 +466,7 @@ public class GameLoop {
                         if (player.getCoord().getLeftBoundary() - 1 == obj.get(i).getCoord().getRightBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            this.checkItemType(obj, i);
+                            this.checkItemType(obj, i); // give the player the item if valid
                             result = true;
                         }
                         break;
@@ -501,7 +474,7 @@ public class GameLoop {
                         if (player.getCoord().getRightBoundary() + 1 == obj.get(i).getCoord().getLeftBoundary() &&
                                 (player.getCoord().getUpperBoundary() >= obj.get(i).getCoord().getUpperBoundary()) &&
                                 (player.getCoord().getLowerBoundary() <= obj.get(i).getCoord().getLowerBoundary())) {
-                            this.checkItemType(obj, i);
+                            this.checkItemType(obj, i); // give the player the item if valid
                             result = true;
                         }
                         break;
@@ -515,8 +488,9 @@ public class GameLoop {
      * Purpose: To determine if the item can be picked up and if so, if it is a
      * weapon or shield, remove the old one and replace it with the new. This
      * only happens if the item is better than the one they currently own.
-     * @param obj
-     * @param index
+     *
+     * @param obj the array of items to be checked
+     * @param index the index of the object being checked
      */
     private void checkItemType(ArrayList<Sprite> obj, int index) {
         if ((obj.get(index) instanceof Potion) ||
@@ -526,25 +500,23 @@ public class GameLoop {
             if (obj.get(index) instanceof Potion) {
                 pickUpItem(player, obj.get(index));
             }
-            if (obj.get(index) instanceof Weapon) {
+            if (obj.get(index) instanceof Weapon) { // if it's a sword give it to the player
                 ArrayList<Sprite> newItemList = player.getItems();
                 for (int i = 0; i < newItemList.size(); i++) {
                     if ((newItemList.get(i) instanceof Weapon) &&
                         (((Weapon)newItemList.get(i)).getWeaponBoost() < ((Weapon)obj.get(index)).getWeaponBoost())){
-                        //newItemList.set(i, obj.get(index))
                         player.updateAttack((Weapon)obj.get(index));
                         newItemList.set(i, (Weapon)obj.get(index));
                     }
                 }
                 player.setItems(newItemList);
             }
-            if (obj.get(index) instanceof Defence) {
+            if (obj.get(index) instanceof Defence) { // if it's a shield give it to the player
                 ArrayList<Sprite> newItemList = player.getItems();
                 // remove the old shield
                 for (int i = 0; i < newItemList.size(); i++) {
                     if ((newItemList.get(i) instanceof Defence) &&
                         (((Defence)newItemList.get(i)).getDefenceBoost() < ((Defence)obj.get(index)).getDefenceBoost())){
-                        //newItemList.set(i, obj.get(index))
                         player.updateDefence((Defence)obj.get(index));
                         newItemList.set(i, (Defence)obj.get(index));
                     }
@@ -563,7 +535,7 @@ public class GameLoop {
                 System.err.println("Sound file not found");
             }
             obj.get(index).setSpriteImage(new Image("file:Images/chest2.png"));
-            System.out.println(player.getInventory(true)); // for testing
+            //System.out.println(player.getInventory(true)); // for testing
         }
     }
 
@@ -578,7 +550,7 @@ public class GameLoop {
     public boolean checkEdges(Player player, String move) {
         boolean result = false;
 
-        if (player != null) { // this could be a try and except statement?
+        if (player != null) {
             switch (move) {
                 case "up":
                     if (player.getCoord().getUpperBoundary() - 1 == 0) result = true;
@@ -619,20 +591,10 @@ public class GameLoop {
     private void updateGate() {
         for (int i = 0; i < terrain.size(); i++) {
             if (terrain.get(i).getName().equals("gate")) {
-                //System.out.println("Gate, index " + i + " in the terrain array");
                 terrain.remove(i); // remove the element from the terrain list
                 i--;
-                //terrain.get(i).setExists(false);
-                //terrain.get(i).setSpriteChar(' ');
             }
         }
-        // silently get rid of the gate
-/*        for (int i = 0; i < terrain.size(); i++) {
-            if (terrain.get(i).getName().equals("gate")) {
-                System.out.println("Error, index " + i + " in the terrain array");
-            }
-        }
-*/
     }
 
     /**
@@ -722,12 +684,11 @@ public class GameLoop {
         Label mediumPotionCnt = new Label();
         Label largePotionCnt = new Label();
 
-        // maybe break up into a new method?
         // go through the users items and add them to the status bar
         for (int i = 0; i < this.getPlayer().getItems().size(); i++) {
             item = new ImageView(this.getPlayer().getItems().get(i).getSpriteImage());
             itemContainer = new VBox();
-
+            // count the number of potions of each type the user has
             switch (this.getPlayer().getItems().get(i).getName()) {
                 case "Small Potion":
                     smallPotionCount++;
@@ -774,13 +735,13 @@ public class GameLoop {
 
             itemsStrip.getChildren().addAll(itemContainer);
         }
-
+        // display the number of keys the player has by using their images
         HBox keyContainer = new HBox();
         for (int j = 0; j < this.getPlayer().getKeyCount(); j++) {
             keyContainer.getChildren().add(new ImageView(new Image("file:Images/Normal key.png")));
         }
         itemsStrip.getChildren().add(keyContainer);
-
+        // display the players stats
         HBox playerStats = new HBox();
         playerStats.setSpacing(10);
         playerStats.setPadding(new Insets(10));
@@ -803,6 +764,7 @@ public class GameLoop {
         VBox windowContainer = new VBox();
         windowContainer.getChildren().addAll(scrollPane, playerStats, itemsStrip);
         root.getChildren().add(windowContainer); // used to be scrollPane
+
         return root;
     }
 
@@ -830,7 +792,6 @@ public class GameLoop {
      */
     public boolean checkCollisions(Player player, String move) {
         // check all collisions and if any are false
-        // System.out.println("me:" + player.getCoord()); // for debugging purposes
         if (checkEdges(player, move) || checkEnemies(player, move, this.enemy)
                 || checkSprites(player, move, this.terrain) || checkSprites(player, move, this.items)) {
             return true;
@@ -854,7 +815,7 @@ public class GameLoop {
         String userPrompt = "Please make a move (wasd): ";
         String error = "Invalid input";
         boolean valid = false;
-
+        // get the users input
         if (console == null) {
             return null;
         }
@@ -901,7 +862,7 @@ public class GameLoop {
         colTemp = player.getCoord().getxCoord();
         rowTemp = player.getCoord().getyCoord();
         printArray[rowTemp][colTemp] = player.getSpriteChar();
-
+        // print out each row of the map
         for (int i = 0; i < printArray.length; i++) {
             for (int j = 0; j < printArray[0].length; j++) {
                 System.out.print(printArray[i][j]);
@@ -932,7 +893,7 @@ public class GameLoop {
                 this.printArray[i][j] = ' ';
             }
         }
-
+        // get the items available
         for (int index = 0; index < this.items.size(); index++) {
             rowTemp = this.items.get(index).getCoord().getyCoord();
             columnTemp = this.items.get(index).getCoord().getxCoord();
@@ -940,7 +901,7 @@ public class GameLoop {
                 this.printArray[rowTemp][columnTemp] = this.items.get(index).getSpriteChar();
             }
         }
-
+        // get the terrain available
         for (int index = 0; index < this.terrain.size(); index++) {
             rowTemp = this.terrain.get(index).getCoord().getyCoord();
             columnTemp = this.terrain.get(index).getCoord().getxCoord();
@@ -948,7 +909,7 @@ public class GameLoop {
                 this.printArray[rowTemp][columnTemp] = this.terrain.get(index).getSpriteChar();
             }
         }
-
+        // get the enemies available
         for (int index = 0; index < this.enemy.size(); index++) {
             rowTemp = this.enemy.get(index).getCoord().getyCoord();
             columnTemp = this.enemy.get(index).getCoord().getxCoord();
