@@ -54,7 +54,7 @@ public class GameLoop {
     private boolean loseState;
     private Player player;
     private boolean terminal;
-    private String chestOpeningSound = "Sounds/Opening Casket-SoundBible.com-1012554358.mp3"; // chest sound
+    private String chestOpeningSound = "Sounds/Opening Casket-SoundBible.com-1012554358.mp3"; //http://soundbible.com/1354-Opening-Casket.html Treasure chest sound
 
     /*---------------------------- CONSTRUCTORS ------------------------------*/
     /**

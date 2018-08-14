@@ -69,23 +69,22 @@ public class GameBoard extends Application {
         bossPotions.add(smallPotion);
         bossPotions.add(mediumPotion);
 
-        // maybe adjust the enemies range 6, 10
-        enemy.add(new Enemy("Grunt", new Location(10,6,0,0), grunt, '+', null, true, false, health, lowDefense, lowAttack, moves,false, gruntPotions));
-        // 55, 8
-        enemy.add(new Enemy("Grunt", new Location(64,8,0,0), grunt, '+', null, true, false, health, mediumDefense, mediumAttack, moves, false, gruntPotions));
-        // 50, 30
-        enemy.add(new Enemy("Grunt", new Location(70,35,0,0), grunt, '+', null, true, false, health, highDefense, highAttack, moves, false, gruntPotions));
-        // 77, 3
-        // tester enemies
-        enemy.add(new Enemy("Grunt", new Location(20,30,4,4), grunt, '+', null, true, false, health, highDefense, highAttack, moves,false, gruntPotions));
-        // 55, 8
-        enemy.add(new Enemy("Grunt", new Location(55,8,0,0), grunt, '+', null, true, false, health, mediumDefense, mediumAttack, moves, false, gruntPotions));
-        // 50, 30
-        enemy.add(new Enemy("Grunt", new Location(50,30,0,0), grunt, '+', null, true, false, health, mediumDefense, highAttack, moves, false, gruntPotions));
 
-        enemy.add(new Enemy("Grunt", new Location(39,19,0,0), grunt, '+', null, true, false, health, lowDefense, lowAttack, moves,false, gruntPotions));
+        enemy.add(new Enemy("Grunt", new Location(10,6,4,4), grunt, '+', null, true, false, health, lowDefense, lowAttack, moves,false, gruntPotions));
 
-        enemy.add(new Enemy("Boss", new Location(77,3,0,0), boss, '+', null, true, false, health, bossDefense, bossAttack, moves, true, bossPotions));
+        enemy.add(new Enemy("Grunt", new Location(64,8,1,1), grunt, '+', null, true, false, health, mediumDefense, mediumAttack, moves, false, gruntPotions));
+
+        enemy.add(new Enemy("Grunt", new Location(70,35,5,5), grunt, '+', null, true, false, health, highDefense, highAttack, moves, false, gruntPotions));
+
+        enemy.add(new Enemy("Grunt", new Location(20,30,5,5), grunt, '+', null, true, false, health, highDefense, highAttack, moves,false, gruntPotions));
+
+        enemy.add(new Enemy("Grunt", new Location(55,8,2,2), grunt, '+', null, true, false, health, mediumDefense, mediumAttack, moves, false, gruntPotions));
+
+        enemy.add(new Enemy("Grunt", new Location(50,30,2,2), grunt, '+', null, true, false, health, mediumDefense, highAttack, moves, false, gruntPotions));
+
+        enemy.add(new Enemy("Grunt", new Location(38,19,3,3), grunt, '+', null, true, false, health, lowDefense, lowAttack, moves,false, gruntPotions));
+
+        enemy.add(new Enemy("Boss", new Location(77,3,1,1), boss, '+', null, true, false, health, bossDefense, bossAttack, moves, true, bossPotions));
     }
 
     /**
