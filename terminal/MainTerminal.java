@@ -131,6 +131,7 @@ public class MainTerminal { // change this name to be the name of the game
 		System.out.println("Mountain              m");
 		System.out.println("River                 ~");
 		System.out.println("Gate                  =");
+    System.out.println("House                 H");
         System.out.println("Tombstone             t");
 	}
 
