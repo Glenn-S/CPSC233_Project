@@ -9,9 +9,16 @@ How to run the Terminal Version:
 How to run the GUI Version:
 1.Type at the terminal "make Main" or "javac Main.java && java Main"
 
+How to run the tests:
+1.Type at the terminal "make Tests" or
+"javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar *.java" followed by
+"java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <TEST NAME>"
+where TEST NAME is the name of the test to run.g
+
 To pause the game press escape.
 
 To move around in the game you use WASD.
+
 ********************************************************************************
 
 This game has been written to be of the mindset of a child's imagination. As
