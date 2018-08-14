@@ -23,12 +23,6 @@ public class AvatarTest {
             assertEquals("((20, 30), (X Size: 100, Y Size: 50))",a.getCoord().toString());
         }
 
-        @Test
-        public void test_setHealthNegative() {
-            Avatar a = new Avatar();
-            a.setHealth(-100);
-            assertEquals(0, a.getHealth());
-        }
 
         @Test
         public void test_setHealth() {
@@ -87,7 +81,7 @@ public class AvatarTest {
         }
 
         @Test
-        public void test_setupdateattack() {
+        public void test_setUpdateAttack() {
             Avatar a = new Avatar();
           	Weapon w = new Weapon();
 
@@ -98,7 +92,7 @@ public class AvatarTest {
 
         @Test
         public void test_toString() {
-          
+
             Avatar a = new Avatar("Eva",null, null,'+', null, true, false, 100, 100, 100, null);
 
             assertEquals("Name: Eva, Coord: null, Image: null, Char: +, Text: null, Exists: true, Health: 100, Attack: 100, Defence: 100, Moves: null", a.toString());
