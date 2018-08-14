@@ -343,6 +343,9 @@ public class Main extends Application implements EventHandler<KeyEvent> {
      * changes
      */
     public void battle(Player player, Enemy e, ArrayList<Enemy> enemy, ArrayList<Sprite> terrain, Scene battle) {
+        battle.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            event.consume();
+        });
         battle.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
