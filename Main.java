@@ -857,6 +857,7 @@ public class Main extends Application implements EventHandler<KeyEvent> {
             this.userMove = "right";
         }
         if (e.getCode().equals(KeyCode.ESCAPE)) {
+            soundtrackPlayer.stop();
             startBtn.setText(RESUME); // change the button text to say resume in the main menu
             window.setScene(main); // go back to the main menu
         }
